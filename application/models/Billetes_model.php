@@ -37,9 +37,20 @@ class Billetes_model extends CI_Model {
 		return $resultados->result();
 	}
 
+	public function save_atributes($data)
+	{
+	   $this->db->insert("atributo_billetes",$data);
+	}
+
 /*********************SECCION ATRIBUTOS******************************/	
 
 /*********************SECCION BILLETES*******************************/
+public function add_moneda($data_usuario)
+{
+	 $this->db->insert("catalogo_billetes",$data_usuario);
+	 $ultimo_id = $this->db->insert_id();
+	 return $ultimo_id;
+}
 /*********************SECCION BILLETES*******************************/
 
 }

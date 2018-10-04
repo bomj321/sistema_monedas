@@ -15,7 +15,7 @@ class Attrbillete extends CI_Controller {
 
 	public function create()
 	{
-		$nombre_atributo = $this->input->post("nombre_atributo");
+		$nombre_atributo      = $this->input->post("nombre_atributo");
 		$descripcion_atributo = $this->input->post("descripcion_atributo");
 
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_b.nombre_atributo]");

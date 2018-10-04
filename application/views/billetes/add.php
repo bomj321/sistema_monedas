@@ -50,7 +50,7 @@
 
                 						echo form_label($atributo->nombre_atributo,$atributo->nombre_atributo,$label_atributo)
 									 ?>
-
+									<input type="hidden" name="atributo_id[]" value="<?php echo $atributo->id_atributo_b;?>">
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 									 	<?php 
 									 	//CODIGO PARA FORMATEAR NAMES
@@ -61,17 +61,16 @@
 									 		{
 									 			$tipo_input='text';
 									 		}
-
-									 	$namewithoutspaces = str_replace(" " , "_", $atributo->nombre_atributo);
 									 	//CODIGO PARA FORMATEAR NAMES
 									 	
 
 
 									 		$input_atributo = array(
-									 			'class'        => 'form-control', 
+									 			'required'     =>  true,
+									 			'class'        =>  'form-control', 
 									 			'id'           =>  $atributo->nombre_atributo,
 									 			'placeholder'  =>  $atributo->nombre_atributo,
-									 			'name'         =>  $namewithoutspaces,
+									 			'name'         =>  'catalogo[]',
 									 			'value'        =>  set_value($atributo->nombre_atributo),
 									 			'type'         =>  $tipo_input
 									 			
@@ -101,7 +100,7 @@
 							 	
 
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select name="catalogo[]" required="true" class="form-control" id="catalogo" onchange="catalogoinput()">
+										 	<select required="true" class="form-control" id="catalogo" onchange="catalogoinput()">
 												<?php if(!empty($catalogos)): ?>
 											 		<option value="">Seleccione una Opcion</option>
 											 		<?php foreach ($catalogos as  $catalogo): ?>
@@ -115,6 +114,10 @@
 	                						echo form_error("catalogo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>
+								</div>
+
+								<div id="input_creado" class="form-group">
+									
 								</div>	
 
 

@@ -51,6 +51,48 @@ $(document).ready(function () {
 
 })
 
- function catalogoinput () {
-      alert("hola mundo");
-    };
+
+function catalogoinput () {
+           var catalogo   = document.getElementById("catalogo");
+           var selecvalue = catalogo.options[catalogo.selectedIndex].value;
+           var selectext  = catalogo.options[catalogo.selectedIndex].text;
+           var selectext_form = selectext.replace(" ", "_");
+
+      if(selecvalue !=''){
+          html="<div class='form-group'>";
+                 html+="<label for='catalogo' class='col-sm-2 col-xs-12 col-md-2 control-label'>"+selectext+"</label>";         
+              html+="<div class='col-md-10 col-sm-12 col-xs-12'>";
+                 html += "<td><input type='hidden' name='atributo_id[]' value='"+selecvalue+"'></td>";
+                 html += "<input type='text' onkeypress='return solonumeros(event)' class='form-control' placeholder='Precio entero referencia en el Catalogo' name='catalogo[]'>";
+              html+='</div>';   
+          html+="</div>"                
+          $("#input_creado").append(html);
+
+      }else{
+        document.getElementById("input_creado").innerHTML="";
+      } 
+};
+
+/*FUNCTION ONLY NUMBERS**/
+function solonumeros (e) {
+  key = e.keyCode || e.which;
+  teclado= String.fromCharCode(key);
+  numeros ="0,1,2,3,4,5,6,7,8,9";
+  especiales =[8,37,39,46]; // array
+  teclado_especial = false;
+
+    for (var i in especiales){
+      if(key==especiales[i] || key ==numeros){
+        teclado_especial = true;
+
+      }
+    }
+  
+      if(numeros.indexOf(teclado)==-1 && !teclado_especial){      
+          return false;
+      }else{
+        return true;
+      }
+
+  }
+/*FUNCTION ONLY NUMBERS**/
