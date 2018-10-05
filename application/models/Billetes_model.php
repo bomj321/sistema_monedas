@@ -39,7 +39,12 @@ class Billetes_model extends CI_Model {
 
 	public function save_atributes($data)
 	{
-	   $this->db->insert("atributo_billetes",$data);
+	   return $this->db->insert("atributo_billetes",$data);
+	}
+
+	public function save_atributes_image($data)
+	{
+	   return $this->db->insert("atributo_billetes",$data);
 	}
 
 /*********************SECCION ATRIBUTOS******************************/	
@@ -51,6 +56,49 @@ public function add_moneda($data_usuario)
 	 $ultimo_id = $this->db->insert_id();
 	 return $ultimo_id;
 }
+
+public function listbillete($id)
+{	
+	$this->db->select("b.*,attr_billetes.atributo_billete as descripcionarticulo,attr_b.nombre_atributo as nombreatributo");
+	$this->db->from("catalogo_billetes b");
+	$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+	$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+	$this->db->where("b.id_catalogo_billete",$id);
+	$this->db->where_not_in('attr_b.descripcion_atributo', 'Foto');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+public function listbilleteimage($id)
+{	
+	$this->db->select("b.*,attr_billetes.atributo_billete as descripcionarticulo,attr_b.nombre_atributo as nombreatributo");
+	$this->db->from("catalogo_billetes b");
+	$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+	$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+	$this->db->where("b.id_catalogo_billete",$id);
+	$this->db->where('attr_b.descripcion_atributo', 'Foto');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+public function listusuarios()
+{	
+		$resultados = $this->db->get("catalogo_billetes");
+		return $resultados->result();
+}
 /*********************SECCION BILLETES*******************************/
 
 }
+
+
+

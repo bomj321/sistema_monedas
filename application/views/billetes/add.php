@@ -35,10 +35,45 @@
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
-							 echo form_open('billetes/create',$formulario); 
+							 echo form_open_multipart('billetes/create',$formulario); 
 
 							 ?>
 							 <?php foreach($atributos as $atributo):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo->descripcion_atributo, 'Foto') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image';
+										 	    	$input_atributo = array(
+										 			'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo->nombre_atributo,
+										 			'placeholder'  =>  $atributo->nombre_atributo,
+										 			'name'         =>  'imagen',
+										 			'value'        =>  set_value($atributo->nombre_atributo),
+										 			'type'         =>  'file',
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+										 			$input_atributo =  array(
+										 			'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo->nombre_atributo,
+										 			'placeholder'  =>  $atributo->nombre_atributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  set_value($atributo->nombre_atributo),
+										 			'type'         =>  'text',
+										 			'multiple'     =>  true
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
 
 									<div class="form-group">										
 
@@ -50,35 +85,11 @@
 
                 						echo form_label($atributo->nombre_atributo,$atributo->nombre_atributo,$label_atributo)
 									 ?>
-									<input type="hidden" name="atributo_id[]" value="<?php echo $atributo->id_atributo_b;?>">
+									<input type="hidden" name=<?php echo $name_id?> value="<?php echo $atributo->id_atributo_b;?>">
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 									 	<?php 
-									 	//CODIGO PARA FORMATEAR NAMES
-									 	 if (strpos($atributo->descripcion_atributo, 'Foto') !== false) 
-									 	    {
-									 		    $tipo_input='file';
-									 		}else
-									 		{
-									 			$tipo_input='text';
-									 		}
-									 	//CODIGO PARA FORMATEAR NAMES
 									 	
-
-
-									 		$input_atributo = array(
-									 			'required'     =>  true,
-									 			'class'        =>  'form-control', 
-									 			'id'           =>  $atributo->nombre_atributo,
-									 			'placeholder'  =>  $atributo->nombre_atributo,
-									 			'name'         =>  'catalogo[]',
-									 			'value'        =>  set_value($atributo->nombre_atributo),
-									 			'type'         =>  $tipo_input
-									 			
-									 			
-									 		);
-
-									 		echo form_input($input_atributo);
-									 		echo form_error($atributo->nombre_atributo,"<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+									 		echo form_input($input_atributo);									 		
 
 									 	 ?>
 									 </div>

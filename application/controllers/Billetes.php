@@ -5,6 +5,13 @@ class Billetes extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		//VERIFICAR SI EXISTE LA SESION
+		if (!$this->session->userdata("login")) {
+					redirect(base_url());
+				}
+				
+		//VERIFICAR SI EXISTE LA SESION
+		
 		$this->load->model("Billetes_model");
 	}
 
@@ -22,10 +29,12 @@ class Billetes extends CI_Controller {
 
 
 	public function create()
-	{
+	{//CREATE
 		     $atributo_id  = $this->input->post("atributo_id");
-		     $catalogo     = $this->input->post("catalogo");
+		     $catalogo     = $this->input->post("catalogo");   
 
+		     
+/*INSERTAR USUARIO*/
 		    if($this->session->userdata("tipo_usuario")==1 )
 		    {
 		    	$usuario   = 'Administrador';
@@ -36,16 +45,74 @@ class Billetes extends CI_Controller {
 			);
 
 			$ultimo_id= $this->Billetes_model->add_moneda($data_usuario);
+/*INSERTAR USUARIO*/
+/*INSERTAR IMAGEN*/
 
-		    for ($i=0; $i < count($atributo_id); $i++) { 
+			if (!empty($_FILES['imagen']["name"])) {
+				$atributo_id_image = $this->input->post("atributo_id_image");
+
+				$config['upload_path']          =  './public/images_billetes';
+                $config['allowed_types']        =  'gif|jpg|png|jpeg';
+                $config['max_size']             =  10000;
+                $config['max_width']            =  2000;
+                $config['max_height']           =  2000;
+                $config['file_name']            =  $_FILES['imagen']["name"];
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+				
+              	if ($this->upload->do_upload('imagen')) {
+              		$uploadData = $this->upload->data();
+              		$picture    = $uploadData['file_name'];
+              	}
+
+              	$data_imagen  = array(
+							'id_billete'            => $ultimo_id, 
+							'id_atributo'           => $atributo_id_image,
+							'atributo_billete'      => $picture,
+							
+						);
+						
+
+				 if (!$this->Billetes_model->save_atributes_image($data_imagen)) {
+				 	$this->session->set_flashdata("error","No se pudo guardar la informacion");
+					redirect(base_url()."billetes/add");
+				}							 
+			}
+
+
+/*INSERTAR IMAGEN*/
+   for ($i=0; $i < count($atributo_id); $i++) { 
 						$data  = array(
 							'id_billete'            => $ultimo_id, 
 							'id_atributo'           => $atributo_id[$i],
-							'atributo_billete'      => $catalogo[$i],
+							'atributo_billete'      => $catalogo[$i].' Pesos',
 							
 						);
 						$this->Billetes_model->save_atributes($data);
 					}
-			}
+					redirect(base_url()."billetes/list");
+				
+	}//CREATE
+
+
+	public function list()
+	{
+		$data = array(
+			'usuarios' => $this->Billetes_model->listusuarios(), 
+		);
+
+		$this->layout->view("list",$data);
+	}
+
+public function view($id)
+{
+	$data  = array(
+			'billetes' => $this->Billetes_model->listbillete($id), 
+			'imagenes' => $this->Billetes_model->listbilleteimage($id)
+		);
+		$this->load->view("billetes/modal_billete",$data);
+}
+	
 	
 }

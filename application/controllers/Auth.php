@@ -43,13 +43,13 @@ class Auth extends CI_Controller {
 				}
 				else{
 					$data  = array(
-						'id'             => $res->id_usuario, 
-						'nombre_persona'         => $res->nombre_persona,
-						'nombre_usuario' => $res->nombre_usuario,
-						'tipo_usuario'   => $res->tipo_usuario,
-						'dni_usuario'            => $res->dni_usuario,
-						'membresia'      => $res->membresia,
-						'login'          => TRUE
+						'id'                 => $res->id_usuario, 
+						'nombre_persona'     => $res->nombre_persona,
+						'nombre_usuario'     => $res->nombre_usuario,
+						'tipo_usuario'       => $res->tipo_usuario,
+						'dni_usuario'        => $res->dni_usuario,
+						'membresia'          => $res->membresia,
+						'login'              => TRUE
 					);
 					$this->session->set_userdata($data);
 					redirect(base_url()."dashboard");

@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     $(function () {
@@ -46,11 +47,29 @@ $(document).ready(function () {
         });
       });
 
+/*BOTONES VIEW*/
+//$(".btn-view").on("click", function(){
+       // alert('hola');
 
+   // });
+/*BOTONES VIEW*/
    
 
 })
 
+function datosusuario($id_usuario){
+  var id = $id_usuario;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "billetes/view/" + id,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                //alert(resp);
+            }
+
+        });
+}
 
 function catalogoinput () {
            var catalogo   = document.getElementById("catalogo");
@@ -96,3 +115,10 @@ function solonumeros (e) {
 
   }
 /*FUNCTION ONLY NUMBERS**/
+
+/*ZOOM*/
+$(function () {
+    $('.zoom').zoomy();
+}(jQuery))
+/*ZOOM*/
+

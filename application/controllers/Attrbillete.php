@@ -5,6 +5,12 @@ class Attrbillete extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		//VERIFICAR SI EXISTE LA SESION
+		if (!$this->session->userdata("login")) {
+					redirect(base_url());
+				}
+				
+		//VERIFICAR SI EXISTE LA SESION
 		$this->load->model("Billetes_model");
 	}
 
@@ -23,9 +29,9 @@ class Attrbillete extends CI_Controller {
 
 		if ($this->form_validation->run()) {
 			$data = array(
-				'nombre_atributo'      => $nombre_atributo, 
-				'descripcion_atributo'   => $descripcion_atributo,
-				'estado'        => '1',
+				'nombre_atributo'        => $nombre_atributo, 
+				'descripcion_atributo'   => ucfirst($descripcion_atributo),
+				'estado'                 => '1',
 			);
 
 			if ($this->Billetes_model->save_attr($data)) 
