@@ -47,6 +47,16 @@ class Billetes_model extends CI_Model {
 	   return $this->db->insert("atributo_billetes",$data);
 	}
 
+	public function save_atributes_catalogo($data_catalogo)
+	{
+		 return $this->db->insert("atributo_billetes",$data_catalogo);
+	}
+
+	public function save_precios_catalogo($data_precio)
+	{
+		 return $this->db->insert("precios_catalogob",$data_precio);
+	}
+
 /*********************SECCION ATRIBUTOS******************************/	
 
 /*********************SECCION BILLETES*******************************/

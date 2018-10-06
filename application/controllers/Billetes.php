@@ -86,14 +86,17 @@ class Billetes extends CI_Controller {
 /*INSERTAR IMAGEN*/
 
 /*Atributos Normales*/
-for ($i=0; $i < count($atributo_id); $i++) { 
-						$data  = array(
-							'id_billete'            => $ultimo_id, 
-							'id_atributo'           => $atributo_id[$i],
-							'atributo_billete'      => $catalogo[$i].' Pesos',
-							
-						);
-						$this->Billetes_model->save_atributes($data);
+if (!empty($atributo_id)) {	
+
+	for ($i=0; $i < count($atributo_id); $i++) { 
+							$data  = array(
+								'id_billete'            => $ultimo_id, 
+								'id_atributo'           => $atributo_id[$i],
+								'atributo_billete'      => $catalogo[$i].' Pesos',
+								
+							);
+							$this->Billetes_model->save_atributes($data);
+	}
 }
 /*Atributos Normales*/					
 
@@ -114,8 +117,8 @@ for ($i=0; $i < count($atributo_id); $i++) {
 	for ($i=0; $i < count($id_catalogo); $i++) { 
 			$data_catalogo  = array(
 							'id_billete'            => $ultimo_id, 
-							'id_atributo'           => $atributo_id[$i],
-							'atributo_billete'      => $numero_referencia,
+							'id_atributo'           => $id_catalogo[$i],
+							'atributo_billete'      => $numero_referencia[$i],
 							
 						);
 					$this->Billetes_model->save_atributes_catalogo($data_catalogo);
@@ -123,14 +126,14 @@ for ($i=0; $i < count($atributo_id); $i++) {
 
 			for ($pr = 0; $pr < 4 ; $pr++) {
 				$data_precio  = array(
-							'id_catalogo'   => $id_catalogo,
-							'G'             => $precio_G,
-							'VF'            => $precio_F,
-							'F'             => $precio_VF,
-							'VF'            => $precio_XF,
-							'UNC'           => $precio_UNC,
+							'id_catalogo'   => $id_catalogo[$i],
+							'G'             => $precio_G[$pr],
+							'VF'            => $precio_F[$pr],
+							'F'             => $precio_VF[$pr],
+							'VF'            => $precio_XF[$pr],
+							'UNC'           => $precio_UNC[$pr],
 				);
-				$this->Billetes_model->save_precios_catalogo($data_catalogo);
+					$this->Billetes_model->save_precios_catalogo($data_precio);
 				
 			}
 						
