@@ -29,7 +29,7 @@ class Billetes extends CI_Controller {
 
 
 	public function create()
-	{//CREATE
+	{//////////////////////////////////////////////CREATE
 		     $atributo_id  = $this->input->post("atributo_id");
 		     $catalogo     = $this->input->post("catalogo");   
 
@@ -46,6 +46,8 @@ class Billetes extends CI_Controller {
 
 			$ultimo_id= $this->Billetes_model->add_moneda($data_usuario);
 /*INSERTAR USUARIO*/
+
+
 /*INSERTAR IMAGEN*/
 
 			if (!empty($_FILES['imagen']["name"])) {
@@ -82,7 +84,9 @@ class Billetes extends CI_Controller {
 
 
 /*INSERTAR IMAGEN*/
-   for ($i=0; $i < count($atributo_id); $i++) { 
+
+/*Atributos Normales*/
+for ($i=0; $i < count($atributo_id); $i++) { 
 						$data  = array(
 							'id_billete'            => $ultimo_id, 
 							'id_atributo'           => $atributo_id[$i],
@@ -90,10 +94,54 @@ class Billetes extends CI_Controller {
 							
 						);
 						$this->Billetes_model->save_atributes($data);
-					}
-					redirect(base_url()."billetes/list");
+}
+/*Atributos Normales*/					
+
+
+
+/*PRECIO CATALOGO*/
+
+/*INPUTS NECESARIOS*/
+ $id_catalogo            = $this->input->post("id_catalogo");
+ $numero_referencia      = $this->input->post("numero_referencia"); 
+ $precio_G               = $this->input->post("precio_G"); 
+ $precio_F               = $this->input->post("precio_F"); 
+ $precio_VF              = $this->input->post("precio_VF"); 
+ $precio_XF              = $this->input->post("precio_XF"); 
+ $precio_UNC             = $this->input->post("precio_UNC");  
+/*INPUTS NECESARIOS*/
+
+	for ($i=0; $i < count($id_catalogo); $i++) { 
+			$data_catalogo  = array(
+							'id_billete'            => $ultimo_id, 
+							'id_atributo'           => $atributo_id[$i],
+							'atributo_billete'      => $numero_referencia,
+							
+						);
+					$this->Billetes_model->save_atributes_catalogo($data_catalogo);
+
+
+			for ($pr = 0; $pr < 4 ; $pr++) {
+				$data_precio  = array(
+							'id_catalogo'   => $id_catalogo,
+							'G'             => $precio_G,
+							'VF'            => $precio_F,
+							'F'             => $precio_VF,
+							'VF'            => $precio_XF,
+							'UNC'           => $precio_UNC,
+				);
+				$this->Billetes_model->save_precios_catalogo($data_catalogo);
 				
-	}//CREATE
+			}
+						
+	}
+
+/*PRECIO CATALOGO*/
+
+redirect(base_url()."billetes/list");
+   
+				
+	}//////////////////////////////////////////////CREATE
 
 
 	public function list()
@@ -113,6 +161,17 @@ public function view($id)
 		);
 		$this->load->view("billetes/modal_billete",$data);
 }
-	
+
+
+/*FORMULARIO RENDERIZADO*/
+public function form_billete($selectext,$selecvalue)
+{	
+     $data = array(
+		'nombre' => $selectext,
+		'value'  => $selecvalue
+	);
+	$this->load->view("billetes/form_billete",$data);
+}
+/*FORMULARIO RENDERIZADO*/	
 	
 }

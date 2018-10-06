@@ -127,10 +127,10 @@
 									</div>
 								</div>
 
-								<div id="input_creado" class="form-group">
-									
-								</div>	
-
+								<!--REPUESTA AJAX-->
+								<div id="gif_carga" class="form-group"></div>
+								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	
+								<!--REPUESTA AJAX-->
 
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									

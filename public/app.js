@@ -72,25 +72,36 @@ function datosusuario($id_usuario){
 }
 
 function catalogoinput () {
-           var catalogo   = document.getElementById("catalogo");
+           // var catalogo   = document.getElementById("catalogo");
            var selecvalue = catalogo.options[catalogo.selectedIndex].value;
            var selectext  = catalogo.options[catalogo.selectedIndex].text;
-           var selectext_form = selectext.replace(" ", "_");
+  if (selecvalue) {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "billetes/form_billete/" + selectext +"/"+ selecvalue,
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga').html("");
+                      $("#input_creado").append(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#input_creado').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
 
-      if(selecvalue !=''){
-          html="<div class='form-group'>";
-                 html+="<label for='catalogo' class='col-sm-2 col-xs-12 col-md-2 control-label'>"+selectext+"</label>";         
-              html+="<div class='col-md-10 col-sm-12 col-xs-12'>";
-                 html += "<td><input type='hidden' name='atributo_id[]' value='"+selecvalue+"'></td>";
-                 html += "<input type='text' onkeypress='return solonumeros(event)' class='form-control' placeholder='Precio entero referencia en el Catalogo' name='catalogo[]'>";
-              html+='</div>';   
-          html+="</div>"                
-          $("#input_creado").append(html);
-
-      }else{
-        document.getElementById("input_creado").innerHTML="";
-      } 
+            });
+  }
+     
 };
+
+ $(document).on("click",".btn-remove", function(){
+        $(this).closest("table").remove();
+    });
 
 /*FUNCTION ONLY NUMBERS**/
 function solonumeros (e) {
