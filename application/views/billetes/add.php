@@ -44,15 +44,16 @@
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
 									 	 if (strpos($atributo->descripcion_atributo, 'Foto') !== false) 
 									 	    {
-									 	    		$name_id        = 'atributo_id_image';
+									 	    		$name_id        = 'atributo_id_image[]';
 										 	    	$input_atributo = array(
 										 			'required'     =>  true,
 										 			'class'        =>  'form-control', 
 										 			'id'           =>  $atributo->nombre_atributo,
 										 			'placeholder'  =>  $atributo->nombre_atributo,
-										 			'name'         =>  'imagen',
+										 			'name'         =>  'imagen[]',
 										 			'value'        =>  set_value($atributo->nombre_atributo),
 										 			'type'         =>  'file',
+										 			'multiple'     =>  true
 										 			
 										 		);									 		   
 									 		}else
@@ -111,7 +112,7 @@
 							 	
 
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required="true" class="form-control" id="catalogo" onchange="catalogoinput()">
+										 	<select  class="form-control" id="catalogo" onchange="catalogoinput()">
 												<?php if(!empty($catalogos)): ?>
 											 		<option value="">Seleccione una Opcion</option>
 											 		<?php foreach ($catalogos as  $catalogo): ?>
