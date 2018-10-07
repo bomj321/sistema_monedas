@@ -63,7 +63,55 @@ class Attrbillete extends CI_Controller {
 			'estado' => $estado
 		);
 
-		$this->Billetes_model->update_attr($id,$data);
+		$this->Billetes_model->update_state_attr($id,$data);
 		$this->list();
+	}
+
+	public function edit($id)
+	{
+		$data = array(
+			'atributo' => $this->Billetes_model->get_attr($id)
+		);
+		
+		$this->layout->view("edit",$data);
+	}
+
+	public function update_atribute()
+	{
+		$id_atributo               = $this->input->post("id_atributo");
+		$nombre_atributo           = $this->input->post("nombre_atributo");
+		$descripcion_atributo      = $this->input->post("descripcion_atributo");
+
+		$atributo_actual = $this->Billetes_model->get_attr($id_atributo);
+
+		if ($nombre_atributo == $atributo_actual->nombre_atributo) {
+			$is_unique = "";
+		}else{
+			$is_unique= '|is_unique[atributos_b.nombre_atributo]';
+		}
+
+
+		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required".$is_unique);
+		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
+
+		if ($this->form_validation->run()) {
+				$data = array(
+					'nombre_atributo'        => $nombre_atributo,
+					'descripcion_atributo'   => ucfirst($descripcion_atributo),					
+				);
+
+				if ($this->Billetes_model->update_atribute($id_atributo,$data)) 
+				{
+					$this->list();
+				}else
+				{
+					$this->session->set_flashdata("error","No se pudo guardar la informacion");
+					$this->add($id_atributo);
+				}
+
+
+			}else{
+				$this->add($id_atributo);
+		}
 	}
 }

@@ -55,10 +55,10 @@
 										 	    	$input_atributo = array(
 										 			'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo->nombre_atributo,
-										 			'placeholder'  =>  $atributo->nombre_atributo,
+										 			'id'           =>  $atributo->nombreatributo,
+										 			'placeholder'  =>  $atributo->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  set_value($atributo->nombre_atributo),
+										 			'value'        =>  $atributo->descripcionatributo,
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -69,10 +69,10 @@
 										 			$input_atributo =  array(
 										 			'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo->nombre_atributo,
-										 			'placeholder'  =>  $atributo->nombre_atributo,
+										 			'id'           =>  $atributo->nombreatributo,
+										 			'placeholder'  =>  $atributo->nombreatributo,
 										 			'name'         =>  'catalogo[]',
-										 			'value'        =>  set_value($atributo->nombre_atributo),
+										 			'value'        =>  $atributo->descripcionatributo,
 										 			'type'         =>  'text',
 										 			
 										 		);									 			
@@ -90,16 +90,15 @@
                 						);
 
 
-                						echo form_label($atributo->nombre_atributo,$atributo->nombre_atributo,$label_atributo)
+                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
 									 ?>
 									<input type="hidden" name=<?php echo $name_id?> value="<?php echo $atributo->id_atributo_b;?>">
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-									 	<?php 
-									 	
-									 		echo form_input($input_atributo);									 		
-
-									 	 ?>
+									 	<?php echo form_input($input_atributo);?>
 									 </div>
+									 <?php if(strpos($atributo->descripcion_atributo, 'Foto') !== false):?>
+									 	<div class="pull-left"><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_billetes/'.$atributo->descripcionatributo?>"></div>
+									 <?php endif; ?>
 
 					
 								</div>
@@ -155,7 +154,51 @@
 												 echo form_button($button)
 												 ?>
 										</center>
-								</div>	
+								</div>
+
+            <?php foreach($catalogos_edit as $catalogo_edit):?>    
+								 <table class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+								        <thead>
+								        	<tr >
+								        	  <th colspan="5">
+								        	  	<div class="row">
+									  				<div class="col-md-4 col-sm-12 col-xs-12">
+									  				  	
+									  				</div>
+
+									  				<div class="col-md-4 col-sm-12 col-xs-12">
+									  														  					
+									  				</div>
+
+									  				<div class="col-md-4 col-sm-12 col-xs-12">
+									  					<center style="margin-top: 10px;"><button class=" btn btn-warning btn-remove" type="button">Eliminar Catalogo</button></center>
+									  				</div>		
+								        	  	</div> 
+								        	  </th>
+								        	</tr>
+								            <tr>
+								                <th>G</th>
+								                <th>F</th>
+								                <th>VF</th>
+								                <th>XF</th>
+								                <th>UNC</th>                                   
+								            </tr>
+								        </thead>
+								        <tbody>								        	
+								        	    <?php foreach($pagos_catalogo as $pago_catalogo):?> 
+								        	    <?php if($pago_catalogo->id_catalogo == $catalogo_edit->atributoid): ?> 
+								                    <tr>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G[]" value="<?php echo $pago_catalogo->G?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_XF[]" value="<?php echo $pago_catalogo->XF?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>
+								                    </tr>
+								                <?php endif; ?>
+								                 <?php endforeach;?>     
+								        </tbody>
+								</table>   	
+		        <?php endforeach;?>        
 
 
 							<?php echo form_close(); ?>					

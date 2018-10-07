@@ -40,6 +40,9 @@
                                             	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                     </button>
+
+                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>      
+
                                             </td>
                                         </tr>
                                     <?php endforeach;?>

@@ -99,8 +99,8 @@
 
                   <li><a><i class="fa fa-shopping-cart"></i> Mercado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>mercadob/list">Busca Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>mercadom/list">Busca Monedas</a></li>                      
+                      <li><a href="<?php echo base_url();?>mercadob/list">Billetes</a></li>
+                      <li><a href="<?php echo base_url();?>mercadom/list">Monedas</a></li>                      
                     </ul>
                   </li>
 
@@ -112,13 +112,13 @@
 
                    <li><a><i class="fa fa-list-alt"></i> Colección Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>mercadob/list">Listado de Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>mercadob/list">Listado de Monedas</a></li>
+                      <li><a href="<?php echo base_url();?>mercadob/list">Colecci&oacute;n de Billetes</a></li>
+                      <li><a href="<?php echo base_url();?>mercadob/list">Colecci&oacute;n de Monedas</a></li>
                       <li><a href="<?php echo base_url();?>mercadob/list">Listado de Busquedas</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-list-alt"></i> Membresías <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-paypal"></i> Membresías <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url();?>mercadob/list">Listado de Membresías</a></li>
                       <li><a href="<?php echo base_url();?>mercadob/list">Estado de mi Membresía</a></li>

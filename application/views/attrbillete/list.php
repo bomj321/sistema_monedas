@@ -41,12 +41,10 @@
                                             <td>
                                             	<?php if ($billete->estado=='1'): ?>
                                             		<a title="bloquear atributo" href="<?php echo base_url();?>attrbillete/update/<?php echo $billete->id_atributo_b;?>/0" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
-
                                             	<?php else: ?>
-
-                                            	<a title="Desbloquear atributo" href="<?php echo base_url();?>attrbillete/update/<?php echo $billete->id_atributo_b;?>/1" class="btn btn-success btn-check"><span class="fa fa-check"></span></a>	
-                                            		
+                                            	<a title="Desbloquear atributo" href="<?php echo base_url();?>attrbillete/update/<?php echo $billete->id_atributo_b;?>/1" class="btn btn-success btn-check"><span class="fa fa-check"></span></a>	                                            		
                                             	<?php endif ?>
+                                              <a title="Editar Atributo" href="<?php echo base_url();?>attrbillete/edit/<?php echo $billete->id_atributo_b;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
                                                     
                                                     
                                             </td>
