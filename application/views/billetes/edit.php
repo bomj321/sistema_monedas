@@ -30,44 +30,83 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <center><p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p></center>                                
                              </div>
-                       		 <?php endif;?>
-
-                       		 <?php if($this->session->flashdata("success")):?>
-                            <div class="alert alert-success ">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <center><p><i class="icon fa fa-check"></i><?php echo $this->session->flashdata("success"); ?></p></center>                                
-                             </div>
-                       		 <?php endif;?>
-
+                       		 <?php endif;?> 
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
 							 echo form_open_multipart('billetes/update',$formulario); 
 
 							 ?>
- <?php foreach($atributos_not as $atributo_not):?>
-<input type="text" value="<?php echo $atributo_not->nombre_atributo?>">
-<input type="text" value="<?php echo $atributo_not->idbillete?>">
 
-<?php endforeach;?>
-<br>
-<br>
-<?php $query = $this->db->query("SELECT * FROM atributo_billetes WHERE id_billete='$atributo_not->idbillete[0]';"); ?>
+<!----------------------------------------------PARTE DE AGREGAR NUEVOS ATRIBUTOS----------------------------->							 
+<?php if(!empty($atributos_not)): ?>
 
- <?php foreach($query->result() as $atributo):?>
- 	<input type="text" value="<?php echo $atributo->atributo_billete?>">
+	<center><strong><h3>Atributos no Agregados</h3></strong></center>
 
- <?php endforeach;?>
-<br>
-<br>
- <?php $query2 = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$atributo_not->idbillete')"); ?>
+		<?php foreach($atributos_not as $atributo_not):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not->descripcion_atributo, 'Foto') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
 
- <?php foreach($query2->result() as $atributo):?>
- 	<input type="text" value="<?php echo $atributo->nombre_atributo?>">
 
- <?php endforeach;?>
+							 	?>
+
+		<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
 
 
+						echo form_label($atributo_not->nombre_atributo,$atributo_not->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not->id_atributo_b;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>		
+
+		<?php endforeach;?>
+
+
+
+	<hr>
+<?php endif; ?>
+<!----------------------------------------------PARTE DE AGREGAR NUEVOS ATRIBUTOS------------------------->
+
+
+
+<!-----------------------------------------------------PARTE DE ATRIBUTOS AGREGADOS--------------------------------------->
+
+
+				<center><strong><h3>Atributos Agregados</h3></strong></center>
 							 <?php foreach($atributos as $atributo):?>
 
 							 	<?php
@@ -77,7 +116,7 @@
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
-										 			'required'     =>  true,
+										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
 										 			'id'           =>  $atributo->nombreatributo,
 										 			'placeholder'  =>  $atributo->nombreatributo,
@@ -92,7 +131,7 @@
 									 				$name_id        = 'atributo_id[]';
 									 				$id_unico        = 'id_unico[]';
 										 			$input_atributo =  array(
-										 			'required'     =>  true,
+										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
 										 			'id'           =>  $atributo->nombreatributo,
 										 			'placeholder'  =>  $atributo->nombreatributo,
@@ -116,8 +155,8 @@
 
 	                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
 										 ?>
-										<input type="text" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
-								         <input type="text" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_unico_atributo;?>">
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_unico_atributo;?>">
 
 										 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<?php echo form_input($input_atributo);?>
@@ -130,7 +169,10 @@
 								 </div>
 
 							 	<?php endforeach;?>
+<!-----------------------------------------------------PARTE DE ATRIBUTOS AGREGADOS--------------------------------------->
 
+
+<!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
 							 	<div class="form-group">
 							 		<?php 
 										$label_profesor = array(
@@ -163,25 +205,10 @@
 								<div id="gif_carga" class="form-group"></div>
 								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	
 								<!--REPUESTA AJAX-->
+<!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
 
 
-								<div class="col-md-12 col-sm-12 col-xs-12">									
-										<center>
-												<?php
-													$button = array(
-														'class'         => 'btn btn-primary',
-												        'name'          => 'button',
-												        'id'            => 'button',
-												        'value'         => 'true',
-												        'type'          => 'submit',
-												        'content'       => 'Registrar'
-													);
-
-												 echo form_button($button)
-												 ?>
-										</center>
-								</div>
-
+<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->								
             <?php foreach($catalogos_edit as $catalogo_edit):?>    
 								 <table class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
 								 	<input type="text" value="<?php echo $catalogo_edit->id_unico_atributo ?>" name="id_unico_catalogo_edit[]">
@@ -226,7 +253,26 @@
 								                 <?php endforeach;?>     
 								        </tbody>
 								</table>   	
-		        <?php endforeach;?>        
+		        <?php endforeach;?> 
+<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->
+
+		        <div class="col-md-12 col-sm-12 col-xs-12">									
+										<center>
+												<?php
+													$button = array(
+														'class'         => 'btn btn-primary',
+												        'name'          => 'button',
+												        'id'            => 'button',
+												        'value'         => 'true',
+												        'type'          => 'submit',
+												        'content'       => 'Registrar'
+													);
+
+												 echo form_button($button)
+												 ?>
+										</center>
+								</div>
+       
 
 
 							<?php echo form_close(); ?>					

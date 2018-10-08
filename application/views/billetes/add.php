@@ -92,7 +92,7 @@
 
                 						echo form_label($atributo->nombre_atributo,$atributo->nombre_atributo,$label_atributo)
 									 ?>
-									<input type="hidden" name=<?php echo $name_id?> value="<?php echo $atributo->id_atributo_b;?>">
+									<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 									 	<?php 
 									 	

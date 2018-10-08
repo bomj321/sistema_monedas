@@ -22,6 +22,12 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content"> <!--CONTENIDO-->
+                     <?php if($this->session->flashdata("success")):?>
+                            <div class="alert alert-success ">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <center><p><i class="icon fa fa-check"></i><?php echo $this->session->flashdata("success"); ?></p></center>                                
+                             </div>
+                           <?php endif;?>
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>

@@ -177,14 +177,20 @@ public function update()
 	{///////////////////////////////////////////////////////////////////EDIT
 		     $atributo_id  = $this->input->post("atributo_id");
 		     $id_unico  = $this->input->post("id_unico");
-		     $catalogo     = $this->input->post("catalogo");   
+		     $catalogo     = $this->input->post("catalogo");
+		     /*INPUTS DE AGREGACION*/
+			 $atributo_id_add  = $this->input->post("atributo_id_add");
+			 $catalogo_add     = $this->input->post("catalogo_add");
+		    /*INPUTS DE AGREGACION*/  
+		     
 
 
-/*******************************INSERTAR IMAGEN*/
+/*******************************INSERTAR IMAGEN EDITADA*/
 
-/*if (!empty($_FILES['imagen']["name"])) {
+if (!empty($_FILES['imagen']["name"])) {
 		$this->load->library("upload");
 		$atributo_id_image = $this->input->post("atributo_id_image");
+		//$id_unico_usuario = $this->input->post("id_unico");
 
 
 		$config['upload_path']          =  './public/images_billetes';
@@ -198,32 +204,99 @@ public function update()
 		$info = array();
 		$files = count($_FILES['imagen']['name']);
 		for ($i=0; $i < $files; $i++) { 
-			$_FILES['imagen']['name'] = $variablefile['imagen']['name'][$i];
-			$_FILES['imagen']['type'] = $variablefile['imagen']['type'][$i];
-			$_FILES['imagen']['tmp_name'] = $variablefile['imagen']['tmp_name'][$i];
-			$_FILES['imagen']['error'] = $variablefile['imagen']['error'][$i];
-			$_FILES['imagen']['size'] = $variablefile['imagen']['size'][$i];
+			if (!empty($_FILES['imagen']["name"][$i])) {
+						$id_atributo                  = $atributo_id_image[$i];
+						$id_unico_usuario_unico       = $id_unico[0];
+						$_FILES['imagen']['name']     = $variablefile['imagen']['name'][$i];
+						$_FILES['imagen']['type']     = $variablefile['imagen']['type'][$i];
+						$_FILES['imagen']['tmp_name'] = $variablefile['imagen']['tmp_name'][$i];
+						$_FILES['imagen']['error']    = $variablefile['imagen']['error'][$i];
+						$_FILES['imagen']['size']     = $variablefile['imagen']['size'][$i];
+						$this->upload->initialize($config);
+
+						if ($this->upload->do_upload('imagen')) {
+							$data = array("upload_data" => $this->upload->data());
+							$datos = array(
+								
+								'atributo_billete'      => $data['upload_data']['file_name'],
+							);
+							$this->Billetes_model->update_atributes_image($id_unico_usuario_unico,$id_atributo,$datos);
+							
+						}
+					}
+				
+			}
+
+
+		
+}
+
+
+/*******************************INSERTAR IMAGEN EDITADA*/
+
+/*******************************INSERTAR IMAGEN NUEVOS EN LA EDICION QUE NO ESTABA*/
+
+if (!empty($_FILES['imagen_add']["name"])) {
+		$this->load->library("upload");	
+		$atributo_id_image = $this->input->post("atributo_id_image_add");	
+		//$id_unico  = $this->input->post("id_unico");
+		
+		$config['upload_path']          =  './public/images_billetes';
+		$config['allowed_types']        =  'gif|jpg|png|jpeg';
+		$config['max_size']             =  10000;
+		$config['max_width']            =  2000;
+		$config['max_height']           =  2000;
+
+
+		$variablefile= $_FILES;
+		$info = array();
+		$files = count($_FILES['imagen_add']['name']);
+		for ($i=0; $i < $files; $i++) { 
+			$id_unico_usuario_unico = $id_unico[0];
+			$_FILES['imagen_add']['name'] = $variablefile['imagen_add']['name'][$i];
+			$_FILES['imagen_add']['type'] = $variablefile['imagen_add']['type'][$i];
+			$_FILES['imagen_add']['tmp_name'] = $variablefile['imagen_add']['tmp_name'][$i];
+			$_FILES['imagen_add']['error'] = $variablefile['imagen_add']['error'][$i];
+			$_FILES['imagen_add']['size'] = $variablefile['imagen_add']['size'][$i];
 			$this->upload->initialize($config);
 
-			if ($this->upload->do_upload('imagen')) {
+			if ($this->upload->do_upload('imagen_add')) {
 				$data = array("upload_data" => $this->upload->data());
 				$datos = array(
-					'id_billete'            => $ultimo_id, 
+					'id_billete'            => $id_unico_usuario_unico, 
 					'id_atributo'           => $atributo_id_image[$i],
 					'atributo_billete'      => $data['upload_data']['file_name'],
 				);
-				$this->Billetes_model->update_atributes_image($datos);
+				$this->Billetes_model->save_atributes_image($datos);
 				
 			}
 			
 		}
 		
-}*/
+}
 
 
-/*******************************INSERTAR IMAGEN*/
+/*******************************INSERTAR IMAGEN NUEVOS EN LA EDICION QUE NO ESTABA*/
 
-/******************************Atributos Normales*/
+/*INSERTAR ATRIBUTO NORMAL EN LA EDICION QUE NO ESTABA*/
+if (!empty($atributo_id_add)) {	
+	//$id_unico  = $this->input->post("id_unico");
+	for ($i=0; $i < count($atributo_id_add); $i++) { 
+			$id_unico_usuario_unico = $id_unico[0];
+			$data  = array(
+				'id_billete'            => $id_unico_usuario_unico, 
+				'id_atributo'           => $atributo_id_add[$i],
+				'atributo_billete'      => $catalogo_add[$i],
+				
+			);
+			$this->Billetes_model->save_atributes($data);
+	}
+}
+
+/*INSERTAR ATRIBUTO NORMAL EN LA EDICION QUE NO ESTABA*/
+
+
+/******************************Atributos Normales EDITADA*/
 if (!empty($atributo_id)) {	
 
 	for ($i=0; $i < count($atributo_id); $i++) {
@@ -236,57 +309,57 @@ if (!empty($atributo_id)) {
 							$this->Billetes_model->update_atributes($atributo_unico,$id_atributo_id,$data);
 	}
 }
-/******************************Atributos Normales*/					
+/******************************Atributos Normales EDITADA*/	
 
 
+/*********************************PRECIO CATALOGO EDITADA*/
 
-/*********************************PRECIO CATALOGO*/
+if (!empty($this->input->post("id_unico_catalogo_edit"))) {	
 
-/*if (!empty($this->input->post("id_catalogo"))) {	
+				/*INPUTS NECESARIOS*/
+				 $id_unico_catalogo_edit      = $this->input->post("id_unico_catalogo_edit");
+				 $id_atributo_edit            = $this->input->post("id_atributo_edit");
 
-/*INPUTS NECESARIOS*/
-/* $id_catalogo            = $this->input->post("id_catalogo");
- $numero_referencia      = $this->input->post("numero_referencia"); 
- $precio_G               = $this->input->post("precio_G"); 
- $precio_F               = $this->input->post("precio_F"); 
- $precio_VF              = $this->input->post("precio_VF"); 
- $precio_XF              = $this->input->post("precio_XF"); 
- $precio_UNC             = $this->input->post("precio_UNC");*/
-/*INPUTS NECESARIOS*/
+				 $numero_referencia_edit      = $this->input->post("numero_referencia_edit"); 
+				 $precio_G_edit               = $this->input->post("precio_G_edit"); 
+				 $precio_F_edit               = $this->input->post("precio_F_edit"); 
+				 $precio_VF_edit              = $this->input->post("precio_VF_edit"); 
+				 $precio_XF_edit              = $this->input->post("precio_XF_edit"); 
+				 $precio_UNC_edit             = $this->input->post("precio_UNC_edit");
+				/*INPUTS NECESARIOS*/
 
-	/*for ($i=0; $i < count($id_catalogo); $i++) { 	
-			$data_catalogo  = array(
-							'id_billete'            => $ultimo_id, 
-							'id_atributo'           => $id_catalogo[$i],
-							'atributo_billete'      => $numero_referencia[$i],
-							
-						);
-					$this->Billetes_model->update_atributes_catalogo($data_catalogo);
+					for ($i=0; $i < count($id_unico_catalogo_edit); $i++) { 
+							$id_unico       = $id_unico_catalogo_edit[0];
+							$id_atributo    =  $id_atributo_edit[$i];
+							$data_catalogo  = array(											
+											'atributo_billete'      => $numero_referencia_edit[$i],
+											
+										);
+									$this->Billetes_model->update_atributes_catalogo($id_unico,$id_atributo,$data_catalogo);
 
 
-			for ($pr = 0; $pr < 4 ; $pr++) {
-				$data_precio  = array(
-							'id_catalogo'   => $id_catalogo[$i],
-							'id_billete'    => $ultimo_id,
-							'G'             => $precio_G[$pr],
-							'VF'            => $precio_F[$pr],
-							'F'             => $precio_VF[$pr],
-							'XF'            => $precio_XF[$pr],
-							'UNC'           => $precio_UNC[$pr],
-				);
-					$this->Billetes_model->update_precios_catalogo($data_precio);
-				
-			}
-						
-	}*/
-/*}*/	
+							/*for ($pr = 0; $pr < 4 ; $pr++) {
+								$data_precio  = array(											
+											'G'             => $precio_G_edit[$pr],
+											'VF'            => $precio_F_edit[$pr],
+											'F'             => $precio_VF_edit[$pr],
+											'XF'            => $precio_XF_edit[$pr],
+											'UNC'           => $precio_UNC_edit[$pr],
+								);
+									$this->Billetes_model->update_precios_catalogo($id_unico,$id_atributo,$data_precio);*/
+								
+							}
+										
+					}
+		}	
 
-/*********************************PRECIO CATALOGO*/
-/*$this->session->set_flashdata("success","Información Agregada");
-$this->add();*/   
+/*********************************PRECIO CATALOGO EDITADA*/
+
+
+$this->session->set_flashdata("success","Información Editada");
+$this->list();  
 				
 	}/////////////////////////////////////////////////////////////////////EDIT
-
 
 
 	public function list()

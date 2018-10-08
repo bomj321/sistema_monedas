@@ -76,7 +76,8 @@ class Billetes_model extends CI_Model {
 			return $resultado->result();*/
 
 
-
+ $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id')");
+ return $query->result();
 
 ////////////////////////////////////////////////////////
 
@@ -100,7 +101,7 @@ class Billetes_model extends CI_Model {
 		return $resultados->result();*/
 //////////////////////////////////////////////////////////
 
-		$this->db->select("attr_b.*,atri_billete.id_billete as idbillete");
+		/*$this->db->select("attr_b.*,atri_billete.id_billete as idbillete");
 		$this->db->from("atributos_b attr_b");
 		$this->db->join("atributo_billetes atri_billete","attr_b.id_atributo_b = atri_billete.id_atributo");
 		//$this->db->where("atri_billete.id_billete",'111');
@@ -118,7 +119,7 @@ class Billetes_model extends CI_Model {
 		
 		//$this->db->having('atri_billete.id_billete = 111'); 		
 		$resultados = $this->db->get();
-		return $resultados->result();
+		return $resultados->result();*/
 
 
 
@@ -177,6 +178,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 				return false;
 			}
 	}
+	/********************SECCION EDITAR********************************/
 
 	public function update_atributes($id_unico,$atributo_id,$data)
 	{
@@ -184,6 +186,16 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 		$this->db->where("id_atributo",$atributo_id);		
 		return $this->db->update("atributo_billetes",$data);
 	}
+
+		public function update_atributes_image($id_unico_usuario_unico,$id_atributo,$datos)
+		{
+			$this->db->where("id_billete",$id_unico_usuario_unico);
+		    $this->db->where("id_atributo",$id_atributo);		
+		  return $this->db->update("atributo_billetes",$datos);
+
+		}
+
+	/********************SECCION EDITAR********************************/
 
 
 
