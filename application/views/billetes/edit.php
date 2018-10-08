@@ -42,9 +42,32 @@
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
-							 echo form_open_multipart('billetes/create',$formulario); 
+							 echo form_open_multipart('billetes/update',$formulario); 
 
 							 ?>
+ <?php foreach($atributos_not as $atributo_not):?>
+<input type="text" value="<?php echo $atributo_not->nombre_atributo?>">
+<input type="text" value="<?php echo $atributo_not->idbillete?>">
+
+<?php endforeach;?>
+<br>
+<br>
+<?php $query = $this->db->query("SELECT * FROM atributo_billetes WHERE id_billete='$atributo_not->idbillete[0]';"); ?>
+
+ <?php foreach($query->result() as $atributo):?>
+ 	<input type="text" value="<?php echo $atributo->atributo_billete?>">
+
+ <?php endforeach;?>
+<br>
+<br>
+ <?php $query2 = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$atributo_not->idbillete')"); ?>
+
+ <?php foreach($query2->result() as $atributo):?>
+ 	<input type="text" value="<?php echo $atributo->nombre_atributo?>">
+
+ <?php endforeach;?>
+
+
 							 <?php foreach($atributos as $atributo):?>
 
 							 	<?php
@@ -52,6 +75,7 @@
 									 	 if (strpos($atributo->descripcion_atributo, 'Foto') !== false) 
 									 	    {
 									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
 										 			'required'     =>  true,
 										 			'class'        =>  'form-control', 
@@ -66,6 +90,7 @@
 									 		}else
 									 		{
 									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
 										 			$input_atributo =  array(
 										 			'required'     =>  true,
 										 			'class'        =>  'form-control', 
@@ -82,26 +107,27 @@
 
 							 	?>
 
-									<div class="form-group">										
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
 
-									<?php 
-										$label_atributo = array(
-						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-                						);
 
+	                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
+										 ?>
+										<input type="text" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
+								         <input type="text" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_unico_atributo;?>">
 
-                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
-									 ?>
-									<input type="hidden" name=<?php echo $name_id?> value="<?php echo $atributo->id_atributo_b;?>">
-									 <div class="col-md-10 col-sm-12 col-xs-12">
-									 	<?php echo form_input($input_atributo);?>
-									 </div>
-									 <?php if(strpos($atributo->descripcion_atributo, 'Foto') !== false):?>
-									 	<div class="pull-left"><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_billetes/'.$atributo->descripcionatributo?>"></div>
-									 <?php endif; ?>
-
-					
-								</div>
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo->descripcion_atributo, 'Foto') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_billetes/'.$atributo->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
 
 							 	<?php endforeach;?>
 
@@ -158,16 +184,18 @@
 
             <?php foreach($catalogos_edit as $catalogo_edit):?>    
 								 <table class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+								 	<input type="text" value="<?php echo $catalogo_edit->id_unico_atributo ?>" name="id_unico_catalogo_edit[]">
+								 	<input type="text" value="<?php echo $catalogo_edit->id_atributo_edit ?>" name="id_atributo_edit[]">
 								        <thead>
 								        	<tr >
 								        	  <th colspan="5">
 								        	  	<div class="row">
 									  				<div class="col-md-4 col-sm-12 col-xs-12">
-									  				  	
+									  				  	<center style="margin-top: 10px;"><?php echo $catalogo_edit->nombreatributo;?></center>
 									  				</div>
 
 									  				<div class="col-md-4 col-sm-12 col-xs-12">
-									  														  					
+									  				<center style="margin-top: 10px;"><input class="form-control" type="text" name="numero_referencia_edit[]" placeholder="Numero de Referencia" value="<?php echo $catalogo_edit->descripcionatributo;?>"></center>										  					
 									  				</div>
 
 									  				<div class="col-md-4 col-sm-12 col-xs-12">
@@ -188,11 +216,11 @@
 								        	    <?php foreach($pagos_catalogo as $pago_catalogo):?> 
 								        	    <?php if($pago_catalogo->id_catalogo == $catalogo_edit->atributoid): ?> 
 								                    <tr>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G[]" value="<?php echo $pago_catalogo->G?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF[]" value="<?php echo $pago_catalogo->F?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_XF[]" value="<?php echo $pago_catalogo->XF?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G_edit[]" value="<?php echo $pago_catalogo->G?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F_edit[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF_edit[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_XF_edit[]" value="<?php echo $pago_catalogo->XF?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC_edit[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>
 								                    </tr>
 								                <?php endif; ?>
 								                 <?php endforeach;?>     

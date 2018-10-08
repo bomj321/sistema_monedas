@@ -23,13 +23,15 @@ class Billetes_model extends CI_Model {
 		return $this->db->update("atributos_b",$data);
 	}
 
-/*AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
+/*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
 	public function listattr_form()
 	{	
 		$this->db->or_where_not_in('descripcion_atributo', 'Catalogo');
 		$resultados = $this->db->get("atributos_b");
 		return $resultados->result();
 	}
+
+	
 
 	public function listattr_cat()
 	{
@@ -42,7 +44,7 @@ class Billetes_model extends CI_Model {
 	public function listattr_form_edit($id)
 	{
 
-		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo");
+		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
 		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
@@ -51,16 +53,103 @@ class Billetes_model extends CI_Model {
 			$resultado = $this->db->get();
 			return $resultado->result();
 
+	}
+
+	public function listattr_form_not($id)
+	{	
+
+
+		/*$this->db->select("attr_b.*");
+		$this->db->from("atributos_b attr_b");
+		
+		$resultados = $this->db->get();
+		return $resultados->result();*/
+
+
+		/*$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo,attr_billetes.id_atributo as id_atributo_edit");
+		$this->db->from("catalogo_billetes b");
+		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b",'right');
+		$this->db->where("attr_billetes.id_atributo",null);
+		$this->db->where("b.id_catalogo_billete",$id);
+			$resultado = $this->db->get();
+			return $resultado->result();*/
 
 
 
+
+////////////////////////////////////////////////////////
+
+	 /*   $this->db->select("attr_b.*");
+		$this->db->from("atributos_b attr_b");
+		$this->db->join("atributo_billetes atri_billete","attr_b.id_atributo_b = atri_billete.id_atributo",'left');
+		//$this->db->where("atri_billete.id_billete",'111');
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = 111");
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = $id");
+		//$this->db->where('atri_billete.id_atributo','attr_b.id_atributo_b');
+		//$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+
+		//$this->db->where("atri_billete.id_billete",$id);
+		//$this->db->where_not_in('attr_b.id_atributo_b','$atri_billete.id_atributo');	
+		$this->db->where('atri_billete.id_billete',$id); 			
+		$this->db->where("atri_billete.id_atributo",null);
+
+		
+		//$this->db->having('atri_billete.id_billete = 111'); 		
+		$resultados = $this->db->get();
+		return $resultados->result();*/
+//////////////////////////////////////////////////////////
+
+		$this->db->select("attr_b.*,atri_billete.id_billete as idbillete");
+		$this->db->from("atributos_b attr_b");
+		$this->db->join("atributo_billetes atri_billete","attr_b.id_atributo_b = atri_billete.id_atributo");
+		//$this->db->where("atri_billete.id_billete",'111');
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = 111");
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = $id");
+		//$this->db->where('atri_billete.id_atributo','attr_b.id_atributo_b');
+		//$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+
+		//$this->db->where("atri_billete.id_billete",$id);
+		//$this->db->where_not_in('attr_b.id_atributo_b','$atri_billete.id_atributo');	
+		$this->db->where('atri_billete.id_billete',$id);
+		//$this->db->where_not_in('attr_b.id_atributo_b','atri_billete.id_atributo'); 			
+		//$this->db->where("atri_billete.id_atributo",null);
+
+		
+		//$this->db->having('atri_billete.id_billete = 111'); 		
+		$resultados = $this->db->get();
+		return $resultados->result();
+
+
+
+
+
+
+		/*$this->db->select("attr_billetes.*,attr_b.nombre_atributo as nombreatributo");
+		$this->db->from("atributo_billetes attr_billetes");
+		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b",'right');
+		$this->db->where("attr_billetes.id_billete",$id);
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = 111");
+		//$this->db->join("atributo_billetes atri_billete2","atri_billete2.id_billete = $id");
+		//$this->db->where('atri_billete.id_atributo','attr_b.id_atributo_b');
+		//$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+
+		//$this->db->where("atri_billete.id_billete",$id);
+		//$this->db->where_not_in('attr_b.id_atributo_b','$atri_billete.id_atributo');
+		//$this->db->where('atri_billete.id_billete',$id); 		
+		$this->db->where("attr_billetes.id_atributo",null);
+		
+		//$this->db->having('atri_billete.id_billete = 111'); 		
+		$resultados = $this->db->get();
+		return $resultados->result();*/
+		
 
 	}
 
 	public function listattr_cat_edit($id)
 	{
 
-$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo");
+$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo,attr_billetes.id_atributo as id_atributo_edit");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
 		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
@@ -72,7 +161,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 
 	public function listattr_cat_pagos($id)
 	{
-		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,precio_cb.*");
+		$this->db->select("b.*,attr_b.nombre_atributo as nombreatributo,precio_cb.*");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
 		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
@@ -89,9 +178,16 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 			}
 	}
 
+	public function update_atributes($id_unico,$atributo_id,$data)
+	{
+		$this->db->where("id_billete",$id_unico);
+		$this->db->where("id_atributo",$atributo_id);		
+		return $this->db->update("atributo_billetes",$data);
+	}
 
 
-/*AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
+
+/******************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
 	public function save_atributes($data)
 	{
 	   return $this->db->insert("atributo_billetes",$data);
@@ -125,7 +221,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 
 /*********************SECCION ATRIBUTOS******************************/	
 
-/*********************SECCION BILLETES*******************************/
+/*****************************************************SECCION BILLETES*******************************/
 public function add_moneda($data_usuario)
 {
 	 $this->db->insert("catalogo_billetes",$data_usuario);
@@ -172,7 +268,7 @@ public function listusuarios()
 		$resultados = $this->db->get("catalogo_billetes");
 		return $resultados->result();
 }
-/*********************SECCION BILLETES*******************************/
+/**********************************************************SECCION BILLETES*******************************/
 
 }
 
