@@ -23,11 +23,23 @@ class Monedas_model extends CI_Model {
 		return $this->db->update("atributos_m",$data);
 	}
 
+	public function get_attr($id_atributo){
+		$this->db->where("id_atributo_m",$id_atributo);
+		$resultado = $this->db->get("atributos_m");
+		return $resultado->row();
+	}
+
+	public function update_atribute($id_atributo,$data){
+		$this->db->where("id_atributo_m",$id_atributo);
+		return $this->db->update("atributos_m",$data);
+	}
+	
+
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
 	public function listattr_form()
 	{	
 		$this->db->or_where_not_in('descripcion_atributo', 'Catalogo');
-		$resultados = $this->db->get("atributos_b");
+		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
 	}
 
@@ -36,7 +48,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_cat()
 	{
 		$this->db->where('descripcion_atributo', 'Catalogo');
-		$resultados = $this->db->get("atributos_b");
+		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
 	}
 
@@ -44,10 +56,10 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_edit($id)
 	{
 
-		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo");
+		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_m as id_atributo_m,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
-		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->join("atributos_m attr_b","attr_billetes.id_atributo = attr_b.id_atributo_m");
 		$this->db->where("b.id_catalogo_billete",$id);
 		$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
 			$resultado = $this->db->get();
@@ -58,17 +70,17 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND NOT  descripcion_atributo = 'Catalogo'");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND NOT  descripcion_atributo = 'Catalogo'");
 	 return $query->result();
 	}
 
 	public function listattr_cat_edit($id)
 	{
 /*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
-$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo,attr_billetes.id_atributo as id_atributo_edit");
+$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_m as id_atributo_m,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo,attr_billetes.id_atributo as id_atributo_edit");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
-		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->join("atributos_m attr_b","attr_billetes.id_atributo = attr_b.id_atributo_m");
 		$this->db->where("b.id_catalogo_billete",$id);
 		$this->db->where('attr_b.descripcion_atributo', 'Catalogo');
 			$resultado = $this->db->get();
@@ -80,7 +92,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 		$this->db->select("b.*,attr_b.nombre_atributo as nombreatributo,precio_cb.*");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
-		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->join("atributos_m attr_b","attr_billetes.id_atributo = attr_b.id_atributo_m");
 		$this->db->join("precios_catalogob precio_cb","attr_billetes.id_atributo = precio_cb.id_catalogo");
 		$this->db->where("precio_cb.id_billete",$id);
 		$this->db->where("b.id_catalogo_billete",$id);		
@@ -158,16 +170,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 		 return $this->db->insert("precios_catalogob",$data_precio);
 	}
 
-	public function get_attr($id_atributo){
-		$this->db->where("id_atributo_b",$id_atributo);
-		$resultado = $this->db->get("atributos_b");
-		return $resultado->row();
-	}
-
-	public function update_atribute($id_atributo,$data){
-		$this->db->where("id_atributo_b",$id_atributo);
-		return $this->db->update("atributos_b",$data);
-	}
+	
 
 /*********************SECCION ATRIBUTOS******************************/	
 
@@ -184,7 +187,7 @@ public function listbillete($id)
 	$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.descripcion_atributo as palabraclave");
 	$this->db->from("catalogo_billetes b");
 	$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
-	$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+	$this->db->join("atributos_m attr_b","attr_billetes.id_atributo = attr_b.id_atributo_m");
 	$this->db->where("b.id_catalogo_billete",$id);
 	$this->db->where_not_in('attr_b.descripcion_atributo', 'Foto');
 	$resultados = $this->db->get();
@@ -201,7 +204,7 @@ public function listbilleteimage($id)
 	$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo");
 	$this->db->from("catalogo_billetes b");
 	$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
-	$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+	$this->db->join("atributos_m attr_b","attr_billetes.id_atributo = attr_b.id_atributo_m");
 	$this->db->where("b.id_catalogo_billete",$id);
 	$this->db->where('attr_b.descripcion_atributo', 'Foto');
 	$resultados = $this->db->get();

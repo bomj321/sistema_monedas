@@ -34,9 +34,9 @@
 
 							<?php
 							$formulario = array('class' => 'form-horizontal');
-							 echo form_open('attrbillete/update_atribute',$formulario);
+							 echo form_open('attrmoneda/update_atribute',$formulario);
 							 ?>
-							 <input type="hidden" name="id_atributo" value="<?php echo $atributo->id_atributo_b ?>">
+							 <input type="hidden" name="id_atributo" value="<?php echo $atributo->id_atributo_m ?>">
 								<div class="form-group">
 									<label for="nombre_atributo" class="col-sm-2 col-xs-12 col-md-2 control-label">Nombre del Atributo</label>									
 									 <div class="col-md-10 col-sm-12 col-xs-12">
