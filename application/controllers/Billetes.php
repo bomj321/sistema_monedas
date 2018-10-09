@@ -170,11 +170,13 @@ if (!empty($this->input->post("id_catalogo"))) {
 $this->session->set_flashdata("success","Información Agregada");
 $this->add();   
 				
-	}/////////////////////////////////////////////////////////////////////CREATE
+	}
 
+/////////////////////////////////////////////////////////////////////CREATE
 
+////////////////////////////////////////////////////////////////////////////////////EDIT
 public function update()
-	{///////////////////////////////////////////////////////////////////EDIT
+	{
 		     $atributo_id  = $this->input->post("atributo_id");
 		     $id_unico  = $this->input->post("id_unico");
 		     $catalogo     = $this->input->post("catalogo");
@@ -312,7 +314,51 @@ if (!empty($atributo_id)) {
 /******************************Atributos Normales EDITADA*/	
 
 
-/*********************************PRECIO CATALOGO EDITADA*/
+/**********************CATALOGO Y PRECIO NO AGREGADO*********************************/
+if (!empty($this->input->post("id_catalogo"))) {	
+
+/*INPUTS NECESARIOS*/
+ $id_catalogo            = $this->input->post("id_catalogo");
+ $numero_referencia      = $this->input->post("numero_referencia"); 
+ $precio_G               = $this->input->post("precio_G"); 
+ $precio_F               = $this->input->post("precio_F"); 
+ $precio_VF              = $this->input->post("precio_VF"); 
+ $precio_XF              = $this->input->post("precio_XF"); 
+ $precio_UNC             = $this->input->post("precio_UNC");
+ $id_unico  = $this->input->post("id_unico");
+/*INPUTS NECESARIOS*/
+
+	for ($i=0; $i < count($id_catalogo); $i++) {
+	$id_unico_usuario_unico = $id_unico[0]; 	
+			$data_catalogo  = array(
+							'id_billete'            => $id_unico_usuario_unico, 
+							'id_atributo'           => $id_catalogo[$i],
+							'atributo_billete'      => $numero_referencia[$i],
+							
+						);
+					$this->Billetes_model->save_atributes_catalogo($data_catalogo);
+
+
+			for ($pr = 0; $pr < 4 ; $pr++) {
+				$data_precio  = array(
+							'id_catalogo'   => $id_catalogo[$i],
+							'id_billete'    => $id_unico_usuario_unico,
+							'G'             => $precio_G[$pr],
+							'VF'            => $precio_F[$pr],
+							'F'             => $precio_VF[$pr],
+							'XF'            => $precio_XF[$pr],
+							'UNC'           => $precio_UNC[$pr],
+				);
+					$this->Billetes_model->save_precios_catalogo($data_precio);
+				
+			}
+						
+	}
+}	
+/**********************CATALOGO Y PRECIO NO AGREGADO*********************************/
+
+
+/*********************************CATALOGO Y PRECIO CATALOGO EDITADA*/
 
 if (!empty($this->input->post("id_unico_catalogo_edit"))) {	
 
@@ -328,38 +374,52 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 				 $precio_UNC_edit             = $this->input->post("precio_UNC_edit");
 				/*INPUTS NECESARIOS*/
 
-					for ($i=0; $i < count($id_unico_catalogo_edit); $i++) { 
+					for ($i=0; $i < count($id_atributo_edit); $i++) { 
 							$id_unico       = $id_unico_catalogo_edit[0];
-							$id_atributo    =  $id_atributo_edit[$i];
+							//$id_atributo    =  ;
 							$data_catalogo  = array(											
 											'atributo_billete'      => $numero_referencia_edit[$i],
 											
 										);
-									$this->Billetes_model->update_atributes_catalogo($id_unico,$id_atributo,$data_catalogo);
+									$this->Billetes_model->update_atributes_catalogo($id_unico,$id_atributo_edit[$i],$data_catalogo);
+									$this->Billetes_model->delete_precios_catalogo($id_unico,$id_atributo_edit[$i]);
 
 
-							/*for ($pr = 0; $pr < 4 ; $pr++) {
-								$data_precio  = array(											
+							for ($pr = 0; $pr < 4 ; $pr++) {
+								$data_precio  = array(	
+											'id_catalogo'   => $id_atributo_edit[$i],
+											'id_billete'    => $id_unico,										
 											'G'             => $precio_G_edit[$pr],
 											'VF'            => $precio_F_edit[$pr],
 											'F'             => $precio_VF_edit[$pr],
 											'XF'            => $precio_XF_edit[$pr],
 											'UNC'           => $precio_UNC_edit[$pr],
 								);
-									$this->Billetes_model->update_precios_catalogo($id_unico,$id_atributo,$data_precio);*/
+									
+									$this->Billetes_model->save_precios_catalogo($data_precio);
 								
 							}
 										
 					}
 		}	
 
-/*********************************PRECIO CATALOGO EDITADA*/
+/*********************************CATALOGO Y PRECIO CATALOGO EDITADA*/
 
 
 $this->session->set_flashdata("success","Información Editada");
 $this->list();  
 				
-	}/////////////////////////////////////////////////////////////////////EDIT
+	}
+
+public function delete_cat($id,$id_atributo_edit)
+{
+$this->Billetes_model->delete_catalogo($id,$id_atributo_edit);
+$this->session->set_flashdata("error","Catalogo Eliminado");
+$this->edit($id);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////EDIT
 
 
 	public function list()

@@ -1,26 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Billetes_model extends CI_Model {
+class Monedas_model extends CI_Model {
 
 /*********************SECCION ATRIBUTOS******************************/	
 	
 	public function save_attr($data)
 	{
-		return $this->db->insert("atributos_b",$data);
+		return $this->db->insert("atributos_m",$data);
 	}
 
 
 	public function listattr()
 	{
-		$resultados = $this->db->get("atributos_b");
+		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
 	}
 
 	public function update_state_attr($id,$data)
 	{
-		$this->db->where("id_atributo_b",$id);
-		return $this->db->update("atributos_b",$data);
+		$this->db->where("id_atributo_m",$id);
+		return $this->db->update("atributos_m",$data);
 	}
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/

@@ -35,7 +35,7 @@
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
-							 echo form_open('attrbillete/create',$formulario); 
+							 echo form_open('attrmoneda/create',$formulario); 
 
 							 ?>
 								<div class="form-group">

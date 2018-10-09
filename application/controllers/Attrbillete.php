@@ -39,7 +39,7 @@ class Attrbillete extends CI_Controller {
 				$this->list();
 			}else
 			{
-				$this->session->set_flashdata("error","No se pudo guardar la informacion");
+				$this->session->set_flashdata("error_attr","No se pudo guardar la informacion");
 				$this->add();
 			}
 

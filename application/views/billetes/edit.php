@@ -28,7 +28,7 @@
 							<?php if($this->session->flashdata("error")):?>
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <center><p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p></center>                                
+                                <center><p><?php echo $this->session->flashdata("error"); ?></p></center>                                
                              </div>
                        		 <?php endif;?> 
 							<?php
@@ -201,18 +201,21 @@
 									</div>
 								</div>
 
-								<!--REPUESTA AJAX-->
+								<!--REPUESTA AJAX PARA AGREGAR NUEVOS CATALOGOS-->
 								<div id="gif_carga" class="form-group"></div>
 								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	
-								<!--REPUESTA AJAX-->
+								<!--REPUESTA AJAX PARA AGREGAR NUEVOS CATALOGOS-->
 <!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
 
 
-<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->								
+<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->	
+							<?php if(!empty($catalogos_edit)): ?>
+						<center><strong><h3>Catalogos Agregados</h3></strong></center>
+							 <?php endif; ?>							
             <?php foreach($catalogos_edit as $catalogo_edit):?>    
 								 <table class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
-								 	<input type="text" value="<?php echo $catalogo_edit->id_unico_atributo ?>" name="id_unico_catalogo_edit[]">
-								 	<input type="text" value="<?php echo $catalogo_edit->id_atributo_edit ?>" name="id_atributo_edit[]">
+								 	<input type="hidden" value="<?php echo $catalogo_edit->id_unico_atributo ?>" name="id_unico_catalogo_edit[]">
+								 	<input type="hidden" value="<?php echo $catalogo_edit->id_atributo_edit ?>" name="id_atributo_edit[]">
 								        <thead>
 								        	<tr >
 								        	  <th colspan="5">
@@ -226,7 +229,7 @@
 									  				</div>
 
 									  				<div class="col-md-4 col-sm-12 col-xs-12">
-									  					<center style="margin-top: 10px;"><button class=" btn btn-warning btn-remove" type="button">Eliminar Catalogo</button></center>
+									  					<center style="margin-top: 10px;"><a href="<?php echo base_url();?>billetes/delete_cat/<?php echo $catalogo_edit->id_unico_atributo ?>/<?php echo $catalogo_edit->id_atributo_edit ?>" class=" btn btn-warning" type="button">Eliminar Catalogo</a></center>
 									  				</div>		
 								        	  	</div> 
 								        	  </th>

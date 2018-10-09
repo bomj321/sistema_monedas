@@ -1,9 +1,9 @@
 <?php foreach ($billetes as $billete ): ?>
-<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?></p> 
+<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' ? ' $':'';?></p> 
 <?php endforeach;?>
 
 <?php if (!empty($imagenes)): ?>
-	<center><h3>Imagen del Billete</h3></center>
+	<center><h3>Imagenes del Billete</h3></center>
 	<?php foreach ($imagenes as $imagen ): ?>
 	<center>
 		<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" class="zoom">
