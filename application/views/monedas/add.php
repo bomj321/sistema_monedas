@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Agregar Billete<!--<small>Todos los clientes</small>--></h3>
+                <h3>Agregar Moneda<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
@@ -13,7 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Billetes</h2>
+                    <h2>Monedas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -42,7 +42,7 @@
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
-							 echo form_open_multipart('billetes/create',$formulario); 
+							 echo form_open_multipart('monedas/create',$formulario); 
 
 							 ?>
 							 <?php foreach($atributos as $atributo):?>
@@ -92,7 +92,7 @@
 
                 						echo form_label($atributo->nombre_atributo,$atributo->nombre_atributo,$label_atributo)
 									 ?>
-									<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
+									<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_m;?>">
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 									 	<?php 
 									 	
@@ -118,11 +118,11 @@
 							 	
 
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select  class="form-control" id="catalogo" onchange="catalogoinput()">
+										 	<select  class="form-control" id="catalogo" onchange="catalogoinputmonedas()">
 												<?php if(!empty($catalogos)): ?>
 											 		<option value="">Seleccione una Opcion</option>
 											 		<?php foreach ($catalogos as  $catalogo): ?>
-														<option  value="<?php echo $catalogo->id_atributo_b?>" <?php echo set_select('catalogo',$catalogo->id_atributo_b);?>><?php echo $catalogo->nombre_atributo?></option>
+														<option  value="<?php echo $catalogo->id_atributo_m?>" <?php echo set_select('catalogo',$catalogo->id_atributo_m);?>><?php echo $catalogo->nombre_atributo?></option>
 											 		<?php endforeach; ?>
 											 	<?php else: ?>	
 														<option value="">No hay Catalogos</option>

@@ -1,6 +1,6 @@
 <!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
-<?php foreach ($billetes as $billete ): ?>
-<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' ? ' $':'';?></p> 
+<?php foreach ($monedas as $moneda ): ?>
+<p><?php echo $moneda->nombreatributo?>: <?php echo $moneda->descripcionatributo?><?php echo $moneda->palabraclave == 'Precio' ? ' $':'';?></p> 
 <?php endforeach;?>
 <!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 
@@ -26,7 +26,7 @@
 								        	  </th>
 								        	</tr>
 								            <tr>
-								                <th>G</th>
+								                <th>AU</th>
 								                <th>F</th>
 								                <th>VF</th>
 								                <th>XF</th>
@@ -37,9 +37,9 @@
 								        	    <?php foreach($pagos_catalogo as $pago_catalogo):?> 
 								        	    <?php if($pago_catalogo->id_catalogo == $catalogo->atributoid): ?> 
 								                   <tr>
-							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->G == '' ? 'Sin Precio' :  $pago_catalogo->G . ' $' ?> "></center></td>
-							                         <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->F == '' ? 'Sin Precio' :  $pago_catalogo->F . ' $'?> "></center></td>
-							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->VF == '' ? 'Sin Precio' : $pago_catalogo->VF . ' $'?> "></center></td>							                       
+							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->AU == '' ? 'Sin Precio' :  $pago_catalogo->AU . ' $' ?> "></center></td>
+							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->F == '' ? 'Sin Precio' :  $pago_catalogo->F . ' $'?> "></center></td>
+							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->VF == '' ? 'Sin Precio' : $pago_catalogo->VF . ' $'?> "></center></td>							                        
 							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->XF == '' ? 'Sin Precio' : $pago_catalogo->XF . ' $'?> "></center></td>
 							                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->UNC == '' ? 'Sin Precio' : $pago_catalogo->UNC . ' $'?> "></center></td>
 								                   </tr>
@@ -52,11 +52,11 @@
 
 <!--------------------------------------------------SECCION DE LAS IMAGENES-->
 <?php if (!empty($imagenes)): ?>
-	<center><h3>Imagenes del Billete</h3></center>
+	<center><h3>Imagenes de la Moneda</h3></center>
 	<?php foreach ($imagenes as $imagen ): ?>
 	<center>
-		<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" class="zoom">
-	    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
+		<a target="_blank"  href="<?php echo base_url().'public/images_monedas/'.$imagen->descripcionatributo?>" class="zoom">
+	    <img class="zoom" src="<?php echo base_url().'public/images_monedas/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
 	</a>
 	</center>
 	<?php endforeach;?>

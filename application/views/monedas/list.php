@@ -21,7 +21,7 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content"> <!--CONTENIDO-->                   
+                  <div class="x_content"> <!--CONTENIDO-->                    
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -34,14 +34,14 @@
                                 <?php if(!empty($usuarios)):?>
                                     <?php foreach($usuarios as $usuario):?>
                                         <tr>
-                                            <td><?php echo $usuario->id_catalogo_billete;?></td>
+                                            <td><?php echo $usuario->id_catalogo_moneda;?></td>
                                             <td><?php echo $usuario->usuario;?></td>
                                             <td>
-                                            	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
+                                            	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>">
                                                         <span class="fa fa-search"></span>
                                                     </button>
 
-                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>      
+                                                <a title="Editar Billete" href="<?php echo base_url();?>monedas/edit/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>      
 
                                             </td>
                                         </tr>

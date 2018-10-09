@@ -24,7 +24,7 @@ class Attrmoneda extends CI_Controller {
 		$nombre_atributo      = $this->input->post("nombre_atributo");
 		$descripcion_atributo = $this->input->post("descripcion_atributo");
 
-		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_b.nombre_atributo]");
+		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_m.nombre_atributo]");
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
 
 		if ($this->form_validation->run()) {
@@ -87,7 +87,7 @@ class Attrmoneda extends CI_Controller {
 		if ($nombre_atributo == $atributo_actual->nombre_atributo) {
 			$is_unique = "";
 		}else{
-			$is_unique= '|is_unique[atributos_b.nombre_atributo]';
+			$is_unique= '|is_unique[atributos_m.nombre_atributo]';
 		}
 
 

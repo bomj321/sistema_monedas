@@ -46,13 +46,6 @@ $(document).ready(function () {
           
         });
       });
-
-/*BOTONES VIEW*/
-//$(".btn-view").on("click", function(){
-       // alert('hola');
-
-   // });
-/*BOTONES VIEW*/
    
 
 })
@@ -71,6 +64,20 @@ function datosusuario($id_usuario){
         });
 }
 
+function datosusuariomonedas($id_usuario){
+  var id = $id_usuario;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "monedas/view/" + id,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                //alert(resp);
+            }
+
+        });
+}
+
 function catalogoinput () {
            // var catalogo   = document.getElementById("catalogo");
            var selecvalue = catalogo.options[catalogo.selectedIndex].value;
@@ -79,6 +86,34 @@ function catalogoinput () {
              var base_url= 'http://localhost/sistema_monedas/';
             $.ajax({
                 url: base_url + "billetes/form_billete/" + selectext +"/"+ selecvalue,
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga').html("");
+                      $("#input_creado").append(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#input_creado').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }
+     
+};
+
+function catalogoinputmonedas () {
+           // var catalogo   = document.getElementById("catalogo");
+           var selecvalue = catalogo.options[catalogo.selectedIndex].value;
+           var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue) {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "monedas/form_moneda/" + selectext +"/"+ selecvalue,
                 type:"POST",
                 beforeSend: function() {
                      $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");

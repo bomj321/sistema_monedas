@@ -434,8 +434,10 @@ $this->edit($id);
 public function view($id)
 {
 	$data  = array(
-			'billetes' => $this->Billetes_model->listbillete($id), 
-			'imagenes' => $this->Billetes_model->listbilleteimage($id)
+			'billetes'       => $this->Billetes_model->listbillete($id), 
+			'imagenes'       => $this->Billetes_model->listbilleteimage($id),
+			'catalogos'      => $this->Billetes_model->listattr_cat_edit($id),
+			'pagos_catalogo' => $this->Billetes_model->listattr_cat_pagos($id)
 		);
 		$this->load->view("billetes/modal_billete",$data);
 }

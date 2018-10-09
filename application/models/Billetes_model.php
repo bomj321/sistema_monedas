@@ -187,6 +187,7 @@ public function listbillete($id)
 	$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
 	$this->db->where("b.id_catalogo_billete",$id);
 	$this->db->where_not_in('attr_b.descripcion_atributo', 'Foto');
+	$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
 			return $resultados->result();
