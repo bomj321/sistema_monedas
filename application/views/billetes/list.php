@@ -13,7 +13,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Billetes <a  type="button" href="<?php echo base_url();?>billetes/add" style="margin-left: 5px;" class="btn btn-primary"><span class="fa fa-plus"></span>Agregar</a></h2>
+                    <h2>Billetes 
+                       <?php if($this->session->userdata("tipo_usuario")==1 ):?>   
+                         <a  type="button" href="<?php echo base_url();?>billetes/add" style="margin-left: 5px;" class="btn btn-primary"><span class="fa fa-plus"></span>Agregar</a>
+                        <?php endif; ?>       
+                    </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -40,8 +44,11 @@
                                             	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                     </button>
+                                              <?php if($this->session->userdata("tipo_usuario")==1 ):?>
+                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
+                                              <?php endif; ?> 
 
-                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>      
+                                               <a title="Agregar a Colección" href="<?php echo base_url();?>collectionb/add_collection/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>        
 
                                             </td>
                                         </tr>

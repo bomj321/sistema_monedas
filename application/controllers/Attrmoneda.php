@@ -16,7 +16,13 @@ class Attrmoneda extends CI_Controller {
 
 	public function add()
 	{
-		$this->layout->view("add");
+		if($this->session->userdata("tipo_usuario")!=1){
+			$this->load->view("505");	
+
+
+		}else{
+			$this->layout->view("add");
+		}
 	}
 
 	public function create()

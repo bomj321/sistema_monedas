@@ -19,18 +19,30 @@ class Billetes extends CI_Controller {
 /**/
 	public function add()
 	{
-		$data = array(
-			'atributos' => $this->Billetes_model->listattr_form(),
-			'catalogos' => $this->Billetes_model->listattr_cat() 
-		);
+		if($this->session->userdata("tipo_usuario")!=1){
+			$this->load->view("505");	
 
-		$this->layout->view("add",$data);
+
+		}else{
+			$data = array(
+				'atributos' => $this->Billetes_model->listattr_form(),
+				'catalogos' => $this->Billetes_model->listattr_cat() 
+			);
+
+			$this->layout->view("add",$data);
+		}
 	}
 
 
 	public function edit($id)
 	{
-		$data = array(
+		if($this->session->userdata("tipo_usuario")!=1){
+			$this->load->view("505");	
+
+
+		}else{
+
+			$data = array(
 			'atributos' => $this->Billetes_model->listattr_form_edit($id),
 			'catalogos_edit' => $this->Billetes_model->listattr_cat_edit($id),
 			'pagos_catalogo' => $this->Billetes_model->listattr_cat_pagos($id),
@@ -39,6 +51,9 @@ class Billetes extends CI_Controller {
 		);
 
 		$this->layout->view("edit",$data);
+		}
+
+		
 	}
 
 
