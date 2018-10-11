@@ -33,6 +33,17 @@ class Monedas_model extends CI_Model {
 		$this->db->where("id_atributo_m",$id_atributo);
 		return $this->db->update("atributos_m",$data);
 	}
+
+	public function get_attr_exist($id_atributo){
+		$this->db->where("id_atributo",$id_atributo);
+		$resultado = $this->db->get("atributo_monedas");
+		return $resultado->result();
+	}
+
+		public function delete($id){
+		$this->db->where('id_atributo_m', $id);
+		$this->db->delete('atributos_m');
+	}
 	
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE MONEDAS*/

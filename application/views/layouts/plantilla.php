@@ -76,26 +76,17 @@
                    <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                   <li><a><i class="fa fa-list"></i> Atributos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">                       
-                      <li><a href="<?php echo base_url();?>attrbillete/add">Registrar Atributos Billetes</a></li>                       
                       <li><a href="<?php echo base_url();?>attrbillete/list">Control de Atributos Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>attrmoneda/add">Registrar Atributos Monedas</a></li>
                       <li><a href="<?php echo base_url();?>attrmoneda/list">Control de Atributos Monedas</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-money"></i> Catalago de Billetes <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-money"></i> Catalagos<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>billetes/add">Registrar Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>billetes/list">Control del Catalogo</a></li>                      
+                      <li><a href="<?php echo base_url();?>billetes/list">Billetes</a></li>
+                      <li><a href="<?php echo base_url();?>monedas/list">Monedas</a></li>                        
                     </ul>
-                  </li>
-
-                   <li><a><i class="fa fa-usd"></i> Catalago de Monedas <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>monedas/add">Registrar Monedas</a></li>
-                      <li><a href="<?php echo base_url();?>monedas/list">Control del Catalogo</a></li>                      
-                    </ul>
-                  </li>
+                  </li>                 
 
                   <li><a><i class="fa fa-shopping-cart"></i> Mercado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

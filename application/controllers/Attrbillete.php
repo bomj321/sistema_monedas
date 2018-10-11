@@ -114,4 +114,16 @@ class Attrbillete extends CI_Controller {
 				$this->add($id_atributo);
 		}
 	}
+
+	public function delete($id)
+	{
+		$count = count($this->Billetes_model->get_attr_exist($id));
+		if($count == 0){
+			$this->Billetes_model->delete($id);
+			$this->list();
+		}else{
+			$this->session->set_flashdata("error","Este Registro esta siendo usado");
+			$this->list();
+		}
+	}
 }

@@ -16,5 +16,11 @@ class Usuarios_model extends CI_Model {
 		}
 	}
 
+
+	public function add_user($data)
+	{
+	   return $this->db->insert("usuarios",$data);
+	}
+
 	
 }

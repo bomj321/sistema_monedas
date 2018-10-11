@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Verificar Atributos<!--<small>Todos los clientes</small>--></h3>
+                <h3>Control de Monedas<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
@@ -13,7 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Atributos</h2>
+                     <h2>Monedas<a  type="button" href="<?php echo base_url();?>monedas/add" style="margin-left: 5px;" class="btn btn-primary"><span class="fa fa-plus"></span>Agregar</a></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     

@@ -132,10 +132,12 @@ if (!empty($this->input->post("id_catalogo"))) {
 /*INPUTS NECESARIOS*/
  $id_catalogo            = $this->input->post("id_catalogo");
  $numero_referencia      = $this->input->post("numero_referencia"); 
- $precio_G               = $this->input->post("precio_G"); 
+ $precio_G               = $this->input->post("precio_G");
+ $precio_VG              = $this->input->post("precio_VG");  
  $precio_F               = $this->input->post("precio_F"); 
  $precio_VF              = $this->input->post("precio_VF"); 
  $precio_XF              = $this->input->post("precio_XF"); 
+ $precio_AU              = $this->input->post("precio_AU");
  $precio_UNC             = $this->input->post("precio_UNC");
 /*INPUTS NECESARIOS*/
 
@@ -149,14 +151,16 @@ if (!empty($this->input->post("id_catalogo"))) {
 					$this->Billetes_model->save_atributes_catalogo($data_catalogo);
 
 
-			for ($pr = 0; $pr < 4 ; $pr++) {
+			for ($pr = 0; $pr < 1 ; $pr++) {
 				$data_precio  = array(
 							'id_catalogo'   => $id_catalogo[$i],
 							'id_billete'    => $ultimo_id,
 							'G'             => $precio_G[$pr],
-							'VF'            => $precio_F[$pr],
-							'F'             => $precio_VF[$pr],
+							'VG'            => $precio_VG[$pr],
+							'F'             => $precio_F[$pr],
+							'VF'            => $precio_VF[$pr],							
 							'XF'            => $precio_XF[$pr],
+							'AU'            => $precio_AU[$pr],
 							'UNC'           => $precio_UNC[$pr],
 				);
 					$this->Billetes_model->save_precios_catalogo($data_precio);
@@ -177,13 +181,16 @@ $this->add();
 ////////////////////////////////////////////////////////////////////////////////////EDIT
 public function update()
 	{
-		     $atributo_id  = $this->input->post("atributo_id");
-		     $id_unico  = $this->input->post("id_unico");
-		     $catalogo     = $this->input->post("catalogo");
+		     $atributo_id            = $this->input->post("atributo_id");
+		     $id_unico               = $this->input->post("id_unico");
+		     $catalogo               = $this->input->post("catalogo");
 		     /*INPUTS DE AGREGACION*/
-			 $atributo_id_add  = $this->input->post("atributo_id_add");
-			 $catalogo_add     = $this->input->post("catalogo_add");
-		    /*INPUTS DE AGREGACION*/  
+			 $atributo_id_add        = $this->input->post("atributo_id_add");
+			 $catalogo_add           = $this->input->post("catalogo_add");
+		    /*INPUTS DE AGREGACION*/
+		    /*INPUT DEL CATALOGO*/ 
+		    $id_unico_catalogo_edit  = $this->input->post("id_unico_catalogo_edit"); 
+		   /*INPUT DEL CATALOGO*/   
 		     
 
 
@@ -320,10 +327,12 @@ if (!empty($this->input->post("id_catalogo"))) {
 /*INPUTS NECESARIOS*/
  $id_catalogo            = $this->input->post("id_catalogo");
  $numero_referencia      = $this->input->post("numero_referencia"); 
- $precio_G               = $this->input->post("precio_G"); 
+ $precio_G               = $this->input->post("precio_G");
+ $precio_VG              = $this->input->post("precio_VG");  
  $precio_F               = $this->input->post("precio_F"); 
  $precio_VF              = $this->input->post("precio_VF"); 
  $precio_XF              = $this->input->post("precio_XF"); 
+ $precio_AU              = $this->input->post("precio_AU");
  $precio_UNC             = $this->input->post("precio_UNC");
  $id_unico  = $this->input->post("id_unico");
 /*INPUTS NECESARIOS*/
@@ -339,14 +348,16 @@ if (!empty($this->input->post("id_catalogo"))) {
 					$this->Billetes_model->save_atributes_catalogo($data_catalogo);
 
 
-			for ($pr = 0; $pr < 4 ; $pr++) {
+			for ($pr = 0; $pr < 1 ; $pr++) {
 				$data_precio  = array(
 							'id_catalogo'   => $id_catalogo[$i],
 							'id_billete'    => $id_unico_usuario_unico,
 							'G'             => $precio_G[$pr],
-							'VF'            => $precio_F[$pr],
-							'F'             => $precio_VF[$pr],
+							'VG'            => $precio_VG[$pr],
+							'F'             => $precio_F[$pr],
+							'VF'            => $precio_VF[$pr],							
 							'XF'            => $precio_XF[$pr],
+							'AU'            => $precio_AU[$pr],
 							'UNC'           => $precio_UNC[$pr],
 				);
 					$this->Billetes_model->save_precios_catalogo($data_precio);
@@ -363,19 +374,21 @@ if (!empty($this->input->post("id_catalogo"))) {
 if (!empty($this->input->post("id_unico_catalogo_edit"))) {	
 
 				/*INPUTS NECESARIOS*/
-				 $id_unico_catalogo_edit      = $this->input->post("id_unico_catalogo_edit");
+				 //$id_unico_catalogo_edit      = $this->input->post("id_unico_catalogo_edit");
 				 $id_atributo_edit            = $this->input->post("id_atributo_edit");
 
 				 $numero_referencia_edit      = $this->input->post("numero_referencia_edit"); 
-				 $precio_G_edit               = $this->input->post("precio_G_edit"); 
+				 $precio_G_edit               = $this->input->post("precio_G_edit");
+				 $precio_VG_edit              = $this->input->post("precio_VG_edit");  
 				 $precio_F_edit               = $this->input->post("precio_F_edit"); 
 				 $precio_VF_edit              = $this->input->post("precio_VF_edit"); 
 				 $precio_XF_edit              = $this->input->post("precio_XF_edit"); 
+				 $precio_AU_edit              = $this->input->post("precio_AU_edit");
 				 $precio_UNC_edit             = $this->input->post("precio_UNC_edit");
 				/*INPUTS NECESARIOS*/
 
 					for ($i=0; $i < count($id_atributo_edit); $i++) { 
-							$id_unico       = $id_unico_catalogo_edit[0];
+							$id_unico       = $id_unico[0];
 							//$id_atributo    =  ;
 							$data_catalogo  = array(											
 											'atributo_billete'      => $numero_referencia_edit[$i],
@@ -385,14 +398,16 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 									$this->Billetes_model->delete_precios_catalogo($id_unico,$id_atributo_edit[$i]);
 
 
-							for ($pr = 0; $pr < 4 ; $pr++) {
+							for ($pr = 0; $pr < 1 ; $pr++) {
 								$data_precio  = array(	
 											'id_catalogo'   => $id_atributo_edit[$i],
 											'id_billete'    => $id_unico,										
 											'G'             => $precio_G_edit[$pr],
-											'VF'            => $precio_F_edit[$pr],
-											'F'             => $precio_VF_edit[$pr],
+											'VG'            => $precio_VG_edit[$pr],
+											'F'             => $precio_F_edit[$pr],
+											'VF'            => $precio_VF_edit[$pr],							
 											'XF'            => $precio_XF_edit[$pr],
+											'AU'            => $precio_AU_edit[$pr],
 											'UNC'           => $precio_UNC_edit[$pr],
 								);
 									

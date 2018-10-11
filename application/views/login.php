@@ -23,9 +23,7 @@
   </head>
 
   <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
+    <div>    
 
       <div class="login_wrapper">
         <div class="animate form login_form">
@@ -39,6 +37,12 @@
 	                <p><?php echo $this->session->flashdata("error")?></p>
 	              </div>
 	            <?php endif; ?>
+
+               <?php if($this->session->flashdata("register_ok")):?>
+                <div class="alert alert-success">
+                  <p><?php echo $this->session->flashdata("register_ok")?></p>
+                </div>
+              <?php endif; ?>
 
               <div>
                 <?php 
@@ -61,7 +65,7 @@
                  <?php 
                 $contraseña = array(
                     'class'        => form_error("contraseña") != false ? "parsley-error form-control":" form-control",
-                    'placeholder'  => 'Contraseña',
+                    'placeholder'  => 'Cedula de Identidad',
                     'name'         => 'contraseña',
 
                 );
@@ -90,7 +94,7 @@
 
               <div class="separator">
                 <p class="change_link">Nuevo en el Sitio?
-                  <a href="#signup" class="to_register"> Crea una Cuenta </a>
+                  <a href="<?php echo base_url(); ?>auth/register" class="to_register"> Crea una Cuenta </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -105,127 +109,7 @@
     <?php echo form_close();?><!--FORMULARIO CIERRE Y APERTURA-->
           </section>
         </div>
-
-
-
-
-
-
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-
-
-<?php echo form_open('auth/register');  ?><!--FORMULARIO REGISTRO CIERRE Y APERTURA-->
-  <h1>Crear una Cuenta</h1>
-    <?php if($this->session->flashdata("error")):?>
-                <div class="alert alert-danger">
-                  <p><?php echo $this->session->flashdata("error")?></p>
-                </div>
-    <?php endif; ?>
-
-
-     <div>
-                <?php 
-                $usuario_registro = array(
-                    'class'        => form_error("usuario_registro") != false ? "parsley-error form-control":"form-control ",
-                    'placeholder'  => 'Nombre Completo',
-                    'required'     =>  true,
-                    'name'         => 'usuario_registro',
-                    'value'        =>  set_value("usuario_registro")
-                );
-
-                echo form_input($usuario_registro);
-                echo form_error("usuario_registro","<span class='pull-left label label-danger'>","</span>")        
-
-              ?>
-    </div>
-
-    <div>
-                <?php 
-                $dni_usuario = array(
-                    'class'        => form_error("dni_usuario") != false ? "parsley-error form-control":"form-control ",
-                    'placeholder'  => 'Ingrese DNI',
-                    'required'     =>  true,
-                    'name'         => 'dni_usuario',
-                    'value'        =>  set_value("dni_usuario"),
-                    'type'         => 'password'
-                );
-
-                echo form_input($dni_usuario);
-                echo form_error("dni_usuario","<span class='pull-left label label-danger'>","</span>")        
-
-              ?>
-    </div>
-
-     <div>
-                <?php 
-                $nombre_usuario = array(
-                    'class'        => form_error("nombre_usuario") != false ? "parsley-error form-control":"form-control ",
-                    'placeholder'  => 'Ingrese Nombre de Usuario',
-                    'required'     =>  true,
-                    'name'         => 'nombre_usuario',
-                    'value'        =>  set_value("nombre_usuario")
-                );
-
-                echo form_input($nombre_usuario);
-                echo form_error("nombre_usuario","<span class='pull-left label label-danger'>","</span>")        
-
-              ?>
-    </div>
-    
-
-     <div>
-                <?php 
-                $email_usuario = array(
-                    'class'        => form_error("email_usuario") != false ? "parsley-error form-control":"form-control ",
-                    'placeholder'  => 'Ingrese Correo Electronico',
-                    'required'     =>  true,
-                    'name'         => 'email_usuario',
-                    'value'        =>  set_value("email_usuario")
-                );
-
-                echo form_input($email_usuario);
-                echo form_error("email_usuario","<span class='pull-left label label-danger'>","</span>")        
-
-              ?>
-    </div>
-   
-
-     <div style="margin-top: 45px;">
-                 <?php 
-                $boton = array(
-                    'type'     => 'submit',       
-                    'class'    => 'btn btn-default',
-                    'content'  => 'Registrar'             
-                );
-
-              echo form_button($boton);
-
-              ?>
-      </div>
-
-       <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Eres Miembro?
-                  <a href="#signin" class="to_register"> Logueate </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-
-                <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-                </div>
-        </div>
-
-
-
- <?php echo form_close();?><!--FORMULARIO REGISTRO CIERRE Y APERTURA-->
-          </section>
-        </div>
-       
+ 
       </div>
     </div>
   </body>

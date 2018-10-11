@@ -25,7 +25,7 @@
 
                   	<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<?php if($this->session->flashdata("error")):?>
+							<?php if($this->session->flashdata("error_add")):?>
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <center><p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p></center>                                

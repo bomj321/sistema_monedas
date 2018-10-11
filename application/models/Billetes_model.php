@@ -23,6 +23,30 @@ class Billetes_model extends CI_Model {
 		return $this->db->update("atributos_b",$data);
 	}
 
+	/*SECCION DE EDITAR ATRIBUTOS*/
+	public function get_attr($id_atributo){
+		$this->db->where("id_atributo_b",$id_atributo);
+		$resultado = $this->db->get("atributos_b");
+		return $resultado->row();
+	}
+
+	public function get_attr_exist($id_atributo){
+		$this->db->where("id_atributo",$id_atributo);
+		$resultado = $this->db->get("atributo_billetes");
+		return $resultado->result();
+	}
+
+	public function update_atribute($id_atributo,$data){
+		$this->db->where("id_atributo_b",$id_atributo);
+		return $this->db->update("atributos_b",$data);
+	}
+
+	public function delete($id){
+		$this->db->where('id_atributo_b', $id);
+		$this->db->delete('atributos_b');
+	}
+/*SECCION DE EDITAR ATRIBUTOS*/
+
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
 	public function listattr_form()
 	{	
@@ -157,17 +181,7 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 	{
 		 return $this->db->insert("precios_catalogob",$data_precio);
 	}
-
-	public function get_attr($id_atributo){
-		$this->db->where("id_atributo_b",$id_atributo);
-		$resultado = $this->db->get("atributos_b");
-		return $resultado->row();
-	}
-
-	public function update_atribute($id_atributo,$data){
-		$this->db->where("id_atributo_b",$id_atributo);
-		return $this->db->update("atributos_b",$data);
-	}
+	
 
 /*********************SECCION ATRIBUTOS******************************/	
 

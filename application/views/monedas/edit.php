@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Editar Billete<!--<small>Todos los clientes</small>--></h3>
+                <h3>Editar Moneda<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
@@ -13,7 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Billetes</h2>
+                    <h2>Monedas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -34,7 +34,7 @@
 							<?php
 							$formulario = array('class' => 'form-horizontal');
 
-							 echo form_open_multipart('billetes/update',$formulario); 
+							 echo form_open_multipart('monedas/update',$formulario); 
 
 							 ?>
 
@@ -86,7 +86,7 @@
 
 						echo form_label($atributo_not->nombre_atributo,$atributo_not->nombre_atributo,$label_atributo)
 					 ?>
-					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not->id_atributo_b;?>">
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not->id_atributo_m;?>">
 
 					 <div class="col-md-10 col-sm-12 col-xs-12">
 					 	<?php echo form_input($input_atributo);?>
@@ -155,15 +155,15 @@
 
 	                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
 										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_b;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_unico_atributo;?>">
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_catalogo_moneda;?>">
 
 										 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<?php echo form_input($input_atributo);?>
 										 </div>
 										  <?php if(strpos($atributo->descripcion_atributo, 'Foto') !== false):?>
 										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_billetes/'.$atributo->descripcionatributo?>"></div>										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo->descripcionatributo?>"></div>										
 										 </div>
 										  <?php endif; ?>
 								 </div>
@@ -189,7 +189,7 @@
 												<?php if(!empty($catalogos)): ?>
 											 		<option value="">Seleccione una Opcion</option>
 											 		<?php foreach ($catalogos as  $catalogo): ?>
-														<option  value="<?php echo $catalogo->id_atributo_b?>" <?php echo set_select('catalogo',$catalogo->id_atributo_b);?>><?php echo $catalogo->nombre_atributo?></option>
+														<option  value="<?php echo $catalogo->id_atributo_m?>" <?php echo set_select('catalogo',$catalogo->id_atributo_m);?>><?php echo $catalogo->nombre_atributo?></option>
 											 		<?php endforeach; ?>
 											 	<?php else: ?>	
 														<option value="">No hay Catalogos</option>
@@ -229,7 +229,7 @@
 									  				</div>
 
 									  				<div class="col-md-4 col-sm-12 col-xs-12">
-									  					<center style="margin-top: 10px;"><a href="<?php echo base_url();?>billetes/delete_cat/<?php echo $catalogo_edit->id_unico_atributo ?>/<?php echo $catalogo_edit->id_atributo_edit ?>" class=" btn btn-warning" type="button">Eliminar Catalogo</a></center>
+									  					<center style="margin-top: 10px;"><a href="<?php echo base_url();?>monedas/delete_cat/<?php echo $catalogo_edit->id_unico_atributo ?>/<?php echo $catalogo_edit->id_atributo_edit ?>" class=" btn btn-warning" type="button">Eliminar Catalogo</a></center>
 									  				</div>		
 								        	  	</div> 
 								        	  </th>
@@ -241,19 +241,19 @@
 							                   <th>VF</th>
 							                   <th>XF</th>
 							                   <th>AU</th>
-							                   <th>UNC</th>                                    
+							                   <th>UNC</th>                                   
 								            </tr>
 								        </thead>
 								        <tbody>								        	
 								        	    <?php foreach($pagos_catalogo as $pago_catalogo):?> 
 								        	    <?php if($pago_catalogo->id_catalogo == $catalogo_edit->atributoid): ?> 
 								                    <tr>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G_edit[]" value="<?php echo $pago_catalogo->G?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VG_edit[]" value="<?php echo $pago_catalogo->VG?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F_edit[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF_edit[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+									                    <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G_edit[]" value="<?php echo $pago_catalogo->G?>"></center></td>
+									                    <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VG_edit[]" value="<?php echo $pago_catalogo->VG?>"></center></td>								                       
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F_edit[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF_edit[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_XF_edit[]" value="<?php echo $pago_catalogo->XF?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_AU_edit[]" value="<?php echo $pago_catalogo->AU?>"></center></td>
+								                         <td><center><input style="width: 100%; height: 100%" type="text" name="precio_AU_edit[]" value="<?php echo $pago_catalogo->AU?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC_edit[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>
 								                    </tr>
 								                <?php endif; ?>
