@@ -36,8 +36,8 @@
 							 $formulario = array('class' => 'form-horizontal');
 							 echo form_open('collectionb/create',$formulario); 
 							 ?>
-							 <input type="text" name="id_usuario" value="<?php echo $this->session->userdata("id") ?>">
-							 <input type="text" name="id_billete" value="<?php echo $id_billete ?>">
+							 <input type="hidden" name="id_usuario" value="<?php echo $this->session->userdata("id") ?>">
+							 <input type="hidden" name="id_billete" value="<?php echo $id_billete ?>">
 
 								<div class="form-group">
 									<label for="condicion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
@@ -95,10 +95,10 @@
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select required class="form-control" id="tipo_registro" name="tipo_registro" onchange="preciomoneda()" >
 									 				<option value="">Seleccione una Opcion</option>	
-													<option value="coleccion_personal">Colecci&oacute;n Personal</option>													
-											 		<option value="intercambio">Intercambio</option>
-											 		<option value="venta">Venta</option>
-											 		<option value="busco">Busco</option>									 												 		
+													<option value="Personal">Colecci&oacute;n Personal</option>													
+											 		<option value="Intercambio">Intercambio</option>
+											 		<option value="Venta">Venta</option>
+											 		<option value="Busco">Busco</option>									 												 		
 										 	</select>
 										 	<?php 									 	
 	                						echo form_error("tipo_registro","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")

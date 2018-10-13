@@ -15,5 +15,12 @@ class Collectionb_model extends CI_Model {
 		return $resultados->result();
 	}
 
+	public function get_collectionb($id_coleccion)
+	{
+		$this->db->where("id_coleccion_personal_billete",$id_coleccion);
+		$resultado = $this->db->get("coleccion_personal_billetes");
+		return $resultado->row();
+	}
+
 	
 }

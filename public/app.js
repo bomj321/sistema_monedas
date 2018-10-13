@@ -58,6 +58,22 @@ function datosusuario($id_usuario){
             type:"POST",
             success:function(resp){
                 $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información del Billete');
+                //alert(resp);
+            }
+
+        });
+}
+
+function datoscoleccion($id_coleccion){
+  var id_coleccion = $id_coleccion;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "collectionb/view/" + id_coleccion,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información del Usuario');
                 //alert(resp);
             }
 
@@ -173,7 +189,7 @@ function preciomoneda()
 {
            var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
-  if (selecvalue=='intercambio' || selecvalue=='venta') {
+  if (selecvalue=='Intercambio' || selecvalue=='Venta') {
              var base_url= 'http://localhost/sistema_monedas/';
             $.ajax({
                 url: base_url + "collectionb/form_billete/",

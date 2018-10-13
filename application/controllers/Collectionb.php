@@ -51,10 +51,12 @@ public function create()
 		$lugar_billete            = $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
 		$cantidad_billete         = $this->input->post("cantidad_billete");
 		$descripcion_billete      = $this->input->post("descripcion_billete");
-		if ($tipo_registro =='coleccion_personal' || $tipo_registro =='busco') {
+		if ($tipo_registro =='Personal') {
 			$mercado      = '0';
 
-		}else{
+		}elseif($tipo_registro =='Busco'){
+			$mercado      = '2';
+		}else {
 			$mercado      = '1';
 		}
 		
@@ -116,6 +118,14 @@ public function form_billete()
 {	    
 	$this->load->view("collectionb/form_billete");
 }
-/*FORMULARIO RENDERIZADO CON AJAX*/			
-	
+/*FORMULARIO RENDERIZADO CON AJAX*/		
+/*MODAL AGREGADO*/
+public function view($id_coleccion)
+{
+	$data  = array(
+			'coleccionesb'   => $this->Collectionb_model->get_collectionb($id_coleccion), 			
+		);
+		$this->load->view("collectionb/modal_billete",$data);
+}	
+/*MODAL AGREGADO*/	
 }
