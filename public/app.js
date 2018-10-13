@@ -168,3 +168,34 @@ $(function () {
 }(jQuery))
 /*ZOOM*/
 
+/*PRECIO DEL BILLETE*/
+function preciomoneda()
+{
+           var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='intercambio' || selecvalue=='venta') {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionb/form_billete/",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga').html("");
+                      $("#precio_billete").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#precio_billete').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#precio_billete').html("");
+  }
+  
+}
+/*PRECIO DEL BILLETE*/

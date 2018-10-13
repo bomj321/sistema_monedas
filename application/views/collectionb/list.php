@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Control de Billetes<!--<small>Todos los clientes</small>--></h3>
+                <h3>Control de la Colecci&oacute;n<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
@@ -13,11 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Billetes 
-                       <?php if($this->session->userdata("tipo_usuario")==1 ):?>   
-                         <a  type="button" href="<?php echo base_url();?>billetes/add" style="margin-left: 5px;" class="btn btn-primary"><span class="fa fa-plus"></span>Agregar</a>
-                        <?php endif; ?>       
-                    </h2>
+                    <h2>Colecci&oacute;n</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -29,26 +25,24 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID de la Moneda</th>
-                                    <th>Usuario que la Registro</th>
+                                    <th>ID del Billete</th>
+                                    <th>Condici&oacute;n del Billete</th>
+                                    <th>Casa Certificadora</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if(!empty($usuarios)):?>
-                                    <?php foreach($usuarios as $usuario):?>
+                                <?php if(!empty($billetes)):?>
+                                    <?php foreach($billetes as $billete):?>
                                         <tr>
-                                            <td><?php echo $usuario->id_catalogo_billete;?></td>
-                                            <td><?php echo $usuario->usuario;?></td>
+                                            <td><?php echo $billete->id_coleccion_personal_billete;?></td>
+                                            <td><?php echo $billete->condicion_billete;?></td>
+                                            <td><?php echo $billete->casa_certificadora;?></td>
                                             <td>
-                                            	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
+                                            	 <button type="button" class="btn btn-info btn-view-billete" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosbillete(<?php echo $billete->id_coleccion_personal_billete;?>)" value="<?php echo $billete->id_coleccion_personal_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                     </button>
-                                              <?php if($this->session->userdata("tipo_usuario")==1 ):?>
-                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
-                                              <?php endif; ?> 
-
-                                               <a title="Agregar a Colección" href="<?php echo base_url();?>collectionb/add_collection/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a>        
+                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $billete->id_coleccion_personal_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>                                                 
 
                                             </td>
                                         </tr>

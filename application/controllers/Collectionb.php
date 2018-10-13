@@ -13,16 +13,109 @@ class Collectionb extends CI_Controller {
 		//VERIFICAR SI EXISTE LA SESION
 		
 		$this->load->model("Billetes_model");
+		$this->load->model("Collectionb_model");
+		
 	}
-/*FORMULARIO RENDERIZADO CON AJAX*/	
 
-		public function add_collection($id_moneda)
-		{
-			$data = [
-			    '$id_moneda' => $id_moneda
-			];
+	public function add_collection($id_billete)
+	{
+		$data = [
+		    'id_billete' => $id_billete
+		];
 
-			$this->layout->view("add",$data);
+		$this->layout->view("add",$data);
+	}
+
+	public function list()
+	{
+		$id_usuario_session = $this->session->userdata("id");
+		$data = [
+		    'billetes' => $this->Collectionb_model->list($id_usuario_session)
+		];
+
+		$this->layout->view("list",$data);
+
+	}
+
+public function create()
+{	    $id_usuario               = $this->input->post("id_usuario");
+	    $id_billete               = $this->input->post("id_billete");
+	    $condicion_billete        = $this->input->post("condicion_billete");
+		$casa_certificadora       = $this->input->post("casa_certificadora");
+		$valor_certificacion      = $this->input->post("valor_certificacion");
+		$registro_certificacion   = $this->input->post("registro_certificacion");
+		$tipo_registro            = $this->input->post("tipo_registro");
+		$precio_billete           = $this->input->post("precio_billete");
+		$serie_billete            = $this->input->post("serie_billete");		
+		$precio_referencia        = $this->input->post("precio_referencia");
+		$lugar_billete            = $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
+		$cantidad_billete         = $this->input->post("cantidad_billete");
+		$descripcion_billete      = $this->input->post("descripcion_billete");
+		if ($tipo_registro =='coleccion_personal' || $tipo_registro =='busco') {
+			$mercado      = '0';
+
+		}else{
+			$mercado      = '1';
 		}
+		
+
+		$this->form_validation->set_rules("condicion_billete","Condicion del Billete","required");
+		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
+		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
+		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
+		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
+		if (!empty($cantidad_billete)) {
+			$this->form_validation->set_rules("precio_billete","Precio del Billete","required");
+		 }
+		$this->form_validation->set_rules("serie_billete","Serie del Billete","required");
+		//$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
+		$this->form_validation->set_rules("lugar_billete","Lugar del Billete","required");
+		/*SECCION DE USUARIOS PAGOS*/
+		if (!empty($cantidad_billete)) {
+			$this->form_validation->set_rules("cantidad_billete","Cantidad que posee","required");			
+		}
+		/*SECCION DE USUARIOS PAGOS*/
+		$this->form_validation->set_rules("descripcion_billete","Descripcion","required");
+
+		if ($this->form_validation->run()) {
+			$data = array(
+				'id_usuario'               => $id_usuario,
+				'id_billete'               => $id_billete,
+				'condicion_billete'        => $condicion_billete, 
+				'casa_certificadora'       => $casa_certificadora,
+				'valor_certificacion'      => $valor_certificacion,
+				'registro_certificacion'   => $registro_certificacion, 
+				'tipo_registro'            => $tipo_registro,
+				'precio_billete'           => $precio_billete,
+				'mercado'                  => $mercado,
+				'serie_billete'            => $serie_billete, 
+				'precio_referencia'        => $precio_referencia,
+				'lugar_billete'            => $lugar_billete,
+				'cantidad_billete'         => $cantidad_billete, 
+				'descripcion_billete'      => $descripcion_billete,
+			);
+
+			if ($this->Collectionb_model->save($data)) 
+			{
+				$this->list($id_usuario);
+			}else
+			{
+				$this->session->set_flashdata("error_add","No se pudo guardar la informacion");
+				$this->add_collection($id_billete);
+			}
+
+
+		}else{
+			$this->session->set_flashdata("error_add","No paso la Validación, intentalo de nuevo");
+			$this->add_collection($id_billete);
+		}
+}		
+
+/*FORMULARIO RENDERIZADO CON AJAX*/
+public function form_billete()
+{	    
+	$this->load->view("collectionb/form_billete");
+}
+/*FORMULARIO RENDERIZADO CON AJAX*/			
 	
 }
