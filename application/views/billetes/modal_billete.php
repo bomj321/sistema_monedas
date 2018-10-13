@@ -1,16 +1,19 @@
 <!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 <?php if(!empty($billetes)): ?>
 	<?php foreach ($billetes as $billete ): ?>
-	<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' ? ' $':'';?></p> 
+		<?php if($billete->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
+			<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' ? ' $':'';?></p> 
+		<?php endif; ?>
 	<?php endforeach;?>
  <?php endif; ?>	
 <!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 
 <!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->	
-							<?php if(!empty($catalogos)): ?>
-						<center><strong><h3>Catalogos Agregados</h3></strong></center>
-							 <?php endif; ?>							
-            <?php foreach($catalogos as $catalogo):?>    
+		<?php if($billete->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>	
+							<?php if(!empty($catalogos)): ?>						
+								<center><strong><h3>Catalogos Agregados</h3></strong></center>
+						 <?php endif; ?>		
+            <?php foreach($catalogos as $catalogo):?>
 								 <table class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">								 
 								        <thead>
 								        	<tr >
@@ -52,19 +55,25 @@
 								                <?php endif; ?>
 								                 <?php endforeach;?>     
 								        </tbody>
-								</table>   	
+								</table> 						
 		        <?php endforeach;?> 
+	<?php else: ?> 
+				<center><h4>Solo Usuarios Pagos</h4></center>
+	<?php endif; ?>	        
 <!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->
 
 <!--------------------------------------------------SECCION DE LAS IMAGENES-->
-<?php if (!empty($imagenes)): ?>
-	<center><h3>Imagenes del Billete</h3></center>
-	<?php foreach ($imagenes as $imagen ): ?>
-	<center>
-		<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" class="zoom">
-	    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
-	</a>
-	</center>
-	<?php endforeach;?>
-<?php endif;?>
+<?php if($billete->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
+	<?php if (!empty($imagenes)): ?>
+		<center><h3>Imagenes del Billete</h3></center>
+		<?php foreach ($imagenes as $imagen ): ?>
+			
+			<center>
+				<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" class="zoom">
+			    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
+			</a>
+			</center>		
+		<?php endforeach;?>
+	<?php endif;?>
+ <?php endif; ?>
 <!--------------------------------------------------SECCION DE LAS IMAGENES-->	
