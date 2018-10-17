@@ -128,4 +128,27 @@ public function view($id_coleccion)
 		$this->load->view("collectionb/modal_billete",$data);
 }	
 /*MODAL AGREGADO*/	
+
+/*CANTIDAD RENDERIZADO CON AJAX*/
+public function form_billete_cantidad($selectvalue)
+{	    
+	$data  = array(
+			'repeticiones'   => $selectvalue, 			
+		);
+
+	$this->load->view("collectionb/form_billete_cantidad",$data);
 }
+/*CANTIDAD RENDERIZADO CON AJAX*/		
+
+public function form_billete_add()
+{	    
+	
+	$this->load->view("collectionb/form_billete_add");
+}
+/*CANTIDAD RENDERIZADO CON AJAX*/		
+
+
+}
+
+
+

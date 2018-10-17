@@ -215,3 +215,70 @@ function preciomoneda()
   
 }
 /*PRECIO DEL BILLETE*/
+
+
+/*CANTIDAD DEL BILLETE*/
+function repeticion()
+{
+           var selectvalue =document.getElementById('cantidad_billete').value;
+           var entero =Number(selectvalue);
+           var mayorque = Number(1);
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (entero > mayorque) {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionb/form_billete_cantidad/" + entero,
+                type:"POST",
+                beforeSend: function() {
+                     $('#respuesta_ajax').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#respuesta_ajax').html("");
+                      $("#respuesta_ajax").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#respuesta_ajax').html("");
+                  $('#respuesta_ajax').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#respuesta_ajax').html("");
+  }
+  
+}
+/*CANTIDAD DEL BILLETE*/
+
+
+function preciomoneda_add($contador)
+{
+         var contador   = $contador;
+         var selecvalue =document.getElementById("tipo_registro_add_" + contador).value
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='Intercambio' || selecvalue=='Venta') {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionb/form_billete_add/",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga_add_'+contador).html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga_add_'+contador).html("");
+                      $("#precio_billete_add_"+contador).html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga_add_').html("");
+                  $('#precio_billete_add_'+contador).html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#precio_billete_add_' + contador).html("");
+  }
+  
+}

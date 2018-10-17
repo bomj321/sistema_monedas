@@ -145,7 +145,7 @@
 									<div class="form-group">
 										<label for="cantidad_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input type="text" class="form-control" placeholder="Cantidad que Posee" id="cantidad_billete" name="cantidad_billete">
+											 	<input onkeyup="repeticion()" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
 											 	<?php 									 	
 		                						echo form_error("cantidad_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
@@ -162,7 +162,10 @@
 										    ?>
 									</div>					
 								</div>
-								
+
+								<!--Respuesta AJAX-->
+								<div id="respuesta_ajax"></div>
+								<!--Respuesta AJAX-->
 							
 								<div class="col-md-12 col-sm-12 col-xs-12">		
 									<center><button class="btn btn-primary" type="submit" id="button">Agregar a Colecci&oacute;n</button></center>
