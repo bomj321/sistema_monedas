@@ -8,6 +8,11 @@ class Collectionb_model extends CI_Model {
 		return $this->db->insert("coleccion_personal_billetes",$data);
 	}
 
+	public function save_billetes_variantes($data)
+	{
+		return $this->db->insert("coleccion_personal_billetes",$data);
+	}
+
 	public function list($id_usuario_session)
 	{
 		$this->db->where('id_usuario', $id_usuario_session);

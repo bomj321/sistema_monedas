@@ -34,7 +34,7 @@
 
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open('collectionb/create',$formulario); 
+							 echo form_open_multipart('collectionb/create',$formulario); 
 							 ?>
 							 <input type="hidden" name="id_usuario" value="<?php echo $this->session->userdata("id") ?>">
 							 <input type="hidden" name="id_billete" value="<?php echo $id_billete ?>">
