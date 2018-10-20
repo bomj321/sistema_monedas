@@ -38,6 +38,7 @@
 							 ?>
 							 <input type="hidden" name="id_usuario" value="<?php echo $this->session->userdata("id") ?>">
 							 <input type="hidden" name="id_billete" value="<?php echo $id_billete ?>">
+							 <input type="hidden" value="principal" name="tipo_registro_billete">
 
 								<div class="form-group">
 									<label for="condicion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
@@ -122,6 +123,16 @@
 								</div>
 
 								<div class="form-group">
+									<label for="subserie" class="col-sm-2 col-xs-12 col-md-2 control-label">Subserie</label>								
+									 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<input type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
+										 	<?php 									 	
+	                						echo form_error("subserie","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+										    ?>
+									</div>					
+								</div>
+
+								<div class="form-group">
 									<label for="precio_referencia" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio Referencia</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<input type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
@@ -145,7 +156,7 @@
 									<div class="form-group">
 										<label for="cantidad_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input onkeyup="repeticion()" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
+											 	<input onkeyup="repeticion()" onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
 											 	<?php 									 	
 		                						echo form_error("cantidad_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
@@ -153,7 +164,7 @@
 									</div>
 								<?php endif; ?> 	
 
-								<div class="form-group">
+								<div class="form-group" style="margin-bottom: 50px;">
 									<label for="descripcion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<textarea name="descripcion_billete" id="descripcion_billete" cols="30" rows="10" class="form-control"></textarea>

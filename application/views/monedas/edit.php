@@ -173,6 +173,7 @@
 
 
 <!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
+							<?php if(!empty($catalogos)): ?>
 							 	<div class="form-group">
 							 		<?php 
 										$label_profesor = array(
@@ -200,6 +201,7 @@
 										    ?>
 									</div>
 								</div>
+							 <?php endif; ?>	
 
 								<!--REPUESTA AJAX PARA AGREGAR NUEVOS CATALOGOS-->
 								<div id="gif_carga" class="form-group"></div>

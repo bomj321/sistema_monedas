@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     $(function () {
@@ -222,7 +221,7 @@ function repeticion()
 {
            var selectvalue =document.getElementById('cantidad_billete').value;
            var entero =Number(selectvalue);
-           var mayorque = Number(1);
+           var mayorque = Number(0);
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (entero > mayorque) {
              var base_url= 'http://localhost/sistema_monedas/';
@@ -260,7 +259,7 @@ function preciomoneda_add($contador)
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
              var base_url= 'http://localhost/sistema_monedas/';
             $.ajax({
-                url: base_url + "collectionb/form_billete_add/",
+                url: base_url + "collectionb/form_billete_add/"+contador,
                 type:"POST",
                 beforeSend: function() {
                      $('#gif_carga_add_'+contador).html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");

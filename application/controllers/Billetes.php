@@ -43,11 +43,11 @@ class Billetes extends CI_Controller {
 		}else{
 
 			$data = array(
-			'atributos' => $this->Billetes_model->listattr_form_edit($id),
+			'atributos'      => $this->Billetes_model->listattr_form_edit($id),
 			'catalogos_edit' => $this->Billetes_model->listattr_cat_edit($id),
 			'pagos_catalogo' => $this->Billetes_model->listattr_cat_pagos($id),
-			'catalogos' => $this->Billetes_model->listattr_cat(),
-			'atributos_not' => $this->Billetes_model->listattr_form_not($id) 
+			'catalogos'      => $this->Billetes_model->listattr_cat(),
+			'atributos_not'  => $this->Billetes_model->listattr_form_not($id) 
 		);
 
 		$this->layout->view("edit",$data);

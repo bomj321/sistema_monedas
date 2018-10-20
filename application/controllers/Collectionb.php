@@ -51,7 +51,55 @@ public function create()
 		$lugar_billete            = $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
 		$cantidad_billete         = $this->input->post("cantidad_billete");
 		$descripcion_billete      = $this->input->post("descripcion_billete");
-		if ($tipo_registro =='Personal') {
+
+
+		/*VARIANTES DE LA MISMA MONEDA*/
+		 
+if (!empty($cantidad_billete) AND $cantidad_billete!= 0) {
+	
+
+		    for ($i = 0; $i < intval($cantidad_billete); $i++) {
+
+		    	$tipo_registro_billete_add           = $this->input->post("tipo_registro_billete_add_$i");
+
+		    	$condicion_billete_add               = $this->input->post("condicion_billete_add_$i");
+		    	$serie_billete_add                   = $this->input->post("serie_billete_add_$i");
+		    	$subserie_billete_add                = $this->input->post("subserie_billete_add_$i");
+		    	$numero_billete_add                  = $this->input->post("numero_billete_add_$i");
+		    	$foto_frente                         = $this->input->post("foto_frente_$i");
+		    	$foto_detras                         = $this->input->post("foto_detras_$i");
+		    	$tipo_registro_add                   = $this->input->post("tipo_registro_add_$i");
+
+
+
+		    
+			    $precio_billete_add                  = $this->input->post("precio_billete_add_$i");
+
+
+
+
+			    echo $tipo_registro_billete_add. '<br>';
+
+			    echo $condicion_billete_add. '<br>';
+			    echo $serie_billete_add. '<br>';
+			    echo $subserie_billete_add. '<br>';
+			    echo $numero_billete_add. '<br>';
+			    echo $foto_frente. '<br>';
+			    echo $foto_detras. '<br>';
+			    echo $tipo_registro_add. '<br>';		
+			    
+
+
+
+		        echo $precio_billete_add. '<br><br><br><br><br>';  
+
+		    }
+}
+
+		/*VARIANTES DE LA MISMA MONEDA*/	
+
+
+	/*	if ($tipo_registro =='Personal') {
 			$mercado      = '0';
 
 		}elseif($tipo_registro =='Busco'){
@@ -73,11 +121,11 @@ public function create()
 		//$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
 		$this->form_validation->set_rules("lugar_billete","Lugar del Billete","required");
 		/*SECCION DE USUARIOS PAGOS*/
-		if (!empty($cantidad_billete)) {
+		/*if (!empty($cantidad_billete)) {
 			$this->form_validation->set_rules("cantidad_billete","Cantidad que posee","required");			
 		}
 		/*SECCION DE USUARIOS PAGOS*/
-		$this->form_validation->set_rules("descripcion_billete","Descripcion","required");
+		/*$this->form_validation->set_rules("descripcion_billete","Descripcion","required");
 
 		if ($this->form_validation->run()) {
 			$data = array(
@@ -110,7 +158,7 @@ public function create()
 		}else{
 			$this->session->set_flashdata("error_add","No paso la Validación, intentalo de nuevo");
 			$this->add_collection($id_billete);
-		}
+		}*/
 }		
 
 /*FORMULARIO RENDERIZADO CON AJAX*/
@@ -140,12 +188,16 @@ public function form_billete_cantidad($selectvalue)
 }
 /*CANTIDAD RENDERIZADO CON AJAX*/		
 
-public function form_billete_add()
+public function form_billete_add($contador)
 {	    
-	
-	$this->load->view("collectionb/form_billete_add");
+	$data = [
+	    'contador' => $contador,
+	];
+	$this->load->view("collectionb/form_billete_add",$data);
 }
 /*CANTIDAD RENDERIZADO CON AJAX*/		
+
+	
 
 
 }

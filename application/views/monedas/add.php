@@ -105,7 +105,7 @@
 								</div>
 
 							 	<?php endforeach;?>
-
+							<?php if(!empty($catalogos)): ?>
 							 	<div class="form-group">
 							 		<?php 
 										$label_catalogo = array(
@@ -116,7 +116,7 @@
                 						echo form_label('Catalogos','catalogo',$label_catalogo)
 									 ?>
 							 	
-
+								
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select  class="form-control" id="catalogo" onchange="catalogoinputmonedas()">
 												<?php if(!empty($catalogos)): ?>
@@ -133,7 +133,7 @@
 										    ?>
 									</div>
 								</div>
-
+							 <?php endif; ?>
 								<!--REPUESTA AJAX-->
 								<div id="gif_carga" class="form-group"></div>
 								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	
