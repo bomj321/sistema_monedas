@@ -25,4 +25,14 @@ class Mercadob extends CI_Controller {
 		$this->layout->view("list",$data);
 
 	}
+
+	/*MODAL AGREGADO*/
+public function view($id_billete)
+{
+	$data  = array(
+			'coleccionesb'   => $this->Mercadob_model->get_collectionbp_mercado($id_billete), 
+		);
+		$this->load->view("mercadob/modal_billete",$data);
+}	
+/*MODAL AGREGADO*/	
 }

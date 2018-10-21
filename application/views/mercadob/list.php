@@ -40,12 +40,12 @@
                                             <td><?php echo $billete_mercado->emailusuario;?></td>
                                             <td>
 
-                                               <button type="button" class="btn btn-info btn-view-billete" data-toggle="modal" data-target="#modal-default" title="Información del Billete"  onclick="datosusuario(<?php echo $billete_mercado->id_billete;?>)" value="<?php echo $billete_mercado->id_billete;?>">
+                                               <button type="button" class="btn btn-info btn-view-billete" data-toggle="modal" data-target="#modal-default" title="Información General del Billete"  onclick="datosusuario(<?php echo $billete_mercado->id_billete;?>)" value="<?php echo $billete_mercado->id_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                  </button>
 
 
-                                            	 <button type="button" class="btn btn-warning btn-view-usuario" data-toggle="modal" data-target="#modal-default"  title="Información del Usuario" onclick="datoscoleccion(<?php echo $billete_mercado->id_coleccion_personal_billete;?>)" value="<?php echo $billete_mercado->id_coleccion_personal_billete;?>">
+                                            	 <button type="button" class="btn btn-warning btn-view-usuario" data-toggle="modal" data-target="#modal-default"  title="Información del Usuario" onclick="datoscoleccionmercado(<?php echo $billete_mercado->id_coleccion_personal_billete;?>)" value="<?php echo $billete_mercado->id_coleccion_personal_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                </button>                                            
 

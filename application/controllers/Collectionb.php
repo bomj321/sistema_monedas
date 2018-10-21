@@ -243,8 +243,145 @@ public function form_billete_add($contador)
 /*CANTIDAD RENDERIZADO CON AJAX*/		
 
 	
+/*EDICION DE LAS COLECCIONES*/
+public function editp($id_billete)
+{
+	$data = [
+		    'billete' => $this->Collectionb_model->editp($id_billete)
+		];
+	$this->layout->view("editp",$data);	
+}
+
+public function editp_billete()
+{
+	    $id_billete                         = $this->input->post("id_coleccion_personal_billete");
+	    $condicion_billete        			= $this->input->post("condicion_billete");
+		$casa_certificadora      			= $this->input->post("casa_certificadora");
+		$valor_certificacion     			= $this->input->post("valor_certificacion");
+		$registro_certificacion  		    = $this->input->post("registro_certificacion");
+		$tipo_registro           		    = $this->input->post("tipo_registro");
+		$precio_billete          		    = $this->input->post("precio_billete");
+		$mercado          		            = $this->input->post("mercado");
+		$serie_billete            			= $this->input->post("serie_billete");
+		$subserie                 			= $this->input->post("subserie");		
+		$precio_referencia        			= $this->input->post("precio_referencia");
+		$lugar_billete            			= $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
+		$cantidad_billete         			= $this->input->post("cantidad_billete");
+		$descripcion_billete      			= $this->input->post("descripcion_billete");
 
 
+		$this->form_validation->set_rules("condicion_billete","Condicion del Billete","required");
+		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
+		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
+		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
+		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
+		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");		 
+		$this->form_validation->set_rules("serie_billete","Serie del Billete","required");
+		$this->form_validation->set_rules("subserie","Subserie del Billete","required");
+		$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
+		$this->form_validation->set_rules("lugar_billete","Lugar del Billete","required");
+		/*SECCION DE USUARIOS PAGOS*/
+		$this->form_validation->set_rules("cantidad_billete","Cantidad que posee","required");			
+		
+		/*SECCION DE USUARIOS PAGOS*/
+		$this->form_validation->set_rules("descripcion_billete","Descripcion","required");
+
+		if ($this->form_validation->run()) {
+
+				$data = array(
+				'condicion_billete'        => $condicion_billete, 
+				'casa_certificadora'       => $casa_certificadora,
+				'valor_certificacion'      => $valor_certificacion,
+				'registro_certificacion'   => $registro_certificacion, 
+				'tipo_registro'            => $tipo_registro,
+				'precio_billete'           => $precio_billete,
+				'mercado'                  => $mercado,
+				'serie_billete'            => $serie_billete, 
+				'subserie'                 => $subserie,
+				'precio_referencia'        => $precio_referencia,
+				'lugar_billete'            => $lugar_billete,
+				'cantidad_billete'         => $cantidad_billete, 
+				'descripcion_billete'      => $descripcion_billete,
+			);
+				$this->Collectionb_model->updatep($id_billete,$data);
+				redirect(base_url()."collectionb/list");
+
+		}else{
+			$this->session->set_flashdata("error_edit","No paso la Validación, intentalo de nuevo");
+			$this->editp($id_billete);
+			
+		}
+}
+
+
+public function edita($id_billete)
+{
+	$data = [
+		    'billete' => $this->Collectionb_model->edita($id_billete)
+		];
+	$this->layout->view("edita",$data);	
+}
+
+public function edita_billete()
+{
+	    $id_billete                         = $this->input->post("id_coleccion_personal_billete");
+	    $condicion_billete        			= $this->input->post("condicion_billete");
+		$casa_certificadora      			= $this->input->post("casa_certificadora");
+		$valor_certificacion     			= $this->input->post("valor_certificacion");
+		$registro_certificacion  		    = $this->input->post("registro_certificacion");
+		$tipo_registro           		    = $this->input->post("tipo_registro");
+		$precio_billete          		    = $this->input->post("precio_billete");
+		$mercado          		            = $this->input->post("mercado");
+		$serie_billete            			= $this->input->post("serie_billete");
+		$subserie                 			= $this->input->post("subserie");
+		$numero_billete_add                 = $this->input->post("numero_billete_add");		
+		$lugar_billete            			= $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
+		$descripcion_billete      			= $this->input->post("descripcion_billete");
+
+
+		$this->form_validation->set_rules("condicion_billete","Condicion del Billete","required");
+		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
+		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
+		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
+		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
+		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");		 
+		$this->form_validation->set_rules("serie_billete","Serie del Billete","required");
+		$this->form_validation->set_rules("subserie","Subserie del Billete","required");
+		$this->form_validation->set_rules("lugar_billete","Lugar del Billete","required");
+		/*SECCION DE USUARIOS PAGOS*/
+		
+		/*SECCION DE USUARIOS PAGOS*/
+		$this->form_validation->set_rules("descripcion_billete","Descripcion","required");
+
+		if ($this->form_validation->run()) {
+
+				$data = array(
+				'condicion_billete'        => $condicion_billete, 
+				'casa_certificadora'       => $casa_certificadora,
+				'valor_certificacion'      => $valor_certificacion,
+				'registro_certificacion'   => $registro_certificacion, 
+				'tipo_registro'            => $tipo_registro,
+				'precio_billete'           => $precio_billete,
+				'mercado'                  => $mercado,
+				'serie_billete'            => $serie_billete, 
+				'subserie'                 => $subserie,
+				'numero_billete_add'       => $numero_billete_add,
+				'lugar_billete'            => $lugar_billete,
+				'descripcion_billete'      => $descripcion_billete,
+			);
+				$this->Collectionb_model->updatep($id_billete,$data);
+				redirect(base_url()."collectionb/list");
+
+		}else{
+			$this->session->set_flashdata("error_edit","No paso la Validación, intentalo de nuevo");
+			$this->editp($id_billete);
+			
+		}
+}
+
+
+
+/*EDICION DE LAS COLECCIONES*/
 }
 
 

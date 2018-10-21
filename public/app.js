@@ -282,3 +282,21 @@ function preciomoneda_add($contador)
   }
   
 }
+
+
+/*MERCADO*/
+function datoscoleccionmercado($id_billete){
+  var id_billete = $id_billete;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "mercadob/view/" + id_billete ,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información la Moneda');
+                //alert(resp);
+            }
+
+        });
+}
+/*MERCADO*/

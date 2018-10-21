@@ -16,5 +16,12 @@ class Mercadob_model extends CI_Model {
 		return $resultado->result();	
 	}
 
+	public function get_collectionbp_mercado($id_billete)
+	{
+		$this->db->where("id_coleccion_personal_billete",$id_billete);
+		$resultado = $this->db->get("coleccion_personal_billetes");
+		return $resultado->row();
+	}
+
 	
 }

@@ -1,20 +1,20 @@
 <div class="container">
 	<!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
-
+<?php if(!empty($coleccionesbp)): ?>
 	<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					<center><h3>Moneda Principal</h3></center>
 				</div>
 
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-					<a href="" class="btn btn-success" style="width: 100%">Editar</a>
+					<a href="<?php echo base_url();?>collectionb/editp/<?php echo $coleccionesbp->id_coleccion_personal_billete;?>" class="btn btn-success" style="width: 100%">Editar</a>
 				</div>
 		</div>
 
 	<div class="row">
 		   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-				<?php if(!empty($coleccionesbp)): ?>
+				
 					 <?php if($this->session->userdata("tipo_usuario")==1 ):?>
 						<p>Condición del Billete: <?php echo $coleccionesbp->condicion_billete                == '' ? 'Sin Información': $coleccionesbp->condicion_billete;?></p>
 					 <?php endif; ?> 
@@ -31,9 +31,10 @@
 					 <?php endif; ?> 	
 					<p>Descripci&oacute;n: <?php echo $coleccionesbp->descripcion_billete                     == '' ? 'Sin Información': $coleccionesbp->descripcion_billete;?></p>
 					
-				 <?php endif; ?>
+				
 			</div>	 
-	</div>	 	
+	</div>
+<?php endif; ?>		 	
 	<!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 
 	<!-------------------------------------------BILLETES AGREGADOS------------------------------------------------------------>
@@ -60,7 +61,7 @@
 
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<center>
-							<a href="" class="btn btn-warning" style="width: 100%">Editar</a>
+							<a href="<?php echo base_url();?>collectionb/edita/<?php echo $coleccionesba->id_coleccion_personal_billete;?>" class="btn btn-warning" style="width: 100%">Editar</a>
 
 							<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$coleccionesba->foto_frente_billete?>" class="zoom">
 						    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$coleccionesba->foto_frente_billete?>" style='width: 100%; height: 100px;' />

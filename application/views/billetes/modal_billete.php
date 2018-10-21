@@ -2,7 +2,7 @@
 <?php if(!empty($billetes)): ?>
 	<?php foreach ($billetes as $billete ): ?>
 		<?php if($billete->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
-			<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' ? ' $':'';?></p> 
+			<p><?php echo $billete->nombreatributo?>: <?php echo $billete->descripcionatributo?><?php echo $billete->palabraclave == 'Precio' || $billete->palabraclave == 'Facial' ? ' $':'';?></p> 
 		<?php endif; ?>
 	<?php endforeach;?>
  <?php endif; ?>	
