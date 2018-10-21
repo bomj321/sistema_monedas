@@ -33,7 +33,7 @@ class Collectionb_model extends CI_Model {
 		$resultados = $this->db->get("coleccion_personal_billetes");
 		return $resultados->result();
 	}
-
+/*PRINCIPAL*/
 	public function editp($id_billete)
 	{
 		$this->db->where("id_coleccion_personal_billete",$id_billete);
@@ -46,9 +46,9 @@ class Collectionb_model extends CI_Model {
 		$this->db->where("id_coleccion_personal_billete",$id_billete);
 		return $this->db->update("coleccion_personal_billetes",$data);		
 	}
+/*PRINCIPAL*/
 
-
-
+/*VARIANTES*/
 	public function edita($id_billete)
 	{
 		$this->db->where("id_coleccion_personal_billete",$id_billete);
@@ -56,10 +56,25 @@ class Collectionb_model extends CI_Model {
 		return $resultado->row();
 	}
 
+	/*IMAGENES*/
+		public function updatea_frente($id_billete,$data)
+		{
+			$this->db->where("id_coleccion_personal_billete",$id_billete);
+			return $this->db->update("coleccion_personal_billetes",$data);		
+		}
+
+		public function updatea_detras($id_billete,$data)
+		{
+			$this->db->where("id_coleccion_personal_billete",$id_billete);
+			return $this->db->update("coleccion_personal_billetes",$data);		
+		}
+	/*IMAGENES*/
+
 	public function updatea($id_billete,$data)
 	{
 		$this->db->where("id_coleccion_personal_billete",$id_billete);
 		return $this->db->update("coleccion_personal_billetes",$data);		
-	}
-	
+	}	
+
+/*VARIANTES*/	
 }

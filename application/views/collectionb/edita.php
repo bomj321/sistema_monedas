@@ -34,7 +34,7 @@
 
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open('collectionb/edita_billete',$formulario); 
+							 echo form_open_multipart('collectionb/edita_billete',$formulario); 
 							 ?>
 							 <input type="text" name="id_coleccion_personal_billete" value="<?php echo $billete->id_coleccion_personal_billete ?>">
 
@@ -166,7 +166,7 @@
 								<div class="form-group">
 									<label for="foto_frente" class="col-sm-2 col-xs-12 col-md-2 control-label">Foto de Frente</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->foto_frente_billete ?>" type="file" class="form-control" id="foto_frente" name="foto_frente">
+										 	<input type="file" class="form-control" id="foto_frente" name="foto_frente">
 										 	<?php 									 	
 	                						echo form_error("foto_frente","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -176,7 +176,7 @@
 								<div class="form-group">
 									<label for="foto_detras" class="col-sm-2 col-xs-12 col-md-2 control-label">Foto Por Detras</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->foto_detras_billete ?>" type="file" class="form-control" id="foto_detras" name="foto_detras">
+										 	<input type="file" class="form-control" id="foto_detras" name="foto_detras">
 										 	<?php 									 	
 	                						echo form_error("foto_detras","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>

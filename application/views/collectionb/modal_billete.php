@@ -50,12 +50,14 @@
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="margin-top: 40px;">	
 							<?php if($this->session->userdata("tipo_usuario")==1 ):?>
 								<p>Condición del Billete: <?php echo $coleccionesba->condicion_billete                == '' ? 'Sin Información': $coleccionesba->condicion_billete;?></p>
+							<?php endif; ?>	
 								<p>Serie del Billete: <?php echo $coleccionesba->serie_billete                        == '' ? 'Sin Información': $coleccionesba->serie_billete;?></p>
 								<p>Subserie del Billete: <?php echo $coleccionesba->subserie                          == '' ? 'Sin Información': $coleccionesba->subserie;?></p>
 								<p>Numero del Billete: <?php echo $coleccionesba->numero_billete_add                  == '' ? 'Sin Información': $coleccionesba->numero_billete_add;?></p>
 								<p>Tipo de Registro: <?php echo $coleccionesba->tipo_registro                         == '' ? 'Sin Información': $coleccionesba->tipo_registro;?></p>
 								<p>Precio del Billete: <?php echo $coleccionesba->precio_billete                      == '' ? 'Sin Información': $coleccionesba->precio_billete. ' $';?></p>
-							 <?php endif; ?>	
+								<p>Descripci&oacute;n: <?php echo $coleccionesba->descripcion_billete                 == '' ? 'Sin Información': $coleccionesba->descripcion_billete;?></p>
+							 	
 					
 				</div>
 

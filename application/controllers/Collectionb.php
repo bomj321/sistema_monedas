@@ -275,6 +275,7 @@ public function editp_billete()
 		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
 		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
 		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
+		$this->form_validation->set_rules("precio_billete","Precio del Billete","required");
 		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");		 
 		$this->form_validation->set_rules("serie_billete","Serie del Billete","required");
 		$this->form_validation->set_rules("subserie","Subserie del Billete","required");
@@ -322,6 +323,8 @@ public function edita($id_billete)
 	$this->layout->view("edita",$data);	
 }
 
+
+
 public function edita_billete()
 {
 	    $id_billete                         = $this->input->post("id_coleccion_personal_billete");
@@ -334,9 +337,58 @@ public function edita_billete()
 		$mercado          		            = $this->input->post("mercado");
 		$serie_billete            			= $this->input->post("serie_billete");
 		$subserie                 			= $this->input->post("subserie");
-		$numero_billete_add                 = $this->input->post("numero_billete_add");		
-		$lugar_billete            			= $this->input->post("lugar_billete"); //INPUT PARA USUARIOS PAGOS
+		$numero_billete_add                 = $this->input->post("numero_billete_add");	
+		$foto_frente                        = $this->input->post("foto_frente");	
+		$foto_detras                        = $this->input->post("foto_detras");		
+		$lugar_billete            			= $this->input->post("lugar_billete");
 		$descripcion_billete      			= $this->input->post("descripcion_billete");
+
+
+		  /*CODIGO PARA SUBIR LA FOTO*/
+		   	if (!empty($_FILES['foto_frente']["name"])) {
+
+
+					    $config['upload_path']          =  './public/images_billetes';
+						$config['allowed_types']        =  'gif|jpg|png|jpeg';
+						$config['max_size']             =  100000;
+						$config['max_width']            =  2000;
+						$config['max_height']           =  2000;
+						
+						
+						$this->load->library('upload', $config);
+						$this->upload->do_upload('foto_frente');
+
+						$imagen_1 = array("upload_data" => $this->upload->data());
+						$data_frente = [
+						    'foto_frente_billete' => $imagen_1['upload_data']['file_name']
+						];
+						$this->Collectionb_model->updatea_frente($id_billete,$data_frente);
+
+						//$this->upload->do_upload('foto_detras_0');
+
+			}	
+			
+				if (!empty($_FILES['foto_detras']["name"])) {
+
+
+					    $config['upload_path']          =  './public/images_billetes';
+						$config['allowed_types']        =  'gif|jpg|png|jpeg';
+						$config['max_size']             =  100000;
+						$config['max_width']            =  2000;
+						$config['max_height']           =  2000;
+						
+						$this->load->library('upload', $config);
+						$this->upload->do_upload('foto_detras');
+						//$this->upload->do_upload('foto_detras_0');
+						$imagen_2 = array("upload_data" => $this->upload->data());
+						$data_detras = [
+						    'foto_detras_billete' => $imagen_2['upload_data']['file_name']
+						];
+						$this->Collectionb_model->updatea_detras($id_billete,$data_detras);
+
+
+			}	
+		/*CODIGO PARA SUBIR LA FOTO*/
 
 
 		$this->form_validation->set_rules("condicion_billete","Condicion del Billete","required");
@@ -369,7 +421,7 @@ public function edita_billete()
 				'lugar_billete'            => $lugar_billete,
 				'descripcion_billete'      => $descripcion_billete,
 			);
-				$this->Collectionb_model->updatep($id_billete,$data);
+				$this->Collectionb_model->updatea($id_billete,$data);
 				redirect(base_url()."collectionb/list");
 
 		}else{
