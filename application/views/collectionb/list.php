@@ -39,13 +39,15 @@
                                             <td><?php echo $billete->condicion_billete;?></td>
                                             <td><?php echo $billete->casa_certificadora;?></td>
                                             <td>
-                                            	 <button type="button" class="btn btn-info btn-view-billete" data-toggle="modal" data-target="#modal-default" title="Información del Billete"  onclick="datosusuario(<?php echo $billete->id_billete;?>)" value="<?php echo $billete->id_billete;?>">
+
+                                               <button type="button" class="btn btn-warning btn-view-billete-usuario" data-toggle="modal" data-target="#modal-default" title="Información del Usuario" onclick="datoscoleccion(<?php echo $billete->id_usuario;?>,<?php echo $billete->id_billete;?>)" value="<?php echo $billete->id_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                  </button>
 
-                                                 <button type="button" class="btn btn-warning btn-view-billete-usuario" data-toggle="modal" data-target="#modal-default" title="Información del Usuario" onclick="datoscoleccion(<?php echo $billete->id_coleccion_personal_billete;?>)" value="<?php echo $billete->id_billete;?>">
+
+                                            	 <button type="button" class="btn btn-info btn-view-billete" data-toggle="modal" data-target="#modal-default" title="Información del Billete"  onclick="datosusuario(<?php echo $billete->id_billete;?>)" value="<?php echo $billete->id_billete;?>">
                                                         <span class="fa fa-search"></span>
-                                                 </button>
+                                                 </button>                                                
 
                                                 <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $billete->id_coleccion_personal_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>                                                 
 

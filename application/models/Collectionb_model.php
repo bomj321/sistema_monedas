@@ -21,11 +21,22 @@ class Collectionb_model extends CI_Model {
 		return $resultados->result();
 	}
 
-	public function get_collectionb($id_coleccion)
+	public function get_collectionbp($id_usuario,$id_billete)
 	{
-		$this->db->where("id_coleccion_personal_billete",$id_coleccion);
+		$this->db->where("id_usuario",$id_usuario);
+		$this->db->where("id_billete",$id_billete);
+		$this->db->where("tipo_billete_registro",'principal');
 		$resultado = $this->db->get("coleccion_personal_billetes");
 		return $resultado->row();
+	}
+
+	public function get_collectionba($id_usuario,$id_billete)
+	{
+		$this->db->where("id_usuario",$id_usuario);
+		$this->db->where("id_billete",$id_billete);
+		$this->db->where("tipo_billete_registro",'add');
+		$resultados = $this->db->get("coleccion_personal_billetes");
+		return $resultados->result();
 	}
 
 	

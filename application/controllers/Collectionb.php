@@ -182,7 +182,7 @@ public function create()
 
 				    }/////////////// FOR
 
-				   $this->list(); 
+				 
 	}
 
 		/*VARIANTES DE LA MISMA MONEDA*/	
@@ -202,6 +202,7 @@ public function create()
 			$this->session->set_flashdata("error_add","No paso la Validación, intentalo de nuevo");
 			$this->add_collection($id_billete);
 		}
+	  redirect(base_url()."collectionb/list");	
 }		
 
 /*FORMULARIO RENDERIZADO CON AJAX*/
@@ -211,10 +212,11 @@ public function form_billete()
 }
 /*FORMULARIO RENDERIZADO CON AJAX*/		
 /*MODAL AGREGADO*/
-public function view($id_coleccion)
+public function view($id_usuario,$id_billete)
 {
 	$data  = array(
-			'coleccionesb'   => $this->Collectionb_model->get_collectionb($id_coleccion), 			
+			'coleccionesbp'   => $this->Collectionb_model->get_collectionbp($id_usuario,$id_billete), 
+			'coleccionesba'   => $this->Collectionb_model->get_collectionba($id_usuario,$id_billete),			
 		);
 		$this->load->view("collectionb/modal_billete",$data);
 }	

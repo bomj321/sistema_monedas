@@ -41,7 +41,7 @@
                                             <td><?php echo $usuario->id_catalogo_billete;?></td>
                                             <td><?php echo $usuario->usuario;?></td>
                                             <td>
-                                            	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
+                                            	 <button title="Información de la Moneda" type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
                                                         <span class="fa fa-search"></span>
                                                     </button>
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>

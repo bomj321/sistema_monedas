@@ -64,11 +64,12 @@ function datosusuario($id_usuario){
         });
 }
 
-function datoscoleccion($id_coleccion){
-  var id_coleccion = $id_coleccion;
+function datoscoleccion($id_usuario,$id_billete){
+  var id_usuario = $id_usuario;
+  var id_billete = $id_billete;
   var base_url= 'http://localhost/sistema_monedas/';
         $.ajax({
-            url: base_url + "collectionb/view/" + id_coleccion,
+            url: base_url + "collectionb/view/" + id_usuario + "/" + id_billete,
             type:"POST",
             success:function(resp){
                 $("#modal-default .modal-body").html(resp);
