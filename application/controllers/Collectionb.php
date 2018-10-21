@@ -112,7 +112,7 @@ public function create()
 
 				    for ($i = 0; $i < intval($cantidad_billete); $i++) {/////////////// FOR
 
-				    	$tipo_registro_billete_add           = $this->input->post("tipo_registro_billete_add_$i");
+				    	$tipo_registro_billete_add_type      = $this->input->post("tipo_registro_billete_add_type_$i");
 				    	$condicion_billete_add               = $this->input->post("condicion_billete_add_$i");
 				    	$serie_billete_add                   = $this->input->post("serie_billete_add_$i");
 				    	$subserie_billete_add                = $this->input->post("subserie_billete_add_$i");
@@ -121,19 +121,16 @@ public function create()
 				    	$foto_frente                         = $this->input->post("foto_frente_$i");
 				    	$foto_detras                         = $this->input->post("foto_detras_$i");
                         /*IMAGENES*/
-				    	$tipo_registro_add                   = $this->input->post("tipo_registro_add_$i");				    
+				    	$tipo_registro_billete_add           = $this->input->post("tipo_registro_billete_add_$i");				    
 					    $precio_billete_add                  = $this->input->post("precio_billete_add_$i");
 
-					    if ($tipo_registro_billete_add =='Personal') {
+
+					    if ($tipo_registro_billete_add == 'Personal') {
 							$mercado_add      = '0';
 
-						}elseif($tipo_registro_billete_add =='Busco'){
-							$mercado_add      = '2';
-						}else {
+						}elseif($tipo_registro_billete_add == 'Venta' || $tipo_registro_billete_add == 'Intercambio'){
 							$mercado_add      = '1';
 						}
-
-
 
 					    /*CODIGO PARA SUBIR LA FOTO*/
 					    $config['upload_path']          =  './public/images_billetes';
@@ -157,53 +154,35 @@ public function create()
 						//$this->upload->do_upload('foto_detras_0');
 						$imagen_2 = array("upload_data" => $this->upload->data());
 						/*CODIGO PARA SUBIR LA FOTO*/
-
+							
+						     
 						/*CODIGO PARA SUBIR*/
 						$data = array(
-							'id_usuario'               => $id_usuario,
-							'id_billete'               => $id_billete,
-							'condicion_billete'        => $condicion_billete_add, 
-							'casa_certificadora'       => $casa_certificadora,
-							'valor_certificacion'      => $valor_certificacion,
-							'registro_certificacion'   => $registro_certificacion, 
-							'tipo_registro'            => $tipo_registro_add,
-							'tipo_billete_registro'    => $tipo_registro_billete_add,
-							'precio_billete'           => $precio_billete_add,
-							'mercado'                  => $mercado_add,
-							'serie_billete'            => $serie_billete_add,
-							'numero_billete_add'       => $numero_billete_add,
-							'subserie'                 => $subserie_billete_add, 
-							'lugar_billete'            => $lugar_billete,
-							//'cantidad_billete'         => $cantidad_billete, 
-							//'descripcion_billete'      => $descripcion_billete,
-				);
-						//$this->Collectionb_model->save_billetes_variantes($data);
+								'id_usuario'               => $id_usuario,
+								'id_billete'               => $id_billete,
+								'condicion_billete'        => $condicion_billete_add, 
+								'casa_certificadora'       => $casa_certificadora,
+								'valor_certificacion'      => $valor_certificacion,
+								'registro_certificacion'   => $registro_certificacion, 
+								'tipo_registro'            => $tipo_registro_billete_add,
+								'tipo_billete_registro'    => $tipo_registro_billete_add_type,
+								'foto_frente_billete'      => $imagen_1['upload_data']['file_name'],
+								'foto_detras_billete'      => $imagen_2['upload_data']['file_name'],
+								'precio_billete'           => $precio_billete_add,
+								'mercado'                  => $mercado_add,
+								'serie_billete'            => $serie_billete_add,
+								'numero_billete_add'       => $numero_billete_add,
+								'subserie'                 => $subserie_billete_add, 
+								'lugar_billete'            => $lugar_billete,
+								//'cantidad_billete'       => $cantidad_billete, 
+								'descripcion_billete'      => $descripcion_billete,
+							);
 						/*CODIGO PARA SUBIR*/
-
-						if ($this->Collectionb_model->save_billetes_variantes($data)) {
-							echo 'TODO CORRECTO';
-						}
-						/*echo $imagen_1['upload_data']['file_name']. '<br>';
-						echo $imagen_2['upload_data']['file_name']. '<br>';
-
-
-
-
-					    //echo $casa_certificadora. '<br>';
-					    echo $tipo_registro_billete_add. '<br>';
-
-					    echo $condicion_billete_add. '<br>';
-					    echo $serie_billete_add. '<br>';
-					    echo $subserie_billete_add. '<br>';
-					    echo $numero_billete_add. '<br>';					  
-					    echo $tipo_registro_add. '<br>';		
-					    
-
-
-
-				        echo $precio_billete_add. '<br><br><br><br><br>'; */ 
+						$this->Collectionb_model->save_billetes_variantes($data);
 
 				    }/////////////// FOR
+
+				   $this->list(); 
 	}
 
 		/*VARIANTES DE LA MISMA MONEDA*/	

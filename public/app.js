@@ -254,7 +254,7 @@ function repeticion()
 function preciomoneda_add($contador)
 {
          var contador   = $contador;
-         var selecvalue =document.getElementById("tipo_registro_add_" + contador).value
+         var selecvalue =document.getElementById("tipo_registro_billete_add_" + contador).value
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
              var base_url= 'http://localhost/sistema_monedas/';

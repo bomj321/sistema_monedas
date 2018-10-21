@@ -15,6 +15,7 @@ class Collectionb_model extends CI_Model {
 
 	public function list($id_usuario_session)
 	{
+		$this->db->where('tipo_billete_registro','principal');
 		$this->db->where('id_usuario', $id_usuario_session);
 		$resultados = $this->db->get("coleccion_personal_billetes");
 		return $resultados->result();

@@ -84,7 +84,7 @@
 								<div class="form-group">
 									<label for="registro_certificacion" class="col-sm-2 col-xs-12 col-md-2 control-label">Registro</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
+										 	<input required type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
 										 	<?php 									 	
 	                						echo form_error("registro_certificacion","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -115,7 +115,7 @@
 								<div class="form-group">
 									<label for="serie_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="text" class="form-control" placeholder="Numero de Serie" id="serie_billete" name="serie_billete">
+										 	<input required type="text" class="form-control" placeholder="Numero de Serie" id="serie_billete" name="serie_billete">
 										 	<?php 									 	
 	                						echo form_error("serie_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -125,7 +125,7 @@
 								<div class="form-group">
 									<label for="subserie" class="col-sm-2 col-xs-12 col-md-2 control-label">Subserie</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
+										 	<input required type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
 										 	<?php 									 	
 	                						echo form_error("subserie","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -135,7 +135,7 @@
 								<div class="form-group">
 									<label for="precio_referencia" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio Referencia</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
+										 	<input required type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
 										 	<?php 									 	
 	                						echo form_error("precio_referencia","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -145,7 +145,7 @@
 								<div class="form-group">
 									<label for="lugar_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_billete" name="lugar_billete">
+										 	<input required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_billete" name="lugar_billete">
 										 	<?php 									 	
 	                						echo form_error("lugar_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -156,7 +156,7 @@
 									<div class="form-group">
 										<label for="cantidad_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input onkeyup="repeticion()" onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
+											 	<input required onkeyup="repeticion()" onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
 											 	<?php 									 	
 		                						echo form_error("cantidad_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
@@ -167,7 +167,7 @@
 								<div class="form-group" style="margin-bottom: 50px;">
 									<label for="descripcion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea name="descripcion_billete" id="descripcion_billete" cols="30" rows="10" class="form-control"></textarea>
+										 	<textarea required name="descripcion_billete" id="descripcion_billete" cols="30" rows="10" class="form-control"></textarea>
 										 	<?php 									 	
 	                						echo form_error("descripcion_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
