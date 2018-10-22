@@ -13,9 +13,14 @@
 								<p>Registro de la Certificaci&oacute;n: <?php echo $coleccionesb->registro_certificacion     == '' ? 'Sin Información': $coleccionesb->registro_certificacion;?></p>
 								<p>Serie del Billete: <?php echo $coleccionesb->serie_billete                        	      == '' ? 'Sin Información': $coleccionesb->serie_billete;?></p>
 								<p>Subserie del Billete: <?php echo $coleccionesb->subserie                        			  == '' ? 'Sin Información': $coleccionesb->subserie;?></p>
-								<p>Numero del Billete: <?php echo $coleccionesb->numero_billete_add               		      == '' ? 'Sin Información': $coleccionesb->numero_billete_add;?></p>
+							<?php if($coleccionesb->tipo_billete_registro =='add' ):?>
+									<p>Numero del Billete: <?php echo $coleccionesb->numero_billete_add               		  == '' ? 'Sin Información': $coleccionesb->numero_billete_add;?></p>
+							<?php endif; ?>			
+
 								<p>Tipo de Registro: <?php echo $coleccionesb->tipo_registro                                  == '' ? 'Sin Información': $coleccionesb->tipo_registro;?></p>
+							<?php if($coleccionesb->tipo_registro !='Busco' ):?>	
 								<p>Precio del Billete: <?php echo $coleccionesb->precio_billete                               == '' ? 'Sin Información': $coleccionesb->precio_billete. ' $';?></p>
+							<?php endif; ?>	
 								
 					
 				</div>

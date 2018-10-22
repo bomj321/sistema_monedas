@@ -92,8 +92,7 @@
                    <li><a><i class="fa fa-list-alt"></i> Colección Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url();?>Collectionb/list">Colecci&oacute;n de Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>Collectionm/list">Colecci&oacute;n de Monedas</a></li>
-                      <li><a href="<?php echo base_url();?>busquedas/list">Listado de Busquedas</a></li>
+                      <li><a href="<?php echo base_url();?>Collectionm/list">Colecci&oacute;n de Monedas</a></li>                      
                     </ul>
                   </li>  
                                   
@@ -101,24 +100,26 @@
                   <li><a><i class="fa fa-shopping-cart"></i> Mercado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url();?>mercadob/list">Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>mercadom/list">Monedas</a></li>                      
+                      <li><a href="<?php echo base_url();?>mercadom/list">Monedas</a></li> 
+                      <li><a href="<?php echo base_url();?>mercadob/listb">Busquedas de Billetes</a></li>
+                      <li><a href="<?php echo base_url();?>mercadom/listb">Busquedas de Monedas</a></li>                     
                     </ul>
-                  </li>
+                  </li>                  
+
+                  <li><a><i class="fa fa-file-text"></i> Sugerencias <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url();?>sugerencias/list">Listado de Sugerencias</a></li>
+                    </ul>
+                  </li> 
 
                    <li><a><i class="fa fa-paypal"></i> Membresías <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                      <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                        <li><a href="<?php echo base_url();?>membresias/list">Listado de Membresías</a></li>
                       <?php endif; ?> 
-                      <li><a href="<?php echo base_url();?>membresias/list">Estado de mi Membresía</a></li>
+                      <li><a href="<?php echo base_url();?>membresias/inf">Estado de mi Membresía</a></li>
                     </ul>
-                  </li>
-
-                  <li><a><i class="fa fa-file-text"></i> Sugerencias <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>mercadob/list">Listado de Sugerencias</a></li>
-                    </ul>
-                  </li>                  
+                  </li>                 
                  
                 </ul>
               </div>            

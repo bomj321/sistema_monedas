@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mercadob extends CI_Controller {
+class Mercadom extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -12,14 +12,14 @@ class Mercadob extends CI_Controller {
 				
 		//VERIFICAR SI EXISTE LA SESION
 		
-		$this->load->model("Mercadob_model");
+		$this->load->model("Mercadom_model");
 	}
 
 	public function list()
 	{
 		$id_usuario_session = $this->session->userdata("id");
 		$data = [
-		    'billetes_mercado' => $this->Mercadob_model->list($id_usuario_session)
+		    'monedas_mercado' => $this->Mercadom_model->list($id_usuario_session)
 		];
 
 		$this->layout->view("list",$data);
@@ -27,31 +27,27 @@ class Mercadob extends CI_Controller {
 	}
 
 	/*MODAL AGREGADO*/
-public function view($id_billete)
+public function view($id_moneda)
 {
 	$data  = array(
-			'coleccionesb'   => $this->Mercadob_model->get_collectionbp_mercado($id_billete), 
+			'coleccionesm'   => $this->Mercadom_model->get_collectionbm_mercado($id_moneda), 
 		);
-		$this->load->view("mercadob/modal_billete",$data);
+		$this->load->view("mercadom/modal_moneda",$data);
 }	
 /*MODAL AGREGADO*/
 
 
-
-/******************BUSQUEDAS DE BILLETES*******************/
+/******************BUSQUEDAS DE MONEDAS*******************/
 public function listb()
 	{
 		$id_usuario_session = $this->session->userdata("id");
 		$data = [
-		    'billetes_mercado_busco' => $this->Mercadob_model->listb($id_usuario_session)
+		    'monedas_mercado_busco' => $this->Mercadom_model->listb($id_usuario_session)
 		];
 
 		$this->layout->view("list_busqueda",$data);
 
 	}
 
-/******************BUSQUEDAS DE BILLETES*******************/	
+/******************BUSQUEDAS DE MONEDAS*******************/		
 }
-
-
-

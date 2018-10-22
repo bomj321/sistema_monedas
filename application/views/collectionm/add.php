@@ -13,7 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Colleci&oacute;n de Billetes</h2>
+                    <h2>Colleci&oacute;n de Monedas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -34,16 +34,16 @@
 
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open_multipart('collectionb/create',$formulario); 
+							 echo form_open_multipart('collectionm/create',$formulario); 
 							 ?>
 							 <input type="hidden" name="id_usuario" value="<?php echo $this->session->userdata("id") ?>">
-							 <input type="hidden" name="id_billete" value="<?php echo $id_billete ?>">
-							 <input type="hidden" value="principal" name="tipo_registro_billete">
+							 <input type="hidden" name="id_moneda" value="<?php echo $id_moneda ?>">
+							 <input type="hidden" value="principal" name="tipo_registro_moneda">
 
 								<div class="form-group">
-									<label for="condicion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
+									<label for="condicion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="condicion_billete" name="condicion_billete" >
+										 	<select required class="form-control" id="condicion_moneda" name="condicion_moneda" >
 									 				<option value="">Seleccione una Opcion</option>	
 													<option value="G">G</option>
 											 		<option value="VG">VG</option>
@@ -54,7 +54,7 @@
 											 		<option value="UNC">UNC</option>										 		
 										 	</select>
 										 	<?php 									 	
-	                						echo form_error("condicion_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("condicion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>
 					
@@ -94,7 +94,7 @@
 								<div class="form-group">
 									<label for="tipo_registro" class="col-sm-2 col-xs-12 col-md-2 control-label">Tipo de Registro</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="tipo_registro" name="tipo_registro" onchange="preciobillete()" >
+										 	<select required class="form-control" id="tipo_registro" name="tipo_registro" onchange="preciomoneda()" >
 									 				<option value="">Seleccione una Opcion</option>	
 													<option value="Personal">Colecci&oacute;n Personal</option>													
 											 		<option value="Intercambio">Intercambio</option>
@@ -108,16 +108,15 @@
 					
 								</div>
 								<!--RESPUESTA AJAX CERTIFICACION-->
-								<div id='gif_carga'></div>
-								<div id="precio_billete"></div>
+								<div id="precio_moneda"></div>
 								<!--RESPUESTA AJAX CERTIFICACION-->
 
 								<div class="form-group">
-									<label for="serie_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
+									<label for="serie_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input required type="text" class="form-control" placeholder="Numero de Serie" id="serie_billete" name="serie_billete">
+										 	<input required type="text" class="form-control" placeholder="Numero de Serie" id="serie_moneda" name="serie_moneda">
 										 	<?php 									 	
-	                						echo form_error("serie_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("serie_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>
@@ -143,39 +142,39 @@
 								</div>
 
 								<div class="form-group">
-									<label for="lugar_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
+									<label for="lugar_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_billete" name="lugar_billete">
+										 	<input required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_moneda" name="lugar_moneda">
 										 	<?php 									 	
-	                						echo form_error("lugar_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("lugar_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>
 
 								<?php if($this->session->userdata("membresia")==1):?>
 									<div class="form-group">
-										<label for="cantidad_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad</label>								
+										<label for="cantidad_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input required onkeyup="repeticion()" onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
+											 	<input required onkeyup="repeticionmoneda()" onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_moneda" name="cantidad_moneda">
 											 	<?php 									 	
-		                						echo form_error("cantidad_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+		                						echo form_error("cantidad_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
 										</div>					
 									</div>
 								<?php endif; ?> 	
 
 								<div class="form-group" style="margin-bottom: 20px;">
-									<label for="descripcion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
+									<label for="descripcion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea required name="descripcion_billete" id="descripcion_billete" cols="30" rows="10" class="form-control"></textarea>
+										 	<textarea required name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"></textarea>
 										 	<?php 									 	
-	                						echo form_error("descripcion_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("descripcion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>
 
 								<!--Respuesta AJAX-->
-								<div id="respuesta_ajax"></div>
+								<div id="respuesta_ajax_moneda"></div>
 								<!--Respuesta AJAX-->
 							
 								<div class="col-md-12 col-sm-12 col-xs-12">		

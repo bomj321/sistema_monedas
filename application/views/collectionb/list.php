@@ -25,7 +25,6 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID del Billete</th>
                                     <th>Condici&oacute;n del Billete</th>
                                     <th>Casa Certificadora</th>
                                     <th>Opciones</th>                                   
@@ -35,7 +34,6 @@
                                 <?php if(!empty($billetes)):?>
                                     <?php foreach($billetes as $billete):?>
                                         <tr>
-                                            <td><?php echo $billete->id_coleccion_personal_billete;?></td>
                                             <td><?php echo $billete->condicion_billete;?></td>
                                             <td><?php echo $billete->casa_certificadora;?></td>
                                             <td>

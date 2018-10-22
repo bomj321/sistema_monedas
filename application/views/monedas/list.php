@@ -43,10 +43,12 @@
                                             <td>
                                             	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>">
                                                         <span class="fa fa-search"></span>
-                                                    </button>
+                                                </button>
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                                                 <a title="Editar Billete" href="<?php echo base_url();?>monedas/edit/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
-                                               <?php endif; ?>        
+                                               <?php endif; ?> 
+
+                                               <a title="Agregar a Colección" href="<?php echo base_url();?>collectionm/add_collection/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a>         
 
                                             </td>
                                         </tr>

@@ -25,7 +25,6 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID de la Colecci&oacute;n</th>
                                     <th>Usuario que la Registro</th>
                                     <th>Contacto</th>
                                     <th>Opciones</th>                                   
@@ -35,7 +34,6 @@
                                 <?php if(!empty($billetes_mercado)):?>
                                     <?php foreach($billetes_mercado as $billete_mercado):?>
                                         <tr>
-                                            <td><?php echo $billete_mercado->id_coleccion_personal_billete;?></td>
                                             <td><?php echo $billete_mercado->nombreusuario;?></td>
                                             <td><?php echo $billete_mercado->emailusuario;?></td>
                                             <td>

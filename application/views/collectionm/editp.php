@@ -13,7 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Colleci&oacute;n de Billetes</h2>
+                    <h2>Colleci&oacute;n de Monedas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -34,25 +34,25 @@
 
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open('collectionb/editp_billete',$formulario); 
+							 echo form_open('collectionm/editp_moneda',$formulario); 
 							 ?>
-							 <input type="hidden" name="id_coleccion_personal_billete" value="<?php echo $billete->id_coleccion_personal_billete ?>">
+							 <input type="hidden" name="id_coleccion_personal_moneda" value="<?php echo $moneda->id_coleccion_personal_moneda ?>">
 
 								<div class="form-group">
-									<label for="condicion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
+									<label for="condicion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="condicion_billete" name="condicion_billete" >
+										 	<select required class="form-control" id="condicion_moneda" name="condicion_moneda" >
 									 				<option value="">Seleccione una Opcion</option>	
-													<option  <?php echo $billete->condicion_billete == 'G' ? 'selected' : '' ?> value="G">G</option>
-											 		<option  <?php echo $billete->condicion_billete == 'VG' ? 'selected' : '' ?> value="VG">VG</option>
-											 		<option  <?php echo $billete->condicion_billete == 'F' ? 'selected' : '' ?> value="F">F</option>
-											 		<option  <?php echo $billete->condicion_billete == 'VF' ? 'selected' : '' ?> value="VF">VF</option>
-											 		<option  <?php echo $billete->condicion_billete == 'XF' ? 'selected' : '' ?> value="XF">XF</option>
-											 		<option  <?php echo $billete->condicion_billete == 'AU' ? 'selected' : '' ?> value="AU">AU</option>
-											 		<option  <?php echo $billete->condicion_billete == 'UNC' ? 'selected' : '' ?> value="UNC">UNC</option>										 		
+													<option  <?php echo $moneda->condicion_moneda == 'G' ? 'selected' : '' ?> value="G">G</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'VG' ? 'selected' : '' ?> value="VG">VG</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'F' ? 'selected' : '' ?> value="F">F</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'VF' ? 'selected' : '' ?> value="VF">VF</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'XF' ? 'selected' : '' ?> value="XF">XF</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'AU' ? 'selected' : '' ?> value="AU">AU</option>
+											 		<option  <?php echo $moneda->condicion_moneda == 'UNC' ? 'selected' : '' ?> value="UNC">UNC</option>										 		
 										 	</select>
 										 	<?php 									 	
-	                						echo form_error("condicion_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("condicion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>
 					
@@ -61,7 +61,7 @@
 								<div class="form-group">
 									<label for="casa_certificadora" class="col-sm-2 col-xs-12 col-md-2 control-label">Certificaci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->casa_certificadora ?>" required type="text" class="form-control" placeholder="Casa Certificadora" id="casa_certificadora" name="casa_certificadora">
+										 	<input value="<?php echo $moneda->casa_certificadora ?>" required type="text" class="form-control" placeholder="Casa Certificadora" id="casa_certificadora" name="casa_certificadora">
 										 	<?php 									 	
 	                						echo form_error("casa_certificadora","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -72,7 +72,7 @@
 								<div class="form-group">
 									<label for="valor_certificacion" class="col-sm-2 col-xs-12 col-md-2 control-label">Valoraci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->valor_certificacion ?>" required type="text" class="form-control" placeholder="Valoración de la Certificadora" id="valor_certificacion" name="valor_certificacion">
+										 	<input value="<?php echo $moneda->valor_certificacion ?>" required type="text" class="form-control" placeholder="Valoración de la Certificadora" id="valor_certificacion" name="valor_certificacion">
 										 	<?php 									 	
 	                						echo form_error("valor_certificacion","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -82,7 +82,7 @@
 								<div class="form-group">
 									<label for="registro_certificacion" class="col-sm-2 col-xs-12 col-md-2 control-label">Registro</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->registro_certificacion ?>" required type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
+										 	<input value="<?php echo $moneda->registro_certificacion ?>" required type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
 										 	<?php 									 	
 	                						echo form_error("registro_certificacion","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -94,10 +94,10 @@
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select required class="form-control" id="tipo_registro" name="tipo_registro">
 									 				<option value="">Seleccione una Opcion</option>	
-													<option <?php echo $billete->tipo_registro == 'Personal' ? 'selected' : '' ?> value="Personal">Colecci&oacute;n Personal</option>
-											 		<option <?php echo $billete->tipo_registro == 'Intercambio' ? 'selected' : '' ?> value="Intercambio">Intercambio</option>
-											 		<option <?php echo $billete->tipo_registro == 'Venta' ? 'selected' : '' ?> value="Venta">Venta</option>
-											 		<option <?php echo $billete->tipo_registro == 'Busco' ? 'selected' : '' ?> value="Busco">Busco</option>									 												 		
+													<option <?php echo $moneda->tipo_registro == 'Personal' ? 'selected' : '' ?> value="Personal">Colecci&oacute;n Personal</option>
+											 		<option <?php echo $moneda->tipo_registro == 'Intercambio' ? 'selected' : '' ?> value="Intercambio">Intercambio</option>
+											 		<option <?php echo $moneda->tipo_registro == 'Venta' ? 'selected' : '' ?> value="Venta">Venta</option>
+											 		<option <?php echo $moneda->tipo_registro == 'Busco' ? 'selected' : '' ?> value="Busco">Busco</option>									 												 		
 										 	</select>
 										 	<?php 									 	
 	                						echo form_error("tipo_registro","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
@@ -107,11 +107,11 @@
 								</div>
 
 								<div class="form-group">
-								    <label for="precio_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio</label>                              
+								    <label for="precio_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio</label>                              
 								     <div class="col-md-10 col-sm-12 col-xs-12">
-								            <input value="<?php echo $billete->precio_billete ?>" type="text" required class="form-control" placeholder="Precio del Billete" id="precio_billete" name="precio_billete">
+								            <input value="<?php echo $moneda->precio_moneda ?>" type="text" required class="form-control" placeholder="Precio del Moneda" id="precio_moneda" name="precio_moneda">
 								            <?php                                       
-								            echo form_error("precio_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+								            echo form_error("precio_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 								            ?>
 								    </div>                  
 							    </div>
@@ -121,8 +121,8 @@
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select required class="form-control" id="mercado" name="mercado">
 									 				<option value="">Seleccione una Opcion</option>	
-													<option <?php echo $billete->mercado == '1' ? 'selected' : '' ?> value="1">Si</option>
-											 		<option <?php echo $billete->mercado == '0' ? 'selected' : '' ?> value="0">No</option>
+													<option <?php echo $moneda->mercado == '1' ? 'selected' : '' ?> value="1">Si</option>
+											 		<option <?php echo $moneda->mercado == '0' ? 'selected' : '' ?> value="0">No</option>
 											 										 												 		
 										 	</select>
 										 	<?php 									 	
@@ -133,11 +133,11 @@
 
 
 								<div class="form-group">
-									<label for="serie_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
+									<label for="serie_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->serie_billete ?>" required type="text" class="form-control" placeholder="Numero de Serie" id="serie_billete" name="serie_billete">
+										 	<input value="<?php echo $moneda->serie_moneda ?>" required type="text" class="form-control" placeholder="Numero de Serie" id="serie_moneda" name="serie_moneda">
 										 	<?php 									 	
-	                						echo form_error("serie_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("serie_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>
@@ -145,7 +145,7 @@
 								<div class="form-group">
 									<label for="subserie" class="col-sm-2 col-xs-12 col-md-2 control-label">Subserie</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->subserie ?>" required type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
+										 	<input value="<?php echo $moneda->subserie ?>" required type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
 										 	<?php 									 	
 	                						echo form_error("subserie","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -155,7 +155,7 @@
 								<div class="form-group">
 									<label for="precio_referencia" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio Referencia</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->precio_referencia ?>" required type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
+										 	<input value="<?php echo $moneda->precio_referencia ?>" required type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
 										 	<?php 									 	
 	                						echo form_error("precio_referencia","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -163,33 +163,33 @@
 								</div>
 
 								<div class="form-group">
-									<label for="lugar_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
+									<label for="lugar_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $billete->lugar_billete ?>" required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_billete" name="lugar_billete">
+										 	<input value="<?php echo $moneda->lugar_moneda ?>" required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_moneda" name="lugar_moneda">
 										 	<?php 									 	
-	                						echo form_error("lugar_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("lugar_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>
 
 								<?php if($this->session->userdata("membresia")==1):?>
 									<div class="form-group">
-										<label for="cantidad_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad Adicional</label>								
+										<label for="cantidad_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad Adicional</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input value="<?php echo $billete->cantidad_billete ?>" required onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_billete" name="cantidad_billete">
+											 	<input value="<?php echo $moneda->cantidad_moneda ?>" required onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_moneda" name="cantidad_moneda">
 											 	<?php 									 	
-		                						echo form_error("cantidad_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+		                						echo form_error("cantidad_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
 										</div>					
 									</div>
 								<?php endif; ?> 	
 
 								<div class="form-group" style="margin-bottom: 20px;">
-									<label for="descripcion_billete" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
+									<label for="descripcion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea required name="descripcion_billete" id="descripcion_billete" cols="30" rows="10" class="form-control"><?php echo $billete->descripcion_billete ?></textarea>
+										 	<textarea required name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda ?></textarea>
 										 	<?php 									 	
-	                						echo form_error("descripcion_billete","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+	                						echo form_error("descripcion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>

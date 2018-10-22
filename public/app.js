@@ -49,6 +49,8 @@ $(document).ready(function () {
 
 })
 
+
+/*LIST COLECCION DE BILLETES*/
 function datosusuario($id_usuario){
   var id = $id_usuario;
   var base_url= 'http://localhost/sistema_monedas/';
@@ -57,7 +59,7 @@ function datosusuario($id_usuario){
             type:"POST",
             success:function(resp){
                 $("#modal-default .modal-body").html(resp);
-                $("#modal-default .modal-title").html('Información del Billete');
+                $("#modal-default .modal-title").html('Información del Catalogo General');
                 //alert(resp);
             }
 
@@ -79,6 +81,44 @@ function datoscoleccion($id_usuario,$id_billete){
 
         });
 }
+/*LIST COLECCION DE BILLETES*/
+
+
+
+/*LIST COLECCION DE MONEDAS*/
+function datosusuariom($id_usuario){
+  var id = $id_usuario;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "monedas/view/" + id,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información del Catalogo General');
+                //alert(resp);
+            }
+
+        });
+}
+
+function datoscoleccionm($id_usuario,$id_billete){
+  var id_usuario = $id_usuario;
+  var id_billete = $id_billete;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "collectionm/view/" + id_usuario + "/" + id_billete,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información del Usuario');
+                //alert(resp);
+            }
+
+        });
+}
+/*LIST COLECCION DE MONEDAS*/
+
+
 
 function datosusuariomonedas($id_usuario){
   var id = $id_usuario;
@@ -183,9 +223,9 @@ $(function () {
     $('.zoom').zoomy();
 }(jQuery))
 /*ZOOM*/
-
+/********************************************************SECCION BILLETES******************************************************/
 /*PRECIO DEL BILLETE*/
-function preciomoneda()
+function preciobillete()
 {
            var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
@@ -252,7 +292,7 @@ function repeticion()
 /*CANTIDAD DEL BILLETE*/
 
 
-function preciomoneda_add($contador)
+function preciobillete_add($contador)
 {
          var contador   = $contador;
          var selecvalue =document.getElementById("tipo_registro_billete_add_" + contador).value
@@ -293,10 +333,149 @@ function datoscoleccionmercado($id_billete){
             type:"POST",
             success:function(resp){
                 $("#modal-default .modal-body").html(resp);
-                $("#modal-default .modal-title").html('Información la Moneda');
+                $("#modal-default .modal-title").html('Información del Billete');
                 //alert(resp);
             }
 
         });
 }
 /*MERCADO*/
+/********************************************************SECCION BILLETES******************************************************/
+
+
+
+/******************************************************SECCION MONEDAS******************************************************/
+
+/*PRECIO DE LAMONEDA*/
+function preciomoneda()
+{
+           var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='Intercambio' || selecvalue=='Venta') {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionm/form_moneda/",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $("#precio_moneda").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#precio_moneda').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#precio_billete').html("");
+  }
+  
+}
+/*PRECIO DE LA MONEDA*/
+
+
+
+/*CANTIDAD DEL MONEDA*/
+function repeticionmoneda()
+{
+           var selectvalue =document.getElementById('cantidad_moneda').value;
+           var entero =Number(selectvalue);
+           var mayorque = Number(0);
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (entero > mayorque) {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionm/form_moneda_cantidad/" + entero,
+                type:"POST",
+                beforeSend: function() {
+                     $('#respuesta_ajax_moneda').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#respuesta_ajax_moneda').html("");
+                      $("#respuesta_ajax_moneda").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#respuesta_ajax_moneda').html("");
+                  $('#respuesta_ajax_moneda').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#respuesta_ajax_moneda').html("");
+  }
+  
+}
+/*CANTIDAD DEL MONEDA*/
+
+/*PRECIO DEL MONEDA ADD*/
+function preciomoneda_add($contador)
+{
+         var contador   = $contador;
+         var selecvalue =document.getElementById("tipo_registro_moneda_add_" + contador).value
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='Intercambio' || selecvalue=='Venta') {
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionm/form_moneda_add/"+contador,
+                type:"POST",
+                beforeSend: function() {
+                     $('#precio_moneda_add_'+contador).html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                     $("#precio_moneda_add_"+contador).html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                     $('#precio_moneda_add_'+contador).html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  }else{
+    $('#precio_billete_add_' + contador).html("");
+  }
+  
+}
+
+/*PRECIO DEL MONEDA ADD*/
+
+/*MERCADO*/
+function datoscoleccionmercadom($id_billete){
+  var id_billete = $id_billete;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "mercadom/view/" + id_billete ,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Información de la Moneda');
+                //alert(resp);
+            }
+
+        });
+}
+/*MERCADO*/
+/******************************************************SECCION MONEDAS******************************************************/
+
+/*************************SUGERENCIAS*****************************/
+function datosugerencia($id_sugerencia){
+  var id = $id_sugerencia;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "sugerencias/view/" + id,
+            type:"POST",
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                $("#modal-default .modal-title").html('Mensaje de la Sugerencia');
+                //alert(resp);
+            }
+
+        });
+}
+/*************************SUGERENCIAS*****************************/

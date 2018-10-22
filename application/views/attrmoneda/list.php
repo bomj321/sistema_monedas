@@ -29,7 +29,6 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Nombre del Atributo</th>
                                     <th>Descripci&oacute;n del Atributo</th>
                                     <th>Opciones</th>                                   
@@ -39,7 +38,6 @@
                                 <?php if(!empty($monedas)):?>
                                     <?php foreach($monedas as $moneda):?>
                                         <tr>
-                                            <td><?php echo $moneda->id_atributo_m;?></td>
                                             <td><?php echo $moneda->nombre_atributo;?></td>
                                             <td><?php echo $moneda->descripcion_atributo;?></td>
                                             <td>

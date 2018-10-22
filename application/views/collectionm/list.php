@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Control de Billetes<!--<small>Todos los clientes</small>--></h3>
+                <h3>Control de la Colecci&oacute;n<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
@@ -13,11 +13,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Billetes 
-                       <?php if($this->session->userdata("tipo_usuario")==1 ):?>   
-                         <a  type="button" href="<?php echo base_url();?>billetes/add" style="margin-left: 5px;" class="btn btn-primary"><span class="fa fa-plus"></span>Agregar</a>
-                        <?php endif; ?>       
-                    </h2>
+                    <h2>Colecci&oacute;n</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>                     
@@ -29,24 +25,28 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Usuario que la Registro</th>
+                                    <th>Condici&oacute;n de la Moneda</th>
+                                    <th>Casa Certificadora</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if(!empty($usuarios)):?>
-                                    <?php foreach($usuarios as $usuario):?>
+                                <?php if(!empty($monedas)):?>
+                                    <?php foreach($monedas as $moneda):?>
                                         <tr>
-                                            <td><?php echo $usuario->usuario;?></td>
+                                            <td><?php echo $moneda->condicion_moneda;?></td>
+                                            <td><?php echo $moneda->casa_certificadora;?></td>
                                             <td>
-                                            	 <button title="Información de la Moneda" type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuario(<?php echo $usuario->id_catalogo_billete;?>)" value="<?php echo $usuario->id_catalogo_billete;?>">
-                                                        <span class="fa fa-search"></span>
-                                                    </button>
-                                              <?php if($this->session->userdata("tipo_usuario")==1 ):?>
-                                                <a title="Editar Billete" href="<?php echo base_url();?>billetes/edit/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
-                                              <?php endif; ?> 
 
-                                               <a title="Agregar a Colección" href="<?php echo base_url();?>collectionb/add_collection/<?php echo $usuario->id_catalogo_billete;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a>        
+                                               <button type="button" class="btn btn-info btn-view-moneda" data-toggle="modal" data-target="#modal-default" title="Información del Moneda"  onclick="datosusuariom(<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_moneda;?>">
+                                                        <span class="fa fa-search"></span>
+                                                 </button>   
+
+                                               <button type="button" class="btn btn-warning btn-view-moneda-usuario" data-toggle="modal" data-target="#modal-default" title="Información Personal" onclick="datoscoleccionm(<?php echo $moneda->id_usuario;?>,<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_moneda;?>">
+                                                        <span class="fa fa-search"></span>
+                                                 </button>                                            	                                             
+
+                                               <!-- <a title="Editar Moneda" href="<?php //echo base_url();?>monedas/edit/<?php //echo $moneda->id_coleccion_personal_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>              -->                                   
 
                                             </td>
                                         </tr>
@@ -62,7 +62,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion de la Moneda</h4>
+        <h4 class="modal-title"></h4>
       </div>
       <div class="modal-body">
 
