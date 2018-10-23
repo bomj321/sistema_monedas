@@ -41,7 +41,8 @@
                                 <?php elseif($membresia->tipo_usuario=='2'): ?>
                                        <p>Tipo de Membres&iacute;a: Es Usuario Gratuito</p>
                                 <?php elseif($membresia->tipo_usuario=='3'): ?>
-                                      <p>Tipo de Membres&iacute;a: <?php echo $membresia->membresia_fin;?></p>
+                                      <p>Tipo de Membres&iacute;a: Pagada</p>
+                                      <p>Vence el: <?php echo $membresia->membresia_fin ?></p>
                                 <?php endif ?>         	
                 </div><!--CONTENIDO-->
 

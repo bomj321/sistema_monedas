@@ -91,8 +91,8 @@
 
                    <li><a><i class="fa fa-list-alt"></i> Colección Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>Collectionb/list">Colecci&oacute;n de Billetes</a></li>
-                      <li><a href="<?php echo base_url();?>Collectionm/list">Colecci&oacute;n de Monedas</a></li>                      
+                      <li><a href="<?php echo base_url();?>collectionb/list">Colecci&oacute;n de Billetes</a></li>
+                      <li><a href="<?php echo base_url();?>collectionm/list">Colecci&oacute;n de Monedas</a></li>                      
                     </ul>
                   </li>  
                                   
