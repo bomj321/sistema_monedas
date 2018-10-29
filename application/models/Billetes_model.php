@@ -7,7 +7,14 @@ class Billetes_model extends CI_Model {
 	
 	public function save_attr($data)
 	{
-		return $this->db->insert("atributos_b",$data);
+		$this->db->insert("atributos_b",$data);
+		$ultimo_id_attr = $this->db->insert_id();
+	     return $ultimo_id_attr;
+	}
+
+	public function atributos_especiales_b($data)
+	{
+		return $this->db->insert("atributos_especiales_b",$data);		
 	}
 
 
@@ -30,6 +37,23 @@ class Billetes_model extends CI_Model {
 		return $resultado->row();
 	}
 
+/*ATRIBUTOS ESPECIALES*/
+	public function get_attr_especiales($id_atributo){
+		$this->db->where("id_atributob",$id_atributo);
+		$resultado = $this->db->get("atributos_especiales_b");
+		return $resultado->result();
+	}
+
+	public function atributos_especiales_b_delete($id){
+			$this->db->where('id_atributob', $id);
+			$this->db->delete('atributos_especiales_b');
+		}
+
+	public function delete_opcion_es($id){
+			$this->db->where('id_atributos_especiales_b', $id);
+			$this->db->delete('atributos_especiales_b');
+		}			
+/*ATRIBUTOS ESPECIALES*/
 	public function get_attr_exist($id_atributo){
 		$this->db->where("id_atributo",$id_atributo);
 		$resultado = $this->db->get("atributo_billetes");

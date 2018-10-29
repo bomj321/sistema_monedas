@@ -1,10 +1,7 @@
 <div class="form-group">
 	<label for="opciones_especialesb" class="col-sm-12 col-xs-12 col-md-2 col-lg-2  control-label">Nueva Opci&oacute;n</label>								
 	 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-		 	<input required type="text" class="form-control" placeholder="Opcion Nueva" id="opciones_especialesb" name="opciones_especialesb[]">
-		 	<?php 									 	
-			echo form_error("opciones_especialesb","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
-		    ?>
+		 	<input required type="text" class="form-control" placeholder="Opcion Nueva" id="opciones_especialesb" name="opciones_especialesb[]">		 	
 	</div>
 
 	 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">

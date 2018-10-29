@@ -61,7 +61,7 @@
                                 
                               
                                   <div class="col-md-10 col-sm-12 col-xs-12">
-                                      <select  class="form-control" id="tipo_atributo" required>
+                                      <select  class="form-control" name='tipo_atributo' id="tipo_atributo" required onchange="tipoatributo()">
                                           <option value="">Seleccione una Opcion</option>
                                           <option <?php echo $atributo->tipo_atributob == 'Especiales' ? 'selected' : '' ?> value="Especiales">Especiales</option>
                                           <option <?php echo $atributo->tipo_atributob == 'Precios' ? 'selected' : '' ?> value="Precios">Precios</option>
@@ -72,7 +72,50 @@
                                               echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
                                         ?>
                                   </div>
+                                </div>                            
+
+                                <?php if (!empty($atributo_especiales)): ?>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col xs-12">
+                                            <center><h3>Opciones del Atributo Agregadas</h3></center>
+                                        </div>
+                                    </div>
+
+                                    <?php foreach ($atributo_especiales as $atributo_especial): ?>
+                                        <div class="form-group">
+                                            <label for="opciones_especialesb" class="col-sm-12 col-xs-12 col-md-2 col-lg-2  control-label">Opci&oacute;n</label>
+                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                    <input value="<?php echo $atributo_especial->opciones_especialesb ?>" required type="text" class="form-control" placeholder="Opcion Nueva" id="opciones_especialesb" name="opciones_especialesb[]">            
+                                            </div>
+                                             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                <a href="<?php echo base_url();?>attrbillete/delete_opcion_es/<?php echo $atributo_especial->id_atributos_especiales_b?>/<?php echo $atributo->id_atributo_b ?>" class=" btn btn-warning" type="button">Eliminar Opci&oacute;n</a>
+                                            </div>
+                    
+                                        </div>
+                                        
+                                    <?php endforeach ?>                                    
+                                <?php endif ?>
+
+
+
+
+<!------------------RESPUESTA AJAX Y VERIFICANDO QUE SEA ESPECIAL PRIMERO-----------------> 
+<?php if ($atributo->tipo_atributob=='Especiales'): ?>    
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <button id='boton_tipo_atributo_edit' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>
                                 </div>
+                                <div id="gif_carga"></div>
+                                <div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+      <?php else: ?>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <button id='boton_tipo_atributo' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>
+            </div>
+         <div id="gif_carga"></div>
+         <div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+
+
+<?php endif ?>
+<!------------------RESPUESTA AJAX Y VERIFICANDO QUE SEA ESPECIAL PRIMERO----------------->                                
 
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									

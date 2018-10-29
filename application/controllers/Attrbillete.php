@@ -27,9 +27,10 @@ class Attrbillete extends CI_Controller {
 
 	public function create()
 	{
-		$nombre_atributo      = $this->input->post("nombre_atributo");
-		$descripcion_atributo = $this->input->post("descripcion_atributo");
-		$tipo_atributo        = $this->input->post("tipo_atributo");
+		$nombre_atributo             = $this->input->post("nombre_atributo");
+		$descripcion_atributo        = $this->input->post("descripcion_atributo");
+		$tipo_atributo               = $this->input->post("tipo_atributo");
+		$opciones_especialesb        = $this->input->post("opciones_especialesb");
 
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_b.nombre_atributo]");
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
@@ -43,8 +44,20 @@ class Attrbillete extends CI_Controller {
 				'estado'                 => '1',
 			);
 
-			if ($this->Billetes_model->save_attr($data)) 
+			if ($ultimo_id_atributo=$this->Billetes_model->save_attr($data)) 
 			{
+/*PARA GUARDAR TODOS LOS ATRIBUTOS*/
+			if ($tipo_atributo=='Especiales') {	
+					for ($i = 0; $i < count($opciones_especialesb) ; $i++) {
+						$data_atributo  = array(
+								'id_atributob'              => $ultimo_id_atributo,
+								'opciones_especialesb'      => $opciones_especialesb[$i],								
+							);
+						$this->Billetes_model->atributos_especiales_b($data_atributo);
+						
+					}
+			}
+/*PARA GUARDAR TODOS LOS ATRIBUTOS*/				
 				$this->list();
 			}else
 			{
@@ -79,7 +92,8 @@ class Attrbillete extends CI_Controller {
 	public function edit($id)
 	{
 		$data = array(
-			'atributo' => $this->Billetes_model->get_attr($id)
+			'atributo'            => $this->Billetes_model->get_attr($id),
+			'atributo_especiales' => $this->Billetes_model->get_attr_especiales($id)
 		);
 		
 		$this->layout->view("edit",$data);
@@ -91,6 +105,7 @@ class Attrbillete extends CI_Controller {
 		$nombre_atributo           = $this->input->post("nombre_atributo");
 		$descripcion_atributo      = $this->input->post("descripcion_atributo");
 		$tipo_atributo             = $this->input->post("tipo_atributo");
+		$opciones_especialesb      = $this->input->post("opciones_especialesb");
 
 		$atributo_actual = $this->Billetes_model->get_attr($id_atributo);
 
@@ -114,16 +129,34 @@ class Attrbillete extends CI_Controller {
 
 				if ($this->Billetes_model->update_atribute($id_atributo,$data)) 
 				{
+/*PARA GUARDAR TODOS LOS ATRIBUTOS*/
+			if ($tipo_atributo=='Especiales') {	
+				$this->Billetes_model->atributos_especiales_b_delete($id_atributo);//BORRAMOS TODOS LOS REGISTROS DE ESA MONEDA
+
+					for ($i = 0; $i < count($opciones_especialesb) ; $i++) {
+						$data_atributo  = array(
+								'id_atributob'              => $id_atributo,
+								'opciones_especialesb'      => $opciones_especialesb[$i],								
+							);
+						$this->Billetes_model->atributos_especiales_b($data_atributo);
+						
+					}
+			}else{
+				$this->Billetes_model->atributos_especiales_b_delete($id_atributo);//BORRAMOS TODOS LOS REGISTROS DE ESA MONEDA AL NO SER ESPECIAL
+			}
+/*PARA GUARDAR TODOS LOS ATRIBUTOS*/		
+
+
 					$this->list();
 				}else
 				{
 					$this->session->set_flashdata("error","No se pudo guardar la informacion");
-					$this->add($id_atributo);
+					$this->edit($id_atributo);
 				}
 
 
 			}else{
-				$this->add($id_atributo);
+				$this->edit($id_atributo);
 		}
 	}
 
@@ -147,4 +180,11 @@ public function form_opciones()
 }
 /*FORMULARIO RENDERIZADO CON AJAX*/	
 
+/*FUNCION PARA ELIMINAR LA OPCION ACTUAL*/
+public function delete_opcion_es($id,$id_atributo_edit)
+{
+		$this->Billetes_model->delete_opcion_es($id);
+		$this->edit($id_atributo_edit);
+}
+/*FUNCION PARA ELIMINAR LA OPCION ACTUAL*/
 }
