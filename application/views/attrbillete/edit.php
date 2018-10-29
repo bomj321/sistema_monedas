@@ -56,6 +56,24 @@
 					
 								</div>
 
+                                <div class="form-group">  
+                                 <label for="tipo_atributo" class="col-sm-2 col-xs-12 col-md-2 control-label">Tipo de Atributo</label>
+                                
+                              
+                                  <div class="col-md-10 col-sm-12 col-xs-12">
+                                      <select  class="form-control" id="tipo_atributo" required>
+                                          <option value="">Seleccione una Opcion</option>
+                                          <option <?php echo $atributo->tipo_atributob == 'Especiales' ? 'selected' : '' ?> value="Especiales">Especiales</option>
+                                          <option <?php echo $atributo->tipo_atributob == 'Precios' ? 'selected' : '' ?> value="Precios">Precios</option>
+                                          <option <?php echo $atributo->tipo_atributob == 'Generales' ? 'selected' : '' ?> value="Generales">Generales</option>
+                                          <option <?php echo $atributo->tipo_atributob == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>
+                                      </select>
+                                      <?php                     
+                                              echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+                                        ?>
+                                  </div>
+                                </div>
+
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									
 										<center><button class="btn btn-primary" type="submit">Editar Atributo</button></center>

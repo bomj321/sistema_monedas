@@ -45,6 +45,7 @@
 							 echo form_open_multipart('billetes/create',$formulario); 
 
 							 ?>
+<!--------------------------------------------SECCION OTROS-------------------->							 
 							 <?php foreach($atributos as $atributo):?>
 
 							 	<?php
@@ -105,6 +106,9 @@
 								</div>
 
 							 	<?php endforeach;?>
+<!----------------------------SECCION OTROS------------------------------------>
+<!-----------------------------SECCION CATALOGOS-->
+
 							<?php if(!empty($catalogos)): ?>
 							 	<div class="form-group">
 							 		<?php 
@@ -134,6 +138,8 @@
 									</div>
 								</div>
 							 <?php endif; ?>
+
+<!-----------------------------SECCION CATALOGOS-->							 
 								<!--REPUESTA AJAX-->
 								<div id="gif_carga" class="form-group"></div>
 								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	

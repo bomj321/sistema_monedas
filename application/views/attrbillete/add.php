@@ -96,6 +96,45 @@
 					
 								</div>
 
+<!---------------------------SECCION DE LOS TIPOS DE ATRIBUTOS-->
+
+								<div class="form-group">
+							 		<?php 
+										$label_tipo = array(
+						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+
+                						);
+
+
+                						echo form_label('Tipo de Atributo','tipo_atributo',$label_tipo)
+									 ?>
+							 	
+							
+								 	<div class="col-md-10 col-sm-12 col-xs-12">
+										 	<select  class="form-control" id="tipo_atributo" name="tipo_atributo" required='true' onchange="tipoatributo()"
+											 		<option value="">Seleccione una Opcion</option>
+											 		<option value="Generales">Generales</option>
+											 		<option value="Precios">Precios</option>
+											 		<option value="Especiales">Especiales</option>					 													 		
+											 		<option value="Otros">Otros</option>
+										 	</select>
+										 	<?php 									 	
+	                						echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+										    ?>
+									</div>
+								</div>
+
+<!------------------RESPUESTA AJAX----------------->								
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<button id='boton_tipo_atributo' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>
+								</div>
+								<div id="gif_carga"></div>
+								<div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+<!------------------RESPUESTA AJAX----------------->
+
+<!---------------------------SECCION DE LOS TIPOS DE ATRIBUTOS-->
+
+
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									
 										<center>

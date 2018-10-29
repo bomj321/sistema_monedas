@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>Nombre del Atributo</th>
                                     <th>Descripci&oacute;n del Atributo</th>
+                                    <th>Tipo de Atributo</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                         <tr>
                                             <td><?php echo $billete->nombre_atributo;?></td>
                                             <td><?php echo $billete->descripcion_atributo;?></td>
+                                            <td><?php echo $billete->tipo_atributob;?></td>
                                             <td>
                                             	<?php if ($billete->estado=='1'): ?>
                                             		<a title="bloquear atributo" href="<?php echo base_url();?>attrbillete/update/<?php echo $billete->id_atributo_b;?>/0" class="btn btn-warning btn-remove"><span class="fa fa-remove"></span></a>

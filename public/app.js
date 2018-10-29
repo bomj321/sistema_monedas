@@ -1,4 +1,7 @@
 $(document).ready(function () {
+/**********BOTON ESCONDIDO POR DEFECTO***********/
+$("#boton_tipo_atributo").hide();
+/**********BOTON ESCONDIDO POR DEFECTO***********/    
 
     $(function () {
        table = $("#example1").DataTable({
@@ -224,6 +227,76 @@ $(function () {
 }(jQuery))
 /*ZOOM*/
 /********************************************************SECCION BILLETES******************************************************/
+
+
+/***********************************SECCION ATRIBUTOS BILLETES*/
+function tipoatributo()
+{
+           var selecvalue = tipo_atributo.options[tipo_atributo.selectedIndex].value;
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='Especiales') {
+            $("#boton_tipo_atributo").show();
+
+           /*  var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "collectionm/form_moneda/",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $("#precio_moneda").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#precio_moneda').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });*/
+  }else{
+    $("#boton_tipo_atributo").hide();
+   /* $('#precio_billete').html("");*/
+  }
+  
+}
+
+
+function opcionesadd () {
+           // var catalogo   = document.getElementById("catalogo");
+         
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "attrbillete/form_opciones",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga').html("");
+                      $("#tipo_atributo_ajax").append(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#tipo_atributo_ajax').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  
+     
+};
+
+/*ELIMINAR CAMPO*/
+$(document).on("click",".eliminar", function(){
+        $(this).closest(".form-group").remove();
+    });
+/*ELIMINAR CAMPO*/
+/************************************SECCION ATRIBUTOS BILLETES*/
+
+
 /*PRECIO DEL BILLETE*/
 function preciobillete()
 {

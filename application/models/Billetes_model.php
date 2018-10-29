@@ -88,7 +88,6 @@ class Billetes_model extends CI_Model {
 
 	public function listattr_cat_edit($id)
 	{
-/*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
 $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_billetes.id_atributo as atributoid,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_billetes.id_billete as id_unico_atributo,attr_billetes.id_atributo as id_atributo_edit,attr_b.estado as estado");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
@@ -117,6 +116,8 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 				return false;
 			}
 	}
+/*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
+	
 	/********************SECCION EDITAR********************************/
 
 	public function update_atributes($id_unico,$atributo_id,$data)

@@ -29,14 +29,17 @@ class Attrbillete extends CI_Controller {
 	{
 		$nombre_atributo      = $this->input->post("nombre_atributo");
 		$descripcion_atributo = $this->input->post("descripcion_atributo");
+		$tipo_atributo        = $this->input->post("tipo_atributo");
 
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_b.nombre_atributo]");
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
+		//$this->form_validation->set_rules("tipo_atributo","Tipo de Atributo","required");
 
 		if ($this->form_validation->run()) {
 			$data = array(
 				'nombre_atributo'        => $nombre_atributo, 
 				'descripcion_atributo'   => ucfirst($descripcion_atributo),
+				'tipo_atributob'         => $tipo_atributo,
 				'estado'                 => '1',
 			);
 
@@ -87,6 +90,7 @@ class Attrbillete extends CI_Controller {
 		$id_atributo               = $this->input->post("id_atributo");
 		$nombre_atributo           = $this->input->post("nombre_atributo");
 		$descripcion_atributo      = $this->input->post("descripcion_atributo");
+		$tipo_atributo             = $this->input->post("tipo_atributo");
 
 		$atributo_actual = $this->Billetes_model->get_attr($id_atributo);
 
@@ -99,11 +103,13 @@ class Attrbillete extends CI_Controller {
 
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required".$is_unique);
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
+		$this->form_validation->set_rules("tipo_atributo","Tipo de Atributo","required");
 
 		if ($this->form_validation->run()) {
 				$data = array(
 					'nombre_atributo'        => $nombre_atributo,
-					'descripcion_atributo'   => ucfirst($descripcion_atributo),					
+					'descripcion_atributo'   => ucfirst($descripcion_atributo),	
+					'tipo_atributob'         => $tipo_atributo,				
 				);
 
 				if ($this->Billetes_model->update_atribute($id_atributo,$data)) 
@@ -132,4 +138,13 @@ class Attrbillete extends CI_Controller {
 			$this->list();
 		}
 	}
+
+/*FORMULARIO RENDERIZADO CON AJAX*/
+public function form_opciones()
+{	
+    
+	$this->load->view("attrbillete/form_opciones");
+}
+/*FORMULARIO RENDERIZADO CON AJAX*/	
+
 }
