@@ -111,11 +111,12 @@
 							 	
 							
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select  class="form-control" id="tipo_atributo" name="tipo_atributo" required='true' onchange="tipoatributo()"
+										 	<select  class="form-control" id="tipo_atributo" name="tipo_atributo" required='true' onchange="tipoatributo()">
 											 		<option value="">Seleccione una Opcion</option>
 											 		<option value="Generales">Generales</option>
 											 		<option value="Precios">Precios</option>
-											 		<option value="Especiales">Especiales</option>					 													 		
+											 		<option value="Especiales">Especiales</option>
+											 		<option value="Catalogos">Catalogos</option>
 											 		<option value="Otros">Otros</option>
 										 	</select>
 										 	<?php 									 	

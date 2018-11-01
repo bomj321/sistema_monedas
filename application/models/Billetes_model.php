@@ -72,13 +72,42 @@ class Billetes_model extends CI_Model {
 /*SECCION DE EDITAR ATRIBUTOS*/
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
-	public function listattr_form()
+
+/************GENERALES***********/
+	public function listattr_form_generales()
 	{	
-		$this->db->or_where_not_in('descripcion_atributo', 'Catalogo');
+		$this->db->where('tipo_atributob', 'Generales');
 		$resultados = $this->db->get("atributos_b");
 		return $resultados->result();
 	}
+/*************GENERALES**********/
 
+/************PRECIOS***********/
+	public function listattr_form_precios()
+	{	
+		$this->db->where('tipo_atributob', 'Precios');
+		$resultados = $this->db->get("atributos_b");
+		return $resultados->result();
+	}
+/*************PRECIOS**********/
+
+/************ESPECIALES***********/
+	public function listattr_form_especiales()
+	{	
+		$this->db->where('tipo_atributob', 'Especiales');
+		$resultados = $this->db->get("atributos_b");
+		return $resultados->result();
+	}
+/*************ESPECIALES**********/
+
+/************OTROS***********/
+	public function listattr_form_otros()
+	{	
+		$this->db->where('tipo_atributob', 'Otros');
+		$resultados = $this->db->get("atributos_b");
+		return $resultados->result();
+	}
+/*************OTROS**********/
 	
 
 	public function listattr_cat()

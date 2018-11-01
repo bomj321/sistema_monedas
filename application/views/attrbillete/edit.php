@@ -66,6 +66,7 @@
                                           <option <?php echo $atributo->tipo_atributob == 'Especiales' ? 'selected' : '' ?> value="Especiales">Especiales</option>
                                           <option <?php echo $atributo->tipo_atributob == 'Precios' ? 'selected' : '' ?> value="Precios">Precios</option>
                                           <option <?php echo $atributo->tipo_atributob == 'Generales' ? 'selected' : '' ?> value="Generales">Generales</option>
+                                          <option <?php echo $atributo->tipo_atributob == 'Catalogos' ? 'selected' : '' ?> value="Catalogos">Catalogos</option>
                                           <option <?php echo $atributo->tipo_atributob == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>
                                       </select>
                                       <?php                     

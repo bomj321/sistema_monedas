@@ -25,7 +25,10 @@ class Billetes extends CI_Controller {
 
 		}else{
 			$data = array(
-				'atributos' => $this->Billetes_model->listattr_form(),
+				'atributos_generales' => $this->Billetes_model->listattr_form_generales(),
+				'atributos_precios' => $this->Billetes_model->listattr_form_precios(),
+				'atributos_especiales' => $this->Billetes_model->listattr_form_especiales(),
+				'atributos_otros' => $this->Billetes_model->listattr_form_otros(),
 				'catalogos' => $this->Billetes_model->listattr_cat() 
 			);
 
