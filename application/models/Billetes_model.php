@@ -72,7 +72,7 @@ class Billetes_model extends CI_Model {
 /*SECCION DE EDITAR ATRIBUTOS*/
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
-
+/******************AGREGAR MONEDAS*******************/
 /************GENERALES***********/
 	public function listattr_form_generales()
 	{	
@@ -108,8 +108,8 @@ class Billetes_model extends CI_Model {
 		return $resultados->result();
 	}
 /*************OTROS**********/
-	
-
+/******************AGREGAR MONEDAS*******************/	
+/***************************************************EDITAR MONEDAS******************************/
 	public function listattr_cat()
 	{
 		$this->db->where('descripcion_atributo', 'Catalogo');
@@ -117,27 +117,121 @@ class Billetes_model extends CI_Model {
 		return $resultados->result();
 	}
 
-
-	public function listattr_form_edit($id)
+/**************GENERALES**************/
+	public function listattr_form_edit_generales($id)
 	{
 
 		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_b.estado as estado,attr_billetes.id_billete as id_unico_atributo");
 		$this->db->from("catalogo_billetes b");
 		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
 		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->where("attr_b.tipo_atributob",'Generales');
 		$this->db->where("b.id_catalogo_billete",$id);
 		$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
 			$resultado = $this->db->get();
 			return $resultado->result();
 
 	}
+/**************GENERALES**************/
+
+/**************PRECIOS**************/
+	public function listattr_form_edit_precios($id)
+	{
+
+		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_b.estado as estado,attr_billetes.id_billete as id_unico_atributo");
+		$this->db->from("catalogo_billetes b");
+		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->where("attr_b.tipo_atributob",'Precios');
+		$this->db->where("b.id_catalogo_billete",$id);
+		$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+			$resultado = $this->db->get();
+			return $resultado->result();
+
+	}
+/**************PRECIOS**************/
+
+/**************ESPECIALES**************/
+	public function listattr_form_edit_especiales($id)
+	{
+
+		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_b.estado as estado,attr_billetes.id_billete as id_unico_atributo");
+		$this->db->from("catalogo_billetes b");
+		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->where("attr_b.tipo_atributob",'Especiales');
+		$this->db->where("b.id_catalogo_billete",$id);
+		$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+			$resultado = $this->db->get();
+			return $resultado->result();
+
+	}
+/**************ESPECIALES**************/
+
+/**************OTROS**************/
+	public function listattr_form_edit_otros($id)
+	{
+
+		$this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,attr_b.nombre_atributo as nombreatributo,attr_b.id_atributo_b as id_atributo_b,attr_b.descripcion_atributo as descripcion_atributo,attr_b.estado as estado,attr_billetes.id_billete as id_unico_atributo");
+		$this->db->from("catalogo_billetes b");
+		$this->db->join("atributo_billetes attr_billetes","b.id_catalogo_billete = attr_billetes.id_billete");
+		$this->db->join("atributos_b attr_b","attr_billetes.id_atributo = attr_b.id_atributo_b");
+		$this->db->where("attr_b.tipo_atributob",'Otros');
+		$this->db->where("b.id_catalogo_billete",$id);
+		$this->db->where_not_in('attr_b.descripcion_atributo', 'Catalogo');
+			$resultado = $this->db->get();
+			return $resultado->result();
+
+	}
+/**************OTROS**************/
+
 /*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
-	public function listattr_form_not($id)
+
+/************GENERALES***********/
+
+	public function listattr_form_not_generales($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND NOT  descripcion_atributo = 'Catalogo'");
+	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND tipo_atributob = 'Generales' AND NOT  descripcion_atributo = 'Catalogo'");
 	 return $query->result();
 	}
+
+/************GENERALES***********/
+
+/************PRECIOS***********/
+
+	public function listattr_form_not_precios($id)
+	{	
+
+	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND tipo_atributob = 'Precios' AND NOT  descripcion_atributo = 'Catalogo'");
+	 return $query->result();
+	}
+
+/************PRECIOS***********/
+
+/************ESPECIALES***********/
+
+	public function listattr_form_not_especiales($id)
+	{	
+
+	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND tipo_atributob = 'Especiales' AND NOT  descripcion_atributo = 'Catalogo'");
+	 return $query->result();
+	}
+
+/************ESPECIALES***********/
+
+
+/************OTROS***********/
+
+	public function listattr_form_not_otros($id)
+	{	
+
+	 $query = $this->db->query("SELECT * FROM atributos_b WHERE id_atributo_b NOT IN (SELECT id_atributo FROM atributo_billetes WHERE id_billete = '$id') AND tipo_atributob = 'Otros' AND NOT  descripcion_atributo = 'Catalogo'");
+	 return $query->result();
+	}
+
+/************OTROS***********/
+
 
 	public function listattr_cat_edit($id)
 	{
@@ -169,6 +263,8 @@ $this->db->select("b.*,attr_billetes.atributo_billete as descripcionatributo,att
 				return false;
 			}
 	}
+/***************************************************EDITAR MONEDAS******************************/
+
 /*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
 	
 	/********************SECCION EDITAR********************************/

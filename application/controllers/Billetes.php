@@ -25,11 +25,11 @@ class Billetes extends CI_Controller {
 
 		}else{
 			$data = array(
-				'atributos_generales' => $this->Billetes_model->listattr_form_generales(),
-				'atributos_precios' => $this->Billetes_model->listattr_form_precios(),
-				'atributos_especiales' => $this->Billetes_model->listattr_form_especiales(),
-				'atributos_otros' => $this->Billetes_model->listattr_form_otros(),
-				'catalogos' => $this->Billetes_model->listattr_cat() 
+				'atributos_generales'   => $this->Billetes_model->listattr_form_generales(),
+				'atributos_precios'     => $this->Billetes_model->listattr_form_precios(),
+				'atributos_especiales'  => $this->Billetes_model->listattr_form_especiales(),
+				'atributos_otros'       => $this->Billetes_model->listattr_form_otros(),
+				'catalogos'             => $this->Billetes_model->listattr_cat() 
 			);
 
 			$this->layout->view("add",$data);
@@ -46,11 +46,17 @@ class Billetes extends CI_Controller {
 		}else{
 
 			$data = array(
-			'atributos'      => $this->Billetes_model->listattr_form_edit($id),
-			'catalogos_edit' => $this->Billetes_model->listattr_cat_edit($id),
-			'pagos_catalogo' => $this->Billetes_model->listattr_cat_pagos($id),
-			'catalogos'      => $this->Billetes_model->listattr_cat(),
-			'atributos_not'  => $this->Billetes_model->listattr_form_not($id) 
+			'atributos_generales'       => $this->Billetes_model->listattr_form_edit_generales($id),
+			'atributos_precios'         => $this->Billetes_model->listattr_form_edit_precios($id),
+			'atributos_especiales'      => $this->Billetes_model->listattr_form_edit_especiales($id),
+			'atributos_otros'           => $this->Billetes_model->listattr_form_edit_otros($id),
+			'catalogos_edit' 		    => $this->Billetes_model->listattr_cat_edit($id),
+			'pagos_catalogo'            => $this->Billetes_model->listattr_cat_pagos($id),
+			'catalogos'                 => $this->Billetes_model->listattr_cat(),
+			'atributos_not_generales'   => $this->Billetes_model->listattr_form_not_generales($id),
+			'atributos_not_precios'     => $this->Billetes_model->listattr_form_not_precios($id),
+			'atributos_not_especiales'  => $this->Billetes_model->listattr_form_not_especiales($id),
+			'atributos_not_otros'       => $this->Billetes_model->listattr_form_not_otros($id)
 		);
 
 		$this->layout->view("edit",$data);
@@ -306,17 +312,23 @@ if (!empty($_FILES['imagen_add']["name"])) {
 /*******************************INSERTAR IMAGEN NUEVOS EN LA EDICION QUE NO ESTABA*/
 
 /*INSERTAR ATRIBUTO NORMAL EN LA EDICION QUE NO ESTABA*/
-if (!empty($atributo_id_add)) {	
+
+if (!empty($catalogo_add)) {
 	//$id_unico  = $this->input->post("id_unico");
-	for ($i=0; $i < count($atributo_id_add); $i++) { 
-			$id_unico_usuario_unico = $id_unico[0];
-			$data  = array(
-				'id_billete'            => $id_unico_usuario_unico, 
-				'id_atributo'           => $atributo_id_add[$i],
-				'atributo_billete'      => $catalogo_add[$i],
-				
-			);
-			$this->Billetes_model->save_atributes($data);
+	for ($i=0; $i < count($atributo_id_add); $i++) {
+
+		if (!empty($catalogo_add[$i])) {			
+		
+				$id_unico_usuario_unico = $id_unico[0];
+				$data  = array(
+					'id_billete'            => $id_unico_usuario_unico, 
+					'id_atributo'           => $atributo_id_add[$i],
+					'atributo_billete'      => $catalogo_add[$i],
+					
+				);
+				$this->Billetes_model->save_atributes($data);
+			}	
+
 	}
 }
 

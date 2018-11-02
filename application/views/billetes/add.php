@@ -48,8 +48,8 @@
 <!--------------------------------------------SECCION GENERALES-------------------->
 <?php if(!empty($atributos_generales)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading"><h3 style="font-weight: bold;">Generales</h3></div>
-		              <div class="panel-body">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Generales</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
 							 <?php foreach($atributos_generales as $atributo_general):?>
 
 							 	<?php
@@ -118,8 +118,8 @@
 <!--------------------------------------------SECCION PRECIOS-------------------->
 <?php if(!empty($atributos_precios)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading"><h3 style="font-weight: bold;">Precios</h3></div>
-		              <div class="panel-body">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Precios</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
 							 <?php foreach($atributos_precios as $atributos_precio):?>
 
 							 	<?php
@@ -187,8 +187,8 @@
 <!--------------------------------------------SECCION ESPECIALES-------------------->
 <?php if(!empty($atributos_especiales)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading"><h3 style="font-weight: bold;">Especiales</h3></div>
-		              <div class="panel-body">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Especiales</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
 							 <?php foreach($atributos_especiales as $atributo_especial):?>
 
 							 	<?php
@@ -262,8 +262,8 @@
 <!--------------------------------------------SECCION OTROS-------------------->
 <?php if(!empty($atributos_otros)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading"><h3 style="font-weight: bold;">Precios</h3></div>
-		              <div class="panel-body">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Otros</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
 							 <?php foreach($atributos_otros as $atributos_otro):?>
 
 							 	<?php
@@ -337,8 +337,8 @@
 
 <?php if(!empty($catalogos)): ?>
 		<div class="panel panel-default">
-		     <div class="panel-heading"><h3 style="font-weight: bold;">Catalogos</h3></div>
-		              <div class="panel-body">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Catalogos</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
 		    	                      <div class="form-group">
 									 		<?php 
 												$label_catalogo = array(
