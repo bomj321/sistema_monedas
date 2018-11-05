@@ -684,8 +684,8 @@ CATALOGOS<div class="right_col" role="main">
 								                    <tr>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G_edit[]" value="<?php echo $pago_catalogo->G?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VG_edit[]" value="<?php echo $pago_catalogo->VG?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F_edit[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
-								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF_edit[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_F_edit[]" value="<?php echo $pago_catalogo->F?>"></center></td>
+								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VF_edit[]" value="<?php echo $pago_catalogo->VF?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_XF_edit[]" value="<?php echo $pago_catalogo->XF?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_AU_edit[]" value="<?php echo $pago_catalogo->AU?>"></center></td>
 								                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC_edit[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>

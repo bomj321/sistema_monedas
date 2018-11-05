@@ -164,21 +164,21 @@ if (!empty($this->input->post("id_catalogo"))) {
 					$this->Monedas_model->save_atributes_catalogo($data_catalogo);
 
 
-			for ($pr = 0; $pr < 1 ; $pr++) {
+			/*for ($pr = 0; $pr < 1 ; $pr++) {*/
 				$data_precio  = array(
 							'id_catalogo'   => $id_catalogo[$i],
 							'id_moneda'     => $ultimo_id,
-							'G'             => $precio_G[$pr],
-							'VG'            => $precio_VG[$pr],							
-							'VF'            => $precio_F[$pr],
-							'F'             => $precio_VF[$pr],
-							'XF'            => $precio_XF[$pr],
-							'AU'            => $precio_AU[$pr],
-							'UNC'           => $precio_UNC[$pr],
+							'G'             => $precio_G[$i],
+							'VG'            => $precio_VG[$i],							
+							'VF'            => $precio_VF[$i],
+							'F'             => $precio_F[$i],
+							'XF'            => $precio_XF[$i],
+							'AU'            => $precio_AU[$i],
+							'UNC'           => $precio_UNC[$i],
 				);
 					$this->Monedas_model->save_precios_catalogo($data_precio);
 				
-			}
+			/*}*/
 						
 	}
 }	
@@ -358,21 +358,21 @@ if (!empty($this->input->post("id_catalogo"))) {
 					$this->Monedas_model->save_atributes_catalogo($data_catalogo);
 
 
-			for ($pr = 0; $pr < 1 ; $pr++) {
+			/*for ($pr = 0; $pr < 1 ; $pr++) {*/
 				$data_precio  = array(
 							'id_catalogo'   => $id_catalogo[$i],
 							'id_moneda'    => $id_unico_usuario_unico,
-							'G'             => $precio_G[$pr],
-							'VG'            => $precio_VG[$pr],							
-							'VF'            => $precio_F[$pr],
-							'F'             => $precio_VF[$pr],
-							'XF'            => $precio_XF[$pr],
-							'AU'            => $precio_AU[$pr],
-							'UNC'           => $precio_UNC[$pr],
+							'G'             => $precio_G[$i],
+							'VG'            => $precio_VG[$i],							
+							'VF'            => $precio_VF[$i],
+							'F'             => $precio_F[$i],
+							'XF'            => $precio_XF[$i],
+							'AU'            => $precio_AU[$i],
+							'UNC'           => $precio_UNC[$i],
 				);
 					$this->Monedas_model->save_precios_catalogo($data_precio);
 				
-			}
+			/*}*/
 						
 	}
 }	
@@ -408,22 +408,22 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 									$this->Monedas_model->delete_precios_catalogo($id_unico,$id_atributo_edit[$i]);
 
 
-							for ($pr = 0; $pr < 1 ; $pr++) {
+							/*for ($pr = 0; $pr < 1 ; $pr++) {*/
 								$data_precio  = array(	
 											'id_catalogo'   => $id_atributo_edit[$i],
 											'id_moneda'     => $id_unico,
-											'G'             => $precio_G_edit[$pr],
-											'VG'            => $precio_VG_edit[$pr],
-											'F'             => $precio_F_edit[$pr],	
-											'VF'            => $precio_VF_edit[$pr],											
-											'XF'            => $precio_XF_edit[$pr],
-											'AU'            => $precio_AU_edit[$pr],
-											'UNC'           => $precio_UNC_edit[$pr],
+											'G'             => $precio_G_edit[$i],
+											'VG'            => $precio_VG_edit[$i],
+											'F'             => $precio_F_edit[$i],	
+											'VF'            => $precio_VF_edit[$i],											
+											'XF'            => $precio_XF_edit[$i],
+											'AU'            => $precio_AU_edit[$i],
+											'UNC'           => $precio_UNC_edit[$i],
 								);
 									
 									$this->Monedas_model->save_precios_catalogo($data_precio);
 								
-							}
+							/*}*/
 										
 					}
 		}	
