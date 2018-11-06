@@ -21,7 +21,7 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">                  	<!--CONSULTA SQL-->
+                  <div class="x_content">                  	
 
                   	<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -45,7 +45,7 @@
 									 </div>									
 					
 								</div>	
-
+<!--------------------------DESCRIPCION------------------>
 								<div class="form-group">
 									<label for="descripcion_atributo" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripción</label>									
 
@@ -55,6 +55,107 @@
 									 </div>
 					
 								</div>
+
+<!--------------------------DESCRIPCION------------------>
+
+<!---------------------------SECCION DE LAS CATEGORIAS DE ATRIBUTOS-->
+
+                                <div class="form-group">
+                                    <?php 
+                                        $label_tipo = array(
+                                            'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+
+                                        );
+
+
+                                        echo form_label('Categoría de Atributo','categoria_atributo',$label_tipo)
+                                     ?>
+                                
+                            
+                                    <div class="col-md-10 col-sm-12 col-xs-12">
+                                            <select  class="form-control" id="categoria_atributo" name="categoria_atributo" required='true'>
+                                                    <option value="">Seleccione una Opcion</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Información_general' ? 'selected' : '' ?> value="Información_general">Información general</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Datos_Técnicos' ? 'selected' : '' ?> value="Datos_Técnicos">Datos Técnicos</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Anverso' ? 'selected' : '' ?> value="Anverso">Anverso</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Reverso' ? 'selected' : '' ?> value="Reverso">Reverso</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Canto' ? 'selected' : '' ?> value="Canto">Canto</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Información_adicional' ? 'selected' : '' ?> value="Información_adicional">Información adicional</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>
+                                            </select>
+                                            <?php                                       
+                                            echo form_error("categoria_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+                                            ?>
+                                    </div>
+                                </div>
+
+<!---------------------------SECCION DE LAS CATEGORIAS DE ATRIBUTOS-->   
+
+<!-------------------TIPO DE ATRIBUTO------------------------------->
+                                <div class="form-group">  
+                                 <label for="tipo_atributo" class="col-sm-2 col-xs-12 col-md-2 control-label">Tipo de Atributo</label>
+                                
+                              
+                                  <div class="col-md-10 col-sm-12 col-xs-12">
+                                      <select  class="form-control" name='tipo_atributo' id="tipo_atributo" required onchange="tipoatributom()">
+                                          <option value="">Seleccione una Opcion</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Generales' ? 'selected' : '' ?> value="Generales">Generales</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Precios' ? 'selected' : '' ?> value="Precios">Precios</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Especiales' ? 'selected' : '' ?> value="Especiales">Especiales</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Catalogos' ? 'selected' : '' ?> value="Catalogos">Catalogos</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Fotos' ? 'selected' : '' ?> value="Fotos">Fotos</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Medidas' ? 'selected' : '' ?> value="Medidas">Medidas</option>
+                                          <option <?php echo $atributo->tipo_atributom == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>            
+                                        
+                                      </select>
+                                      <?php                     
+                                              echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+                                        ?>
+                                  </div>
+                                </div>                            
+<!-------------------TIPO DE ATRIBUTO-------------------------------> 
+
+<!--------ATRIBUTOS ESPECIALES--------->
+                               <?php if (!empty($atributo_especiales)): ?>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col xs-12">
+                                            <center><h3>Opciones del Atributo Agregadas</h3></center>
+                                        </div>
+                                    </div>
+
+                                    <?php foreach ($atributo_especiales as $atributo_especial): ?>
+                                        <div class="form-group">
+                                            <label for="opciones_especialesm" class="col-sm-12 col-xs-12 col-md-2 col-lg-2  control-label">Opci&oacute;n</label>
+                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                    <input value="<?php echo $atributo_especial->opciones_especialesm ?>" required type="text" class="form-control" placeholder="Opcion Nueva" id="opciones_especialesm" name="opciones_especialesm[]">            
+                                            </div>
+                                             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                <a href="<?php echo base_url();?>attrmoneda/delete_opcion_es/<?php echo $atributo_especial->id_atributos_especiales_m?>/<?php echo $atributo->id_atributo_m ?>" class=" btn btn-warning" type="button">Eliminar Opci&oacute;n</a>
+                                            </div>
+                    
+                                        </div>
+                                        
+                                    <?php endforeach ?>                                    
+                                <?php endif ?>
+
+
+<!--------ATRIBUTOS ESPECIALES--------->
+
+<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO ES EDIT----------------->   
+ <?php if ($atributo->tipo_atributom=='Especiales'): ?>
+
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="div_boton">
+      <button id='boton_tipo_atributo_edit' class="btn btn-primary" type="button" onclick="opcionesaddm()"><span class="fa fa-plus">Agregar Opciones</button>
+   </div>
+<?php endif ?>
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+         <button id='boton_tipo_atributo' class="btn btn-primary" type="button" onclick="opcionesaddm()"><span class="fa fa-plus">Agregar Opciones</button>
+</div>
+
+<div id="gif_carga"></div>
+<div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO ES EDIT----------------->
 
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									

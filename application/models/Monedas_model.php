@@ -7,7 +7,14 @@ class Monedas_model extends CI_Model {
 	
 	public function save_attr($data)
 	{
-		return $this->db->insert("atributos_m",$data);
+		$this->db->insert("atributos_m",$data);
+		$ultimo_id_attr = $this->db->insert_id();
+	     return $ultimo_id_attr;
+	}
+
+	public function atributos_especiales_m($data)
+	{
+		return $this->db->insert("atributos_especiales_m",$data);		
 	}
 
 
@@ -23,23 +30,45 @@ class Monedas_model extends CI_Model {
 		return $this->db->update("atributos_m",$data);
 	}
 
+
+
 	public function get_attr($id_atributo){
 		$this->db->where("id_atributo_m",$id_atributo);
 		$resultado = $this->db->get("atributos_m");
 		return $resultado->row();
 	}
 
-	public function update_atribute($id_atributo,$data){
-		$this->db->where("id_atributo_m",$id_atributo);
-		return $this->db->update("atributos_m",$data);
+/*****************************ATRIBUTOS ESPECIALES*/
+	public function get_attr_especiales($id_atributo){
+		$this->db->where("id_atributom",$id_atributo);
+		$resultado = $this->db->get("atributos_especiales_m");
+		return $resultado->result();
 	}
 
-	public function get_attr_exist($id_atributo){
+	public function atributos_especiales_m_delete($id){
+			$this->db->where('id_atributom', $id);
+			$this->db->delete('atributos_especiales_m');
+		}
+
+	public function delete_opcion_es($id){
+			$this->db->where('id_atributos_especiales_m', $id);
+			$this->db->delete('atributos_especiales_m');
+		}			
+/*****************************ATRIBUTOS ESPECIALES*/
+
+    public function get_attr_exist($id_atributo){
 		$this->db->where("id_atributo",$id_atributo);
 		$resultado = $this->db->get("atributo_monedas");
 		return $resultado->result();
 	}
 
+
+	public function update_atribute($id_atributo,$data){
+		$this->db->where("id_atributo_m",$id_atributo);
+		return $this->db->update("atributos_m",$data);
+	}
+
+	
 		public function delete($id){
 		$this->db->where('id_atributo_m', $id);
 		$this->db->delete('atributos_m');
@@ -47,12 +76,62 @@ class Monedas_model extends CI_Model {
 	
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE MONEDAS*/
-	public function listattr_form()
+/******************AGREGAR MONEDAS*******************/
+/************Información_general***********/
+	public function listattr_form_generales()
 	{	
-		$this->db->or_where_not_in('descripcion_atributo', 'Catalogo');
+		$this->db->where('categoria_atributom', 'Información_general');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
 	}
+/*************Información_general**********/
+
+/************Datos_Técnicos***********/
+	public function listattr_form_tecnicos()
+	{	
+		$this->db->where('categoria_atributom', 'Datos_Técnicos');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Datos_Técnicos**********/
+
+/************Anverso***********/
+	public function listattr_form_anverso()
+	{	
+		$this->db->where('categoria_atributom', 'Anverso');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Anverso**********/
+
+/************Reverso***********/
+	public function listattr_form_reverso()
+	{	
+		$this->db->where('categoria_atributom', 'Reverso');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Reverso**********/
+
+/************Canto***********/
+	public function listattr_form_canto()
+	{	
+		$this->db->where('categoria_atributom', 'Canto');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Canto**********/
+
+/************Información_adicional***********/
+	public function listattr_form_adicional()
+	{	
+		$this->db->where('categoria_atributom', 'Información_adicional');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Información_adicional**********/
+
+/******************AGREGAR MONEDAS*******************/	
 
 	
 

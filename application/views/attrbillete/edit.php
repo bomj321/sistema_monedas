@@ -21,7 +21,7 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">                  	<!--CONSULTA SQL-->
+                  <div class="x_content">                  	
 
                   	<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -55,7 +55,7 @@
 									 </div>
 					
 								</div>
-
+<!-------------------TIPO DE ATRIBUTO-->
                                 <div class="form-group">  
                                  <label for="tipo_atributo" class="col-sm-2 col-xs-12 col-md-2 control-label">Tipo de Atributo</label>
                                 
@@ -74,7 +74,7 @@
                                         ?>
                                   </div>
                                 </div>                            
-
+<!-------------------TIPO DE ATRIBUTO-->
                                 <?php if (!empty($atributo_especiales)): ?>
                                     <div class="row" style="margin-top: 10px;">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col xs-12">
@@ -102,11 +102,11 @@
 
 <!------------------RESPUESTA AJAX Y VERIFICANDO QUE SEA ESPECIAL PRIMERO-----------------> 
 <?php if ($atributo->tipo_atributob=='Especiales'): ?>    
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <button id='boton_tipo_atributo_edit' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>
-                                </div>
-                                <div id="gif_carga"></div>
-                                <div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <button id='boton_tipo_atributo_edit' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>
+    </div>
+    <div id="gif_carga"></div>
+    <div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
       <?php else: ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <button id='boton_tipo_atributo' class="btn btn-primary" type="button" onclick="opcionesadd()"><span class="fa fa-plus">Agregar Opciones</button>

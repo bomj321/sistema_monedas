@@ -72,7 +72,8 @@ class Billetes_model extends CI_Model {
 /*SECCION DE EDITAR ATRIBUTOS*/
 
 /*************************AGREGAR Y EDITAR FORMULARIO DE BILLETES*/
-/******************AGREGAR MONEDAS*******************/
+
+/******************AGREGAR BILLETES*******************/
 /************GENERALES***********/
 	public function listattr_form_generales()
 	{	
@@ -108,8 +109,8 @@ class Billetes_model extends CI_Model {
 		return $resultados->result();
 	}
 /*************OTROS**********/
-/******************AGREGAR MONEDAS*******************/	
-/***************************************************EDITAR MONEDAS******************************/
+/******************AGREGAR BILLETES*******************/	
+/***************************************************EDITAR BILLETES******************************/
 	public function listattr_cat()
 	{
 		$this->db->where('descripcion_atributo', 'Catalogo');

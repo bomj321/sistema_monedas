@@ -419,6 +419,59 @@ function datoscoleccionmercado($id_billete){
 
 /******************************************************SECCION MONEDAS******************************************************/
 
+/***********************************SECCION ATRIBUTOS MONEDAS*/
+function tipoatributom()
+{
+           var selecvalue = tipo_atributo.options[tipo_atributo.selectedIndex].value;
+           //var selectext  = catalogo.options[catalogo.selectedIndex].text;
+  if (selecvalue=='Especiales') {
+            $("#boton_tipo_atributo").show();
+            $("#div_boton").hide();
+
+         
+  }else{
+    $("#boton_tipo_atributo").hide();
+     $("#div_boton").hide();
+  }
+  
+}
+
+
+function opcionesaddm () {
+           // var catalogo   = document.getElementById("catalogo");
+         
+             var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "attrmoneda/form_opciones",
+                type:"POST",
+                beforeSend: function() {
+                     $('#gif_carga').html("<img src='"+base_url+"/public/images/loader.gif' />");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#gif_carga').html("");
+                      $("#tipo_atributo_ajax").append(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#gif_carga').html("");
+                  $('#tipo_atributo_ajax').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+  
+     
+};
+
+/*ELIMINAR CAMPO*/
+$(document).on("click",".eliminar", function(){
+        $(this).closest(".form-group").remove();
+    });
+/*ELIMINAR CAMPO*/
+/************************************SECCION ATRIBUTOS MONEDAS*/
+
+
+
 /*PRECIO DE LAMONEDA*/
 function preciomoneda()
 {

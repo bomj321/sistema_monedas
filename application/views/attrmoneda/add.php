@@ -38,7 +38,9 @@
 							 echo form_open('attrmoneda/create',$formulario); 
 
 							 ?>
-								<div class="form-group">
+
+<!-----------------------NOMBRE DEL ATRIBUTO-->			
+					         <div class="form-group">
 									<?php 
 										$label_atributo = array(
 						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
@@ -65,8 +67,11 @@
 									 	 ?>
 									 </div>
 					
-								</div>	
+								</div>
 
+<!-----------------------NOMBRE DEL ATRIBUTO-->
+
+<!-------------------------DESCRIPCION-->
 								<div class="form-group">
 									<?php 
 										$label_descripcion = array(
@@ -83,7 +88,7 @@
 									 			'required'     => true,
 									 			'class'        => 'form-control', 
 									 			'id'           => 'descripcion_atributo',
-									 			'placeholder'  => 'Descripción del Atributo (Palabra Clave: EJ: catalogo,tipo)',
+									 			'placeholder'  => 'Descripción del Atributo',
 									 			'name'         => 'descripcion_atributo',
 									 			'value'        =>  set_value("descripcion_atributo")
 									 		);
@@ -96,6 +101,81 @@
 					
 								</div>
 
+<!-------------------------DESCRIPCION-->
+
+<!---------------------------SECCION DE LAS CATEGORIAS DE ATRIBUTOS-->
+
+								<div class="form-group">
+							 		<?php 
+										$label_tipo = array(
+						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+
+                						);
+
+
+                						echo form_label('Categoría de Atributo','categoria_atributo',$label_tipo)
+									 ?>
+							 	
+							
+								 	<div class="col-md-10 col-sm-12 col-xs-12">
+										 	<select  class="form-control" id="categoria_atributo" name="categoria_atributo" required='true'>
+											 		<option value="">Seleccione una Opcion</option>
+											 		<option value="Información_general">Información general</option>
+											 		<option value="Datos_Técnicos">Datos Técnicos</option>
+											 		<option value="Anverso">Anverso</option>
+											 		<option value="Reverso">Reverso</option>
+											 		<option value="Canto">Canto</option>
+											 		<option value="Información_adicional">Información adicional</option>
+											 		<option value="Otros">Otros</option>
+										 	</select>
+										 	<?php 									 	
+	                						echo form_error("categoria_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+										    ?>
+									</div>
+								</div>
+
+<!---------------------------SECCION DE LAS CATEGORIAS DE ATRIBUTOS-->			
+
+<!---------------------------SECCION DE LOS TIPOS DE ATRIBUTOS-->
+
+								<div class="form-group">
+							 		<?php 
+										$label_tipo = array(
+						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+
+                						);
+
+
+                						echo form_label('Tipo de Atributo','tipo_atributo',$label_tipo)
+									 ?>
+							 	
+							
+								 	<div class="col-md-10 col-sm-12 col-xs-12">
+										 	<select  class="form-control" id="tipo_atributo" name="tipo_atributo" required='true' onchange="tipoatributom()">
+											 		<option value="">Seleccione una Opcion</option>
+											 		<option value="Generales">Generales</option>
+											 		<option value="Precios">Precios</option>
+											 		<option value="Especiales">Especiales</option>
+											 		<option value="Catalogos">Catalogos</option>
+											 		<option value="Fotos">Fotos</option>
+											 		<option value="Medidas">Medidas</option>
+											 		<option value="Otros">Otros</option>
+										 	</select>
+										 	<?php 									 	
+	                						echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+										    ?>
+									</div>
+								</div>
+
+<!------------------RESPUESTA AJAX----------------->								
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<button id='boton_tipo_atributo' class="btn btn-primary" type="button" onclick="opcionesaddm()"><span class="fa fa-plus">Agregar Opciones</button>
+								</div>
+								<div id="gif_carga"></div>
+								<div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
+<!------------------RESPUESTA AJAX----------------->
+
+<!---------------------------SECCION DE LOS TIPOS DE ATRIBUTOS-->	
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									
 										<center>
