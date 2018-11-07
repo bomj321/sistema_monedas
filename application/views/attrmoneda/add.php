@@ -126,7 +126,7 @@
 											 		<option value="Reverso">Reverso</option>
 											 		<option value="Canto">Canto</option>
 											 		<option value="Información_adicional">Información adicional</option>
-											 		<option value="Otros">Otros</option>
+											 		<option value="Catalogos">Catalogos</option>
 										 	</select>
 										 	<?php 									 	
 	                						echo form_error("categoria_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")

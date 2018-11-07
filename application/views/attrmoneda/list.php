@@ -31,6 +31,8 @@
                                 <tr>
                                     <th>Nombre del Atributo</th>
                                     <th>Descripci&oacute;n del Atributo</th>
+                                    <th>Categor&iacute;a del Atributo</th>
+                                    <th>Tipo del Atributo</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
@@ -40,6 +42,8 @@
                                         <tr>
                                             <td><?php echo $moneda->nombre_atributo;?></td>
                                             <td><?php echo $moneda->descripcion_atributo;?></td>
+                                             <td><?php echo $moneda->categoria_atributom;?></td>
+                                            <td><?php echo $moneda->tipo_atributom;?></td>
                                             <td>
                                             	<?php if ($moneda->estado=='1'): ?>
                                             		<a title="bloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/0" class="btn btn-warning btn-remove"><span class="fa fa-remove"></span></a>

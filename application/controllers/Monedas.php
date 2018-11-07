@@ -25,8 +25,13 @@ class Monedas extends CI_Controller {
 
 		}else{
 			$data = array(
-				'atributos' => $this->Monedas_model->listattr_form(),
-				'catalogos' => $this->Monedas_model->listattr_cat() 
+				'atributos_generales'       => $this->Monedas_model->listattr_form_generales(),
+				'atributos_tecnicos'        => $this->Monedas_model->listattr_form_tecnicos(),
+				'atributos_anverso'         => $this->Monedas_model->listattr_form_anverso(),
+				'atributos_reverso'         => $this->Monedas_model->listattr_form_reverso(),
+				'atributos_canto'           => $this->Monedas_model->listattr_form_canto(),
+				'atributos_adicional'       => $this->Monedas_model->listattr_form_adicional(),
+				'catalogos'                 => $this->Monedas_model->listattr_cat() 
 			);
 
 			$this->layout->view("add",$data);
@@ -43,11 +48,21 @@ class Monedas extends CI_Controller {
 					
 		}else{	
 			$data = array(
-				'atributos'      => $this->Monedas_model->listattr_form_edit($id),
-				'catalogos_edit' => $this->Monedas_model->listattr_cat_edit($id),
-				'pagos_catalogo' => $this->Monedas_model->listattr_cat_pagos($id),
-				'catalogos'      => $this->Monedas_model->listattr_cat(),
-				'atributos_not'  => $this->Monedas_model->listattr_form_not($id) 
+				'atributos_generales'        => $this->Monedas_model->listattr_form_edit_generales($id),
+			    'atributos_tecnicos'         => $this->Monedas_model->listattr_form_edit_tecnicos($id),
+			    'atributos_anverso'          => $this->Monedas_model->listattr_form_edit_anverso($id),
+			    'atributos_reverso'          => $this->Monedas_model->listattr_form_edit_reverso($id),
+			    'atributos_canto'            => $this->Monedas_model->listattr_form_edit_canto($id),
+		    	'atributos_adicional'        => $this->Monedas_model->listattr_form_edit_adicional($id),
+				'catalogos_edit' 			 => $this->Monedas_model->listattr_cat_edit($id),
+				'pagos_catalogo' 			 => $this->Monedas_model->listattr_cat_pagos($id),
+				'catalogos'      			 => $this->Monedas_model->listattr_cat(),
+				'atributos_not_generales'    => $this->Monedas_model->listattr_form_not_generales($id),
+				'atributos_not_tecnicos'     => $this->Monedas_model->listattr_form_not_tecnicos($id),
+				'atributos_not_anverso'      => $this->Monedas_model->listattr_form_not_anverso($id),
+				'atributos_not_reverso'      => $this->Monedas_model->listattr_form_not_reverso($id),
+				'atributos_not_canto'        => $this->Monedas_model->listattr_form_not_canto($id),
+				'atributos_not_adicional'    => $this->Monedas_model->listattr_form_not_adicional($id),
 			);
 
 			$this->layout->view("edit",$data);
@@ -301,6 +316,8 @@ if (!empty($_FILES['imagen_add']["name"])) {
 if (!empty($atributo_id_add)) {	
 	//$id_unico  = $this->input->post("id_unico");
 	for ($i=0; $i < count($atributo_id_add); $i++) { 
+
+		if (!empty($catalogo_add[$i])) {
 			$id_unico_usuario_unico = $id_unico[0];
 			$data  = array(
 				'id_moneda'            => $id_unico_usuario_unico, 
@@ -309,6 +326,7 @@ if (!empty($atributo_id_add)) {
 				
 			);
 			$this->Monedas_model->save_atributes($data);
+		}
 	}
 }
 
@@ -432,8 +450,7 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 
 
 $this->session->set_flashdata("success","Información Editada");
-$this->list();  
-				
+redirect(base_url()."monedas/list");				
 	}
 
 public function delete_cat($id,$id_atributo_edit)

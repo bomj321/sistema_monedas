@@ -141,7 +141,7 @@
 
 <!--------ATRIBUTOS ESPECIALES--------->
 
-<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO ES EDIT----------------->   
+<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO EN EDIT----------------->   
  <?php if ($atributo->tipo_atributom=='Especiales'): ?>
 
    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="div_boton">
@@ -155,7 +155,7 @@
 
 <div id="gif_carga"></div>
 <div style="margin-top: 60px;" id="tipo_atributo_ajax"></div>
-<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO ES EDIT----------------->
+<!------------------RESPUESTA AJAX Y CODIGO QUE SE ESCONDE CUANDO EN EDIT----------------->
 
 
 								<div class="col-md-12 col-sm-12 col-xs-12">									

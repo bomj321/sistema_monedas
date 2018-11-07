@@ -38,22 +38,23 @@
 
 							 ?>
 
-<!----------------------------------------------PARTE DE AGREGAR NUEVOS ATRIBUTOS----------------------------->							 
-<?php if(!empty($atributos_not)): ?>
-
-	<center><strong><h3>Atributos no Agregados</h3></strong></center>
-
-		<?php foreach($atributos_not as $atributo_not):?>
+<!----------------------------------------------PARTE DE AGREGAR NUEVOS ATRIBUTOS----------------------------->	
+<!--------------------------------------------SECCION GENERALES-------------------->
+<?php if(!empty($atributos_not_generales)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Generales</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_generales as $atributo_not_general):?>
 			<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_not->descripcion_atributo, 'Foto') !== false) 
+									 	 if (strpos($atributo_not_general->tipo_atributom, 'Fotos') !== false) 
 									 	    {
 									 	    		$name_id        = 'atributo_id_image_add[]';
 										 	    	$input_atributo = array(
 										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo_not->nombre_atributo,
-										 			'placeholder'  =>  $atributo_not->nombre_atributo,
+										 			'id'           =>  $atributo_not_general->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_general->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
@@ -65,8 +66,8 @@
 										 			$input_atributo =  array(
 										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo_not->nombre_atributo,
-										 			'placeholder'  =>  $atributo_not->nombre_atributo,
+										 			'id'           =>  $atributo_not_general->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_general->nombre_atributo,
 										 			'name'         =>  'catalogo_add[]',
 										 			'type'         =>  'text',
 										 			
@@ -76,52 +77,581 @@
 
 
 							 	?>
+<?php if ($atributo_not_general->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
 
-		<div class="form-group">
+
+					echo form_label($atributo_not_general->nombre_atributo,$atributo_not_general->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_general->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_general->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_general->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
 						);
 
 
-						echo form_label($atributo_not->nombre_atributo,$atributo_not->nombre_atributo,$label_atributo)
+						echo form_label($atributo_not_general->nombre_atributo,$atributo_not_general->nombre_atributo,$label_atributo)
 					 ?>
-					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not->id_atributo_m;?>">
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_general->id_atributo_m;?>">
 
 					 <div class="col-md-10 col-sm-12 col-xs-12">
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
-		</div>		
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
 
 		<?php endforeach;?>
 
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION GENERALES------------------------------------>
 
 
-	<hr>
-<?php endif; ?>
-<!----------------------------------------------PARTE DE AGREGAR NUEVOS ATRIBUTOS------------------------->
+<!--------------------------------------------SECCION DATOS TECNICOS-------------------->
+<?php if(!empty($atributos_not_tecnicos)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Datos T&eacute;cnicos</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_tecnicos as $atributo_not_tecnico):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not_tecnico->tipo_atributom, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_tecnico->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_tecnico->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_tecnico->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_tecnico->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+<?php if ($atributo_not_tecnico->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_not_tecnico->nombre_atributo,$atributo_not_tecnico->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_tecnico->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_tecnico->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_tecnico->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
+
+
+						echo form_label($atributo_not_tecnico->nombre_atributo,$atributo_not_tecnico->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_tecnico->id_atributo_m;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+		<?php endforeach;?>
+
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION DATOS TECNICOS------------------------------------>
+
+
+<!--------------------------------------------SECCION ANVERSO-------------------->
+<?php if(!empty($atributos_not_anverso)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Anverso</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_anverso as $atributo_not_anverso):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not_anverso->tipo_atributom, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_anverso->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_anverso->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_anverso->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_anverso->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+<?php if ($atributo_not_anverso->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_not_anverso->nombre_atributo,$atributo_not_anverso->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_anverso->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_anverso->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_anverso->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
+
+
+						echo form_label($atributo_not_anverso->nombre_atributo,$atributo_not_anverso->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_anverso->id_atributo_m;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+		<?php endforeach;?>
+
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION ANVERSO------------------------------------>
+
+
+<!--------------------------------------------SECCION REVERSO-------------------->
+<?php if(!empty($atributos_not_reverso)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Reverso</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_reverso as $atributo_not_reverso):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not_reverso->tipo_atributom, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_reverso->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_reverso->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_reverso->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_reverso->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+<?php if ($atributo_not_reverso->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_not_reverso->nombre_atributo,$atributo_not_reverso->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_reverso->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_reverso->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_reverso->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
+
+
+						echo form_label($atributo_not_reverso->nombre_atributo,$atributo_not_reverso->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_reverso->id_atributo_m;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+		<?php endforeach;?>
+
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION REVERSO------------------------------------>
 
 
 
-<!-----------------------------------------------------PARTE DE ATRIBUTOS AGREGADOS--------------------------------------->
+<!--------------------------------------------SECCION CANTO-------------------->
+<?php if(!empty($atributos_not_canto)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Canto</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_canto as $atributo_not_canto):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not_canto->tipo_atributom, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_canto->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_canto->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_canto->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_canto->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
 
 
-				<center><strong><h3>Atributos Agregados</h3></strong></center>
-							 <?php foreach($atributos as $atributo):?>
+							 	?>
+<?php if ($atributo_not_canto->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_not_canto->nombre_atributo,$atributo_not_canto->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_canto->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_canto->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_canto->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
+
+
+						echo form_label($atributo_not_canto->nombre_atributo,$atributo_not_canto->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_canto->id_atributo_m;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+		<?php endforeach;?>
+
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION CANTO------------------------------------>
+
+
+<!--------------------------------------------SECCION ADICIONAL-------------------->
+<?php if(!empty($atributos_not_adicional)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Informaci&oacute;n Adicional</h3></div>
+		              <div class="panel-body" style="background-color: #ffcccc;">
+							 <?php foreach($atributos_not_adicional as $atributo_not_adicional):?>
+			<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_not_adicional->tipo_atributom, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image_add[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_adicional->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_adicional->nombre_atributo,
+										 			'name'         =>  'imagen_add[]',
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id_add[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_not_adicional->nombre_atributo,
+										 			'placeholder'  =>  $atributo_not_adicional->nombre_atributo,
+										 			'name'         =>  'catalogo_add[]',
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+<?php if ($atributo_not_adicional->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_not_adicional->nombre_atributo,$atributo_not_adicional->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_adicional->id_atributo_m;?>">
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_not_adicional->nombre_atributo ?>" name="catalogo_add[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_not_adicional->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+		
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+<div class="form-group">
+					<?php 
+						$label_atributo = array(
+		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						);
+
+
+						echo form_label($atributo_not_adicional->nombre_atributo,$atributo_not_adicional->nombre_atributo,$label_atributo)
+					 ?>
+					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_adicional->id_atributo_m;?>">
+
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 	<?php echo form_input($input_atributo);?>
+					 </div>						  
+		</div>
+
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+		<?php endforeach;?>
+
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION ADICIONAL------------------------------------>
+
+<!----------------------------------------------FIN PARTE DE AGREGAR NUEVOS ATRIBUTOS------------------------->
+<hr style="height: 1px;">
+
+
+<!----------------------------PARTE DE EDITAR ATRIBUTOS YA AGREGADOS------------------------------------->
+<!--------------------------------------------SECCION GENERALES-------------------->
+<?php if(!empty($atributos_generales)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Generales</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_generales as $atributo_general):?>
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo->descripcion_atributo, 'Foto') !== false) 
+									 	 if (strpos($atributo_general->descripcion_atributo, 'Fotos') !== false) 
 									 	    {
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
 										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo->nombreatributo,
-										 			'placeholder'  =>  $atributo->nombreatributo,
+										 			'id'           =>  $atributo_general->nombreatributo,
+										 			'placeholder'  =>  $atributo_general->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo->descripcionatributo,
+										 			'value'        =>  $atributo_general->descripcionatributo,
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -133,10 +663,10 @@
 										 			$input_atributo =  array(
 										 			//'required'     =>  true,
 										 			'class'        =>  'form-control', 
-										 			'id'           =>  $atributo->nombreatributo,
-										 			'placeholder'  =>  $atributo->nombreatributo,
+										 			'id'           =>  $atributo_general->nombreatributo,
+										 			'placeholder'  =>  $atributo_general->nombreatributo,
 										 			'name'         =>  'catalogo[]',
-										 			'value'        =>  $atributo->descripcionatributo,
+										 			'value'        =>  $atributo_general->descripcionatributo,
 										 			'type'         =>  'text',
 										 			
 										 		);									 			
@@ -146,6 +676,38 @@
 
 							 	?>
 
+<?php if ($atributo_general->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_general->nombreatributo,$atributo_general->nombreatributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_general->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_general->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_general->nombreatributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_general->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_general->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
 									<div class="form-group">
 										<?php 
 											$label_atributo = array(
@@ -153,35 +715,604 @@
 	                						);
 
 
-	                						echo form_label($atributo->nombreatributo,$atributo->nombreatributo,$label_atributo)
+	                						echo form_label($atributo_general->nombreatributo,$atributo_general->nombreatributo,$label_atributo)
 										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo->id_catalogo_moneda;?>">
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_general->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_general->id_unico_atributo;?>">
 
 										 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<?php echo form_input($input_atributo);?>
 										 </div>
-										  <?php if(strpos($atributo->descripcion_atributo, 'Foto') !== false):?>
+										  <?php if(strpos($atributo_general->descripcion_atributo, 'Fotos') !== false):?>
 										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo->descripcionatributo?>"></div>										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_general->descripcionatributo?>"></div>										
 										 </div>
 										  <?php endif; ?>
 								 </div>
 
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
 							 	<?php endforeach;?>
-<!-----------------------------------------------------PARTE DE ATRIBUTOS AGREGADOS--------------------------------------->
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION GENERALES------------------------------------>
 
 
-<!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
-							<?php if(!empty($catalogos)): ?>
-							 	<div class="form-group">
+
+<!--------------------------------------------SECCION TECNICOS-------------------->
+<?php if(!empty($atributos_tecnicos)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Datos T&eacute;cnico</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_tecnicos as $atributo_tecnico):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_tecnico->descripcion_atributo, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_tecnico->nombreatributo,
+										 			'placeholder'  =>  $atributo_tecnico->nombreatributo,
+										 			'name'         =>  'imagen[]',
+										 			'value'        =>  $atributo_tecnico->descripcionatributo,
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_tecnico->nombreatributo,
+										 			'placeholder'  =>  $atributo_tecnico->nombreatributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  $atributo_tecnico->descripcionatributo,
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+
+<?php if ($atributo_tecnico->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_tecnico->nombreatributo,$atributo_tecnico->nombreatributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_tecnico->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_tecnico->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_tecnico->nombreatributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_tecnico->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_tecnico->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
+
+
+	                						echo form_label($atributo_tecnico->nombreatributo,$atributo_tecnico->nombreatributo,$label_atributo)
+										 ?>
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_tecnico->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_tecnico->id_unico_atributo;?>">
+
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo_tecnico->descripcion_atributo, 'Fotos') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_tecnico->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
+							 	<?php endforeach;?>
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION TECNICOS------------------------------------>
+
+<!--------------------------------------------SECCION ANVERSO-------------------->
+<?php if(!empty($atributos_anverso)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Anverso</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_anverso as $atributo_anverso):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_anverso->descripcion_atributo, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_anverso->nombreatributo,
+										 			'placeholder'  =>  $atributo_anverso->nombreatributo,
+										 			'name'         =>  'imagen[]',
+										 			'value'        =>  $atributo_anverso->descripcionatributo,
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_anverso->nombreatributo,
+										 			'placeholder'  =>  $atributo_anverso->nombreatributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  $atributo_anverso->descripcionatributo,
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+
+<?php if ($atributo_anverso->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_anverso->nombreatributo,$atributo_anverso->nombreatributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_anverso->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_anverso->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_anverso->nombreatributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_anverso->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_anverso->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
+
+
+	                						echo form_label($atributo_anverso->nombreatributo,$atributo_anverso->nombreatributo,$label_atributo)
+										 ?>
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_anverso->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_anverso->id_unico_atributo;?>">
+
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo_anverso->descripcion_atributo, 'Fotos') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_anverso->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
+							 	<?php endforeach;?>
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION ANVERSO------------------------------------>
+
+
+<!--------------------------------------------SECCION REVERSO-------------------->
+<?php if(!empty($atributos_reverso)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Reverso</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_reverso as $atributo_reverso):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_reverso->descripcion_atributo, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_reverso->nombreatributo,
+										 			'placeholder'  =>  $atributo_reverso->nombreatributo,
+										 			'name'         =>  'imagen[]',
+										 			'value'        =>  $atributo_reverso->descripcionatributo,
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_reverso->nombreatributo,
+										 			'placeholder'  =>  $atributo_reverso->nombreatributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  $atributo_reverso->descripcionatributo,
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+
+<?php if ($atributo_reverso->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_reverso->nombreatributo,$atributo_reverso->nombreatributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_reverso->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_reverso->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_reverso->nombreatributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_reverso->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_reverso->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
+
+
+	                						echo form_label($atributo_reverso->nombreatributo,$atributo_reverso->nombreatributo,$label_atributo)
+										 ?>
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_reverso->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_reverso->id_unico_atributo;?>">
+
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo_reverso->descripcion_atributo, 'Fotos') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_reverso->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
+							 	<?php endforeach;?>
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION REVERSO------------------------------------>
+
+
+<!--------------------------------------------SECCION CANTO-------------------->
+<?php if(!empty($atributos_canto)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Canto</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_canto as $atributo_canto):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_canto->descripcion_atributo, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_canto->nombreatributo,
+										 			'placeholder'  =>  $atributo_canto->nombreatributo,
+										 			'name'         =>  'imagen[]',
+										 			'value'        =>  $atributo_canto->descripcionatributo,
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_canto->nombreatributo,
+										 			'placeholder'  =>  $atributo_canto->nombreatributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  $atributo_canto->descripcionatributo,
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+
+<?php if ($atributo_canto->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_canto->nombreatributo,$atributo_canto->nombreatributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_canto->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_canto->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_canto->nombreatributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_canto->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_canto->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
+
+
+	                						echo form_label($atributo_canto->nombreatributo,$atributo_canto->nombreatributo,$label_atributo)
+										 ?>
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_canto->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_canto->id_unico_atributo;?>">
+
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo_canto->descripcion_atributo, 'Fotos') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_canto->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
+							 	<?php endforeach;?>
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION CANTO------------------------------------>
+
+<!--------------------------------------------SECCION ADICIONAL-------------------->
+<?php if(!empty($atributos_adicional)): ?>
+<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Informaci&oacute;n Adicional</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+							<?php foreach($atributos_adicional as $atributo_adicional):?>
+
+							 	<?php
+							 		//CODIGO PARA FORMATEAR ATRIBUTOS
+									 	 if (strpos($atributo_adicional->descripcion_atributo, 'Fotos') !== false) 
+									 	    {
+									 	    		$name_id        = 'atributo_id_image[]';
+									 	    		$id_unico        = 'id_unico[]';
+										 	    	$input_atributo = array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_adicional->nombreatributo,
+										 			'placeholder'  =>  $atributo_adicional->nombreatributo,
+										 			'name'         =>  'imagen[]',
+										 			'value'        =>  $atributo_adicional->descripcionatributo,
+										 			'type'         =>  'file',
+										 			'multiple'     =>  true
+										 			
+										 		);									 		   
+									 		}else
+									 		{
+									 				$name_id        = 'atributo_id[]';
+									 				$id_unico        = 'id_unico[]';
+										 			$input_atributo =  array(
+										 			//'required'     =>  true,
+										 			'class'        =>  'form-control', 
+										 			'id'           =>  $atributo_adicional->nombreatributo,
+										 			'placeholder'  =>  $atributo_adicional->nombreatributo,
+										 			'name'         =>  'catalogo[]',
+										 			'value'        =>  $atributo_adicional->descripcionatributo,
+										 			'type'         =>  'text',
+										 			
+										 		);									 			
+									 		}
+									 	//CODIGO PARA FORMATEAR ATRIBUTOS
+
+
+							 	?>
+
+<?php if ($atributo_adicional->tipo_atributom=='Especiales'): ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+<div class="form-group">
+				<?php 
+					$label_atributo = array(
+	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+					);
+
+
+					echo form_label($atributo_adicional->nombre_atributo,$atributo_adicional->nombre_atributo,$label_atributo)
+				 ?>
+				<input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_adicional->id_atributo_m;?>">
+	            <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_adicional->id_unico_atributo;?>">
+
+				 <div class="col-md-10 col-sm-12 col-xs-12">
+				 <select class="form-control" id="<?php echo $atributo_adicional->nombre_atributo ?>" name="catalogo[]" >
+			 			<option value="">Seleccione una Opcion</option>
+							<?php
+							 $query = $this->db->query("SELECT opciones_especialesm FROM atributos_especiales_m WHERE id_atributom = $atributo_adicional->id_atributo_m;"); 
+							 	foreach ($query->result() as $opcion)
+									{
+							?>
+							<option <?php echo $atributo_adicional->descripcionatributo == $opcion->opciones_especialesm ? 'selected' : '' ?> value="<?php echo $opcion->opciones_especialesm ?>"><?php echo $opcion->opciones_especialesm ?></option>											 		
+							<?php
+							 			} 
+							 ?>
+				 	</select>
+				 </div>					
+		</div>
+
+
+<?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+									<div class="form-group">
+										<?php 
+											$label_atributo = array(
+							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                						);
+
+
+	                						echo form_label($atributo_adicional->nombreatributo,$atributo_adicional->nombreatributo,$label_atributo)
+										 ?>
+										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_adicional->id_atributo_m;?>">
+								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_adicional->id_unico_atributo;?>">
+
+										 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<?php echo form_input($input_atributo);?>
+										 </div>
+										  <?php if(strpos($atributo_adicional->descripcion_atributo, 'Fotos') !== false):?>
+										 <div class="col-md-12 col-sm-12 col-xs-12">										
+										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_adicional->descripcionatributo?>"></div>										
+										 </div>
+										  <?php endif; ?>
+								 </div>
+
+<?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
+
+
+
+
+							 	<?php endforeach;?>
+                  </div>
+</div>							 	
+ <?php endif; ?>							
+
+<!----------------------------SECCION ADICIONAL------------------------------------>
+
+<!----------------------------PARTE DE EDITAR ATRIBUTOS YA AGREGADOS------------------------------------->
+
+<!-----------------------------------------------------SECCION DE CATALOGOS-------------------------------------------------->
+<!-----------------------------SECCION CATALOGOS-->
+
+<?php if(!empty($catalogos)): ?>
+		<div class="panel panel-default">
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Catalogos</h3></div>
+		              <div class="panel-body" style="background-color: #e6f5ff;">
+		    	                     	<div class="form-group">
 							 		<?php 
-										$label_profesor = array(
+										$label_catalogo = array(
 						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
                 						);
 
 
-                						echo form_label('Catalogos','catalogo',$label_profesor)
+                						echo form_label('Catalogos','catalogo',$label_catalogo)
 									 ?>
 							 	
 
@@ -201,16 +1332,22 @@
 										    ?>
 									</div>
 								</div>
-							 <?php endif; ?>	
+		               </div>
+		</div>
+
+ <?php endif; ?>
+	
+<!-----------------------------SECCION CATALOGOS-->		
+
 
 								<!--REPUESTA AJAX PARA AGREGAR NUEVOS CATALOGOS-->
 								<div id="gif_carga" class="form-group"></div>
 								<div id="input_creado" class="col-md-12 col-sm-12 col-lg-12"></div>	
 								<!--REPUESTA AJAX PARA AGREGAR NUEVOS CATALOGOS-->
-<!-----------------------------------------------------SECCION DE PAGOS-------------------------------------------------->
+<!-----------------------------------------------------SECCION DE CATALOGOS-------------------------------------------------->
 
 
-<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->	
+<!----------------------------------------------------SECCION DE CATALOGOS PRECIOS---------------------------------------------->	
 							<?php if(!empty($catalogos_edit)): ?>
 						<center><strong><h3>Catalogos Agregados</h3></strong></center>
 							 <?php endif; ?>							
@@ -263,7 +1400,7 @@
 								        </tbody>
 								</table>   	
 		        <?php endforeach;?> 
-<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->
+<!----------------------------------------------------SECCION DE CATALOGOS PRECIOS---------------------------------------------->
 
 		        <div class="col-md-12 col-sm-12 col-xs-12">									
 										<center>
