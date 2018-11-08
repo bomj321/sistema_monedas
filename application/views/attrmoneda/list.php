@@ -26,13 +26,14 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content"> <!--CONTENIDO-->
-							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+							         <table id="list_attrm" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Nombre del Atributo</th>
                                     <th>Descripci&oacute;n del Atributo</th>
                                     <th>Categor&iacute;a del Atributo</th>
                                     <th>Tipo del Atributo</th>
+                                    <th>Orden</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
@@ -42,8 +43,12 @@
                                         <tr>
                                             <td><?php echo $moneda->nombre_atributo;?></td>
                                             <td><?php echo $moneda->descripcion_atributo;?></td>
-                                             <td><?php echo $moneda->categoria_atributom;?></td>
+                                            <?php 
+                                              $separado_categoria = str_replace("_"," ", $moneda->categoria_atributom);
+                                             ?>
+                                             <td><?php echo $separado_categoria;?></td>
                                             <td><?php echo $moneda->tipo_atributom;?></td>
+                                            <td><?php echo $moneda->orden;?></td>
                                             <td>
                                             	<?php if ($moneda->estado=='1'): ?>
                                             		<a title="bloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/0" class="btn btn-warning btn-remove"><span class="fa fa-remove"></span></a>
@@ -52,7 +57,17 @@
                                             	<?php endif ?>
                                               <a title="Editar Atributo" href="<?php echo base_url();?>attrmoneda/edit/<?php echo $moneda->id_atributo_m;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
 
-                                               <a title="Eliminar Atributo" href="<?php echo base_url();?>attrmoneda/delete/<?php echo $moneda->id_atributo_m;?>" class="btn btn-danger "><span class="fa fa-trash-o"></span></a>   
+                                               <a title="Eliminar Atributo" href="<?php echo base_url();?>attrmoneda/delete/<?php echo $moneda->id_atributo_m;?>" class="btn btn-danger "><span class="fa fa-trash-o"></span></a>
+
+
+                                               <?php if ( $valor_maximo->orden_max != $moneda->orden): ?>
+                                                     <a title="Subir Atributo" href="<?php echo base_url();?>attrmoneda/up_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>" class="btn btn-success "><span class="fa fa-sort-up"></span></a> 
+                                                <?php endif ?> 
+
+                                               
+                                                <?php if ( $valor_minimo->orden_min != $moneda->orden): ?>
+                                                    <a title="Bajar Atributo" href="<?php echo base_url();?>attrmoneda/down_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>" class="btn btn-danger "><span class="fa fa-sort-down"></span></a>
+                                                <?php endif ?>    
                                                     
                                                     
                                             </td>

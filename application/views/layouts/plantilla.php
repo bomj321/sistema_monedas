@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela! | </title>
+    <title>Sistema Monedas</title>
 
     <!-- Bootstr<?php echo base_url();?>-->
     <link href="<?php echo base_url();?>public/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -77,21 +77,21 @@
                    <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                         <li><a><i class="fa fa-list"></i> Atributos <span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">                       
-                            <li><a href="<?php echo base_url();?>attrbillete/list">Control de Atributos Billetes</a></li>
+                           <!-- <li><a href="<?php echo base_url();?>attrbillete/list">Control de Atributos Billetes</a></li>--> 
                             <li><a href="<?php echo base_url();?>attrmoneda/list">Control de Atributos Monedas</a></li>
                           </ul>
                         </li>
                       <?php endif; ?> 
                     <li><a><i class="fa fa-money"></i> Catalagos<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url();?>billetes/list">Billetes</a></li>
-                        <li><a href="<?php echo base_url();?>monedas/list">Monedas</a></li>                      
+                          <!--<li><a href="<?php echo base_url();?>billetes/list">Billetes</a></li>--> 
+                        <li><a href="<?php echo base_url();?>monedas/list">Monedas</a></li>                     
                       </ul>
                     </li> 
 
                    <li><a><i class="fa fa-list-alt"></i> Colección Personal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>collectionb/list">Colecci&oacute;n de Billetes</a></li>
+                       <!--<li><a href="<?php echo base_url();?>collectionb/list">Colecci&oacute;n de Billetes</a></li>--> 
                       <li><a href="<?php echo base_url();?>collectionm/list">Colecci&oacute;n de Monedas</a></li>                      
                     </ul>
                   </li>  
@@ -99,7 +99,7 @@
 
                   <li><a><i class="fa fa-shopping-cart"></i> Mercado <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url();?>mercadob/list">Billetes</a></li>
+                     <!-- <li><a href="<?php echo base_url();?>mercadob/list">Billetes</a></li>--> 
                      <li><a href="<?php echo base_url();?>mercadom/list">Monedas</a></li>
                       <li><a href="<?php echo base_url();?>mercadob/listb">Busquedas de Billetes</a></li>
                      <li><a href="<?php echo base_url();?>mercadom/listb">Busquedas de Monedas</a></li>                     

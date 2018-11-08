@@ -1,3 +1,5 @@
+//    http://localhost/sistema_monedas/  
+//    http://sistemamonedas.cpsobrino.mx/  
 $(document).ready(function () {
 /**********BOTON ESCONDIDO POR DEFECTO***********/
 $("#boton_tipo_atributo").hide();
@@ -33,6 +35,35 @@ $("#boton_tipo_atributo").hide();
         });
 
 
+      table = $("#list_attrm").DataTable({
+         language: {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    },
+    "aaSorting": [[ 4, "desc" ]]
+        });  
+
+
 
        table = $('#example2').DataTable({
           "paging": true,
@@ -56,7 +87,7 @@ $("#boton_tipo_atributo").hide();
 /*LIST COLECCION DE BILLETES*/
 function datosusuario($id_usuario){
   var id = $id_usuario;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "billetes/view/" + id,
             type:"POST",
@@ -72,7 +103,7 @@ function datosusuario($id_usuario){
 function datoscoleccion($id_usuario,$id_billete){
   var id_usuario = $id_usuario;
   var id_billete = $id_billete;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "collectionb/view/" + id_usuario + "/" + id_billete,
             type:"POST",
@@ -91,7 +122,7 @@ function datoscoleccion($id_usuario,$id_billete){
 /*LIST COLECCION DE MONEDAS*/
 function datosusuariom($id_usuario){
   var id = $id_usuario;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "monedas/view/" + id,
             type:"POST",
@@ -107,7 +138,7 @@ function datosusuariom($id_usuario){
 function datoscoleccionm($id_usuario,$id_billete){
   var id_usuario = $id_usuario;
   var id_billete = $id_billete;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "collectionm/view/" + id_usuario + "/" + id_billete,
             type:"POST",
@@ -125,7 +156,7 @@ function datoscoleccionm($id_usuario,$id_billete){
 
 function datosusuariomonedas($id_usuario){
   var id = $id_usuario;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "monedas/view/" + id,
             type:"POST",
@@ -142,7 +173,7 @@ function catalogoinput () {
            var selecvalue = catalogo.options[catalogo.selectedIndex].value;
            var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue) {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "billetes/form_billete/" + selectext +"/"+ selecvalue,
                 type:"POST",
@@ -170,7 +201,7 @@ function catalogoinputmonedas () {
            var selecvalue = catalogo.options[catalogo.selectedIndex].value;
            var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue) {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "monedas/form_moneda/" + selectext +"/"+ selecvalue,
                 type:"POST",
@@ -237,7 +268,7 @@ function tipoatributo()
   if (selecvalue=='Especiales') {
             $("#boton_tipo_atributo").show();
 
-           /*  var base_url= 'http://localhost/sistema_monedas/';
+           /*  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionm/form_moneda/",
                 type:"POST",
@@ -266,7 +297,7 @@ function tipoatributo()
 function opcionesadd () {
            // var catalogo   = document.getElementById("catalogo");
          
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "attrbillete/form_opciones",
                 type:"POST",
@@ -303,7 +334,7 @@ function preciobillete()
            var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionb/form_billete/",
                 type:"POST",
@@ -338,7 +369,7 @@ function repeticion()
            var mayorque = Number(0);
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (entero > mayorque) {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionb/form_billete_cantidad/" + entero,
                 type:"POST",
@@ -371,7 +402,7 @@ function preciobillete_add($contador)
          var selecvalue =document.getElementById("tipo_registro_billete_add_" + contador).value
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionb/form_billete_add/"+contador,
                 type:"POST",
@@ -400,7 +431,7 @@ function preciobillete_add($contador)
 /*MERCADO*/
 function datoscoleccionmercado($id_billete){
   var id_billete = $id_billete;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "mercadob/view/" + id_billete ,
             type:"POST",
@@ -440,7 +471,7 @@ function tipoatributom()
 function opcionesaddm () {
            // var catalogo   = document.getElementById("catalogo");
          
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "attrmoneda/form_opciones",
                 type:"POST",
@@ -478,7 +509,7 @@ function preciomoneda()
            var selecvalue = tipo_registro.options[tipo_registro.selectedIndex].value;
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionm/form_moneda/",
                 type:"POST",
@@ -513,7 +544,7 @@ function repeticionmoneda()
            var mayorque = Number(0);
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (entero > mayorque) {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionm/form_moneda_cantidad/" + entero,
                 type:"POST",
@@ -546,7 +577,7 @@ function preciomoneda_add($contador)
          var selecvalue =document.getElementById("tipo_registro_moneda_add_" + contador).value
            //var selectext  = catalogo.options[catalogo.selectedIndex].text;
   if (selecvalue=='Intercambio' || selecvalue=='Venta') {
-             var base_url= 'http://localhost/sistema_monedas/';
+             var base_url= 'http://sistemamonedas.cpsobrino.mx/';
             $.ajax({
                 url: base_url + "collectionm/form_moneda_add/"+contador,
                 type:"POST",
@@ -574,7 +605,7 @@ function preciomoneda_add($contador)
 /*MERCADO*/
 function datoscoleccionmercadom($id_billete){
   var id_billete = $id_billete;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "mercadom/view/" + id_billete ,
             type:"POST",
@@ -592,7 +623,7 @@ function datoscoleccionmercadom($id_billete){
 /*************************SUGERENCIAS*****************************/
 function datosugerencia($id_sugerencia){
   var id = $id_sugerencia;
-  var base_url= 'http://localhost/sistema_monedas/';
+  var base_url= 'http://sistemamonedas.cpsobrino.mx/';
         $.ajax({
             url: base_url + "sugerencias/view/" + id,
             type:"POST",

@@ -65,7 +65,7 @@
 										 			'value'        =>  set_value($atributo_general->nombre_atributo),
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true,
-										 			'onchange'     => 'requerido('.$atributo_tecnico->id_atributo_m.')'
+										 			'onchange'     => 'requerido('.$atributo_general->id_atributo_m.')'
 
 										 			
 										 		);									 		   
@@ -291,7 +291,7 @@
 										 			'value'        =>  set_value($atributo_anverso->nombre_atributo),
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true,
-										 			'onchange'     => 'requerido('.$atributo_tecnico->id_atributo_m.')'
+										 			'onchange'     => 'requerido('.$atributo_anverso->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -403,7 +403,7 @@
 										 			'value'        =>  set_value($atributo_reverso->nombre_atributo),
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true,
-										 			'onchange'     => 'requerido('.$atributo_tecnico->id_atributo_m.')'
+										 			'onchange'     => 'requerido('.$atributo_reverso->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -515,7 +515,7 @@
 										 			'value'        =>  set_value($atributo_canto->nombre_atributo),
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true,
-										 			'onchange'     => 'requerido('.$atributo_tecnico->id_atributo_m.')'
+										 			'onchange'     => 'requerido('.$atributo_canto->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -626,7 +626,7 @@
 										 			'value'        =>  set_value($atributo_adicional->nombre_atributo),
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true,
-										 			'onchange'     => 'requerido('.$atributo_tecnico->id_atributo_m.')'
+										 			'onchange'     => 'requerido('.$atributo_adicional->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else

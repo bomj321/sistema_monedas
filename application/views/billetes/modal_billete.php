@@ -67,10 +67,10 @@
 	<?php if (!empty($imagenes)): ?>
 		<center><h3>Imagenes del Billete</h3></center>
 		<?php foreach ($imagenes as $imagen ): ?>
-			
+			<?php $imagen_descripcionatributo = explode(",", $imagen->descripcionatributo); ?>
 			<center>
-				<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" class="zoom">
-			    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
+				<a target="_blank"  href="<?php echo base_url().'public/images_billetes/'.$imagen_descripcionatributo[0]?>" class="zoom">
+			    <img class="zoom" src="<?php echo base_url().'public/images_billetes/'.$imagen_descripcionatributo[0]?>" style='width: 400px; height: 200px;' />
 			</a>
 			</center>		
 		<?php endforeach;?>

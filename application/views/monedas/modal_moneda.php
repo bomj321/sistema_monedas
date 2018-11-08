@@ -45,7 +45,7 @@
 									        	    <?php if($pago_catalogo->id_catalogo == $catalogo->atributoid): ?> 
 									                   <tr>				
 									                   <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->G == '' ? 'Sin Precio' :  $pago_catalogo->G . ' $'?> "></center></td>
-									                   <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->VF == '' ? 'Sin Precio' :  $pago_catalogo->VF . ' $'?> "></center></td>			                        
+									                   <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->VG == '' ? 'Sin Precio' :  $pago_catalogo->VG . ' $'?> "></center></td>			                        
 								                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->F == '' ? 'Sin Precio' :  $pago_catalogo->F . ' $'?> "></center></td>
 								                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->VF == '' ? 'Sin Precio' : $pago_catalogo->VF . ' $'?> "></center></td>							                        
 								                        <td><center><input disabled style="width: 100%; height: 100%" type="text" value="<?php echo $pago_catalogo->XF == '' ? 'Sin Precio' : $pago_catalogo->XF . ' $'?> "></center></td>
@@ -68,10 +68,10 @@
 	<?php if (!empty($imagenes)): ?>	
 				<center><h3>Imagenes de la Moneda</h3></center>
 				<?php foreach ($imagenes as $imagen ): ?>
-
+				<?php $imagen_descripcionatributo = explode(",", $imagen->descripcionatributo); ?>
 				<center>
-					<a target="_blank"  href="<?php echo base_url().'public/images_monedas/'.$imagen->descripcionatributo?>" class="zoom">
-				    <img class="zoom" src="<?php echo base_url().'public/images_monedas/'.$imagen->descripcionatributo?>" style='width: 400px; height: 200px;' />
+					<a target="_blank"  href="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" class="zoom">
+				    <img class="zoom" src="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" style='width: 400px; height: 200px;' />
 				</a>
 				</center>			
 		<?php endforeach;?>

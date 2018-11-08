@@ -4,7 +4,76 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Monedas_model extends CI_Model {
 
 /*********************SECCION ATRIBUTOS******************************/	
-	
+
+/**************************************************PARTE DE SUBIR REGISTROS*************************************/
+	/*******VALOR DE ORDEN MAS ALTO*********/
+	public function max_orden()
+	{
+		$this->db->select_max('orden','orden_max');
+        $orden_maximo = $this->db->get('atributos_m');
+	    return $orden_maximo->row();
+	}
+
+	/*******VALOR DE ORDEN MAS ALTO*********/
+
+	/*******SELECCIONA REGISTRO CON VALOR SUPERIOR*********/
+	public function row_up_orden($orden)
+	{	
+		$this->db->where("orden",$orden);
+		$resultado = $this->db->get("atributos_m");
+		return $resultado->row();
+	}
+
+	/*******SELECCIONA REGISTRO CON VALOR SUPERIOR*********/
+
+	/*******ACTUALIZA REGISTRO CON VALORES*********/
+	public function update_orden_superior($orden_id,$orden)
+	{	
+		$this->db->where("id_atributo_m",$orden_id);
+		return $this->db->update("atributos_m",$orden);
+	}
+
+	/*******ACTUALIZA REGISTRO CON VALORES*********/
+/**************************************************PARTE DE SUBIR REGISTROS*************************************/
+
+
+/**************************************************PARTE DE BAJAR REGISTROS*************************************/
+
+
+	/*******VALOR DE ORDEN MAS BAJO*********/
+	public function min_orden()
+	{
+		$this->db->select_min('orden','orden_min');
+        $orden_minimo = $this->db->get('atributos_m');
+	    return $orden_minimo->row();
+	}
+
+	/*******VALOR DE ORDEN MAS BAJO*********/
+
+
+	/*******SELECCIONA REGISTRO CON VALOR MENOR*********/
+	public function row_down_orden($orden)
+	{	
+		$this->db->where("orden",$orden);
+		$resultado = $this->db->get("atributos_m");
+		return $resultado->row();
+	}
+
+	/*******SELECCIONA REGISTRO CON VALOR MENOR*********/
+
+	/*******ACTUALIZA REGISTRO CON VALORES*********/
+	public function update_orden_inferior($orden_id,$orden)
+	{	
+		$this->db->where("id_atributo_m",$orden_id);
+		return $this->db->update("atributos_m",$orden);
+	}
+
+	/*******ACTUALIZA REGISTRO CON VALORES*********/
+
+/**************************************************PARTE DE BAJAR REGISTROS*************************************/
+
+
+
 	public function save_attr($data)
 	{
 		$this->db->insert("atributos_m",$data);
@@ -21,6 +90,7 @@ class Monedas_model extends CI_Model {
 	public function listattr()
 	{
 		$resultados = $this->db->get("atributos_m");
+
 		return $resultados->result();
 	}
 
@@ -432,6 +502,7 @@ public function listmoneda($id)
 	$this->db->where("m.id_catalogo_moneda",$id);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogo');
+	$this->db->order_by('attr_m.orden', 'DESC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
 			return $resultados->result();

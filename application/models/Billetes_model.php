@@ -5,6 +5,7 @@ class Billetes_model extends CI_Model {
 
 /*********************SECCION ATRIBUTOS******************************/	
 	
+	
 	public function save_attr($data)
 	{
 		$this->db->insert("atributos_b",$data);

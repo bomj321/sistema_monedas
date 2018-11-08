@@ -57,7 +57,8 @@
 										 			'placeholder'  =>  $atributo_not_general->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_general->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -129,9 +130,9 @@
  <?php if ($atributo_not_general->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo  $atributos_not_generales->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo  $atributos_not_generales->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_not_general->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_general->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -169,7 +170,8 @@
 										 			'placeholder'  =>  $atributo_not_tecnico->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_tecnico->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -241,9 +243,9 @@
 <?php if ($atributo_not_tecnico->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo $atributo_not_tecnico->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo $atributo_not_tecnico->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_not_tecnico->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_tecnico->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -281,7 +283,8 @@
 										 			'placeholder'  =>  $atributo_not_anverso->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_anverso->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -353,9 +356,9 @@
 <?php if ($atributo_not_anverso->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label  title='<?php echo $atributo_not_anverso->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label  title='<?php echo $atributo_not_anverso->descripcion_atributo ?>' for="fuente_imagen<?php echo $atributo_not_anverso->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_anverso->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -393,7 +396,8 @@
 										 			'placeholder'  =>  $atributo_not_reverso->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_reverso->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -464,9 +468,9 @@
 <?php if ($atributo_not_reverso->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo $atributo_not_reverso->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo $atributo_not_reverso->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_not_reverso->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_reverso->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -505,7 +509,8 @@
 										 			'placeholder'  =>  $atributo_not_canto->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_canto->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -577,9 +582,9 @@
 <?php if ($atributo_not_canto->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo $atributo_not_canto->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo $atributo_not_canto->descripcion_atributo ?>' for="fuente_imagen<?php echo $atributo_not_canto->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_canto->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -617,7 +622,8 @@
 										 			'placeholder'  =>  $atributo_not_adicional->nombre_atributo,
 										 			'name'         =>  'imagen_add[]',
 										 			'type'         =>  'file',
-										 			'multiple'     =>  true
+										 			'multiple'     =>  true,
+										 			'onchange'     => 'requerido('.$atributo_not_adicional->id_atributo_m.')'
 										 			
 										 		);									 		   
 									 		}else
@@ -688,9 +694,9 @@
 <?php if ($atributo_not_adicional->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo $atributo_not_adicional->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo $atributo_not_adicional->descripcion_atributo ?>' for="fuente_imagen<?php echo $atributo_not_adicional->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_adicional->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
 					
 				</div>
@@ -844,7 +850,7 @@
 <!--------------------------------------------SECCION DATOS TECNICOS-------------------->
 <?php if(!empty($atributos_tecnicos)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Datos T&eacute;cnico</h3></div>
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Datos T&eacute;cnicos</h3></div>
 		              <div class="panel-body" style="background-color: #e6f5ff;">
 							<?php foreach($atributos_tecnicos as $atributo_tecnico):?>
 

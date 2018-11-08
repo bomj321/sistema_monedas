@@ -36,13 +36,17 @@ class Attrmoneda extends CI_Controller {
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_m.nombre_atributo]");
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
 
+		$valor_orden_maximo=$this->Monedas_model->max_orden();
+		$valor_maximo = intval($valor_orden_maximo->orden_max)+1;
+
 		if ($this->form_validation->run()) {
 			$data = array(
 				'nombre_atributo'        => $nombre_atributo, 
 				'descripcion_atributo'   => ucfirst($descripcion_atributo),
 				'tipo_atributom'         => $tipo_atributo,
 				'categoria_atributom'    => $categoria_atributo,
-				'estado'                 => '1',
+				'orden'                  => $valor_maximo,
+				'estado'                 => '1'			
 			);
 
 			if ($ultimo_id_atributo=$this->Monedas_model->save_attr($data)) 
@@ -74,8 +78,11 @@ class Attrmoneda extends CI_Controller {
 
 	public function list()
 	{
+		//$valor_orden_maximo=$this->Monedas_model->max_orden();
 		$data = array(
-			'monedas' => $this->Monedas_model->listattr() , 
+			'monedas'       => $this->Monedas_model->listattr(),
+			'valor_maximo'  => $this->Monedas_model->max_orden(),
+			'valor_minimo'  => $this->Monedas_model->min_orden()
 		);
 
 		$this->layout->view("list",$data);
@@ -187,6 +194,68 @@ public function delete_opcion_es($id,$id_atributo_edit)
 		$this->edit($id_atributo_edit);
 }
 /*FUNCION PARA ELIMINAR LA OPCION ACTUAL*/
+
+
+/*FUNCION PARA SUBIR LA OPCION*/
+public function up_order($id,$orden)
+{		
+
+		$orden_arriba =  intval($orden) + 1;
+		$orden_superior= $this->Monedas_model->row_up_orden($orden_arriba);
+
+		$orden_row = $orden_superior->orden;//ORDEN NUMERO SUPERIOR
+		$orden_id  = $orden_superior->id_atributo_m;//ID DEL REGISTRO CON ORDEN SUPERIOR
+
+		$data_superior = array(
+			'orden' => $orden
+		);
+
+		$this->Monedas_model->update_orden_superior($orden_id,$data_superior);//REBAJA EL REGISTRO SUPERIOR
+
+		$data_inferior = array(
+			'orden' => $orden_arriba
+		);
+
+		$this->Monedas_model->update_orden_superior($id,$data_inferior);//SUBE EL REGISTRO INFERIOR
+		redirect(base_url()."attrmoneda/list");
+
+		
+
+		//$this->Monedas_model->delete_opcion_es($id);
+		//$this->edit($id_atributo_edit);
+}
+/*FUNCION PARA SUBIR LA OPCION*/
+
+
+/*FUNCION PARA BAJAR LA OPCION*/
+public function down_order($id,$orden)
+{		
+
+		$orden_abajo   =  intval($orden) - 1;
+		$orden_inferior= $this->Monedas_model->row_down_orden($orden_abajo);
+
+		$orden_row = $orden_inferior->orden;//ORDEN NUMERO SUPERIOR
+		$orden_id  = $orden_inferior->id_atributo_m;//ID DEL REGISTRO CON ORDEN SUPERIOR
+
+		$data_inferior = array(
+			'orden' => $orden
+		);
+
+		$this->Monedas_model->update_orden_inferior($orden_id,$data_inferior);//REBAJA EL REGISTRO SUPERIOR
+
+		$data_superior = array(
+			'orden' => $orden_abajo
+		);
+
+		$this->Monedas_model->update_orden_inferior($id,$data_superior);//SUBE EL REGISTRO INFERIOR
+		redirect(base_url()."attrmoneda/list");
+
+		
+
+		//$this->Monedas_model->delete_opcion_es($id);
+		//$this->edit($id_atributo_edit);
+}
+/*FUNCION PARA BAJAR LA OPCION*/
 
 
 
