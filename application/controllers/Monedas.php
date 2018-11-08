@@ -75,8 +75,9 @@ class Monedas extends CI_Controller {
 
 public function create()
 	{///////////////////////////////////////////////////////////////////CREATE
-		     $atributo_id  = $this->input->post("atributo_id");
-		     $catalogo     = $this->input->post("catalogo");   
+		     $atributo_id       = $this->input->post("atributo_id");
+		     $catalogo          = $this->input->post("catalogo"); 
+		     $fuente_imagen     = $this->input->post("fuente_imagen");    
 
 		     
 /*INSERTAR USUARIO*/
@@ -123,7 +124,7 @@ if (!empty($_FILES['imagen']["name"])) {
 				$datos = array(
 					'id_moneda'            => $ultimo_id, 
 					'id_atributo'           => $atributo_id_image[$i],
-					'atributo_moneda'      => $data['upload_data']['file_name'],
+					'atributo_moneda'      => $data['upload_data']['file_name'].','.$fuente_imagen[$i],
 				);
 				$this->Monedas_model->save_atributes_image($datos);
 				
@@ -209,12 +210,14 @@ $this->add();
 ////////////////////////////////////////////////////////////////////////////////////EDIT
 public function update()
 	{
-		     $atributo_id  = $this->input->post("atributo_id");
-		     $id_unico     = $this->input->post("id_unico");
-		     $catalogo     = $this->input->post("catalogo");
+		     $atributo_id       = $this->input->post("atributo_id");
+		     $id_unico          = $this->input->post("id_unico");
+		     $catalogo          = $this->input->post("catalogo");
+		     $fuente_imagen     = $this->input->post("fuente_imagen");
 		     /*INPUTS DE AGREGACION*/
 			 $atributo_id_add  = $this->input->post("atributo_id_add");
 			 $catalogo_add     = $this->input->post("catalogo_add");
+			 $fuente_imagen_add     = $this->input->post("fuente_imagen_add");
 		    /*INPUTS DE AGREGACION*/  
 		     
 
@@ -252,7 +255,7 @@ if (!empty($_FILES['imagen']["name"])) {
 							$data = array("upload_data" => $this->upload->data());
 							$datos = array(
 								
-								'atributo_moneda'      => $data['upload_data']['file_name'],
+								'atributo_moneda'      => $data['upload_data']['file_name'].','.$fuente_imagen[$i],
 							);
 							$this->Monedas_model->update_atributes_image($id_unico_usuario_unico,$id_atributo,$datos);
 							
@@ -299,7 +302,7 @@ if (!empty($_FILES['imagen_add']["name"])) {
 				$datos = array(
 					'id_moneda'            => $id_unico_usuario_unico, 
 					'id_atributo'           => $atributo_id_image[$i],
-					'atributo_moneda'      => $data['upload_data']['file_name'],
+					'atributo_moneda'      => $data['upload_data']['file_name'].','.$fuente_imagen_add[$i],
 				);
 				$this->Monedas_model->save_atributes_image($datos);
 				

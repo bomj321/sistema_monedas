@@ -159,7 +159,6 @@
 											 		<option value="Catalogos">Catalogos</option>
 											 		<option value="Fotos">Fotos</option>
 											 		<option value="Medidas">Medidas</option>
-											 		<option value="Otros">Otros</option>
 										 	</select>
 										 	<?php 									 	
 	                						echo form_error("tipo_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")

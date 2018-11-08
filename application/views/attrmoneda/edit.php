@@ -81,7 +81,7 @@
                                                     <option  <?php echo $atributo->categoria_atributom == 'Reverso' ? 'selected' : '' ?> value="Reverso">Reverso</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Canto' ? 'selected' : '' ?> value="Canto">Canto</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Información_adicional' ? 'selected' : '' ?> value="Información_adicional">Información adicional</option>
-                                                    <option  <?php echo $atributo->categoria_atributom == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Catalogos' ? 'selected' : '' ?> value="Catalogos">Catalogos</option>
                                             </select>
                                             <?php                                       
                                             echo form_error("categoria_atributo","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
@@ -105,7 +105,6 @@
                                           <option <?php echo $atributo->tipo_atributom == 'Catalogos' ? 'selected' : '' ?> value="Catalogos">Catalogos</option>
                                           <option <?php echo $atributo->tipo_atributom == 'Fotos' ? 'selected' : '' ?> value="Fotos">Fotos</option>
                                           <option <?php echo $atributo->tipo_atributom == 'Medidas' ? 'selected' : '' ?> value="Medidas">Medidas</option>
-                                          <option <?php echo $atributo->tipo_atributom == 'Otros' ? 'selected' : '' ?> value="Otros">Otros</option>            
                                         
                                       </select>
                                       <?php                     

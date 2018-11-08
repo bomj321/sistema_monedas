@@ -605,3 +605,13 @@ function datosugerencia($id_sugerencia){
         });
 }
 /*************************SUGERENCIAS*****************************/
+
+
+/*******SECCION PARA COLOCAR REQUERIDO EL CAMPO FUENTE********/
+function requerido($id){
+  var id = $id;
+  var input = document.getElementById('fuente_imagen' + id)
+  $(input).prop('required',true);
+
+}
+/*******SECCION PARA COLOCAR REQUERIDO EL CAMPO FUENTE********/

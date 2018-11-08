@@ -82,6 +82,8 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'       => $atributos_not_generales->descripcion_atributo
+
 					);
 
 
@@ -112,6 +114,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                     'title'       => $atributos_not_generales->descripcion_atributo
 						);
 
 
@@ -123,6 +126,17 @@
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+ <?php if ($atributo_not_general->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo  $atributos_not_generales->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+		    <?php endif ?>		
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -180,6 +194,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                     'title'       => $atributo_not_tecnico->descripcion_atributo
 					);
 
 
@@ -210,6 +225,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                    'title'        => $atributo_not_tecnico->descripcion_atributo
 						);
 
 
@@ -221,6 +237,18 @@
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+
+<?php if ($atributo_not_tecnico->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_not_tecnico->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+		    <?php endif ?>		
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -278,6 +306,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_not_anverso->descripcion_atributo	                   
 					);
 
 
@@ -304,21 +333,34 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-<div class="form-group">
+<div class="form-group">	
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                    'title'        => $atributo_not_anverso->descripcion_atributo
 						);
 
 
 						echo form_label($atributo_not_anverso->nombre_atributo,$atributo_not_anverso->nombre_atributo,$label_atributo)
 					 ?>
+
 					 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_not_anverso->id_atributo_m;?>">
 
-					 <div class="col-md-10 col-sm-12 col-xs-12">
+					 <div class="col-md-9 col-sm-12 col-xs-12">
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+<?php if ($atributo_not_anverso->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label  title='<?php echo $atributo_not_anverso->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>		
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -376,6 +418,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_not_reverso->descripcion_atributo
 					);
 
 
@@ -406,6 +449,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                    'title'        => $atributo_not_reverso->descripcion_atributo
 						);
 
 
@@ -417,6 +461,17 @@
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+<?php if ($atributo_not_reverso->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_not_reverso->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>			
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -475,6 +530,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_not_canto->descripcion_atributo
 					);
 
 
@@ -505,6 +561,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                    'title'        => $atributo_not_canto->descripcion_atributo
 						);
 
 
@@ -516,6 +573,18 @@
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+
+<?php if ($atributo_not_canto->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_not_canto->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>			
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -573,6 +642,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_not_adicional->descripcion_atributo
 					);
 
 
@@ -603,6 +673,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+		                    'title'        => $atributo_not_adicional->descripcion_atributo
 						);
 
 
@@ -614,6 +685,17 @@
 					 	<?php echo form_input($input_atributo);?>
 					 </div>						  
 		</div>
+<?php if ($atributo_not_adicional->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_not_adicional->descripcion_atributo ?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen_add[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>			
 
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
@@ -641,8 +723,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_general->descripcion_atributo, 'Fotos') !== false) 
+									 	 if (strpos($atributo_general->tipo_atributom, 'Fotos') !== false) 
 									 	    {
+									 	    	    $separado_descripcionatributo = explode(",", $atributo_general->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -651,7 +734,7 @@
 										 			'id'           =>  $atributo_general->nombreatributo,
 										 			'placeholder'  =>  $atributo_general->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_general->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -681,6 +764,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_general->descripcion_atributo
 					);
 
 
@@ -708,27 +792,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+	<div class="form-group">
+		<?php 
+			$label_atributo = array(
+                'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+                'title'        => $atributo_general->descripcion_atributo
+			);
 
 
-	                						echo form_label($atributo_general->nombreatributo,$atributo_general->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_general->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_general->id_unico_atributo;?>">
+			echo form_label($atributo_general->nombreatributo,$atributo_general->nombreatributo,$label_atributo)
+		 ?>
+		 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_general->id_atributo_m;?>">
+         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_general->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_general->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_general->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+		 <div class="col-md-10 col-sm-12 col-xs-12">
+		 	<?php echo form_input($input_atributo);?>
+		 </div>
+		  <?php if(strpos($atributo_general->tipo_atributom, 'Fotos') !== false):?>
+		 <div class="col-md-12 col-sm-12 col-xs-12">										
+		 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+		 </div>
+		  <?php endif; ?>
+ </div>
+
+ <?php if ($atributo_general->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_general->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>	
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -744,7 +841,7 @@
 
 
 
-<!--------------------------------------------SECCION TECNICOS-------------------->
+<!--------------------------------------------SECCION DATOS TECNICOS-------------------->
 <?php if(!empty($atributos_tecnicos)): ?>
 <div class="panel panel-default">
 		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Datos T&eacute;cnico</h3></div>
@@ -753,8 +850,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_tecnico->descripcion_atributo, 'Fotos') !== false) 
-									 	    {
+									 	 if (strpos($atributo_tecnico->tipo_atributom, 'Fotos') !== false) 
+									 	    {		
+									 	    	    $separado_descripcionatributo = explode(",", $atributo_tecnico->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -763,7 +861,7 @@
 										 			'id'           =>  $atributo_tecnico->nombreatributo,
 										 			'placeholder'  =>  $atributo_tecnico->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_tecnico->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -793,6 +891,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_tecnico->descripcion_atributo
 					);
 
 
@@ -820,27 +919,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+		<div class="form-group">
+			<?php 
+				$label_atributo = array(
+                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+                    'title'        => $atributo_tecnico->descripcion_atributo
+				);
 
 
-	                						echo form_label($atributo_tecnico->nombreatributo,$atributo_tecnico->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_tecnico->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_tecnico->id_unico_atributo;?>">
+				echo form_label($atributo_tecnico->nombreatributo,$atributo_tecnico->nombreatributo,$label_atributo)
+			 ?>
+			 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_tecnico->id_atributo_m;?>">
+	         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_tecnico->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_tecnico->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_tecnico->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+			 <div class="col-md-10 col-sm-12 col-xs-12">
+			 	<?php echo form_input($input_atributo);?>
+			 </div>
+			  <?php if(strpos($atributo_tecnico->tipo_atributom, 'Fotos') !== false):?>
+			 <div class="col-md-12 col-sm-12 col-xs-12">										
+			 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+			 </div>
+			  <?php endif; ?>
+	 </div>
+
+<?php if ($atributo_tecnico->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_tecnico->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>	
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -852,7 +964,7 @@
 </div>							 	
  <?php endif; ?>							
 
-<!----------------------------SECCION TECNICOS------------------------------------>
+<!----------------------------SECCION DATOS TECNICOS------------------------------------>
 
 <!--------------------------------------------SECCION ANVERSO-------------------->
 <?php if(!empty($atributos_anverso)): ?>
@@ -863,8 +975,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_anverso->descripcion_atributo, 'Fotos') !== false) 
+									 	 if (strpos($atributo_anverso->tipo_atributom, 'Fotos') !== false) 
 									 	    {
+									 	    		$separado_descripcionatributo = explode(",", $atributo_anverso->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -873,7 +986,7 @@
 										 			'id'           =>  $atributo_anverso->nombreatributo,
 										 			'placeholder'  =>  $atributo_anverso->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_anverso->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -903,6 +1016,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_anverso->descripcion_atributo
 					);
 
 
@@ -930,27 +1044,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+<div class="form-group">
+	<?php 
+		$label_atributo = array(
+            'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+            'title'        => $atributo_anverso->descripcion_atributo
+		);
 
 
-	                						echo form_label($atributo_anverso->nombreatributo,$atributo_anverso->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_anverso->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_anverso->id_unico_atributo;?>">
+		echo form_label($atributo_anverso->nombreatributo,$atributo_anverso->nombreatributo,$label_atributo)
+	 ?>
+	 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_anverso->id_atributo_m;?>">
+     <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_anverso->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_anverso->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_anverso->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+	 <div class="col-md-10 col-sm-12 col-xs-12">
+	 	<?php echo form_input($input_atributo);?>
+	 </div>
+	  <?php if(strpos($atributo_anverso->tipo_atributom, 'Fotos') !== false):?>
+	 <div class="col-md-12 col-sm-12 col-xs-12">										
+	 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+	 </div>
+	  <?php endif; ?>
+</div>
+
+<?php if ($atributo_anverso->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_anverso->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -974,8 +1101,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_reverso->descripcion_atributo, 'Fotos') !== false) 
+									 	 if (strpos($atributo_reverso->tipo_atributom, 'Fotos') !== false) 
 									 	    {
+									 	    		$separado_descripcionatributo = explode(",", $atributo_reverso->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -984,7 +1112,7 @@
 										 			'id'           =>  $atributo_reverso->nombreatributo,
 										 			'placeholder'  =>  $atributo_reverso->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_reverso->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -1014,6 +1142,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_reverso->descripcion_atributo
 					);
 
 
@@ -1041,27 +1170,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+<div class="form-group">
+	<?php 
+		$label_atributo = array(
+            'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+            'title'        => $atributo_reverso->descripcion_atributo
+		);
 
 
-	                						echo form_label($atributo_reverso->nombreatributo,$atributo_reverso->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_reverso->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_reverso->id_unico_atributo;?>">
+		echo form_label($atributo_reverso->nombreatributo,$atributo_reverso->nombreatributo,$label_atributo)
+	 ?>
+	 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_reverso->id_atributo_m;?>">
+     <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_reverso->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_reverso->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_reverso->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+	 <div class="col-md-10 col-sm-12 col-xs-12">
+	 	<?php echo form_input($input_atributo);?>
+	 </div>
+	  <?php if(strpos($atributo_reverso->tipo_atributom, 'Fotos') !== false):?>
+	 <div class="col-md-12 col-sm-12 col-xs-12">										
+	 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+	 </div>
+	  <?php endif; ?>
+</div>
+
+<?php if ($atributo_reverso->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_reverso->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -1085,8 +1227,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_canto->descripcion_atributo, 'Fotos') !== false) 
+									 	 if (strpos($atributo_canto->tipo_atributom, 'Fotos') !== false) 
 									 	    {
+									 	    		$separado_descripcionatributo = explode(",", $atributo_canto->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -1095,7 +1238,7 @@
 										 			'id'           =>  $atributo_canto->nombreatributo,
 										 			'placeholder'  =>  $atributo_canto->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_canto->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -1125,6 +1268,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_canto->descripcion_atributo
 					);
 
 
@@ -1152,27 +1296,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+	<div class="form-group">
+		<?php 
+			$label_atributo = array(
+                'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+                'title'        => $atributo_canto->descripcion_atributo
+			);
 
 
-	                						echo form_label($atributo_canto->nombreatributo,$atributo_canto->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_canto->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_canto->id_unico_atributo;?>">
+			echo form_label($atributo_canto->nombreatributo,$atributo_canto->nombreatributo,$label_atributo)
+		 ?>
+		 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_canto->id_atributo_m;?>">
+         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_canto->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_canto->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_canto->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+		 <div class="col-md-10 col-sm-12 col-xs-12">
+		 	<?php echo form_input($input_atributo);?>
+		 </div>
+		  <?php if(strpos($atributo_canto->tipo_atributom, 'Fotos') !== false):?>
+		 <div class="col-md-12 col-sm-12 col-xs-12">										
+		 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+		 </div>
+		  <?php endif; ?>
+ </div>
+
+ <?php if ($atributo_canto->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_canto->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -1195,8 +1352,9 @@
 
 							 	<?php
 							 		//CODIGO PARA FORMATEAR ATRIBUTOS
-									 	 if (strpos($atributo_adicional->descripcion_atributo, 'Fotos') !== false) 
+									 	 if (strpos($atributo_adicional->tipo_atributom, 'Fotos') !== false) 
 									 	    {
+									 	    		$separado_descripcionatributo = explode(",", $atributo_adicional->descripcionatributo);
 									 	    		$name_id        = 'atributo_id_image[]';
 									 	    		$id_unico        = 'id_unico[]';
 										 	    	$input_atributo = array(
@@ -1205,7 +1363,7 @@
 										 			'id'           =>  $atributo_adicional->nombreatributo,
 										 			'placeholder'  =>  $atributo_adicional->nombreatributo,
 										 			'name'         =>  'imagen[]',
-										 			'value'        =>  $atributo_adicional->descripcionatributo,
+										 			'value'        =>  $separado_descripcionatributo[0],
 										 			'type'         =>  'file',
 										 			'multiple'     =>  true
 										 			
@@ -1235,6 +1393,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+	                    'title'        => $atributo_adicional->descripcion_atributo
 					);
 
 
@@ -1262,27 +1421,40 @@
 
 <?php else: ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
-									<div class="form-group">
-										<?php 
-											$label_atributo = array(
-							                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                						);
+<div class="form-group">
+	<?php 
+		$label_atributo = array(
+            'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+            'title'        => $atributo_adicional->descripcion_atributo
+		);
 
 
-	                						echo form_label($atributo_adicional->nombreatributo,$atributo_adicional->nombreatributo,$label_atributo)
-										 ?>
-										 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_adicional->id_atributo_m;?>">
-								         <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_adicional->id_unico_atributo;?>">
+		echo form_label($atributo_adicional->nombreatributo,$atributo_adicional->nombreatributo,$label_atributo)
+	 ?>
+	 <input type="hidden" name='<?php echo $name_id?>' value="<?php echo $atributo_adicional->id_atributo_m;?>">
+     <input type="hidden" name='<?php echo $id_unico?>' value="<?php echo $atributo_adicional->id_unico_atributo;?>">
 
-										 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<?php echo form_input($input_atributo);?>
-										 </div>
-										  <?php if(strpos($atributo_adicional->descripcion_atributo, 'Fotos') !== false):?>
-										 <div class="col-md-12 col-sm-12 col-xs-12">										
-										 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$atributo_adicional->descripcionatributo?>"></div>										
-										 </div>
-										  <?php endif; ?>
-								 </div>
+	 <div class="col-md-10 col-sm-12 col-xs-12">
+	 	<?php echo form_input($input_atributo);?>
+	 </div>
+	  <?php if(strpos($atributo_adicional->tipo_atributom, 'Fotos') !== false):?>
+	 <div class="col-md-12 col-sm-12 col-xs-12">										
+	 		<div><img style="margin:10px 10px;" width="100" src="<?php echo base_url().'public/images_monedas/'.$separado_descripcionatributo[0]?>"></div>										
+	 </div>
+	  <?php endif; ?>
+</div>
+
+ <?php if ($atributo_adicional->tipo_atributom=='Fotos'): ?>
+
+		    	<div class="form-group">
+					<label title='<?php echo $atributo_adicional->descripcion_atributo?>' for="fuente_imagen" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					 <div class="col-md-10 col-sm-12 col-xs-12">
+						 	<input value='<?php echo $separado_descripcionatributo[1] ?>' required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen" name="fuente_imagen[]">										 
+					</div>
+					
+				</div>
+		    	
+<?php endif ?>
 
 <?php endif ?><!--CONDICIONALES PARA VER SI ES O NO ES ESPECIAL-->
 
@@ -1309,6 +1481,7 @@
 							 		<?php 
 										$label_catalogo = array(
 						                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
+						                    'title'        => 'Seleccione un Catalogo'
                 						);
 
 
