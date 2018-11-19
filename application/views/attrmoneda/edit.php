@@ -80,6 +80,7 @@
                                                     <option  <?php echo $atributo->categoria_atributom == 'Anverso' ? 'selected' : '' ?> value="Anverso">Anverso</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Reverso' ? 'selected' : '' ?> value="Reverso">Reverso</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Canto' ? 'selected' : '' ?> value="Canto">Canto</option>
+                                                    <option  <?php echo $atributo->categoria_atributom == 'Variedades' ? 'selected' : '' ?> value="Variedades">Variedades</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Información_adicional' ? 'selected' : '' ?> value="Información_adicional">Información adicional</option>
                                                     <option  <?php echo $atributo->categoria_atributom == 'Catalogos' ? 'selected' : '' ?> value="Catalogos">Catalogos</option>
                                             </select>

@@ -125,6 +125,7 @@
 											 		<option value="Anverso">Anverso</option>
 											 		<option value="Reverso">Reverso</option>
 											 		<option value="Canto">Canto</option>
+											 		<option value="Variedades">Variedades</option>
 											 		<option value="Información_adicional">Información adicional</option>
 											 		<option value="Catalogos">Catalogos</option>
 										 	</select>
