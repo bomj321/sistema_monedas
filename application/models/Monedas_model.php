@@ -192,6 +192,15 @@ class Monedas_model extends CI_Model {
 	}
 /*************Canto**********/
 
+/************Variedades***********/
+	public function listattr_form_variedades()
+	{	
+		$this->db->where('categoria_atributom', 'Variedades');
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+	}
+/*************Variedades**********/
+
 /************Información_adicional***********/
 	public function listattr_form_adicional()
 	{	
@@ -294,6 +303,27 @@ class Monedas_model extends CI_Model {
 	}
 /**************CANTO**************/
 
+/**************VARIANTES**************/
+	public function listattr_form_edit_variedades($id)
+	{
+
+		$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.id_atributo_m as id_atributo_m,attr_m.descripcion_atributo as descripcion_atributo,attr_monedas.id_moneda as id_unico_atributo,attr_m.estado as estado,attr_m.tipo_atributom as tipo_atributom");
+		$this->db->from("catalogo_monedas m");
+		$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+		$this->db->where("attr_m.categoria_atributom",'Variedades');
+		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
+			$resultado = $this->db->get();
+			return $resultado->result();
+
+	}
+/**************VARIANTES**************/
+
+
+
+
+
 /**************ADICIONAL**************/
 	public function listattr_form_edit_adicional($id)
 	{
@@ -373,6 +403,18 @@ class Monedas_model extends CI_Model {
 
 /************Canto***********/
 
+/************Variedades***********/
+
+	public function listattr_form_not_variedades($id)
+	{	
+
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Variedades' AND NOT  tipo_atributom = 'Catalogos'");
+	 return $query->result();
+	}
+
+/************Variedades***********/
+
+
 /************Información_adicional***********/
 
 	public function listattr_form_not_adicional($id)
@@ -383,6 +425,8 @@ class Monedas_model extends CI_Model {
 	}
 
 /************Información_adicional***********/
+
+
 /*******************************************GENERA FORMULARIO DE ATRIBUTOS NO AGREGADOS******************************************/
 /***********************LISTADO DE CATALOGOS PARA EDITAR************************/
 	public function listattr_cat_edit($id)

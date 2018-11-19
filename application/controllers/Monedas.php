@@ -30,6 +30,7 @@ class Monedas extends CI_Controller {
 				'atributos_anverso'         => $this->Monedas_model->listattr_form_anverso(),
 				'atributos_reverso'         => $this->Monedas_model->listattr_form_reverso(),
 				'atributos_canto'           => $this->Monedas_model->listattr_form_canto(),
+				'atributos_variedades'      => $this->Monedas_model->listattr_form_variedades(),
 				'atributos_adicional'       => $this->Monedas_model->listattr_form_adicional(),
 				'catalogos'                 => $this->Monedas_model->listattr_cat() 
 			);
@@ -53,6 +54,7 @@ class Monedas extends CI_Controller {
 			    'atributos_anverso'          => $this->Monedas_model->listattr_form_edit_anverso($id),
 			    'atributos_reverso'          => $this->Monedas_model->listattr_form_edit_reverso($id),
 			    'atributos_canto'            => $this->Monedas_model->listattr_form_edit_canto($id),
+			    'atributos_variedades'       => $this->Monedas_model->listattr_form_edit_variedades($id),
 		    	'atributos_adicional'        => $this->Monedas_model->listattr_form_edit_adicional($id),
 				'catalogos_edit' 			 => $this->Monedas_model->listattr_cat_edit($id),
 				'pagos_catalogo' 			 => $this->Monedas_model->listattr_cat_pagos($id),
@@ -62,6 +64,7 @@ class Monedas extends CI_Controller {
 				'atributos_not_anverso'      => $this->Monedas_model->listattr_form_not_anverso($id),
 				'atributos_not_reverso'      => $this->Monedas_model->listattr_form_not_reverso($id),
 				'atributos_not_canto'        => $this->Monedas_model->listattr_form_not_canto($id),
+				'atributos_not_variedades'   => $this->Monedas_model->listattr_form_not_variedades($id),
 				'atributos_not_adicional'    => $this->Monedas_model->listattr_form_not_adicional($id),
 			);
 
