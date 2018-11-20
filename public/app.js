@@ -60,7 +60,7 @@ $("#boton_tipo_atributo").hide();
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         }
     },
-    "aaSorting": [[ 4, "desc" ]]
+    "aaSorting": [[ 4, "asc" ]]
         });  
 
 

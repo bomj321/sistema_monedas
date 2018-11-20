@@ -30,13 +30,14 @@ class Attrmoneda extends CI_Controller {
 		$nombre_atributo             = $this->input->post("nombre_atributo");
 		$descripcion_atributo        = $this->input->post("descripcion_atributo");
 		$categoria_atributo          = $this->input->post("categoria_atributo");
+		$categoria_decode            = urldecode($categoria_atributo);
 		$tipo_atributo               = $this->input->post("tipo_atributo");
 		$opciones_especialesm        = $this->input->post("opciones_especialesm");
 
 		$this->form_validation->set_rules("nombre_atributo","Nombre Seccion","required|is_unique[atributos_m.nombre_atributo]");
 		$this->form_validation->set_rules("descripcion_atributo","Descripcion","required");
 
-		$valor_orden_maximo=$this->Monedas_model->max_orden();
+		$valor_orden_maximo=$this->Monedas_model->max_orden($categoria_atributo);
 		$valor_maximo = intval($valor_orden_maximo->orden_max)+1;
 
 		if ($this->form_validation->run()) {
@@ -63,7 +64,7 @@ class Attrmoneda extends CI_Controller {
 					}
 			}
 /*PARA GUARDAR TODOS LOS ATRIBUTOS*/	
-				$this->list();
+				redirect(base_url()."attrmoneda/list/".$categoria_decode);
 			}else
 			{
 				$this->session->set_flashdata("error_attr","No se pudo guardar la informacion");
@@ -76,25 +77,27 @@ class Attrmoneda extends CI_Controller {
 		}
 	}
 
-	public function list()
+	public function list($categoria)
 	{
+		$categoria_decode            = urldecode($categoria);
 		//$valor_orden_maximo=$this->Monedas_model->max_orden();
 		$data = array(
-			'monedas'       => $this->Monedas_model->listattr(),
-			'valor_maximo'  => $this->Monedas_model->max_orden(),
-			'valor_minimo'  => $this->Monedas_model->min_orden()
+			'monedas'       => $this->Monedas_model->listattr($categoria_decode),
+			'valor_maximo'  => $this->Monedas_model->max_orden($categoria_decode),
+			'valor_minimo'  => $this->Monedas_model->min_orden($categoria_decode)
 		);
 
 		$this->layout->view("list",$data);
 	}
 
-	public function update($id,int $estado){
+	public function update($id,int $estado,$categoria){
+		$categoria_decode            = urldecode($categoria);
 		$data = array(
 			'estado' => $estado
 		);
 
 		$this->Monedas_model->update_state_attr($id,$data);
-		$this->list();
+		redirect(base_url()."attrmoneda/list/".$categoria_decode);
 	}
 
 	public function edit($id)
@@ -113,6 +116,7 @@ class Attrmoneda extends CI_Controller {
 		$nombre_atributo             = $this->input->post("nombre_atributo");
 		$descripcion_atributo        = $this->input->post("descripcion_atributo");
 		$categoria_atributo          = $this->input->post("categoria_atributo");
+		$categoria_decode            = urldecode($categoria_atributo);
 		$tipo_atributo               = $this->input->post("tipo_atributo");
 		$opciones_especialesm        = $this->input->post("opciones_especialesm");
 
@@ -154,7 +158,7 @@ class Attrmoneda extends CI_Controller {
 						$this->Monedas_model->atributos_especiales_m_delete($id_atributo);//BORRAMOS TODOS LOS REGISTROS DE ESA MONEDA AL NO SER ESPECIAL
 					}
 /*PARA GUARDAR TODOS LOS ATRIBUTOS*/		
-					$this->list();
+					redirect(base_url()."attrmoneda/list/".$categoria_decode);
 				}else
 				{
 					$this->session->set_flashdata("error","No se pudo guardar la informacion");
@@ -167,15 +171,16 @@ class Attrmoneda extends CI_Controller {
 		}
 	}
 
-	public function delete($id)
+	public function delete($id,$categoria)
 	{
+		$categoria_decode = urldecode($categoria);
 		$count = count($this->Monedas_model->get_attr_exist($id));
 		if($count == 0){
 			$this->Monedas_model->delete($id);
-			$this->list();
+			redirect(base_url()."attrmoneda/list/".$categoria_decode);
 		}else{
 			$this->session->set_flashdata("error","Este Registro esta siendo usado");
-			$this->list();
+			redirect(base_url()."attrmoneda/list/".$categoria_decode);
 		}
 	}
 
@@ -197,11 +202,11 @@ public function delete_opcion_es($id,$id_atributo_edit)
 
 
 /*FUNCION PARA SUBIR LA OPCION*/
-public function up_order($id,$orden)
-{		
-
+public function up_order($id,$orden,$categoria)
+{	
+		$categoria_decode = urldecode($categoria);
 		$orden_arriba =  intval($orden) + 1;
-		$orden_superior= $this->Monedas_model->row_up_orden($orden_arriba);
+		$orden_superior= $this->Monedas_model->row_up_orden($orden_arriba,$categoria_decode);
 
 		$orden_row = $orden_superior->orden;//ORDEN NUMERO SUPERIOR
 		$orden_id  = $orden_superior->id_atributo_m;//ID DEL REGISTRO CON ORDEN SUPERIOR
@@ -210,14 +215,14 @@ public function up_order($id,$orden)
 			'orden' => $orden
 		);
 
-		$this->Monedas_model->update_orden_superior($orden_id,$data_superior);//REBAJA EL REGISTRO SUPERIOR
+		$this->Monedas_model->update_orden_superior($orden_id,$data_superior,$categoria_decode);//REBAJA EL REGISTRO SUPERIOR
 
 		$data_inferior = array(
 			'orden' => $orden_arriba
 		);
 
-		$this->Monedas_model->update_orden_superior($id,$data_inferior);//SUBE EL REGISTRO INFERIOR
-		redirect(base_url()."attrmoneda/list");
+		$this->Monedas_model->update_orden_superior($id,$data_inferior,$categoria_decode);//SUBE EL REGISTRO INFERIOR
+		redirect(base_url()."attrmoneda/list/".$categoria_decode);
 
 		
 
@@ -228,11 +233,11 @@ public function up_order($id,$orden)
 
 
 /*FUNCION PARA BAJAR LA OPCION*/
-public function down_order($id,$orden)
+public function down_order($id,$orden,$categoria)
 {		
-
+		$categoria_decode = urldecode($categoria);
 		$orden_abajo   =  intval($orden) - 1;
-		$orden_inferior= $this->Monedas_model->row_down_orden($orden_abajo);
+		$orden_inferior= $this->Monedas_model->row_down_orden($orden_abajo,$categoria_decode);
 
 		$orden_row = $orden_inferior->orden;//ORDEN NUMERO SUPERIOR
 		$orden_id  = $orden_inferior->id_atributo_m;//ID DEL REGISTRO CON ORDEN SUPERIOR
@@ -241,14 +246,14 @@ public function down_order($id,$orden)
 			'orden' => $orden
 		);
 
-		$this->Monedas_model->update_orden_inferior($orden_id,$data_inferior);//REBAJA EL REGISTRO SUPERIOR
+		$this->Monedas_model->update_orden_inferior($orden_id,$data_inferior,$categoria_decode);//REBAJA EL REGISTRO SUPERIOR
 
 		$data_superior = array(
 			'orden' => $orden_abajo
 		);
 
-		$this->Monedas_model->update_orden_inferior($id,$data_superior);//SUBE EL REGISTRO INFERIOR
-		redirect(base_url()."attrmoneda/list");
+		$this->Monedas_model->update_orden_inferior($id,$data_superior,$categoria_decode);//SUBE EL REGISTRO INFERIOR
+		redirect(base_url()."attrmoneda/list/".$categoria_decode);
 
 		
 

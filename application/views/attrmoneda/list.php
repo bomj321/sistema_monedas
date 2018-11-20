@@ -25,6 +25,52 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+
+                    <div class="row" id="botones_categorias">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Información_general" style='font-size: 15px; width: 100%;' class="btn btn-primary">Información general</a>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Datos_Técnicos" style='font-size: 15px; width: 100%;' class="btn btn-success">Datos Técnicos</a>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Anverso" style='font-size: 15px; width: 100%;' class="btn btn-info">Anverso</a>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Reverso" style='font-size: 15px; width: 100%;' class="btn btn-warning">Reverso</a>
+                        </div>
+
+
+                    </div>
+
+                     <div class="row" id="botones_categorias">                      
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Canto" style='font-size: 15px; width: 100%;' class="btn btn-danger">Canto</a>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Variedades" style='font-size: 15px; width: 100%;' class="btn btn-success">Variedades</a>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Información_adicional" style='font-size: 15px; width: 100%;' class="btn btn-info">Información adicional</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <a href="<?php echo base_url();?>attrmoneda/list/Catalogos" style='font-size: 15px; width: 100%;' class="btn btn-warning">Catalogos</a>
+                        </div>
+                    </div>
+
+
                   <div class="x_content"> <!--CONTENIDO-->
 							         <table id="list_attrm" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
@@ -51,22 +97,22 @@
                                             <td><?php echo $moneda->orden;?></td>
                                             <td>
                                             	<?php if ($moneda->estado=='1'): ?>
-                                            		<a title="bloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/0" class="btn btn-warning btn-remove"><span class="fa fa-remove"></span></a>
+                                            		<a title="bloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/0/<?php echo $moneda->categoria_atributom;?>" class="btn btn-warning btn-remove"><span class="fa fa-remove"></span></a>
                                             	<?php else: ?>
-                                            	<a title="Desbloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/1" class="btn btn-success btn-check"><span class="fa fa-check"></span></a>	                                            		
+                                            	<a title="Desbloquear atributo" href="<?php echo base_url();?>attrmoneda/update/<?php echo $moneda->id_atributo_m;?>/1/<?php echo $moneda->categoria_atributom;?>" class="btn btn-success btn-check"><span class="fa fa-check"></span></a>	                                            		
                                             	<?php endif ?>
                                               <a title="Editar Atributo" href="<?php echo base_url();?>attrmoneda/edit/<?php echo $moneda->id_atributo_m;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
 
-                                               <a title="Eliminar Atributo" href="<?php echo base_url();?>attrmoneda/delete/<?php echo $moneda->id_atributo_m;?>" class="btn btn-danger "><span class="fa fa-trash-o"></span></a>
+                                               <a title="Eliminar Atributo" href="<?php echo base_url();?>attrmoneda/delete/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->categoria_atributom;?>" class="btn btn-danger "><span class="fa fa-trash-o"></span></a>
 
 
                                                <?php if ( $valor_maximo->orden_max != $moneda->orden): ?>
-                                                     <a title="Subir Atributo" href="<?php echo base_url();?>attrmoneda/up_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>" class="btn btn-success "><span class="fa fa-sort-up"></span></a> 
+                                                     <a title="Subir Atributo" href="<?php echo base_url();?>attrmoneda/up_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>/<?php echo $moneda->categoria_atributom;?>" class="btn btn-danger "><span class="fa fa-sort-down"></span></a> 
                                                 <?php endif ?> 
 
                                                
                                                 <?php if ( $valor_minimo->orden_min != $moneda->orden): ?>
-                                                    <a title="Bajar Atributo" href="<?php echo base_url();?>attrmoneda/down_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>" class="btn btn-danger "><span class="fa fa-sort-down"></span></a>
+                                                    <a title="Bajar Atributo" href="<?php echo base_url();?>attrmoneda/down_order/<?php echo $moneda->id_atributo_m;?>/<?php echo $moneda->orden;?>/<?php echo $moneda->categoria_atributom;?>" class="btn btn-success "><span class="fa fa-sort-up"></span></a>
                                                 <?php endif ?>    
                                                     
                                                     

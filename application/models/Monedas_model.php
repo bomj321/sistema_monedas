@@ -7,8 +7,9 @@ class Monedas_model extends CI_Model {
 
 /**************************************************PARTE DE SUBIR REGISTROS*************************************/
 	/*******VALOR DE ORDEN MAS ALTO*********/
-	public function max_orden()
+	public function max_orden($categoria)
 	{
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->select_max('orden','orden_max');
         $orden_maximo = $this->db->get('atributos_m');
 	    return $orden_maximo->row();
@@ -17,8 +18,9 @@ class Monedas_model extends CI_Model {
 	/*******VALOR DE ORDEN MAS ALTO*********/
 
 	/*******SELECCIONA REGISTRO CON VALOR SUPERIOR*********/
-	public function row_up_orden($orden)
+	public function row_up_orden($orden,$categoria)
 	{	
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->where("orden",$orden);
 		$resultado = $this->db->get("atributos_m");
 		return $resultado->row();
@@ -27,8 +29,9 @@ class Monedas_model extends CI_Model {
 	/*******SELECCIONA REGISTRO CON VALOR SUPERIOR*********/
 
 	/*******ACTUALIZA REGISTRO CON VALORES*********/
-	public function update_orden_superior($orden_id,$orden)
+	public function update_orden_superior($orden_id,$orden,$categoria)
 	{	
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->where("id_atributo_m",$orden_id);
 		return $this->db->update("atributos_m",$orden);
 	}
@@ -41,8 +44,9 @@ class Monedas_model extends CI_Model {
 
 
 	/*******VALOR DE ORDEN MAS BAJO*********/
-	public function min_orden()
+	public function min_orden($categoria)
 	{
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->select_min('orden','orden_min');
         $orden_minimo = $this->db->get('atributos_m');
 	    return $orden_minimo->row();
@@ -52,8 +56,9 @@ class Monedas_model extends CI_Model {
 
 
 	/*******SELECCIONA REGISTRO CON VALOR MENOR*********/
-	public function row_down_orden($orden)
+	public function row_down_orden($orden,$categoria)
 	{	
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->where("orden",$orden);
 		$resultado = $this->db->get("atributos_m");
 		return $resultado->row();
@@ -62,8 +67,9 @@ class Monedas_model extends CI_Model {
 	/*******SELECCIONA REGISTRO CON VALOR MENOR*********/
 
 	/*******ACTUALIZA REGISTRO CON VALORES*********/
-	public function update_orden_inferior($orden_id,$orden)
+	public function update_orden_inferior($orden_id,$orden,$categoria)
 	{	
+		$this->db->where("categoria_atributom",$categoria);
 		$this->db->where("id_atributo_m",$orden_id);
 		return $this->db->update("atributos_m",$orden);
 	}
@@ -87,8 +93,9 @@ class Monedas_model extends CI_Model {
 	}
 
 
-	public function listattr()
+	public function listattr($categoria)
 	{
+		$this->db->where("categoria_atributom",$categoria);
 		$resultados = $this->db->get("atributos_m");
 
 		return $resultados->result();
@@ -150,6 +157,7 @@ class Monedas_model extends CI_Model {
 /************Información_general***********/
 	public function listattr_form_generales()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Información_general');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -159,6 +167,7 @@ class Monedas_model extends CI_Model {
 /************Datos_Técnicos***********/
 	public function listattr_form_tecnicos()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Datos_Técnicos');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -168,6 +177,7 @@ class Monedas_model extends CI_Model {
 /************Anverso***********/
 	public function listattr_form_anverso()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Anverso');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -177,6 +187,7 @@ class Monedas_model extends CI_Model {
 /************Reverso***********/
 	public function listattr_form_reverso()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Reverso');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -186,6 +197,7 @@ class Monedas_model extends CI_Model {
 /************Canto***********/
 	public function listattr_form_canto()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Canto');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -195,6 +207,7 @@ class Monedas_model extends CI_Model {
 /************Variedades***********/
 	public function listattr_form_variedades()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Variedades');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -204,6 +217,7 @@ class Monedas_model extends CI_Model {
 /************Información_adicional***********/
 	public function listattr_form_adicional()
 	{	
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Información_adicional');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();
@@ -216,6 +230,7 @@ class Monedas_model extends CI_Model {
 /***************************************************EDITAR BILLETES******************************/
 	public function listattr_cat()
 	{
+		$this->db->order_by('orden', 'ASC');
 		$this->db->where('categoria_atributom', 'Catalogos');
 		$resultados = $this->db->get("atributos_m");
 		return $resultados->result();

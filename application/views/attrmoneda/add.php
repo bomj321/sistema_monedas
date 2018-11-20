@@ -120,7 +120,7 @@
 								 	<div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select  class="form-control" id="categoria_atributo" name="categoria_atributo" required='true'>
 											 		<option value="">Seleccione una Opcion</option>
-											 		<option value="Información_general">Información general</option>
+											 		<option value="Informacion_general">Información general</option>
 											 		<option value="Datos_Técnicos">Datos Técnicos</option>
 											 		<option value="Anverso">Anverso</option>
 											 		<option value="Reverso">Reverso</option>
