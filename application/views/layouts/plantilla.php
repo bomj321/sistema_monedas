@@ -37,6 +37,7 @@
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url();?>public/zoomy.css" rel="stylesheet">
     <link href="<?php echo base_url();?>public/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>public/app.css" rel="stylesheet">
 </head>
 
 

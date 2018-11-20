@@ -605,10 +605,10 @@
 
 
 
-<!--------------------------------------------SECCION VARIANTES-------------------->
+<!--------------------------------------------SECCION VARIEDADES-------------------->
 <?php if(!empty($atributos_not_variedades)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Canto</h3></div>
+		     <div class="panel-heading" style="background-color: #ffb3b3;"><h3 style="font-weight: bold;">Variedades</h3></div>
 		              <div class="panel-body" style="background-color: #ffcccc;">
 							 <?php foreach($atributos_not_variedades as $atributos_not_variedad):?>
 			<?php
@@ -715,7 +715,7 @@
 </div>							 	
  <?php endif; ?>							
 
-<!----------------------------SECCION VARIANTES------------------------------------>
+<!----------------------------SECCION VARIEDADES------------------------------------>
 
 
 
@@ -1469,10 +1469,10 @@
 
 
 
-<!--------------------------------------------SECCION VARIANTES-------------------->
+<!--------------------------------------------SECCION VARIEDADES-------------------->
 <?php if(!empty($atributos_variedades)): ?>
 <div class="panel panel-default">
-		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Informaci&oacute;n Adicional</h3></div>
+		     <div class="panel-heading" style="background-color: #b3e0ff;"><h3 style="font-weight: bold;">Variedades</h3></div>
 		              <div class="panel-body" style="background-color: #e6f5ff;">
 							<?php foreach($atributos_variedades as $atributos_variedad):?>
 
@@ -1592,7 +1592,7 @@
 </div>							 	
  <?php endif; ?>							
 
-<!----------------------------SECCION VARIANTES------------------------------------>
+<!----------------------------SECCION VARIEDADES------------------------------------>
 
 
 

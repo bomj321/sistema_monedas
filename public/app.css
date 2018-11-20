@@ -1,0 +1,31 @@
+/*Estilo para los modales*/
+.modal-content{
+	color: black;
+	font-weight: 800;
+}
+
+.modal-content h3 {
+	font-weight: 800;
+}
+
+.modal-content h4 {
+	font-weight: 800;
+}
+
+.modal-header{
+	background-color: #b3e0ff;
+}
+
+.modal-footer{
+	font-weight: 800;
+}
+
+.modal-body{
+	background-color: #e6f5ff;
+}
+
+.modal-footer{
+	background-color: #e6f5ff;
+}
+
+/*Estilo para los modales*/

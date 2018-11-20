@@ -71,7 +71,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

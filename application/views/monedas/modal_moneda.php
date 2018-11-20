@@ -1,14 +1,49 @@
-<!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 <?php if(!empty($monedas)): ?>
-	<?php foreach ($monedas as $moneda ): ?>
-		<?php if($moneda->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
-			<p><?php echo $moneda->nombreatributo?>: <?php echo $moneda->descripcionatributo?><?php echo $moneda->palabraclave == 'Precio' ? ' $':'';?></p>
-		<?php endif; ?>	 
-	<?php endforeach;?>
+					<?php foreach ($monedas as $moneda ): ?>
+						
+					<?php endforeach;?>
 <?php endif; ?>
+
+<div class="container">
+	<div class="row">
+<!------------------------------------------------IMAGEN-------------------------------------------------------------------->
+		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+				<?php if($moneda->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
+						<?php if (!empty($imagenes)): ?>	
+									<center><h3>Imagenes</h3></center>
+									<?php foreach ($imagenes as $imagen ): ?>
+									<?php $imagen_descripcionatributo = explode(",", $imagen->descripcionatributo); ?>
+									<center>
+										<a target="_blank"  href="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" class="zoom">
+									    <img class="zoom" src="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" style='width: 100%; height: 300px;' />
+									</a>
+									</center>			
+							<?php endforeach;?>
+						<?php endif;?>
+				<?php endif; ?>	
+
+		</div>
+<!------------------------------------------------IMAGEN-------------------------------------------------------------------->
+
 <!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
 
-<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->	
+		<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+				<?php if(!empty($monedas)): ?>
+					<center><h3>Información</h3></center>
+					<?php foreach ($monedas as $moneda ): ?>
+						<?php if($moneda->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
+							<p><?php echo $moneda->nombreatributo?>: <?php echo $moneda->descripcionatributo?><?php echo $moneda->palabraclave == 'Precio' ? ' $':'';?></p>
+						<?php endif; ?>	 
+					<?php endforeach;?>
+				<?php endif; ?>
+		</div>
+<!-----------------------------------------SECCION DE LOS ATRIBUTOS--------------------------------------------------------->
+
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->	
 <?php if($moneda->estado == '1' OR  $this->session->userdata("tipo_usuario") != '2'): ?>  
 							<?php if(!empty($catalogos)): ?>
 						<center><strong><h3>Catalogos Agregados</h3></strong></center>
@@ -62,19 +97,6 @@
 
 	<?php endif; ?> 
 <!----------------------------------------------------SECCION DE PAGOS---------------------------------------------->
-
-<!--------------------------------------------------SECCION DE LAS IMAGENES-->
-<?php if($moneda->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
-	<?php if (!empty($imagenes)): ?>	
-				<center><h3>Imagenes de la Moneda</h3></center>
-				<?php foreach ($imagenes as $imagen ): ?>
-				<?php $imagen_descripcionatributo = explode(",", $imagen->descripcionatributo); ?>
-				<center>
-					<a target="_blank"  href="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" class="zoom">
-				    <img class="zoom" src="<?php echo base_url().'public/images_monedas/'.$imagen_descripcionatributo[0]?>" style='width: 400px; height: 200px;' />
-				</a>
-				</center>			
-		<?php endforeach;?>
-	<?php endif;?>
-<?php endif; ?>		
-<!--------------------------------------------------SECCION DE LAS IMAGENES-->	
+		</div>
+	</div>
+</div>
