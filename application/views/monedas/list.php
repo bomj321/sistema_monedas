@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Control de Monedas<!--<small>Todos los clientes</small>--></h3>
+                <h3>Catalogo de Monedas<!--<small>Todos los clientes</small>--></h3>
               </div>             
             </div>
 
