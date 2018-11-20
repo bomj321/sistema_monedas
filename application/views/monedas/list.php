@@ -117,7 +117,15 @@
                                                         <span class="fa fa-search"></span>
                                                 </button>
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>
-                                                <a title="Editar Billete" href="<?php echo base_url();?>monedas/edit/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
+                                                 <a title="Editar Moneda" href="<?php echo base_url();?>monedas/edit/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
+
+                                                <?php if ($usuario->estado=='1'): ?>
+                                                    <a title="Deshabilitar Moneda" href="<?php echo base_url();?>monedas/deshabilitar/0/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-warning"><span class="fa fa-remove"></span></a> 
+                                              <?php else: ?>
+                                                  <a title="Habilitar Moneda" href="<?php echo base_url();?>monedas/deshabilitar/1/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success"><span class="fa fa-check"></span></a>                                                   
+                                              <?php endif ?>                                               
+
+                                                <a title="Eliminar Moneda" href="<?php echo base_url();?>monedas/delete/2/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
                                                <?php endif; ?> 
 
                                                <a title="Agregar a Colección" href="<?php echo base_url();?>collectionm/add_collection/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a>         

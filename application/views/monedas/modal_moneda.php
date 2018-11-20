@@ -22,7 +22,7 @@
 				<?php endif; ?>
 
 				<?php if(!empty($monedas_anverso)): ?>
-					<center><h3>Datos Técnicos</h3></center>
+					<center><h3>Anverso</h3></center>
 					<?php foreach ($monedas_anverso as $moneda_anverso ): ?>
 						<?php if($moneda_anverso->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
 							<p><?php echo $moneda_anverso->nombreatributo?>: <?php echo $moneda_anverso->descripcionatributo?><?php echo $moneda_anverso->palabraclave == 'Precio' ? ' $':'';?></p>
@@ -40,7 +40,7 @@
 				<?php endif; ?>
 
 				<?php if(!empty($monedas_canto)): ?>
-					<center><h3>Reverso</h3></center>
+					<center><h3>Canto</h3></center>
 					<?php foreach ($monedas_canto as $moneda_canto ): ?>
 						<?php if($moneda_canto->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
 							<p><?php echo $moneda_canto->nombreatributo?>: <?php echo $moneda_canto->descripcionatributo?><?php echo $moneda_canto->palabraclave == 'Precio' ? ' $':'';?></p>
@@ -58,7 +58,7 @@
 				<?php endif; ?>
 
 				<?php if(!empty($monedas_adicional)): ?>
-					<center><h3>Variedades</h3></center>
+					<center><h3>Información Adicional</h3></center>
 					<?php foreach ($monedas_adicional as $moneda_adicional ): ?>
 						<?php if($moneda_adicional->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
 							<p><?php echo $moneda_adicional->nombreatributo?>: <?php echo $moneda_adicional->descripcionatributo?><?php echo $moneda_adicional->palabraclave == 'Precio' ? ' $':'';?></p>

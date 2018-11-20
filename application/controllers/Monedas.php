@@ -16,7 +16,7 @@ class Monedas extends CI_Controller {
 	}
 
 
-/**/
+/*********************AGREGAR, EDITAR, DESHABILITAR Y ELIMINAR*/
 	public function add()
 	{
 		if($this->session->userdata("tipo_usuario")!=1){
@@ -72,8 +72,27 @@ class Monedas extends CI_Controller {
 		}
 	}
 
+	public function deshabilitar($estado,$id){
+		$data = array(
+			'estado' => $estado			
+		);
 
-/*AGREGAR Y EDITAR*/
+		$this->Monedas_model->update_state_moneda($id,$data);
+		redirect(base_url()."monedas/list");
+	}
+
+
+	public function delete($estado,$id){
+		$data = array(
+			'estado' => $estado			
+		);
+
+		$this->Monedas_model->delete_state_moneda($id,$data);
+		redirect(base_url()."monedas/list");
+	}
+
+
+/*********************AGREGAR, EDITAR, DESHABILITAR Y ELIMINAR*/
 
 
 public function create()
@@ -487,28 +506,56 @@ public function form_atributo_moneda($id_atributo)
 
 	public function list()
 	{
-		if ($this->input->post("filtros") AND $this->input->post("id_filtro")) {
-			$filtros   = $this->input->post("filtros");
-			$id_filtro = $this->input->post("id_filtro");
-			$data = array(
-			'usuarios'          => $this->Monedas_model->listusuarios_filtro($filtros), 
-			'filtros'           => $this->input->post("filtros"),
-			'id_filtro'         => $this->input->post("id_filtro"),
-			'atributos'         => $this->Monedas_model->listatributos(),
-			'opciones_atributo' => $this->Monedas_model->listatributos_opciones($id_filtro),
 
-			);
-			$this->layout->view("list",$data);
+		if($this->session->userdata("tipo_usuario")==1 ){
+						if ($this->input->post("filtros") AND $this->input->post("id_filtro")) {
+							$filtros   = $this->input->post("filtros");
+							$id_filtro = $this->input->post("id_filtro");
+							$data = array(
+							'usuarios'          => $this->Monedas_model->listusuarios_filtro($filtros), 
+							'filtros'           => $this->input->post("filtros"),
+							'id_filtro'         => $this->input->post("id_filtro"),
+							'atributos'         => $this->Monedas_model->listatributos(),
+							'opciones_atributo' => $this->Monedas_model->listatributos_opciones($id_filtro),
+
+							);
+							$this->layout->view("list",$data);
+
+						}else{
+							$data = array(
+							'atributos'  => $this->Monedas_model->listatributos(),	
+							'usuarios'   => $this->Monedas_model->listusuarios(), 
+							);
+							$this->layout->view("list",$data);
+						}
 
 		}else{
-			$data = array(
-			'atributos'  => $this->Monedas_model->listatributos(),	
-			'usuarios'   => $this->Monedas_model->listusuarios(), 
-			);
-			$this->layout->view("list",$data);
+						if ($this->input->post("filtros") AND $this->input->post("id_filtro")) {
+							$filtros   = $this->input->post("filtros");
+							$id_filtro = $this->input->post("id_filtro");
+							$data = array(
+							'usuarios'          => $this->Monedas_model->listusuarios_filtro_free($filtros), 
+							'filtros'           => $this->input->post("filtros"),
+							'id_filtro'         => $this->input->post("id_filtro"),
+							'atributos'         => $this->Monedas_model->listatributos(),
+							'opciones_atributo' => $this->Monedas_model->listatributos_opciones($id_filtro),
+
+							);
+							$this->layout->view("list",$data);
+
+						}else{
+							$data = array(
+							'atributos'  => $this->Monedas_model->listatributos(),	
+							'usuarios'   => $this->Monedas_model->listusuarios_free(), 
+							);
+							$this->layout->view("list",$data);
+						}
+
+
+
 		}
-		
-	}
+
+}
 /**********SECCION DE LISTADO Y FILTROS********/
 
 
