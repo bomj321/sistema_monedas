@@ -25,8 +25,80 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content"> <!--CONTENIDO-->                    
-							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+                  <div class="x_content"> <!--CONTENIDO-->  
+                          <div class="row" style="margin-bottom: 10px;"> 
+                                <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <!--VERIFICAR SI EXISTE LA VARIABLE-->
+                                                <?php 
+                                                    if (isset($id_filtro) AND !empty($id_filtro)) {
+                                                        $id_filtro = $id_filtro;
+                                                    }else{
+                                                        $id_filtro = '';
+                                                    }
+                                                 ?>
+                                                <!--VERIFICAR SI EXISTE LA VARIABLE-->
+                                                    <select onchange='opciones_moneda()'name='filtro_moneda' class="form-control" id="filtro_moneda">
+                                                      <option>Seleccione una Opción</option>
+                                                      <?php foreach ($atributos as $atributo): 
+                                                            /*CONVERTIR GUION BAJO A ESPACIO*/
+                                                                $nombreatributo = str_replace("_", " ", $atributo->categoria_atributom);
+                                                            /*CONVERTIR GUION BAJO A ESPACIO*/
+                                                        ?>
+                                                        <option style='font-weight: 900;' disabled>Sección <?php echo $nombreatributo ?></option>
+                                                <!--SUB CONSULTA-->
+                                                    <?php 
+                                                         $sql ="SELECT * FROM atributos_m WHERE categoria_atributom = '$atributo->categoria_atributom' AND tipo_atributom != 'Fotos'";
+                                                         $query = $this->db->query($sql);
+                                                     ?>
+
+                                                     <?php if ($query->num_rows() > 0): ?>
+                                                        <?php foreach ($query->result() as $row): ?>
+                                                            <option  <?php echo $id_filtro == $row->id_atributo_m ? 'selected' : '' ?> value="<?php echo $row->id_atributo_m;?>"><?php echo $row->nombre_atributo;?></option>
+                                                        <?php endforeach ?>                                                         
+                                                     <?php endif ?>
+                                              
+                                                <!--SUB CONSULTA-->                                                        
+                                                            
+                                                      <?php endforeach ?>
+                                                      
+                                                     
+                                                   </select>
+                                            </div>
+                                </div>
+<!--RESPUESTA AJAX-->
+                                <div class="col-md-5 col-sm-12" id="respuesta_ajax_filtros_monedas">
+                                        <?php if (isset($id_filtro) AND !empty($id_filtro)): ?>
+                                            <form action="<?php echo base_url();?>monedas/list" method='POST'>
+                                                <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <input name="id_filtro" type="hidden" value="<?php echo $id_filtro;?>">
+                                                    <div class="form-group">
+                                                        <select class='form-control' name="filtros" id="filtros">
+                                                            <?php foreach ($opciones_atributo as $opcion_atributo): ?>
+                                                                <option  <?php echo $filtros == $opcion_atributo->atributo_moneda ? 'selected' : '' ?> value="<?php echo $opcion_atributo->atributo_moneda;?>"><?php echo $opcion_atributo->atributo_moneda;?></option>
+                                                            <?php endforeach ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-primary" type="submit">Buscar</button>
+                                                    </div>
+                                                </div>                                            
+                                            </form>                                        
+                                        <?php endif ?>
+                                     
+                                </div>
+<!--RESPUESTA AJAX-->
+                                 <div class="col-md-3 col-sm-12">                                   
+                                        <a href="<?php echo base_url();?>monedas/list" class='btn btn-success pull-left'>Refrescar Registros</a>
+                                            
+                                </div>
+                                    
+                           </div>
+
+						<table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>ID de la Moneda</th>

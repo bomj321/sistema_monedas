@@ -16,7 +16,7 @@ $("#boton_tipo_atributo").hide();
             "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
             "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
             "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
+            "sSearch":         "Buscador General:",
             "sUrl":            "",
             "sInfoThousands":  ",",
             "sLoadingRecords": "Cargando...",
@@ -646,3 +646,35 @@ function requerido($id){
 
 }
 /*******SECCION PARA COLOCAR REQUERIDO EL CAMPO FUENTE********/
+
+
+
+/*************OPCIONES EN EL LISTADO DE MONEDAS*************/
+function opciones_moneda()
+{
+  var id_atributo = document.getElementById('filtro_moneda').value;
+
+   var base_url= 'http://localhost/sistema_monedas/';
+            $.ajax({
+                url: base_url + "monedas/form_atributo_moneda/" + id_atributo,
+                type:"POST",
+                beforeSend: function() {
+                     $('#respuesta_ajax_filtros_monedas').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },
+                   success:function(resp){
+                     //$("#input_creado").append(resp);
+                      $('#respuesta_ajax_filtros_monedas').html("");
+                      $("#respuesta_ajax_filtros_monedas").html(resp);
+                    //alert(resp);
+                },
+                error:function(){
+                  $('#respuesta_ajax_filtros_monedas').html("");
+                  $('#respuesta_ajax_filtros_monedas').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                }
+
+            });
+}
+/*************OPCIONES EN EL LISTADO DE MONEDAS*************/
+
+
+

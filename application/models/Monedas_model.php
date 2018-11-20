@@ -741,11 +741,46 @@ public function listmonedaimage($id)
 		}
 }
 
+/************CONSULTAS PARA LA PAGINA LIST**********/
+
 public function listusuarios()
-{	
+{
 		$resultados = $this->db->get("catalogo_monedas");
 		return $resultados->result();
 }
+
+public function listusuarios_filtro($filtros)
+{	
+	$this->db->select("cm.*,");
+	$this->db->from("catalogo_monedas cm");
+	$this->db->join("atributo_monedas attr_monedas","cm.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->where('attr_monedas.atributo_moneda', $filtros);	
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+public function listatributos()
+{		
+
+	    $this->db->group_by("categoria_atributom");
+		$resultados = $this->db->get("atributos_m");
+		return $resultados->result();
+}
+
+public function listatributos_opciones($id_atributo)
+{		
+
+		$this->db->where("atributo_monedas.id_atributo",$id_atributo);
+		$resultados = $this->db->get("atributo_monedas");
+		return $resultados->result();
+}
+/************CONSULTAS PARA LA PAGINA LIST**********/
+
 /**********************************************************SECCION MONEDAS*******************************/
 
 }

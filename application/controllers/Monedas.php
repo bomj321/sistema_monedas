@@ -469,15 +469,48 @@ $this->edit($id);
 
 /////////////////////////////////////////////////////////////////////////////////////////EDIT
 
+/**********SECCION DE LISTADO Y FILTROS********/
+
+
+public function form_atributo_moneda($id_atributo)
+{
+	$data = array(
+		'opciones_atributo' => $this->Monedas_model->listatributos_opciones($id_atributo),
+		'id_atributo' => $id_atributo,
+
+	);
+	$this->load->view("monedas/form_atributo_moneda",$data);
+}
+
+
+
 
 	public function list()
 	{
-		$data = array(
-			'usuarios' => $this->Monedas_model->listusuarios(), 
-		);
+		if ($this->input->post("filtros") AND $this->input->post("id_filtro")) {
+			$filtros   = $this->input->post("filtros");
+			$id_filtro = $this->input->post("id_filtro");
+			$data = array(
+			'usuarios'          => $this->Monedas_model->listusuarios_filtro($filtros), 
+			'filtros'           => $this->input->post("filtros"),
+			'id_filtro'         => $this->input->post("id_filtro"),
+			'atributos'         => $this->Monedas_model->listatributos(),
+			'opciones_atributo' => $this->Monedas_model->listatributos_opciones($id_filtro),
 
-		$this->layout->view("list",$data);
+			);
+			$this->layout->view("list",$data);
+
+		}else{
+			$data = array(
+			'atributos'  => $this->Monedas_model->listatributos(),	
+			'usuarios'   => $this->Monedas_model->listusuarios(), 
+			);
+			$this->layout->view("list",$data);
+		}
+		
 	}
+/**********SECCION DE LISTADO Y FILTROS********/
+
 
 public function view($id)
 {
