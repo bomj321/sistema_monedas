@@ -1,7 +1,9 @@
 /*Estilo para los modales*/
 .modal-content{
 	color: black;
-	font-weight: 800;
+	font-weight: 900;
+	font-family: "calibri", Garamond, 'Comic Sans';
+	font-size: 15px;
 }
 
 .modal-content h3 {
@@ -10,6 +12,11 @@
 
 .modal-content h4 {
 	font-weight: 800;
+}
+
+.modal-content .contenido_modal {
+	border: 1px solid black;
+	border-radius: 40px;
 }
 
 .modal-header{

@@ -482,10 +482,16 @@ $this->edit($id);
 public function view($id)
 {
 	$data  = array(
-			'monedas'        => $this->Monedas_model->listmoneda($id), 
-			'imagenes'       => $this->Monedas_model->listmonedaimage($id),
-			'catalogos'      => $this->Monedas_model->listattr_cat_edit($id),
-			'pagos_catalogo' => $this->Monedas_model->listattr_cat_pagos($id)
+			'monedas_general'    => $this->Monedas_model->listmoneda_general($id), 
+			'monedas_tecnico'    => $this->Monedas_model->listmoneda_tecnico($id),
+			'monedas_anverso'    => $this->Monedas_model->listmoneda_anverso($id),
+			'monedas_reverso'    => $this->Monedas_model->listmoneda_reverso($id),
+			'monedas_canto'      => $this->Monedas_model->listmoneda_canto($id),
+			'monedas_variedades' => $this->Monedas_model->listmoneda_variedades($id),
+			'monedas_adicional'  => $this->Monedas_model->listmoneda_adicional($id), 
+			'imagenes'           => $this->Monedas_model->listmonedaimage($id),
+			'catalogos'          => $this->Monedas_model->listattr_cat_edit($id),
+			'pagos_catalogo'     => $this->Monedas_model->listattr_cat_pagos($id)
 		);
 		$this->load->view("monedas/modal_moneda",$data);
 }

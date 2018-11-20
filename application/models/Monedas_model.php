@@ -537,7 +537,10 @@ public function add_moneda($data_usuario)
 	 return $ultimo_id;
 }
 
-public function listmoneda($id)
+/*Listado de atributos informacion general*/
+
+
+public function listmoneda_general($id)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
@@ -545,7 +548,8 @@ public function listmoneda($id)
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
-	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogo');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Información_general');
 	$this->db->order_by('attr_m.orden', 'DESC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -555,6 +559,170 @@ public function listmoneda($id)
 			return false;
 		}
 }
+
+
+/*Listado de atributos informacion general*/
+
+/*Listado de atributos datos tecnicos*/
+
+
+public function listmoneda_tecnico($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Datos_Técnicos');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos datos tecnicos*/
+
+
+/*Listado de atributos Anverso*/
+
+
+public function listmoneda_anverso($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Anverso');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos Anverso*/
+
+/*Listado de atributos Reverso*/
+
+
+public function listmoneda_reverso($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Reverso');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos Reverso*/
+
+
+/*Listado de atributos Canto*/
+
+
+public function listmoneda_canto($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Canto');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos Canto*/
+
+
+/*Listado de atributos Variedades*/
+
+
+public function listmoneda_variedades($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Variedades');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos Variedades*/
+
+
+/*Listado de atributos Información_adicional*/
+
+
+public function listmoneda_adicional($id)
+{	
+	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
+	$this->db->from("catalogo_monedas m");
+	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
+	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
+	$this->db->where('attr_m.categoria_atributom', 'Información_adicional');
+	$this->db->order_by('attr_m.orden', 'DESC');
+	$resultados = $this->db->get();
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		}else
+		{
+			return false;
+		}
+}
+
+
+/*Listado de atributos Información_adicional*/
+
 
 public function listmonedaimage($id)
 {	

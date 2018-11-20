@@ -83,7 +83,7 @@
 				<?php 
 					$label_atributo = array(
 	                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-	                    'title'       => $atributos_not_generales->descripcion_atributo
+	                    'title'       => $atributo_not_general->descripcion_atributo
 
 					);
 
@@ -115,7 +115,7 @@
 					<?php 
 						$label_atributo = array(
 		                    'class'        => 'col-sm-2 col-xs-12 col-md-2 control-label',
-		                     'title'       => $atributos_not_generales->descripcion_atributo
+		                     'title'       => $atributo_not_general->descripcion_atributo
 						);
 
 
@@ -130,7 +130,7 @@
  <?php if ($atributo_not_general->tipo_atributom=='Fotos'): ?>
 
 		    	<div class="form-group">
-					<label title='<?php echo  $atributos_not_generales->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_not_general->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
+					<label title='<?php echo  $atributo_not_general->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_not_general->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
 						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_not_general->id_atributo_m?>" name="fuente_imagen_add[]">										 
 					</div>
