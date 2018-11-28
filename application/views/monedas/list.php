@@ -39,7 +39,7 @@
                                                  ?>
                                                 <!--VERIFICAR SI EXISTE LA VARIABLE-->
                                                     <select onchange='opciones_moneda()'name='filtro_moneda' class="form-control" id="filtro_moneda">
-                                                      <option>Seleccione una Opción</option>
+                                                      <option>Seleccione una Opci&oacute;n</option>
                                                       <?php foreach ($atributos as $atributo): 
                                                             /*CONVERTIR GUION BAJO A ESPACIO*/
                                                                 $nombreatributo = str_replace("_", " ", $atributo->categoria_atributom);
@@ -101,8 +101,8 @@
 						<table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID de la Moneda</th>
                                     <th>Usuario que la Registro</th>
+                                    <th>Nombre de la Moneda</th>                                   
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
@@ -110,12 +110,47 @@
                                 <?php if(!empty($usuarios)):?>
                                     <?php foreach($usuarios as $usuario):?>
                                         <tr>
-                                            <td><?php echo $usuario->id_catalogo_moneda;?></td>
                                             <td><?php echo $usuario->usuario;?></td>
+<!--CONSULTAS-->
+<?php 
+include 'consultas_nombre.php';
+/*VERIFICACION SI ESTA VACIA*/
+if ( $valor_facial=='') {
+    $valor_facial = 'N/A';
+}
+
+if ( $ano_acunacion=='') {
+    $ano_acunacion = 'N/A';
+}
+
+if ( $ensayador=='') {
+    $ensayador = 'N/A';
+}
+
+if ( $ceca=='') {
+    $ceca = 'N/A';
+}
+
+if ( $gobernante=='') {
+    $gobernante = 'N/A';
+}
+/*VERIFICACION SI ESTA VACIA*/
+
+ ?>
+<!--CONSULTAS-->                                              
+                                            <th>
+                                                <a class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-target="#modal-default">
+
+                                                    <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
+                                                        
+                                                </a>
+                                            </th>
+
                                             <td>
-                                            	 <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>">
+                                            	<!-- <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>">
                                                         <span class="fa fa-search"></span>
-                                                </button>
+                                                </button>-->
+
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                                                  <a title="Editar Moneda" href="<?php echo base_url();?>monedas/edit/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a> 
 
@@ -139,7 +174,7 @@
                 </div><!--CONTENIDO-->
 
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
