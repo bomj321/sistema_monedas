@@ -107,12 +107,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+<?php $i=0; ?> <!--CODIGO QUE AUTOINCREMENTA EL ID POR UNO PARA EVITAR DUPLICADOS-->                               
                                 <?php if(!empty($usuarios)):?>
                                     <?php foreach($usuarios as $usuario):?>
                                         <tr>
                                             <td><?php echo $usuario->usuario;?></td>
+
 <!--CONSULTAS-->
 <?php 
+
 include 'consultas_nombre.php';
 /*VERIFICACION SI ESTA VACIA*/
 if ( $valor_facial=='') {
@@ -139,7 +142,7 @@ if ( $gobernante=='') {
  ?>
 <!--CONSULTAS-->                                              
                                             <th>
-                                                <a class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-target="#modal-default">
+                                                <a onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" title="Imagenes" data-content="">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         
@@ -167,6 +170,7 @@ if ( $gobernante=='') {
 
                                             </td>
                                         </tr>
+<?php $i++; ?> <!--CODIGO QUE AUTOINCREMENTA EL ID POR UNO PARA EVITAR DUPLICADOS-->                                       
                                     <?php endforeach;?>
                                 <?php endif;?>
                             </tbody>
@@ -197,4 +201,5 @@ if ( $gobernante=='') {
         </div>
      </div>  
 </div>
+
         <!---------

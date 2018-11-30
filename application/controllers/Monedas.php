@@ -558,7 +558,7 @@ public function form_atributo_moneda($id_atributo)
 }
 /**********SECCION DE LISTADO Y FILTROS********/
 
-
+/*VISTAS PARA EL MODAL*/
 public function view($id)
 {
 	$data  = array(
@@ -577,6 +577,20 @@ public function view($id)
 }
 
 
+
+/*VISTAS PARA EL MODAL*/
+
+/*VISTAS DEL POPOVER*/
+public function view_popover($id_usuario)
+{
+	$data  = array(			
+			'imagenes'           => $this->Monedas_model->listmonedaimage($id_usuario),
+			
+		);
+		$this->load->view("monedas/popover_moneda",$data);
+}
+
+/*VISTAS DEL POPOVER*/
 /*FORMULARIO RENDERIZADO CON AJAX*/
 public function form_moneda($selectext,$selecvalue)
 {	
