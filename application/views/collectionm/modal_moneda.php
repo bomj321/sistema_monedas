@@ -30,6 +30,9 @@
 						<p>Cantidad Adicional: <?php echo $coleccionesmp->cantidad_moneda                     == '' ? 'Sin Información': $coleccionesmp->cantidad_moneda;?></p>
 					 <?php endif; ?> 	
 					<p>Descripci&oacute;n: <?php echo $coleccionesmp->descripcion_moneda                      == '' ? 'Sin Información': $coleccionesmp->descripcion_moneda;?></p>
+				<?php if($this->session->userdata("id")==$coleccionesmp->id_usuario ):?>
+					<p>Descripci&oacute;n: <?php echo $coleccionesmp->descripcion_moneda_privada                      == '' ? 'Sin Información': $coleccionesmp->descripcion_moneda_privada;?></p>
+				<?php endif; ?> 	
 					
 				
 			</div>	 
@@ -41,7 +44,7 @@
 	<?php if(!empty($coleccionesma)): ?>
 		<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<center><h3>Billetes Adicionales</h3></center>
+					<center><h3>Monedas Adicionales</h3></center>
 				</div>
 		</div>
 
@@ -57,6 +60,9 @@
 								<p>Tipo de Registro: <?php echo $coleccionesma->tipo_registro                       == '' ? 'Sin Información': $coleccionesma->tipo_registro;?></p>
 								<p>Precio del Moneda: <?php echo $coleccionesma->precio_moneda                      == '' ? 'Sin Información': $coleccionesma->precio_moneda. ' $';?></p>
 								<p>Descripci&oacute;n: <?php echo $coleccionesma->descripcion_moneda                == '' ? 'Sin Información': $coleccionesma->descripcion_moneda;?></p>
+						<?php if($this->session->userdata("id")==$coleccionesma->id_usuario ):?>		
+								<p>Descripci&oacute;n: <?php echo $coleccionesma->descripcion_moneda_privada        == '' ? 'Sin Información': $coleccionesma->descripcion_moneda_privada;?></p>
+						<?php endif; ?> 		
 							 	
 					
 				</div>

@@ -111,6 +111,12 @@ function popover_contenido($id,$id_usuario){
 
 }
 
+function cerrar_popover($id){
+   var id = $id; /*id autoincrementable*/
+   var id_element = 'popover_toggle_moneda_'+id;
+   $("#"+id_element).popover('hide');
+}
+
 
 /****************CODIGO PARA LOS POPOVER DE LAS MONEDAS**************/
 
@@ -564,7 +570,7 @@ function preciomoneda()
 
             });
   }else{
-    $('#precio_billete').html("");
+    $('#precio_moneda').html("");
   }
   
 }

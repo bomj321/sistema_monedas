@@ -2,7 +2,7 @@
 	   <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Agregar a Colecci&oacute;n</h3>
+                <h3>Editar a Colecci&oacute;n</h3>
               </div>             
             </div>
 
@@ -131,27 +131,6 @@
 									</div>					
 								</div>
 
-
-								<div class="form-group">
-									<label for="serie_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Serie</label>								
-									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->serie_moneda ?>" required type="text" class="form-control" placeholder="Numero de Serie" id="serie_moneda" name="serie_moneda">
-										 	<?php 									 	
-	                						echo form_error("serie_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
-										    ?>
-									</div>					
-								</div>
-
-								<div class="form-group">
-									<label for="subserie" class="col-sm-2 col-xs-12 col-md-2 control-label">Subserie</label>								
-									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->subserie ?>" required type="text" class="form-control" placeholder="Numero de Sub-serie si lo tiene" id="subserie" name="subserie">
-										 	<?php 									 	
-	                						echo form_error("subserie","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
-										    ?>
-									</div>					
-								</div>
-
 								
 								<div class="form-group">
 									<label for="numero_moneda_add" class="col-sm-2 col-xs-12 col-md-2 control-label">Numero del Moneda</label>								
@@ -196,11 +175,21 @@
 									
 
 								<div class="form-group" style="margin-bottom: 20px;">
-									<label for="descripcion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
+									<label for="descripcion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Nota P&uacute;blica</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea required name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda ?></textarea>
+										 	<textarea name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda ?></textarea>
 										 	<?php 									 	
 	                						echo form_error("descripcion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
+										    ?>
+									</div>					
+								</div>
+
+								<div class="form-group" style="margin-bottom: 20px;">
+									<label for="descripcion_moneda_privada" class="col-sm-2 col-xs-12 col-md-2 control-label">Nota Privada</label>								
+									 <div class="col-md-10 col-sm-12 col-xs-12">
+										 	<textarea name="descripcion_moneda_privada" id="descripcion_moneda_privada" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda_privada ?></textarea>
+										 	<?php 									 	
+	                						echo form_error("descripcion_moneda_privada","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
 									</div>					
 								</div>

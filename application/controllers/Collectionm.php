@@ -38,21 +38,20 @@ class Collectionm extends CI_Controller {
 	}
 
 public function create()
-{	    $id_usuario               = $this->input->post("id_usuario");
-	    $id_moneda                = $this->input->post("id_moneda");
-	    $condicion_moneda         = $this->input->post("condicion_moneda");
-		$casa_certificadora       = $this->input->post("casa_certificadora");
-		$valor_certificacion      = $this->input->post("valor_certificacion");
-		$registro_certificacion   = $this->input->post("registro_certificacion");
-		$tipo_registro            = $this->input->post("tipo_registro");
-		$tipo_registro_moneda     = $this->input->post("tipo_registro_moneda");
-		$precio_moneda            = $this->input->post("precio_moneda");
-		$serie_moneda             = $this->input->post("serie_moneda");
-		$subserie                 = $this->input->post("subserie");		
-		$precio_referencia        = $this->input->post("precio_referencia");
-		$lugar_moneda             = $this->input->post("lugar_moneda"); //INPUT PARA USUARIOS PAGOS
-		$cantidad_moneda          = $this->input->post("cantidad_moneda");
-		$descripcion_moneda       = $this->input->post("descripcion_moneda");
+{	    $id_usuario                       = $this->input->post("id_usuario");
+	    $id_moneda                        = $this->input->post("id_moneda");
+	    $condicion_moneda                 = $this->input->post("condicion_moneda");
+		$casa_certificadora               = $this->input->post("casa_certificadora");
+		$valor_certificacion              = $this->input->post("valor_certificacion");
+		$registro_certificacion           = $this->input->post("registro_certificacion");
+		$tipo_registro                    = $this->input->post("tipo_registro");
+		$tipo_registro_moneda             = $this->input->post("tipo_registro_moneda");
+		$precio_moneda                    = $this->input->post("precio_moneda");		
+		$precio_referencia                = $this->input->post("precio_referencia");
+		$lugar_moneda                     = $this->input->post("lugar_moneda"); //INPUT PARA USUARIOS PAGOS
+		$cantidad_moneda                  = $this->input->post("cantidad_moneda");
+		$descripcion_moneda               = $this->input->post("descripcion_moneda");
+		$descripcion_moneda_privada       = $this->input->post("descripcion_moneda_privada");
 
 
 		if ($tipo_registro =='Personal') {
@@ -65,42 +64,40 @@ public function create()
 		}
 		
 
-		$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
+	/*	$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
 		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
 		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
 		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
-		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
+		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");*/
 	/*	if (!empty($tipo_registro)) {
 			$this->form_validation->set_rules("precio_moneda","Precio del Moneda","required");
 		 }*/
-		$this->form_validation->set_rules("serie_moneda","Serie del Moneda","required");
-		$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
-		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");
+	/*	$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
+		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");*/
 		/*SECCION DE USUARIOS PAGOS*/
 		/*if (!empty($cantidad_moneda)) {
 			$this->form_validation->set_rules("cantidad_moneda","Cantidad que posee","required");			
 		}*/
 		/*SECCION DE USUARIOS PAGOS*/
-		$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");
+	/*	$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");*/
 
 		if ($this->form_validation->run()) {
 			$data = array(
-				'id_usuario'               => $id_usuario,
-				'id_moneda'                => $id_moneda,
-				'condicion_moneda'         => $condicion_moneda, 
-				'casa_certificadora'       => $casa_certificadora,
-				'valor_certificacion'      => $valor_certificacion,
-				'registro_certificacion'   => $registro_certificacion, 
-				'tipo_registro'            => $tipo_registro,
-				'tipo_moneda_registro'     => $tipo_registro_moneda,
-				'precio_moneda'            => $precio_moneda,
-				'mercado'                  => $mercado,
-				'serie_moneda'             => $serie_moneda, 
-				'subserie'                 => $subserie,
-				'precio_referencia'        => $precio_referencia,
-				'lugar_moneda'             => $lugar_moneda,
-				'cantidad_moneda'          => $cantidad_moneda, 
-				'descripcion_moneda'       => $descripcion_moneda,
+				'id_usuario'                       => $id_usuario,
+				'id_moneda'                        => $id_moneda,
+				'condicion_moneda'                 => $condicion_moneda, 
+				'casa_certificadora'               => $casa_certificadora,
+				'valor_certificacion'              => $valor_certificacion,
+				'registro_certificacion'           => $registro_certificacion, 
+				'tipo_registro'                    => $tipo_registro,
+				'tipo_moneda_registro'             => $tipo_registro_moneda,
+				'precio_moneda'                    => $precio_moneda,
+				'mercado'                          => $mercado,
+				'precio_referencia'                => $precio_referencia,
+				'lugar_moneda'                     => $lugar_moneda,
+				'cantidad_moneda'                  => $cantidad_moneda, 
+				'descripcion_moneda'               => $descripcion_moneda,
+				'descripcion_moneda_privada'       => $descripcion_moneda_privada,
 			);
 
 			if ($this->Collectionm_model->save($data)) 
@@ -123,6 +120,8 @@ public function create()
                         /*IMAGENES*/
 				    	$tipo_registro_moneda_add           = $this->input->post("tipo_registro_moneda_add_$i");				    
 					    $precio_moneda_add                  = $this->input->post("precio_moneda_add_$i");
+					    $descripcion_moneda_add             = $this->input->post("descripcion_moneda_add_$i");
+		                $descripcion_moneda_privada_add     = $this->input->post("descripcion_moneda_privada_add__$i");
 
 
 					    if ($tipo_registro_moneda_add == 'Personal') {
@@ -158,24 +157,25 @@ public function create()
 						     
 						/*CODIGO PARA SUBIR*/
 						$data = array(
-								'id_usuario'               => $id_usuario,
-								'id_moneda'                => $id_moneda,
-								'condicion_moneda'         => $condicion_moneda_add, 
-								'casa_certificadora'       => $casa_certificadora,
-								'valor_certificacion'      => $valor_certificacion,
-								'registro_certificacion'   => $registro_certificacion, 
-								'tipo_registro'            => $tipo_registro_moneda_add,
-								'tipo_moneda_registro'     => $tipo_registro_moneda_add_type,
-								'foto_frente_moneda'       => $imagen_1['upload_data']['file_name'],
-								'foto_detras_moneda'       => $imagen_2['upload_data']['file_name'],
-								'precio_moneda'            => $precio_moneda_add,
-								'mercado'                  => $mercado_add,
-								'serie_moneda'             => $serie_moneda_add,
-								'numero_moneda_add'        => $numero_moneda_add,
-								'subserie'                 => $subserie_moneda_add, 
-								'lugar_moneda'             => $lugar_moneda,
+								'id_usuario'                       => $id_usuario,
+								'id_moneda'                        => $id_moneda,
+								'condicion_moneda'                 => $condicion_moneda_add, 
+								'casa_certificadora'               => $casa_certificadora,
+								'valor_certificacion'              => $valor_certificacion,
+								'registro_certificacion'           => $registro_certificacion, 
+								'tipo_registro'                    => $tipo_registro_moneda_add,
+								'tipo_moneda_registro'             => $tipo_registro_moneda_add_type,
+								'foto_frente_moneda'               => $imagen_1['upload_data']['file_name'],
+								'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
+								'precio_moneda'                    => $precio_moneda_add,
+								'mercado'                          => $mercado_add,
+								'serie_moneda'                     => $serie_moneda_add,
+								'numero_moneda_add'                => $numero_moneda_add,
+								'subserie'                         => $subserie_moneda_add, 
+								'lugar_moneda'                     => $lugar_moneda,
 								//'cantidad_moneda'        => $cantidad_moneda, 
-								'descripcion_moneda'       => $descripcion_moneda,
+								'descripcion_moneda'               => $descripcion_moneda_add,
+								'descripcion_moneda_privada'       => $descripcion_moneda_privada_add,
 							);
 						/*CODIGO PARA SUBIR*/
 						$this->Collectionm_model->save_monedas_variantes($data);
@@ -262,48 +262,44 @@ public function editp_moneda()
 		$registro_certificacion  		    = $this->input->post("registro_certificacion");
 		$tipo_registro           		    = $this->input->post("tipo_registro");
 		$precio_moneda          		    = $this->input->post("precio_moneda");
-		$mercado          		            = $this->input->post("mercado");
-		$serie_moneda            			= $this->input->post("serie_moneda");
-		$subserie                 			= $this->input->post("subserie");		
+		$mercado          		            = $this->input->post("mercado");	
 		$precio_referencia        			= $this->input->post("precio_referencia");
 		$lugar_moneda            			= $this->input->post("lugar_moneda"); //INPUT PARA USUARIOS PAGOS
 		$cantidad_moneda         			= $this->input->post("cantidad_moneda");
 		$descripcion_moneda      			= $this->input->post("descripcion_moneda");
+		$descripcion_moneda_privada         = $this->input->post("descripcion_moneda_privada");
 
 
-		$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
+	/*	$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
 		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
 		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
 		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
 		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
 		$this->form_validation->set_rules("precio_moneda","Precio del Moneda","required");
-		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");		 
-		$this->form_validation->set_rules("serie_moneda","Serie del Moneda","required");
-		$this->form_validation->set_rules("subserie","Subserie del Moneda","required");
+		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required"); 
 		$this->form_validation->set_rules("precio_referencia","Precio de Referencia","required");
-		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");
+		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");*/
 		/*SECCION DE USUARIOS PAGOS*/
-		$this->form_validation->set_rules("cantidad_moneda","Cantidad que posee","required");			
+	/*	$this->form_validation->set_rules("cantidad_moneda","Cantidad que posee","required");	*/		
 		
 		/*SECCION DE USUARIOS PAGOS*/
-		$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");
+		/*$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");*/
 
 		if ($this->form_validation->run()) {
 
 				$data = array(
-				'condicion_moneda'         => $condicion_moneda, 
-				'casa_certificadora'       => $casa_certificadora,
-				'valor_certificacion'      => $valor_certificacion,
-				'registro_certificacion'   => $registro_certificacion, 
-				'tipo_registro'            => $tipo_registro,
-				'precio_moneda'            => $precio_moneda,
-				'mercado'                  => $mercado,
-				'serie_moneda'             => $serie_moneda, 
-				'subserie'                 => $subserie,
-				'precio_referencia'        => $precio_referencia,
-				'lugar_moneda'             => $lugar_moneda,
-				'cantidad_moneda'          => $cantidad_moneda, 
-				'descripcion_moneda'       => $descripcion_moneda,
+				'condicion_moneda'                 => $condicion_moneda, 
+				'casa_certificadora'               => $casa_certificadora,
+				'valor_certificacion'              => $valor_certificacion,
+				'registro_certificacion'           => $registro_certificacion, 
+				'tipo_registro'                    => $tipo_registro,
+				'precio_moneda'                    => $precio_moneda,
+				'mercado'                          => $mercado,
+				'precio_referencia'                => $precio_referencia,
+				'lugar_moneda'                     => $lugar_moneda,
+				'cantidad_moneda'                  => $cantidad_moneda, 
+				'descripcion_moneda'               => $descripcion_moneda,
+				'descripcion_moneda_privada'       => $descripcion_moneda_privada,
 			);
 				$this->Collectionm_model->updatep($id_moneda,$data);
 				redirect(base_url()."collectionm/list");
@@ -336,13 +332,12 @@ public function edita_moneda()
 		$tipo_registro           		    = $this->input->post("tipo_registro");
 		$precio_moneda          		    = $this->input->post("precio_moneda");
 		$mercado          		            = $this->input->post("mercado");
-		$serie_moneda            			= $this->input->post("serie_moneda");
-		$subserie                 			= $this->input->post("subserie");
 		$numero_moneda_add                  = $this->input->post("numero_moneda_add");	
 		$foto_frente                        = $this->input->post("foto_frente");	
 		$foto_detras                        = $this->input->post("foto_detras");		
 		$lugar_moneda            			= $this->input->post("lugar_moneda");
 		$descripcion_moneda      			= $this->input->post("descripcion_moneda");
+		$descripcion_moneda_privada     	= $this->input->post("descripcion_moneda_privada");
 
 
 		  /*CODIGO PARA SUBIR LA FOTO*/
@@ -392,35 +387,33 @@ public function edita_moneda()
 		/*CODIGO PARA SUBIR LA FOTO*/
 
 
-		$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
+	/*	$this->form_validation->set_rules("condicion_moneda","Condicion del Moneda","required");
 		$this->form_validation->set_rules("casa_certificadora","Casa Certificadora","required");
 		$this->form_validation->set_rules("valor_certificacion","Valor de la Certificadora","required");
 		$this->form_validation->set_rules("registro_certificacion","Numero de Registro","required");
 		$this->form_validation->set_rules("tipo_registro","Tipo de Registro","required");
-		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");		 
-		$this->form_validation->set_rules("serie_moneda","Serie del Moneda","required");
-		$this->form_validation->set_rules("subserie","Subserie del Moneda","required");
-		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");
+		$this->form_validation->set_rules("mercado","Ingreso al Mercado","required");
+		$this->form_validation->set_rules("lugar_moneda","Lugar del Moneda","required");*/
 		/*SECCION DE USUARIOS PAGOS*/
 		
 		/*SECCION DE USUARIOS PAGOS*/
-		$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");
+		/*$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");*/
 
 		if ($this->form_validation->run()) {
 
 				$data = array(
-				'condicion_moneda'         => $condicion_moneda, 
-				'casa_certificadora'       => $casa_certificadora,
-				'valor_certificacion'      => $valor_certificacion,
-				'registro_certificacion'   => $registro_certificacion, 
-				'tipo_registro'            => $tipo_registro,
-				'precio_moneda'            => $precio_moneda,
-				'mercado'                  => $mercado,
-				'serie_moneda'             => $serie_moneda, 
-				'subserie'                 => $subserie,
-				'numero_moneda_add'        => $numero_moneda_add,
-				'lugar_moneda'             => $lugar_moneda,
-				'descripcion_moneda'       => $descripcion_moneda,
+				'condicion_moneda'                 => $condicion_moneda, 
+				'casa_certificadora'               => $casa_certificadora,
+				'valor_certificacion'              => $valor_certificacion,
+				'registro_certificacion'           => $registro_certificacion, 
+				'tipo_registro'                    => $tipo_registro,
+				'precio_moneda'                    => $precio_moneda,
+				'mercado'                          => $mercado,
+				'numero_moneda_add'                => $numero_moneda_add,
+				'lugar_moneda'                     => $lugar_moneda,
+				'descripcion_moneda'               => $descripcion_moneda,
+				'descripcion_moneda_privada'       => $descripcion_moneda_privada,
+
 			);
 				$this->Collectionm_model->updatea($id_moneda,$data);
 				redirect(base_url()."collectionm/list");
