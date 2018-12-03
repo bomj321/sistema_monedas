@@ -65,7 +65,7 @@ if ( $gobernante=='') {
  ?>
 <!--CONSULTAS-->                                                      
                                              <td>
-                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $moneda->id_usuario; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $moneda->id_usuario;?>)" value="<?php echo $moneda->id_usuario;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
+                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $moneda->id_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_usuario;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         
@@ -80,7 +80,7 @@ if ( $gobernante=='') {
                                                         <span class="fa fa-search"></span>
                                                  </button>   
 
-                                               <button type="button" class="btn btn-warning btn-view-moneda-usuario" data-toggle="modal" data-target="#modal-default" title="Información Personal" onclick="datoscoleccionm(<?php echo $moneda->id_usuario;?>,<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_moneda;?>">
+                                               <button type="button" class="btn btn-warning btn-view-moneda-usuario" data-toggle="modal" data-target="#modal-default" title="Información del Usuario" onclick="datoscoleccionm(<?php echo $moneda->id_usuario;?>,<?php echo $moneda->id_coleccion_personal_moneda;?>)" value="<?php echo $moneda->id_coleccion_personal_moneda;?>">
                                                         <span class="fa fa-search"></span>
                                                  </button>                                            	                                             
 

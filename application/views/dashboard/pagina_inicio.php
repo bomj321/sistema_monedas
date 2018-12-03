@@ -63,7 +63,12 @@ $año_actual = date('Y');
  ?>
 <!--SACAR AÑO ACTUAL-->
                     <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pull-right">
+
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            <center><h1>Monedas Registradas Por Mes</h1></center>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <select class="form-control" name="ano_proyecto" id="ano_proyecto">
                                   <option <?php echo '2018' == $año_actual ? 'selected':'';?> value="2018">2018</option>
                                   <option <?php echo '2019' == $año_actual ? 'selected':'';?> value="2019">2019</option>

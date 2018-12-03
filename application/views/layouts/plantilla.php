@@ -41,9 +41,9 @@
     <link href="<?php echo base_url();?>public/css_mapa/estilos_mapa.css" rel="stylesheet">
     <!--ESTILOS MAPA-->   
 
-<!--FUENTES DE LETRAS-->
-<link href="https://fonts.googleapis.com/css?family=Germania+One|Mogra" rel="stylesheet">
-<!--FUENTES DE LETRAS-->
+    <!--FUENTES DE LETRAS-->
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Mogra" rel="stylesheet">
+    <!--FUENTES DE LETRAS-->
 
     <link href="<?php echo base_url();?>public/app.css" rel="stylesheet">
 
@@ -62,7 +62,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url(); ?>dashboard" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="<?php echo base_url(); ?>dashboard" class="site_title"><i class="fa fa-paw"></i><span>Monedas Mex.</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -354,7 +354,7 @@ datagrafico(ano_proyecto);
 
   /*****GRAFICAS EVENTO*****/
 function datagrafico(ano_proyecto){
-namesMonth= ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Set","Oct","Nov","Dic"];
+namesMonth= ["Enero","Feb","Mar","Abr","Mayo","Jun","Jul","Ago","Set","Oct","Nov","Dic"];
 var base_url= 'http://localhost/sistema_monedas/';
 //alert('GRAFICOS');
         $.ajax({

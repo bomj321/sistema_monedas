@@ -2,7 +2,6 @@
 .modal-content{
 	color: black;
 	font-weight: 900;
-	font-family: "calibri", Garamond, 'Comic Sans';
 	font-size: 15px;
 }
 
@@ -45,7 +44,7 @@ text-decoration: underline;
 
 *
 {
-	font-family: 'Mogra', cursive;
+	font-family: 'Gugi', cursive;
 }
 
 /*ESTILOS PARA LOS NOMBRES DE LAS MONEDAS Y BILLETES*/

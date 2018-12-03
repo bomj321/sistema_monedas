@@ -4,7 +4,9 @@ class Collectionm_model extends CI_Model {
 	
 	public function save($data)
 	{
-		return $this->db->insert("coleccion_personal_monedas",$data);
+	    $this->db->insert("coleccion_personal_monedas",$data);
+		$ultimo_id_attr = $this->db->insert_id();
+	     return $ultimo_id_attr;
 	}
 	public function save_monedas_variantes($data)
 	{
@@ -32,7 +34,7 @@ class Collectionm_model extends CI_Model {
 	public function get_collectionmp($id_usuario,$id_moneda)
 	{
 		$this->db->where("id_usuario",$id_usuario);
-		$this->db->where("id_moneda",$id_moneda);
+		$this->db->where("id_coleccion_personal_moneda",$id_moneda);
 		$this->db->where("tipo_moneda_registro",'principal');
 		$resultado = $this->db->get("coleccion_personal_monedas");
 		return $resultado->row();
@@ -40,7 +42,7 @@ class Collectionm_model extends CI_Model {
 	public function get_collectionma($id_usuario,$id_moneda)
 	{
 		$this->db->where("id_usuario",$id_usuario);
-		$this->db->where("id_moneda",$id_moneda);
+		$this->db->where("id_moneda_principal",$id_moneda);
 		$this->db->where("tipo_moneda_registro",'add');
 		$resultados = $this->db->get("coleccion_personal_monedas");
 		return $resultados->result();
@@ -73,6 +75,19 @@ class Collectionm_model extends CI_Model {
 	}
 
 	/*IMAGENES*/
+	   public function updatep_frente($id_moneda,$data)
+		{
+			$this->db->where("id_coleccion_personal_moneda",$id_moneda);
+			return $this->db->update("coleccion_personal_monedas",$data);		
+		}
+
+		public function updatep_detras($id_moneda,$data)
+		{
+			$this->db->where("id_coleccion_personal_moneda",$id_moneda);
+			return $this->db->update("coleccion_personal_monedas",$data);		
+		}
+
+
 		public function updatea_frente($id_moneda,$data)
 		{
 			$this->db->where("id_coleccion_personal_moneda",$id_moneda);

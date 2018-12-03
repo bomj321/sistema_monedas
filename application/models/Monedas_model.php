@@ -781,6 +781,7 @@ public function listusuarios_filtro($filtros)
 	$this->db->from("catalogo_monedas cm");
 	$this->db->join("atributo_monedas attr_monedas","cm.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->where('attr_monedas.atributo_moneda', $filtros);
+	$this->db->group_by("attr_monedas.atributo_moneda");
 	$this->db->where_not_in('cm.estado', '2');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -807,6 +808,7 @@ public function listusuarios_filtro_free($filtros)
 	$this->db->from("catalogo_monedas cm");
 	$this->db->join("atributo_monedas attr_monedas","cm.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->where('attr_monedas.atributo_moneda', $filtros);	
+	$this->db->group_by("attr_monedas.atributo_moneda");
 	$this->db->where('cm.estado','1');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {

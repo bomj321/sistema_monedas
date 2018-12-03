@@ -34,14 +34,14 @@
 
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open('collectionm/editp_moneda',$formulario); 
+							 echo form_open_multipart('collectionm/editp_moneda',$formulario); 
 							 ?>
 							 <input type="hidden" name="id_coleccion_personal_moneda" value="<?php echo $moneda->id_coleccion_personal_moneda ?>">
 
 								<div class="form-group">
 									<label for="condicion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Condici&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="condicion_moneda" name="condicion_moneda" >
+										 	<select  class="form-control" id="condicion_moneda" name="condicion_moneda" >
 									 				<option value="">Seleccione una Opcion</option>	
 													<option  <?php echo $moneda->condicion_moneda == 'G' ? 'selected' : '' ?> value="G">G</option>
 											 		<option  <?php echo $moneda->condicion_moneda == 'VG' ? 'selected' : '' ?> value="VG">VG</option>
@@ -61,7 +61,7 @@
 								<div class="form-group">
 									<label for="casa_certificadora" class="col-sm-2 col-xs-12 col-md-2 control-label">Certificaci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->casa_certificadora ?>" required type="text" class="form-control" placeholder="Casa Certificadora" id="casa_certificadora" name="casa_certificadora">
+										 	<input value="<?php echo $moneda->casa_certificadora ?>"  type="text" class="form-control" placeholder="Casa Certificadora" id="casa_certificadora" name="casa_certificadora">
 										 	<?php 									 	
 	                						echo form_error("casa_certificadora","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -72,7 +72,7 @@
 								<div class="form-group">
 									<label for="valor_certificacion" class="col-sm-2 col-xs-12 col-md-2 control-label">Valoraci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->valor_certificacion ?>" required type="text" class="form-control" placeholder="Valoración de la Certificadora" id="valor_certificacion" name="valor_certificacion">
+										 	<input value="<?php echo $moneda->valor_certificacion ?>"  type="text" class="form-control" placeholder="Valoración de la Certificadora" id="valor_certificacion" name="valor_certificacion">
 										 	<?php 									 	
 	                						echo form_error("valor_certificacion","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -82,7 +82,7 @@
 								<div class="form-group">
 									<label for="registro_certificacion" class="col-sm-2 col-xs-12 col-md-2 control-label">Registro</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->registro_certificacion ?>" required type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
+										 	<input value="<?php echo $moneda->registro_certificacion ?>"  type="text" class="form-control" placeholder="Registro del Certificado" id="registro_certificacion" name="registro_certificacion">
 										 	<?php 									 	
 	                						echo form_error("registro_certificacion","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -114,7 +114,7 @@
 								<div class="form-group">
 									<label for="tipo_registro" class="col-sm-2 col-xs-12 col-md-2 control-label">Tipo de Registro</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="tipo_registro" name="tipo_registro">
+										 	<select class="form-control" id="tipo_registro" name="tipo_registro">
 									 				<option value="">Seleccione una Opcion</option>	
 													<option <?php echo $moneda->tipo_registro == 'Personal' ? 'selected' : '' ?> value="Personal">Colecci&oacute;n Personal</option>
 											 		<option <?php echo $moneda->tipo_registro == 'Intercambio' ? 'selected' : '' ?> value="Intercambio">Intercambio</option>
@@ -128,20 +128,22 @@
 					
 								</div>
 
+							
 								<div class="form-group">
 								    <label for="precio_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio</label>                              
 								     <div class="col-md-10 col-sm-12 col-xs-12">
-								            <input value="<?php echo $moneda->precio_moneda ?>" type="text" required class="form-control" placeholder="Precio del Moneda" id="precio_moneda" name="precio_moneda">
+								            <input value="<?php echo $moneda->precio_moneda ?>" type="text" class="form-control" placeholder="Precio del Moneda" id="precio_moneda" name="precio_moneda">
 								            <?php                                       
 								            echo form_error("precio_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 								            ?>
 								    </div>                  
 							    </div>
+							
 
 							    <div class="form-group">
 									<label for="mercado" class="col-sm-2 col-xs-12 col-md-2 control-label">Mercado</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<select required class="form-control" id="mercado" name="mercado">
+										 	<select class="form-control" id="mercado" name="mercado">
 									 				<option value="">Seleccione una Opcion</option>	
 													<option <?php echo $moneda->mercado == '1' ? 'selected' : '' ?> value="1">Si</option>
 											 		<option <?php echo $moneda->mercado == '0' ? 'selected' : '' ?> value="0">No</option>
@@ -157,7 +159,7 @@
 								<div class="form-group">
 									<label for="precio_referencia" class="col-sm-2 col-xs-12 col-md-2 control-label">Precio Referencia</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->precio_referencia ?>" required type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
+										 	<input value="<?php echo $moneda->precio_referencia ?>"  type="text" class="form-control" placeholder="Precio Referencia" id="precio_referencia" name="precio_referencia">
 										 	<?php 									 	
 	                						echo form_error("precio_referencia","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -167,7 +169,7 @@
 								<div class="form-group">
 									<label for="lugar_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Lugar donde la Adquiri&oacute;</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input value="<?php echo $moneda->lugar_moneda ?>" required type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_moneda" name="lugar_moneda">
+										 	<input value="<?php echo $moneda->lugar_moneda ?>"  type="text" class="form-control" placeholder="Lugar donde la Adquiri&oacute;" id="lugar_moneda" name="lugar_moneda">
 										 	<?php 									 	
 	                						echo form_error("lugar_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -178,7 +180,7 @@
 									<div class="form-group">
 										<label for="cantidad_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Cantidad Adicional</label>								
 										 <div class="col-md-10 col-sm-12 col-xs-12">
-											 	<input value="<?php echo $moneda->cantidad_moneda ?>" required onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_moneda" name="cantidad_moneda">
+											 	<input value="<?php echo $moneda->cantidad_moneda ?>"  onkeypress="return solonumeros(event)" type="text" class="form-control" placeholder="¿Posee alguna otra?" id="cantidad_moneda" name="cantidad_moneda">
 											 	<?php 									 	
 		                						echo form_error("cantidad_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 											    ?>
@@ -189,7 +191,7 @@
 								<div class="form-group" style="margin-bottom: 20px;">
 									<label for="descripcion_moneda" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea required name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda ?></textarea>
+										 	<textarea  name="descripcion_moneda" id="descripcion_moneda" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda ?></textarea>
 										 	<?php 									 	
 	                						echo form_error("descripcion_moneda","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>
@@ -199,7 +201,7 @@
 								<div class="form-group" style="margin-bottom: 20px;">
 									<label for="descripcion_moneda_privada" class="col-sm-2 col-xs-12 col-md-2 control-label">Descripci&oacute;n</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<textarea required name="descripcion_moneda_privada" id="descripcion_moneda_privada" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda_privada ?></textarea>
+										 	<textarea  name="descripcion_moneda_privada" id="descripcion_moneda_privada" cols="30" rows="10" class="form-control"><?php echo $moneda->descripcion_moneda_privada ?></textarea>
 										 	<?php 									 	
 	                						echo form_error("descripcion_moneda_privada","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>

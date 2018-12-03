@@ -171,12 +171,12 @@ function datosusuariom($id_usuario){
         });
 }
 
-function datoscoleccionm($id_usuario,$id_billete){
+function datoscoleccionm($id_usuario,$id_moneda){
   var id_usuario = $id_usuario;
-  var id_billete = $id_billete;
+  var id_moneda = $id_moneda;
   var base_url= 'http://localhost/sistema_monedas/';
         $.ajax({
-            url: base_url + "collectionm/view/" + id_usuario + "/" + id_billete,
+            url: base_url + "collectionm/view/" + id_usuario + "/" + id_moneda,
             type:"POST",
              beforeSend: function() {
                      $('#modal-default .modal-body').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
@@ -722,7 +722,7 @@ function opciones_moneda()
                 },
                 error:function(){
                   $('#respuesta_ajax_filtros_monedas').html("");
-                  $('#respuesta_ajax_filtros_monedas').html("<center><h4 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h4></center>");
+                  $('#respuesta_ajax_filtros_monedas').html("<center><h5 style='color:red;'>ERROR EN EL SERVIDOR.POR FAVOR ENVIE UN MENSAJE AL ADMINISTRADOR</h5></center>");
                 }
 
             });

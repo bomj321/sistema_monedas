@@ -114,7 +114,7 @@ public function create()
 				'fecha_agregada'                   => $fecha_agregada,
 			);
 
-			if ($this->Collectionm_model->save($data)) 
+			if ($ultimo_id_atributo=$this->Collectionm_model->save($data)) 
 			{
 				/*VARIANTES DE LA MISMA MONEDA*/
 		 
@@ -136,7 +136,7 @@ public function create()
 				    	$tipo_registro_moneda_add           = $this->input->post("tipo_registro_moneda_add_$i");				    
 					    $precio_moneda_add                  = $this->input->post("precio_moneda_add_$i");
 					    $descripcion_moneda_add             = $this->input->post("descripcion_moneda_add_$i");
-		                $descripcion_moneda_privada_add     = $this->input->post("descripcion_moneda_privada_add__$i");
+		                $descripcion_moneda_privada_add     = $this->input->post("descripcion_moneda_privada_add_$i");
 
 
 					    if ($tipo_registro_moneda_add == 'Personal') {
@@ -176,6 +176,7 @@ public function create()
 						$data = array(
 								'id_usuario'                       => $id_usuario,
 								'id_moneda'                        => $id_moneda,
+								'id_moneda_principal'              => $ultimo_id_atributo,
 								'condicion_moneda'                 => $condicion_moneda_add, 
 								'casa_certificadora'               => $casa_certificadora_add,
 								'valor_certificacion'              => $valor_certificacion_add,
@@ -186,9 +187,7 @@ public function create()
 				                'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
 								'precio_moneda'                    => $precio_moneda_add,
 								'mercado'                          => $mercado_add,
-								'serie_moneda'                     => $serie_moneda_add,
 								'numero_moneda_add'                => $numero_moneda_add,
-								'subserie'                         => $subserie_moneda_add, 
 								'lugar_moneda'                     => $lugar_moneda,
 								//'cantidad_moneda'        => $cantidad_moneda, 
 								'descripcion_moneda'               => $descripcion_moneda_add,
@@ -296,33 +295,43 @@ public function editp_moneda()
 						
 						$this->load->library('upload', $config);
 
+ 			if (!empty($_FILES['foto_frente']["name"])) {
+				
 
 						if (!$this->upload->do_upload('foto_frente')) {
 							echo $this->upload->display_errors();
 						}
 
 						$imagen_1 = array("upload_data" => $this->upload->data());
+						$data_frente = [
+						    'foto_frente_moneda' => $imagen_1['upload_data']['file_name']
+						];
+						$this->Collectionm_model->updatep_frente($id_moneda,$data_frente);
+
+			}
+
+			if (!empty($_FILES['foto_detras']["name"])) {
+
 
 						if (!$this->upload->do_upload('foto_detras')) {
 							echo $this->upload->display_errors();
 						}
 
 						$imagen_2 = array("upload_data" => $this->upload->data());
+						$foto_detras = [
+						    'foto_detras_moneda' => $imagen_2['upload_data']['file_name']
+						];
+						$this->Collectionm_model->updatep_detras($id_moneda,$foto_detras);
+			}			
 
 	 /*CODIGO PARA SUBIR LA FOTO*/
-
-
-
-		if ($this->form_validation->run()) {
 
 				$data = array(
 				'condicion_moneda'                 => $condicion_moneda, 
 				'casa_certificadora'               => $casa_certificadora,
 				'valor_certificacion'              => $valor_certificacion,
 				'registro_certificacion'           => $registro_certificacion, 
-				'tipo_registro'                    => $tipo_registro,
-				'foto_frente_moneda'               => $imagen_1['upload_data']['file_name'],
-				'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
+				'tipo_registro'                    => $tipo_registro,				
 				'precio_moneda'                    => $precio_moneda,
 				'mercado'                          => $mercado,
 				'precio_referencia'                => $precio_referencia,
@@ -334,11 +343,6 @@ public function editp_moneda()
 				$this->Collectionm_model->updatep($id_moneda,$data);
 				redirect(base_url()."collectionm/list");
 
-		}else{
-			$this->session->set_flashdata("error_edit","No paso la Validación, intentalo de nuevo");
-			$this->editp($id_moneda);
-			
-		}
 }
 
 
@@ -429,7 +433,6 @@ public function edita_moneda()
 		/*SECCION DE USUARIOS PAGOS*/
 		/*$this->form_validation->set_rules("descripcion_moneda","Descripcion","required");*/
 
-		if ($this->form_validation->run()) {
 
 				$data = array(
 				'condicion_moneda'                 => $condicion_moneda, 
@@ -448,12 +451,6 @@ public function edita_moneda()
 			);
 				$this->Collectionm_model->updatea($id_moneda,$data);
 				redirect(base_url()."collectionm/list");
-
-		}else{
-			$this->session->set_flashdata("error_edit","No paso la Validación, intentalo de nuevo");
-			$this->editp($id_moneda);
-			
-		}
 }
 
 
