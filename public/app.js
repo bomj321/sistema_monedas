@@ -574,7 +574,9 @@ function preciomoneda()
             $("#foto_detras").prop('required',true);
 
   }else{
-    $('#precio_moneda').html("");
+              $('#precio_moneda').html("");
+              $("#foto_frente").prop('required',false);
+              $("#foto_detras").prop('required',false);
   }
   
 }
@@ -644,7 +646,9 @@ function preciomoneda_add($contador)
                $("#foto_frente_"+contador).prop('required',true);
                $("#foto_detras_"+contador).prop('required',true);
   }else{
-    $('#precio_billete_add_' + contador).html("");
+               $('#precio_billete_add_' + contador).html("");
+               $("#foto_frente_"+contador).prop('required',false);
+               $("#foto_detras_"+contador).prop('required',false);
   }
   
 }

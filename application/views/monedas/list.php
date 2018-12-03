@@ -141,13 +141,13 @@ if ( $gobernante=='') {
 
  ?>
 <!--CONSULTAS-->                                              
-                                            <th>
+                                            <td>
                                                 <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         
                                                 </a>
-                                            </th>
+                                            </td>
 
                                             <td>
                                             	<!-- <button type="button" class="btn btn-info btn-view-usuario" data-toggle="modal" data-target="#modal-default" class="btn btn-info btn-view" onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>">
@@ -163,7 +163,7 @@ if ( $gobernante=='') {
                                                   <a title="Habilitar Moneda" href="<?php echo base_url();?>monedas/deshabilitar/1/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success"><span class="fa fa-check"></span></a>                                                   
                                               <?php endif ?>                                               
 
-                                                <a title="Eliminar Moneda" href="<?php echo base_url();?>monedas/delete/2/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
+                                                <a title="Eliminar Moneda" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>monedas/delete/2/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
                                                <?php endif; ?> 
 
                                                <a title="Agregar a Colección" href="<?php echo base_url();?>collectionm/add_collection/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a>         

@@ -25,15 +25,53 @@
 							         <table id="example1" class="table table-bordered table-hover bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>Nombre de la Moneda</th>
                                     <th>Condici&oacute;n de la Moneda</th>
                                     <th>Casa Certificadora</th>
                                     <th>Opciones</th>                                   
                                 </tr>
                             </thead>
                             <tbody>
+<?php $i=0; ?> <!--CODIGO QUE AUTOINCREMENTA EL ID POR UNO PARA EVITAR DUPLICADOS-->                                              
                                 <?php if(!empty($monedas)):?>
                                     <?php foreach($monedas as $moneda):?>
                                         <tr>
+<!--CONSULTAS-->
+<?php 
+
+include 'consultas_nombre.php';
+/*VERIFICACION SI ESTA VACIA*/
+if ( $valor_facial=='') {
+    $valor_facial = 'N/A';
+}
+
+if ( $ano_acunacion=='') {
+    $ano_acunacion = 'N/A';
+}
+
+if ( $ensayador=='') {
+    $ensayador = 'N/A';
+}
+
+if ( $ceca=='') {
+    $ceca = 'N/A';
+}
+
+if ( $gobernante=='') {
+    $gobernante = 'N/A';
+}
+/*VERIFICACION SI ESTA VACIA*/
+
+ ?>
+<!--CONSULTAS-->                                                      
+                                             <td>
+                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $moneda->id_usuario; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $moneda->id_usuario;?>)" value="<?php echo $moneda->id_usuario;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
+
+                                                    <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
+                                                        
+                                                </a>
+                                            </td>
+
                                             <td><?php echo $moneda->condicion_moneda;?></td>
                                             <td><?php echo $moneda->casa_certificadora;?></td>
                                             <td>
@@ -46,10 +84,12 @@
                                                         <span class="fa fa-search"></span>
                                                  </button>                                            	                                             
 
-                                               <!-- <a title="Editar Moneda" href="<?php //echo base_url();?>monedas/edit/<?php //echo $moneda->id_coleccion_personal_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-pencil"></span></a>              -->                                   
+                                               <a title="Eliminar Moneda" onclick="return confirm('Estás Seguro?')" href="<?php echo base_url();?>collectionm/delete/2/<?php echo $moneda->id_coleccion_personal_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a>                                      
 
                                             </td>
                                         </tr>
+<?php $i++; ?> <!--CODIGO QUE AUTOINCREMENTA EL ID POR UNO PARA EVITAR DUPLICADOS-->                                       
+
                                     <?php endforeach;?>
                                 <?php endif;?>
                             </tbody>

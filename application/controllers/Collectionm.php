@@ -56,6 +56,7 @@ public function create()
 		$cantidad_moneda                  = $this->input->post("cantidad_moneda");
 		$descripcion_moneda               = $this->input->post("descripcion_moneda");
 		$descripcion_moneda_privada       = $this->input->post("descripcion_moneda_privada");
+		$fecha_agregada                   = date('Y-m-d');
 
 
 		if ($tipo_registro =='Personal') {
@@ -81,10 +82,13 @@ public function create()
 						if (!$this->upload->do_upload('foto_frente')) {
 							echo $this->upload->display_errors();
 						}
+						$imagen_1 = array("upload_data" => $this->upload->data());
 
 						if (!$this->upload->do_upload('foto_detras')) {
 							echo $this->upload->display_errors();
 						}
+
+						$imagen_2 = array("upload_data" => $this->upload->data());
 
 	 /*CODIGO PARA SUBIR LA FOTO*/
 
@@ -97,8 +101,8 @@ public function create()
 				'registro_certificacion'           => $registro_certificacion, 
 				'tipo_registro'                    => $tipo_registro,
 				'tipo_moneda_registro'             => $tipo_registro_moneda,
-				'foto_frente_moneda'               => $_FILES["foto_frente"]["name"],
-				'foto_detras_moneda'               => $_FILES["foto_detras"]["name"],
+				'foto_frente_moneda'               => $imagen_1['upload_data']['file_name'],
+				'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
 				'precio_moneda'                    => $precio_moneda,
 				'mercado'                          => $mercado,
 				'precio_referencia'                => $precio_referencia,
@@ -106,6 +110,8 @@ public function create()
 				'cantidad_moneda'                  => $cantidad_moneda, 
 				'descripcion_moneda'               => $descripcion_moneda,
 				'descripcion_moneda_privada'       => $descripcion_moneda_privada,
+				'estado'                           => '1',
+				'fecha_agregada'                   => $fecha_agregada,
 			);
 
 			if ($this->Collectionm_model->save($data)) 
@@ -154,9 +160,14 @@ public function create()
 							echo $this->upload->display_errors();
 						}
 
+						$imagen_1 = array("upload_data" => $this->upload->data());
+
+
 						if (!$this->upload->do_upload('foto_detras_'.$i)) {
 							echo $this->upload->display_errors();
 						}
+
+						$imagen_2 = array("upload_data" => $this->upload->data());
 					
 						/*CODIGO PARA SUBIR LA FOTO*/
 							
@@ -171,8 +182,8 @@ public function create()
 								'registro_certificacion'           => $registro_certificacion_add, 
 								'tipo_registro'                    => $tipo_registro_moneda_add,
 								'tipo_moneda_registro'             => $tipo_registro_moneda_add_type,
-								'foto_frente_moneda'               => $_FILES["foto_frente_$i"]["name"],
-								'foto_detras_moneda'               => $_FILES["foto_detras_$i"]["name"],
+							    'foto_frente_moneda'               => $imagen_1['upload_data']['file_name'],
+				                'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
 								'precio_moneda'                    => $precio_moneda_add,
 								'mercado'                          => $mercado_add,
 								'serie_moneda'                     => $serie_moneda_add,
@@ -182,6 +193,8 @@ public function create()
 								//'cantidad_moneda'        => $cantidad_moneda, 
 								'descripcion_moneda'               => $descripcion_moneda_add,
 								'descripcion_moneda_privada'       => $descripcion_moneda_privada_add,
+								'estado'                           => '1',
+								'fecha_agregada'                   => $fecha_agregada,
 							);
 						/*CODIGO PARA SUBIR*/
 						$this->Collectionm_model->save_monedas_variantes($data);
@@ -288,9 +301,13 @@ public function editp_moneda()
 							echo $this->upload->display_errors();
 						}
 
+						$imagen_1 = array("upload_data" => $this->upload->data());
+
 						if (!$this->upload->do_upload('foto_detras')) {
 							echo $this->upload->display_errors();
 						}
+
+						$imagen_2 = array("upload_data" => $this->upload->data());
 
 	 /*CODIGO PARA SUBIR LA FOTO*/
 
@@ -304,8 +321,8 @@ public function editp_moneda()
 				'valor_certificacion'              => $valor_certificacion,
 				'registro_certificacion'           => $registro_certificacion, 
 				'tipo_registro'                    => $tipo_registro,
-				'foto_frente_moneda'               => $_FILES["foto_frente"]["name"],
-				'foto_detras_moneda'               => $_FILES["foto_detras"]["name"],
+				'foto_frente_moneda'               => $imagen_1['upload_data']['file_name'],
+				'foto_detras_moneda'               => $imagen_2['upload_data']['file_name'],
 				'precio_moneda'                    => $precio_moneda,
 				'mercado'                          => $mercado,
 				'precio_referencia'                => $precio_referencia,
@@ -427,6 +444,7 @@ public function edita_moneda()
 				'descripcion_moneda'               => $descripcion_moneda,
 				'descripcion_moneda_privada'       => $descripcion_moneda_privada,
 
+
 			);
 				$this->Collectionm_model->updatea($id_moneda,$data);
 				redirect(base_url()."collectionm/list");
@@ -441,6 +459,18 @@ public function edita_moneda()
 
 
 /*EDICION DE LAS COLECCIONES*/
+/*BORRAR MONEDA*/
+public function delete($estado,$id){
+		$data = array(
+			'estado' => $estado			
+		);
+
+		$this->Collectionm_model->delete_state_moneda($id,$data);
+		redirect(base_url()."collectionm/list");
+	}
+
+/*BORRAR MONEDA*/
+
 }
 
 
