@@ -43,5 +43,10 @@ color: #71bdfc;
 text-decoration: underline;
 }
 
+*
+{
+	font-family: 'Mogra', cursive;
+}
+
 /*ESTILOS PARA LOS NOMBRES DE LAS MONEDAS Y BILLETES*/
 

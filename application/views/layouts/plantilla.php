@@ -39,8 +39,16 @@
     <link href="<?php echo base_url();?>public/build/css/custom.min.css" rel="stylesheet">
     <!--ESTILOS MAPA-->
     <link href="<?php echo base_url();?>public/css_mapa/estilos_mapa.css" rel="stylesheet">
-    <!--ESTILOS MAPA-->    
+    <!--ESTILOS MAPA-->   
+
+<!--FUENTES DE LETRAS-->
+<link href="https://fonts.googleapis.com/css?family=Germania+One|Mogra" rel="stylesheet">
+<!--FUENTES DE LETRAS-->
+
     <link href="<?php echo base_url();?>public/app.css" rel="stylesheet">
+
+
+
 </head>
 
 

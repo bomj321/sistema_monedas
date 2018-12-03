@@ -18,7 +18,7 @@
                     <div class="row"> 
                             
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <center> <h1><em>Mi Colecci&oacute;n</em></h1></center>
+                                   <center> <h1>Mi Colecci&oacute;n</h1></center>
                                 </div>
                     </div>
 
