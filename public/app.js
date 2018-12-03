@@ -569,6 +569,10 @@ function preciomoneda()
                 }
 
             });
+
+            $("#foto_frente").prop('required',true);
+            $("#foto_detras").prop('required',true);
+
   }else{
     $('#precio_moneda').html("");
   }
@@ -636,6 +640,9 @@ function preciomoneda_add($contador)
                 }
 
             });
+
+               $("#foto_frente_"+contador).prop('required',true);
+               $("#foto_detras_"+contador).prop('required',true);
   }else{
     $('#precio_billete_add_' + contador).html("");
   }

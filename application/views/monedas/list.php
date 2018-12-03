@@ -142,7 +142,7 @@ if ( $gobernante=='') {
  ?>
 <!--CONSULTAS-->                                              
                                             <th>
-                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" title="Imagenes" data-content="">
+                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         

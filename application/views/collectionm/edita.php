@@ -145,7 +145,7 @@
 								<div class="form-group">
 									<label for="foto_frente" class="col-sm-2 col-xs-12 col-md-2 control-label">Foto de Frente</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
-										 	<input type="file" class="form-control" id="foto_frente" name="foto_frente">
+										 	<input type="file" class="form-control" id="foto_frente_add" name="foto_frente">
 										 	<?php 									 	
 	                						echo form_error("foto_frente","<span style='margin-top:10px;' class='pull-left label label-danger'>","</span>")
 										    ?>

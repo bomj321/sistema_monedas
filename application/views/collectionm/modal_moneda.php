@@ -23,7 +23,6 @@
 					<p>Registro de la Certificaci&oacute;n: <?php echo $coleccionesmp->registro_certificacion == '' ? 'Sin Información': $coleccionesmp->registro_certificacion;?></p>
 					<p>Tipo de Registro: <?php echo $coleccionesmp->tipo_registro                             == '' ? 'Sin Información': $coleccionesmp->tipo_registro;?></p>
 					<p>Precio del Moneda: <?php echo $coleccionesmp->precio_moneda                            == '' ? 'Sin Información': $coleccionesmp->precio_moneda . ' $';?></p>
-					<p>Serie del Moneda: <?php echo $coleccionesmp->serie_moneda                              == '' ? 'Sin Información': $coleccionesmp->serie_moneda;?></p>
 					<p>Precio de Referencia: <?php echo $coleccionesmp->precio_referencia                     == '' ? 'Sin Información': $coleccionesmp->precio_referencia . ' $';?></p>
 					<p>Lugar donde se Adquiri&oacute;: <?php echo $coleccionesmp->lugar_moneda                == '' ? 'Sin Información': $coleccionesmp->lugar_moneda;?></p>
 					<?php if($this->session->userdata("tipo_usuario")==1 ):?>
@@ -54,8 +53,6 @@
 							<?php if($this->session->userdata("tipo_usuario")==1 ):?>
 								<p>Condición del Moneda: <?php echo $coleccionesma->condicion_moneda                == '' ? 'Sin Información': $coleccionesma->condicion_moneda;?></p>
 							<?php endif; ?>	
-								<p>Serie del Moneda: <?php echo $coleccionesma->serie_moneda                        == '' ? 'Sin Información': $coleccionesma->serie_moneda;?></p>
-								<p>Subserie del Moneda: <?php echo $coleccionesma->subserie                         == '' ? 'Sin Información': $coleccionesma->subserie;?></p>
 								<p>Numero del Moneda: <?php echo $coleccionesma->numero_moneda_add                  == '' ? 'Sin Información': $coleccionesma->numero_moneda_add;?></p>
 								<p>Tipo de Registro: <?php echo $coleccionesma->tipo_registro                       == '' ? 'Sin Información': $coleccionesma->tipo_registro;?></p>
 								<p>Precio del Moneda: <?php echo $coleccionesma->precio_moneda                      == '' ? 'Sin Información': $coleccionesma->precio_moneda. ' $';?></p>

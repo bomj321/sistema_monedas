@@ -38,7 +38,7 @@
                                             <td><?php echo $moneda->casa_certificadora;?></td>
                                             <td>
 
-                                               <button type="button" class="btn btn-info btn-view-moneda" data-toggle="modal" data-target="#modal-default" title="Información del Moneda"  onclick="datosusuariom(<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_moneda;?>">
+                                               <button type="button" class="btn btn-info btn-view-moneda" data-toggle="modal" data-target="#modal-default" title="Información de la Moneda"  onclick="datosusuariom(<?php echo $moneda->id_moneda;?>)" value="<?php echo $moneda->id_moneda;?>">
                                                         <span class="fa fa-search"></span>
                                                  </button>   
 
@@ -57,7 +57,7 @@
                 </div><!--CONTENIDO-->
 
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
