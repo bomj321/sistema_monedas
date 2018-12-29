@@ -38,7 +38,7 @@
                                                     }
                                                  ?>
                                                 <!--VERIFICAR SI EXISTE LA VARIABLE-->
-                                                    <select onchange='opciones_moneda()'name='filtro_moneda' class="form-control" id="filtro_moneda">
+                                                    <select onchange='opciones_moneda()' name='filtro_moneda' class="form-control" id="filtro_moneda">
                                                       <option>Seleccione una Opci&oacute;n</option>
                                                       <?php foreach ($atributos as $atributo): 
                                                             /*CONVERTIR GUION BAJO A ESPACIO*/
@@ -48,7 +48,7 @@
                                                         <option style='font-weight: 900;' disabled>Sección <?php echo $nombreatributo ?></option>
                                                 <!--SUB CONSULTA-->
                                                     <?php 
-                                                         $sql ="SELECT * FROM atributos_m WHERE categoria_atributom = '$atributo->categoria_atributom' AND tipo_atributom != 'Fotos'";
+                                                         $sql ="SELECT * FROM atributos_m WHERE categoria_atributom = '$atributo->categoria_atributom' AND tipo_atributom != 'Fotos' GROUP BY id_atributo_m";
                                                          $query = $this->db->query($sql);
                                                      ?>
 
@@ -142,7 +142,7 @@ if ( $gobernante=='') {
  ?>
 <!--CONSULTAS-->                                              
                                             <td>
-                                                <a onmouseout="cerrar_popover(<?php echo $i; ?>)" onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>" class='nombre_todo' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal" data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="">
+                                                <a  onmouseover='popover_contenido(<?php echo $i; ?>,<?php echo $usuario->id_catalogo_moneda; ?>)' id="popover_toggle_moneda_<?php echo $i; ?>"  data-trigger="hover" data-html="true" data-container="body" data-target="#modal-default" data-content="" class='nombre_todo popover_all' onclick="datosusuariomonedas(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         
