@@ -9,6 +9,6 @@
 										</a>
 							<?php endforeach;?>
 							<?php else: ?>
-								<center><h3>No Hay Imagenes</h3></center>
+								<center><strong><h3>No Hay Imagenes</h3></strong></center>
 						<?php endif;?>
 				<?php endif; ?>	

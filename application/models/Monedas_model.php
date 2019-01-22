@@ -246,6 +246,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Información_general');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -263,6 +264,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Datos_Técnicos');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -281,6 +283,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Anverso');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -298,6 +301,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Reverso');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -316,6 +320,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Canto');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -333,6 +338,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Variedades');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -355,6 +361,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("attr_m.categoria_atributom",'Información_adicional');
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.categoria_atributom', 'Catalogos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
@@ -374,7 +381,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_generales($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Información_general' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Información_general' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -385,7 +392,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_tecnicos($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Datos_Técnicos' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Datos_Técnicos' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -396,7 +403,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_anverso($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Anverso' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Anverso' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -408,7 +415,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_reverso($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Reverso' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Reverso' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -419,7 +426,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_canto($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Canto' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Canto' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -430,7 +437,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_variedades($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Variedades' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Variedades' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -442,7 +449,7 @@ class Monedas_model extends CI_Model {
 	public function listattr_form_not_adicional($id)
 	{	
 
-	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id') AND categoria_atributom = 'Información_adicional' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
+	 $query = $this->db->query("SELECT * FROM atributos_m WHERE id_atributo_m NOT IN (SELECT id_atributo FROM atributo_monedas WHERE id_moneda = '$id' AND tipo_moneda = 1) AND categoria_atributom = 'Información_adicional' AND NOT  tipo_atributom = 'Catalogos' ORDER BY orden ASC");
 	 return $query->result();
 	}
 
@@ -459,6 +466,7 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("m.id_catalogo_moneda",$id);
 		$this->db->where('attr_m.tipo_atributom', 'Catalogos');
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$this->db->order_by('attr_m.orden', 'ASC');
 			$resultado = $this->db->get();
 			return $resultado->result();
@@ -472,7 +480,9 @@ class Monedas_model extends CI_Model {
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->join("precios_catalogom precio_cm","attr_monedas.id_atributo = precio_cm.id_catalogo");
 		$this->db->where("precio_cm.id_moneda",$id);
-		$this->db->where("m.id_catalogo_moneda",$id);		
+		$this->db->where("m.id_catalogo_moneda",$id);	
+		$this->db->where("attr_monedas.tipo_moneda",'1');
+	    $this->db->where("precio_cm.tipo_moneda",'1');
 		$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 		$this->db->order_by('attr_m.orden', 'ASC');
 		$resultados = $this->db->get();
@@ -489,14 +499,16 @@ class Monedas_model extends CI_Model {
 	public function update_atributes($id_unico,$atributo_id,$data)
 	{
 		$this->db->where("id_moneda",$id_unico);
-		$this->db->where("id_atributo",$atributo_id);		
+		$this->db->where("id_atributo",$atributo_id);	
+		$this->db->where("tipo_moneda",'1');
 		return $this->db->update("atributo_monedas",$data);
 	}
 
 		public function update_atributes_image($id_unico_usuario_unico,$id_atributo,$datos)
 		{
 			$this->db->where("id_moneda",$id_unico_usuario_unico);
-		    $this->db->where("id_atributo",$id_atributo);		
+		    $this->db->where("id_atributo",$id_atributo);	
+		    $this->db->where("tipo_moneda",'1');
 		  return $this->db->update("atributo_monedas",$datos);
 
 		}
@@ -504,7 +516,8 @@ class Monedas_model extends CI_Model {
 	public function update_atributes_catalogo($id_unico,$id_atributo,$data_catalogo)
 	{
 		$this->db->where("id_moneda",$id_unico);
-		$this->db->where("id_atributo",$id_atributo);		
+		$this->db->where("id_atributo",$id_atributo);
+		$this->db->where("tipo_moneda",'1');
 		return $this->db->update("atributo_monedas",$data_catalogo);
 	}
 
@@ -514,6 +527,7 @@ class Monedas_model extends CI_Model {
 	{
 		$this->db->where("id_moneda",$id_unico);
 		$this->db->where("id_catalogo",$id_atributo);
+		$this->db->where("tipo_moneda",'1');
 		return $this->db->delete("precios_catalogom");
 	}
 
@@ -521,6 +535,7 @@ class Monedas_model extends CI_Model {
 	{
 		$this->db->where("id_moneda",$id_unico);
 		$this->db->where("id_atributo",$id_atributo);
+		$this->db->where("tipo_moneda",'1');
 		return $this->db->delete("atributo_monedas");
 	}
 
@@ -574,6 +589,7 @@ public function listmoneda_general($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Información_general');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'DESC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -600,6 +616,7 @@ public function listmoneda_tecnico($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Datos_Técnicos');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -627,6 +644,7 @@ public function listmoneda_anverso($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Anverso');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -653,6 +671,7 @@ public function listmoneda_reverso($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Reverso');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -680,6 +699,7 @@ public function listmoneda_canto($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Canto');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -707,6 +727,7 @@ public function listmoneda_variedades($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Variedades');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -734,6 +755,7 @@ public function listmoneda_adicional($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Información_adicional');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -756,6 +778,7 @@ public function listmonedaimage($id)
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
 	$this->db->where('attr_m.tipo_atributom', 'Fotos');
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
@@ -781,6 +804,7 @@ public function listusuarios_filtro($filtros)
 	$this->db->from("catalogo_monedas cm");
 	$this->db->join("atributo_monedas attr_monedas","cm.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->where('attr_monedas.atributo_moneda', $filtros);
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	//$this->db->group_by("attr_monedas.atributo_moneda");
 	$this->db->where_not_in('cm.estado', '2');
 	$resultados = $this->db->get();
@@ -808,6 +832,7 @@ public function listusuarios_filtro_free($filtros)
 	$this->db->from("catalogo_monedas cm");
 	$this->db->join("atributo_monedas attr_monedas","cm.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->where('attr_monedas.atributo_moneda', $filtros);	
+	$this->db->where("attr_monedas.tipo_moneda",'1');
 	//$this->db->group_by("attr_monedas.atributo_moneda");
 	$this->db->where('cm.estado','1');
 	$resultados = $this->db->get();
@@ -833,6 +858,7 @@ public function listatributos_opciones($id_atributo)
 {		
 		$this->db->group_by("atributo_monedas.atributo_moneda");
 		$this->db->where("atributo_monedas.id_atributo",$id_atributo);
+		$this->db->where("attr_monedas.tipo_moneda",'1');
 		$resultados = $this->db->get("atributo_monedas");
 		return $resultados->result();
 }
@@ -854,6 +880,12 @@ public function delete_state_moneda($id,$data)
 /************CONSULTAS PARA LA PAGINA LIST**********/
 
 /**********************************************************SECCION MONEDAS*******************************/
+
+/*SECCION DE SUGERIR*/
+
+/*SECCION DE SUGERIR*/
+
+
 
 }
 
