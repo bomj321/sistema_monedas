@@ -125,9 +125,9 @@ if (!empty($_FILES['imagen']["name"])) {
 
 		$config['upload_path']          =  './public/images_monedas';
 		$config['allowed_types']        =  'gif|jpg|png|jpeg';
-		$config['max_size']             =  10000;
-		$config['max_width']            =  2000;
-		$config['max_height']           =  2000;
+		$config['max_size']             =  0;
+		$config['max_width']            =  0;
+		$config['max_height']           =  0;
 
 
 		$variablefile= $_FILES;
@@ -254,9 +254,9 @@ if (!empty($_FILES['imagen']["name"])) {
 
 		$config['upload_path']          =  './public/images_monedas';
 		$config['allowed_types']        =  'gif|jpg|png|jpeg';
-		$config['max_size']             =  10000;
-		$config['max_width']            =  2000;
-		$config['max_height']           =  2000;
+		$config['max_size']             =  0;
+		$config['max_width']            =  0;
+		$config['max_height']           =  0;
 
 
 		$variablefile= $_FILES;
@@ -302,9 +302,9 @@ if (!empty($_FILES['imagen_add']["name"])) {
 		
 		$config['upload_path']          =  './public/images_monedas';
 		$config['allowed_types']        =  'gif|jpg|png|jpeg';
-		$config['max_size']             =  10000;
-		$config['max_width']            =  2000;
-		$config['max_height']           =  2000;
+		$config['max_size']             =  0;
+		$config['max_width']            =  0;
+		$config['max_height']           =  0;
 
 
 		$variablefile= $_FILES;

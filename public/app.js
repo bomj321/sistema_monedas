@@ -95,14 +95,14 @@ function popover_contenido($id,$id_usuario){
             url: base_url + "monedas/view_popover/" + id_usuario,
             type:"POST",
             beforeSend: function() {
-                     $(".popover_all").popover('destroy');
-                     // $("#"+id_element).popover('hide');                     
+                      $(".popover_all").popover('hide');
+                      //$("#"+id_element).popover('hide');                     
                       $("#"+id_element).attr('data-content','Espere...');
                       $("#"+id_element).popover('show');
                   },                  
             success:function(resp){   
-                   // $("#"+id_element).popover('hide');
-                    // $(".popover_all").popover('destroy');            
+                    //$("#"+id_element).popover('hide');
+                     //$(".popover_all").popover('destroy');            
                      $("#"+id_element).attr('data-content',resp);
                      $("#"+id_element).popover('show');
             },
@@ -113,6 +113,10 @@ function popover_contenido($id,$id_usuario){
 
         });
 
+}
+
+function popover_destroy(){
+     $(".popover_all").popover('hide');
 }
 
 /*function cerrar_popover($id){
@@ -204,7 +208,7 @@ function datosusuariomonedas($id_usuario){
             url: base_url + "monedas/view/" + id,
             type:"POST",
             beforeSend: function() {
-                     $(".popover_all").popover('destroy');
+                    $(".popover_all").popover('destroy');
                      $('#modal-default .modal-body').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
                   },                  
             success:function(resp){

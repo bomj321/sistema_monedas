@@ -13,9 +13,8 @@
 	font-weight: 800;
 }
 
-.modal-content .contenido_modal {
-	border: 1px solid black;
-	border-radius: 20px;
+.contenido_modal {
+	font-size: 12.5px;
 }
 
 .modal-header{

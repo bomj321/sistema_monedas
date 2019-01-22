@@ -135,9 +135,9 @@ public function create()
 					    /*CODIGO PARA SUBIR LA FOTO*/
 					    $config['upload_path']          =  './public/images_billetes';
 						$config['allowed_types']        =  'gif|jpg|png|jpeg';
-						$config['max_size']             =  100000;
-						$config['max_width']            =  2000;
-						$config['max_height']           =  2000;
+						$config['max_size']             =  0;
+						$config['max_width']            =  0;
+						$config['max_height']           =  0;
 						
 						$this->load->library('upload', $config);
 
@@ -350,9 +350,9 @@ public function edita_billete()
 
 					    $config['upload_path']          =  './public/images_billetes';
 						$config['allowed_types']        =  'gif|jpg|png|jpeg';
-						$config['max_size']             =  100000;
-						$config['max_width']            =  2000;
-						$config['max_height']           =  2000;
+						$config['max_size']             =  0;
+						$config['max_width']            =  0;
+						$config['max_height']           =  0;
 						
 						
 						$this->load->library('upload', $config);
@@ -373,9 +373,9 @@ public function edita_billete()
 
 					    $config['upload_path']          =  './public/images_billetes';
 						$config['allowed_types']        =  'gif|jpg|png|jpeg';
-						$config['max_size']             =  100000;
-						$config['max_width']            =  2000;
-						$config['max_height']           =  2000;
+						$config['max_size']             =  0;
+						$config['max_width']            =  0;
+						$config['max_height']           =  0;
 						
 						$this->load->library('upload', $config);
 						$this->upload->do_upload('foto_detras');

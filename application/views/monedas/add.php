@@ -141,7 +141,7 @@
 		    	<div class="form-group">
 					<label title='<?php echo $atributo_general->descripcion_atributo ?>' for="fuente_imagen<?php echo $atributo_general->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 					 <div class="col-md-10 col-sm-12 col-xs-12">
-						 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_general->id_atributo_m?>" name="fuente_imagen[]">										 
+						 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_general->id_atributo_m?>" name="fuente_imagen[]">										 
 					</div>
 					
 				</div>
@@ -366,7 +366,7 @@
 			    	<div class="form-group">
 						<label title='<?php echo $atributo_anverso->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_anverso->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 						 <div class="col-md-10 col-sm-12 col-xs-12">
-							 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_anverso->id_atributo_m?>" name="fuente_imagen[]">										 
+							 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_anverso->id_atributo_m?>" name="fuente_imagen[]">										 
 						</div>
 						
 					</div>
@@ -478,7 +478,7 @@
 			    	<div class="form-group">
 						<label title='<?php echo $atributo_reverso->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_reverso->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 						 <div class="col-md-10 col-sm-12 col-xs-12">
-							 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_reverso->id_atributo_m?>" name="fuente_imagen[]">										 
+							 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_reverso->id_atributo_m?>" name="fuente_imagen[]">										 
 						</div>
 						
 					</div>
@@ -590,7 +590,7 @@
 			    	<div class="form-group">
 						<label title='<?php echo $atributo_canto->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_canto->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 						 <div class="col-md-10 col-sm-12 col-xs-12">
-							 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_canto->id_atributo_m?>" name="fuente_imagen[]">										 
+							 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_canto->id_atributo_m?>" name="fuente_imagen[]">										 
 						</div>
 						
 					</div>
@@ -703,7 +703,7 @@
 			    	<div class="form-group">
 						<label title='<?php echo $atributos_variedad->descripcion_atributo?>' for="fuente_imagen<?php echo $atributos_variedad->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 						 <div class="col-md-10 col-sm-12 col-xs-12">
-							 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributos_variedad->id_atributo_m?>" name="fuente_imagen[]">										 
+							 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributos_variedad->id_atributo_m?>" name="fuente_imagen[]">										 
 						</div>
 						
 					</div>
@@ -817,7 +817,7 @@
 			    	<div class="form-group">
 						<label title='<?php echo $atributo_adicional->descripcion_atributo?>' for="fuente_imagen<?php echo $atributo_adicional->id_atributo_m?>" class="col-sm-2 col-xs-12 col-md-2 control-label">Fuente de la Imagen</label>								
 						 <div class="col-md-10 col-sm-12 col-xs-12">
-							 	<input required type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_adicional->id_atributo_m?>" name="fuente_imagen[]">										 
+							 	<input type="text" class="form-control" placeholder="Fuente de la foto" id="fuente_imagen<?php echo $atributo_adicional->id_atributo_m?>" name="fuente_imagen[]">										 
 						</div>
 						
 					</div>

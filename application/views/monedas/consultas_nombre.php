@@ -36,7 +36,7 @@
 
 <!--SUB CONSULTA ENSAYADOR-->
                     <?php 
-                            $sql_ensayador ="SELECT m.*,attr_m.nombre_atributo AS nombreatributo_ensayador,attr_monedas.atributo_moneda as descripcionatributo FROM catalogo_monedas AS m INNER JOIN atributo_monedas AS attr_monedas ON m.id_catalogo_moneda = attr_monedas.id_moneda INNER JOIN atributos_m AS attr_m ON attr_monedas.id_atributo = attr_m.id_atributo_m WHERE m.id_catalogo_moneda = '$usuario->id_catalogo_moneda' AND attr_m.nombre_atributo LIKE '%Ensayador%'";
+                            $sql_ensayador ="SELECT m.*,attr_m.nombre_atributo AS nombreatributo_ensayador,attr_monedas.atributo_moneda as descripcionatributo FROM catalogo_monedas AS m INNER JOIN atributo_monedas AS attr_monedas ON m.id_catalogo_moneda = attr_monedas.id_moneda INNER JOIN atributos_m AS attr_m ON attr_monedas.id_atributo = attr_m.id_atributo_m WHERE m.id_catalogo_moneda = '$usuario->id_catalogo_moneda' AND attr_m.nombre_atributo LIKE '%ensayador%' limit 1";
                                  $query_ensayador = $this->db->query($sql_ensayador);
                             
                             if ($query_ensayador->num_rows() > 0) {
@@ -72,6 +72,7 @@
  <!--SUB CONSULTA CECA-->
 
 <!--SUB CONSULTA Gobernante-->
+
                     <?php 
                             $sql_gobernante ="SELECT m.*,attr_m.nombre_atributo AS nombreatributo_gobernante,attr_monedas.atributo_moneda as descripcionatributo FROM catalogo_monedas AS m INNER JOIN atributo_monedas AS attr_monedas ON m.id_catalogo_moneda = attr_monedas.id_moneda INNER JOIN atributos_m AS attr_m ON attr_monedas.id_atributo = attr_m.id_atributo_m WHERE m.id_catalogo_moneda = '$usuario->id_catalogo_moneda' AND attr_m.nombre_atributo LIKE '%Gobernante%'";
                                  $query_gobernante = $this->db->query($sql_gobernante);
