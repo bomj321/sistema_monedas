@@ -121,6 +121,9 @@
                   <li><a><i class="fa fa-file-text"></i> Sugerencias <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url();?>sugerencias/list">Listado de Sugerencias</a></li>
+                      <?php if($this->session->userdata("tipo_usuario")==1 ):?>
+                         <li><a href="<?php echo base_url();?>sugerencias/list_monedas">Sugerencias para Monedas</a></li>
+                       <?php endif; ?> 
                     </ul>
                   </li> 
 

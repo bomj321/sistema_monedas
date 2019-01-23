@@ -219,6 +219,24 @@ function datosusuariomonedas($id_usuario){
         });
 }
 
+function datosusuariomonedassugerir($id_usuario){
+  var id = $id_usuario;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "sugerencias/view_moneda/" + id,
+            type:"POST",
+            beforeSend: function() {
+                    
+                     $('#modal_sugerencia .modal-body').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },                  
+            success:function(resp){
+                $("#modal_sugerencia .modal-body").html(resp);
+                //alert(resp);
+            }
+
+        });
+}
+
 function catalogoinput () {
            // var catalogo   = document.getElementById("catalogo");
            var selecvalue = catalogo.options[catalogo.selectedIndex].value;
