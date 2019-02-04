@@ -26,6 +26,15 @@ class Collectionm extends CI_Controller {
 		$this->layout->view("add",$data);
 	}
 
+	public function add_collection_modal($id_moneda)
+	{
+		$data = [
+		    'id_moneda' => $id_moneda
+		];
+
+		$this->load->view("collectionm/add_modal",$data);
+	}
+
 	public function list()
 	{
 		$id_usuario_session = $this->session->userdata("id");

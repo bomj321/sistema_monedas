@@ -91,10 +91,22 @@ public function listatributos_opciones($id_atributo)
 }
 
 
-public function listusuarios()
+/*public function listusuarios()
 {
 		$this->db->where_not_in('estado', '2');
 		$resultados = $this->db->get("catalogo_monedas");
+		return $resultados->result();
+}*/
+
+public function listusuarios()
+{	
+		$this->db->select("m.*,attr_monedas.codigo_sugerencia as codigo_sugerencia");
+		$this->db->from("catalogo_monedas m");
+		$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
+		$this->db->where_not_in('m.estado', '2');
+		$this->db->where("attr_monedas.tipo_moneda",'0');
+		$this->db->group_by("attr_monedas.codigo_sugerencia");
+		$resultados = $this->db->get();
 		return $resultados->result();
 }
 
@@ -105,13 +117,14 @@ public function listusuarios_free()
 		return $resultados->result();
 }
 
-public function listmoneda_general($id)
+public function listmoneda_general($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Información_general');
@@ -132,13 +145,14 @@ public function listmoneda_general($id)
 /*Listado de atributos datos tecnicos*/
 
 
-public function listmoneda_tecnico($id)
+public function listmoneda_tecnico($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Datos_Técnicos');
@@ -160,13 +174,14 @@ public function listmoneda_tecnico($id)
 /*Listado de atributos Anverso*/
 
 
-public function listmoneda_anverso($id)
+public function listmoneda_anverso($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Anverso');
@@ -187,13 +202,14 @@ public function listmoneda_anverso($id)
 /*Listado de atributos Reverso*/
 
 
-public function listmoneda_reverso($id)
+public function listmoneda_reverso($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Reverso');
@@ -215,13 +231,14 @@ public function listmoneda_reverso($id)
 /*Listado de atributos Canto*/
 
 
-public function listmoneda_canto($id)
+public function listmoneda_canto($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Canto');
@@ -243,13 +260,14 @@ public function listmoneda_canto($id)
 /*Listado de atributos Variedades*/
 
 
-public function listmoneda_variedades($id)
+public function listmoneda_variedades($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Variedades');
@@ -271,13 +289,14 @@ public function listmoneda_variedades($id)
 /*Listado de atributos Información_adicional*/
 
 
-public function listmoneda_adicional($id)
+public function listmoneda_adicional($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.tipo_atributom as palabraclave,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Información_adicional');
@@ -296,13 +315,14 @@ public function listmoneda_adicional($id)
 /*Listado de atributos Información_adicional*/
 
 
-public function listmonedaimage($id)
+public function listmonedaimage($id,$codigo_sugerencia)
 {	
 	$this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_m.nombre_atributo as nombreatributo,attr_m.estado as estado");
 	$this->db->from("catalogo_monedas m");
 	$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 	$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 	$this->db->where("m.id_catalogo_moneda",$id);
+	$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where('attr_m.tipo_atributom', 'Fotos');
 	$this->db->where("attr_monedas.tipo_moneda",'0');
 	$this->db->order_by('attr_m.orden', 'ASC');
@@ -334,13 +354,14 @@ public function listmonedaimage_existentes($id)
 		}
 }
 
-public function listattr_cat_edit($id)
+public function listattr_cat_edit($id,$codigo_sugerencia)
 	{
 	    $this->db->select("m.*,attr_monedas.atributo_moneda as descripcionatributo,attr_monedas.id_atributo as atributoid,attr_m.nombre_atributo as nombreatributo,attr_m.id_atributo_m as id_atributo_m,attr_m.descripcion_atributo as descripcion_atributo,attr_m.estado as estado,attr_monedas.id_moneda as id_unico_atributo,attr_monedas.id_atributo as id_atributo_edit");
 		$this->db->from("catalogo_monedas m");
 		$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->where("m.id_catalogo_moneda",$id);
+		$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
 		$this->db->where('attr_m.tipo_atributom', 'Catalogos');
 		$this->db->where("attr_monedas.tipo_moneda",'0');
 		$this->db->order_by('attr_m.orden', 'ASC');
@@ -348,18 +369,21 @@ public function listattr_cat_edit($id)
 			return $resultado->result();
 	}
 
-	public function listattr_cat_pagos($id)
+	public function listattr_cat_pagos($id,$codigo_sugerencia)
 	{
 		$this->db->select("m.*,attr_m.nombre_atributo as nombreatributo,attr_m.estado as estado,precio_cm.*");
 		$this->db->from("catalogo_monedas m");
 		$this->db->join("atributo_monedas attr_monedas","m.id_catalogo_moneda = attr_monedas.id_moneda");
 		$this->db->join("atributos_m attr_m","attr_monedas.id_atributo = attr_m.id_atributo_m");
 		$this->db->join("precios_catalogom precio_cm","attr_monedas.id_atributo = precio_cm.id_catalogo");
+		$this->db->where("precio_cm.tipo_moneda",'0');
 		$this->db->where("precio_cm.id_moneda",$id);
 		$this->db->where("m.id_catalogo_moneda",$id);	
-		$this->db->where("attr_monedas.tipo_moneda",'0');
-	    $this->db->where("precio_cm.tipo_moneda",'0');
+		$this->db->where("attr_monedas.codigo_sugerencia",$codigo_sugerencia);
+		$this->db->where("precio_cm.codigo_sugerencia",$codigo_sugerencia);
+		$this->db->where("attr_monedas.tipo_moneda",'0');	   
 		$this->db->where_not_in('attr_m.tipo_atributom', 'Fotos');
+
 		$this->db->order_by('attr_m.orden', 'ASC');
 		$resultados = $this->db->get();
 			if ($resultados->num_rows() > 0) {
@@ -372,16 +396,18 @@ public function listattr_cat_edit($id)
 
 
 /***********ELIMINAR O ACEPTAR CAMBIOS*************/
-public function delete_moneda($id_moneda)
+public function delete_moneda($id_moneda,$codigo_sugerencia)
 {
 	$this->db->where('id_moneda', $id_moneda);
+	$this->db->where("codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where('tipo_moneda', '0');
 	$this->db->delete('atributo_monedas');
 }
 
-public function delete_moneda_cat($id_moneda)
+public function delete_moneda_cat($id_moneda,$codigo_sugerencia)
 {
 	$this->db->where('id_moneda', $id_moneda);
+	$this->db->where("codigo_sugerencia",$codigo_sugerencia);
 	$this->db->where('tipo_moneda', '0');
 	$this->db->delete('precios_catalogom');
 }
@@ -401,23 +427,33 @@ public function delete_moneda_cat_existente($id_moneda)
 	$this->db->delete('precios_catalogom');
 }
 
-public function update_moneda_sugerida($id,$data)
+public function update_moneda_sugerida($id,$codigo_sugerencia,$data)
 {		
 
 		$this->db->where("id_moneda",$id);
+		$this->db->where("codigo_sugerencia",$codigo_sugerencia);
 		return $this->db->update("atributo_monedas",$data);
 }
 
-public function update_moneda_sugerida_cat($id,$data)
+public function update_moneda_sugerida_cat($id,$codigo_sugerencia,$data)
 {
-		$this->db->where('id_moneda', $id_moneda);
+		$this->db->where('id_moneda', $id);
+		$this->db->where("codigo_sugerencia",$codigo_sugerencia);
 		return $this->db->update("atributo_monedas",$data);
 }
 
-public function update_imagenes_existentes($id_atributo,$data)
+public function update_imagenes_existentes($id_atributo,$codigo_sugerencia,$data)
 {
 		$this->db->where('id_atributo_moneda', $id_atributo);
+		$this->db->where("codigo_sugerencia",$codigo_sugerencia);
 		return $this->db->update("atributo_monedas",$data);
+}
+
+public function update_pagos_catalogo($id,$codigo_sugerencia,$data)
+{
+		$this->db->where('id_moneda', $id);
+		$this->db->where("codigo_sugerencia",$codigo_sugerencia);
+		return $this->db->update("precios_catalogom",$data);
 }
 /*ACEPTAR CAMBIOS*/
 

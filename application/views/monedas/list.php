@@ -167,8 +167,10 @@ if ( $gobernante=='') {
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>
                                                   <a title="Eliminar Moneda" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>monedas/delete/2/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
                                                <?php endif; ?> 
+                                              
+                                              <a onclick="datoscoleccion(<?php echo $usuario->id_catalogo_moneda;?>)" class="btn btn-success" data-toggle="modal" data-target="#modal_add"><span class="fa fa-plus"></span></a>
 
-                                               <a title="Agregar a Colección" href="<?php echo base_url();?>collectionm/add_collection/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success btn-check"><span class="fa fa-plus"></span></a> 
+                                              <!-- <a title="Agregar a Colección" href="<?php echo base_url();?>collectionm/add_collection/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success"><span class="fa fa-plus"></span></a> -->
 
                                                <a title="Sugerir Cambios" href="<?php echo base_url();?>monedas/sugerir/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-primary btn-check"><span class="fa fa-plus-circle"></span></a>              
 
@@ -199,6 +201,8 @@ if ( $gobernante=='') {
     </div>
   </div>
 </div>
+
+<?php require_once('modal_coleccion.php') ?>
 
              </div>       
           </div>             

@@ -83,19 +83,19 @@ public function list_monedas()
 
 }
 
-public function view_moneda($id)
+public function view_moneda($id,$codigo_sugerencia)
 {
 	$data  = array(
-			'monedas_general'    => $this->Sugerencias_model->listmoneda_general($id), 
-			'monedas_tecnico'    => $this->Sugerencias_model->listmoneda_tecnico($id),
-			'monedas_anverso'    => $this->Sugerencias_model->listmoneda_anverso($id),
-			'monedas_reverso'    => $this->Sugerencias_model->listmoneda_reverso($id),
-			'monedas_canto'      => $this->Sugerencias_model->listmoneda_canto($id),
-			'monedas_variedades' => $this->Sugerencias_model->listmoneda_variedades($id),
-			'monedas_adicional'  => $this->Sugerencias_model->listmoneda_adicional($id), 
-			'imagenes'           => $this->Sugerencias_model->listmonedaimage($id),
-			'catalogos'          => $this->Sugerencias_model->listattr_cat_edit($id),
-			'pagos_catalogo'     => $this->Sugerencias_model->listattr_cat_pagos($id)
+			'monedas_general'    => $this->Sugerencias_model->listmoneda_general($id,$codigo_sugerencia), 
+			'monedas_tecnico'    => $this->Sugerencias_model->listmoneda_tecnico($id,$codigo_sugerencia),
+			'monedas_anverso'    => $this->Sugerencias_model->listmoneda_anverso($id,$codigo_sugerencia),
+			'monedas_reverso'    => $this->Sugerencias_model->listmoneda_reverso($id,$codigo_sugerencia),
+			'monedas_canto'      => $this->Sugerencias_model->listmoneda_canto($id,$codigo_sugerencia),
+			'monedas_variedades' => $this->Sugerencias_model->listmoneda_variedades($id,$codigo_sugerencia),
+			'monedas_adicional'  => $this->Sugerencias_model->listmoneda_adicional($id,$codigo_sugerencia), 
+			'imagenes'           => $this->Sugerencias_model->listmonedaimage($id,$codigo_sugerencia),
+			'catalogos'          => $this->Sugerencias_model->listattr_cat_edit($id,$codigo_sugerencia),
+			'pagos_catalogo'     => $this->Sugerencias_model->listattr_cat_pagos($id,$codigo_sugerencia)
 		);
 		$this->load->view("sugerencias/modal_moneda",$data);
 }
@@ -103,32 +103,34 @@ public function view_moneda($id)
 
 
 /**************ELIMINAR O ACEPTAR CAMBIOS*******************/
-public function delete($id_moneda)
+public function delete($id_moneda,$codigo_sugerencia)
 {
-	        $this->Sugerencias_model->delete_moneda($id_moneda);
-	        $this->Sugerencias_model->delete_moneda_cat($id_moneda);
+	        $this->Sugerencias_model->delete_moneda($id_moneda,$codigo_sugerencia);
+	        $this->Sugerencias_model->delete_moneda_cat($id_moneda,$codigo_sugerencia);
 			redirect(base_url()."sugerencias/list_monedas");	
 }
 
 
 
-public function aceptar($id_moneda)
+public function aceptar($id_moneda,$codigo_sugerencia)
 {
-		$imagenes            = $this->Sugerencias_model->listmonedaimage($id_moneda);
-		$imagenes_existentes = $this->Sugerencias_model->listmonedaimage_existentes($id_moneda);
+		$imagenes            = $this->Sugerencias_model->listmonedaimage($id_moneda,$codigo_sugerencia);
+		$imagenes_existentes = $this->Sugerencias_model->listmonedaimage_existentes($id_moneda,$codigo_sugerencia);
 
 		if ($imagenes AND !$imagenes_existentes) {
 
 			
 				$this->Sugerencias_model->delete_moneda_existente($id_moneda);
 				$this->Sugerencias_model->delete_moneda_cat_existente($id_moneda);
+				
 
 				$data = array(				
 					'tipo_moneda' => '1', 
 				);
 
-				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$data);
-				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$data);
+				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_pagos_catalogo($id_moneda,$codigo_sugerencia,$data);
 
 				redirect(base_url()."sugerencias/list_monedas");
 
@@ -141,7 +143,7 @@ public function aceptar($id_moneda)
 						$data_atributo = array(				
 								'tipo_moneda' => '0', 
 							);
-					$this->Sugerencias_model->update_imagenes_existentes($id_atributo,$data_atributo);
+					$this->Sugerencias_model->update_imagenes_existentes($id_atributo,$codigo_sugerencia,$data_atributo);
 				}
 
 				$this->Sugerencias_model->delete_moneda_existente($id_moneda);
@@ -151,8 +153,10 @@ public function aceptar($id_moneda)
 					'tipo_moneda' => '1', 
 				);
 
-				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$data);
-				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$data);
+				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_pagos_catalogo($id_moneda,$codigo_sugerencia,$data);
+
 				redirect(base_url()."sugerencias/list_monedas");
 
 
@@ -167,8 +171,10 @@ public function aceptar($id_moneda)
 					'tipo_moneda' => '1', 
 				);
 
-				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$data);
-				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$data);
+				$this->Sugerencias_model->update_moneda_sugerida($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_moneda_sugerida_cat($id_moneda,$codigo_sugerencia,$data);
+				$this->Sugerencias_model->update_pagos_catalogo($id_moneda,$codigo_sugerencia,$data);
+
 				redirect(base_url()."sugerencias/list_monedas");
 
 

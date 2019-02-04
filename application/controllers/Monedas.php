@@ -121,7 +121,7 @@ public function guardar_sugerencia()
 			 $catalogo_add          = $this->input->post("catalogo_add");
 			 $fuente_imagen_add     = $this->input->post("fuente_imagen_add");
 		    /*INPUTS DE AGREGACION*/  
-		     
+$codigo_sugerencia = time();		     
 
 
 /*******************************INSERTAR IMAGEN EDITADA*/
@@ -130,6 +130,7 @@ if (!empty($_FILES['imagen']["name"])) {
 		$this->load->library("upload");
 		$atributo_id_image = $this->input->post("atributo_id_image");
 		//$id_unico_usuario = $this->input->post("id_unico");
+		
 
 
 		$config['upload_path']          =  './public/images_monedas';
@@ -159,7 +160,8 @@ if (!empty($_FILES['imagen']["name"])) {
 								'id_moneda'            => $id_unico_usuario_unico, 
 								'id_atributo'          => $id_atributo[$i],
 								'atributo_moneda'      => $data['upload_data']['file_name'].','.$fuente_imagen[$i],
-								'tipo_moneda'          => '0'
+								'tipo_moneda'          => '0',
+								'codigo_sugerencia'    => $codigo_sugerencia
 							);
 							$this->Monedas_model->save_atributes_image($datos);
 							
@@ -207,7 +209,8 @@ if (!empty($_FILES['imagen_add']["name"])) {
 					'id_moneda'             => $id_unico_usuario_unico, 
 					'id_atributo'           => $atributo_id_image[$i],
 					'atributo_moneda'       => $data['upload_data']['file_name'].','.$fuente_imagen_add[$i],
-					'tipo_moneda'          => '0'
+					'tipo_moneda'          => '0',
+					'codigo_sugerencia'    => $codigo_sugerencia
 				);
 				$this->Monedas_model->save_atributes_image($datos);
 				
@@ -252,7 +255,8 @@ if (!empty($atributo_id)) {
 								'id_moneda'            => $id_unico_usuario_unico, 
 								'id_atributo'          => $atributo_id[$i],
 								'atributo_moneda'      => $catalogo[$i],
-								'tipo_moneda'          => '0'								
+								'tipo_moneda'          => '0',
+								'codigo_sugerencia'    => $codigo_sugerencia								
 							);
 							$this->Monedas_model->save_atributes($data);
 	}
@@ -282,7 +286,8 @@ if (!empty($this->input->post("id_catalogo"))) {
 							'id_moneda'             => $id_unico_usuario_unico, 
 							'id_atributo'           => $id_catalogo[$i],
 							'atributo_moneda'       => $numero_referencia[$i],
-							'tipo_moneda'           => '0'	
+							'tipo_moneda'           => '0',
+							'codigo_sugerencia'    => $codigo_sugerencia	
 							
 						);
 					$this->Monedas_model->save_atributes_catalogo($data_catalogo);
@@ -299,7 +304,8 @@ if (!empty($this->input->post("id_catalogo"))) {
 							'XF'            => $precio_XF[$i],
 							'AU'            => $precio_AU[$i],
 							'UNC'           => $precio_UNC[$i],
-							'tipo_moneda'   => '0'	
+							'tipo_moneda'   => '0',
+							'codigo_sugerencia'    => $codigo_sugerencia	
 				);
 					$this->Monedas_model->save_precios_catalogo($data_precio);
 				
@@ -335,13 +341,18 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 							'id_moneda'            => $id_unico, 
 							'id_atributo'          => $id_atributo_edit[$i],
 							'atributo_moneda'      => $numero_referencia_edit[$i],
-							'tipo_moneda'          => '0'	
+							'tipo_moneda'          => '0',
+							'codigo_sugerencia'    => $codigo_sugerencia	
 							
 						);
 					$this->Monedas_model->save_atributes_catalogo($data_catalogo);
 
 
 			/*for ($pr = 0; $pr < 1 ; $pr++) {*/
+
+if (!empty($precio_G_edit[$i])) {
+	# code...
+
 				$data_precio  = array(
 							'id_catalogo'        => $id_atributo_edit[$i],
 							'id_moneda'    		 => $id_unico,
@@ -352,9 +363,27 @@ if (!empty($this->input->post("id_unico_catalogo_edit"))) {
 							'XF'           		 => $precio_XF_edit[$i],
 							'AU'          		 => $precio_AU_edit[$i],
 							'UNC'          		 => $precio_UNC_edit[$i],
-							'tipo_moneda'        => '0'	
+							'tipo_moneda'        => '0',
+							'codigo_sugerencia'    => $codigo_sugerencia	
 				);
 					$this->Monedas_model->save_precios_catalogo($data_precio);
+
+}else{
+	$data_precio  = array(
+							'id_catalogo'        => '',
+							'id_moneda'    		 => '',
+							'G'             	 => '',
+							'VG'           		 => '',							
+							'VF'           		 => '',
+							'F'            		 => '',
+							'XF'           		 => '',
+							'AU'          		 => '',
+							'UNC'          		 => '',
+							'tipo_moneda'        => '0',
+							'codigo_sugerencia'    => $codigo_sugerencia	
+				);
+					$this->Monedas_model->save_precios_catalogo($data_precio);
+}
 				
 			/*}*/
 						

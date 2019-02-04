@@ -590,7 +590,7 @@ public function listmoneda_general($id)
 	$this->db->where_not_in('attr_m.tipo_atributom', 'Catalogos');
 	$this->db->where('attr_m.categoria_atributom', 'Información_general');
 	$this->db->where("attr_monedas.tipo_moneda",'1');
-	$this->db->order_by('attr_m.orden', 'DESC');
+	$this->db->order_by('attr_m.orden', 'ASC');
 	$resultados = $this->db->get();
 		if ($resultados->num_rows() > 0) {
 			return $resultados->result();
@@ -856,9 +856,9 @@ public function listatributos()
 
 public function listatributos_opciones($id_atributo)
 {		
-		$this->db->group_by("atributo_monedas.atributo_moneda");
-		$this->db->where("atributo_monedas.id_atributo",$id_atributo);
-		$this->db->where("attr_monedas.tipo_moneda",'1');
+		$this->db->group_by("atributo_moneda");
+		$this->db->where("id_atributo",$id_atributo);
+		$this->db->where("tipo_moneda",'1');
 		$resultados = $this->db->get("atributo_monedas");
 		return $resultados->result();
 }

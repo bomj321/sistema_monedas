@@ -147,7 +147,7 @@ if ( $gobernante=='') {
 
                                        
                                             <td style="cursor: pointer;text-decoration:underline">
-                                                <a data-target="#modal_sugerencia"  onclick="datosusuariomonedassugerir(<?php echo $usuario->id_catalogo_moneda;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal">
+                                                <a data-target="#modal_sugerencia"  onclick="datosusuariomonedassugerir(<?php echo $usuario->id_catalogo_moneda;?>,<?php echo $usuario->codigo_sugerencia;?>)" value="<?php echo $usuario->id_catalogo_moneda;?>" data-toggle="modal">
 
                                                     <?php echo $valor_facial .'&nbsp;&nbsp;'. $ano_acunacion .'&nbsp;&nbsp;'. $ensayador .'&nbsp;&nbsp;'. $ceca .'&nbsp;&nbsp;'. $gobernante ?>
                                                         
@@ -157,10 +157,10 @@ if ( $gobernante=='') {
                                             <td>                                            
 
                                               <?php if($this->session->userdata("tipo_usuario")==1 ):?>
-                                                 <a title="Aceptar Cambios" href="<?php echo base_url();?>sugerencias/aceptar/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-success"><span class="fa fa-check"></span></a> 
+                                                 <a title="Aceptar Cambios" href="<?php echo base_url();?>sugerencias/aceptar/<?php echo $usuario->id_catalogo_moneda;?>/<?php echo $usuario->codigo_sugerencia;?>" class="btn btn-success"><span class="fa fa-check"></span></a> 
 
 
-                                                  <a title="No Aceptar Cambios" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>sugerencias/delete/<?php echo $usuario->id_catalogo_moneda;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
+                                                  <a title="No Aceptar Cambios" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>sugerencias/delete/<?php echo $usuario->id_catalogo_moneda;?>/<?php echo $usuario->codigo_sugerencia;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a> 
                                               <?php endif; ?> 
 
                                               

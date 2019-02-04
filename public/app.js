@@ -219,11 +219,12 @@ function datosusuariomonedas($id_usuario){
         });
 }
 
-function datosusuariomonedassugerir($id_usuario){
-  var id = $id_usuario;
+function datosusuariomonedassugerir($id_usuario,$codigo_sugerencia){
+  var id                = $id_usuario;
+  var codigo_sugerencia = $codigo_sugerencia;
   var base_url= 'http://localhost/sistema_monedas/';
         $.ajax({
-            url: base_url + "sugerencias/view_moneda/" + id,
+            url: base_url + "sugerencias/view_moneda/" + id + '/' + codigo_sugerencia,
             type:"POST",
             beforeSend: function() {
                     
@@ -755,6 +756,28 @@ function opciones_moneda()
             });
 }
 /*************OPCIONES EN EL LISTADO DE MONEDAS*************/
+
+
+
+/*****FORMULARIO DE DE COLECCION******/
+function datoscoleccion($id_usuario){
+  var id = $id_usuario;
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "collectionm/add_collection_modal/" + id,
+            type:"POST",
+            beforeSend: function() {
+                     $(".popover_all").popover('destroy');
+                     $('#modal_add .modal-body').html("<center><img src='"+base_url+"/public/images/loader.gif' /></center>");
+                  },                  
+            success:function(resp){
+                $("#modal_add .modal-body").html(resp);
+                //alert(resp);
+            }
+
+        });
+}
+/*****FORMULARIO DE DE COLECCION******/
 
 
 
