@@ -134,8 +134,16 @@
                       <?php endif; ?> 
                       <li><a href="<?php echo base_url();?>membresias/inf">Estado de mi Membresía</a></li>
                     </ul>
-                  </li>                 
-                 
+                  </li> 
+                 <?php if($this->session->userdata("tipo_usuario")==1 ):?>
+                    <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                       
+                         <li><a href="<?php echo base_url();?>membresias/list_users">Listados de Usuarios</a></li>
+                       
+                      </ul>
+                    </li>                 
+                  <?php endif; ?> 
                 </ul>
               </div>            
 
@@ -358,7 +366,7 @@ datagrafico(ano_proyecto);
   /*****GRAFICAS EVENTO*****/
 function datagrafico(ano_proyecto){
 namesMonth= ["Enero","Feb","Mar","Abr","Mayo","Jun","Jul","Ago","Set","Oct","Nov","Dic"];
-var base_url= 'http://localhost/sistema_monedas/';
+var base_url= 'http://lamonedamexicana.com.mx/';
 //alert('GRAFICOS');
         $.ajax({
             url: base_url + "dashboard/grafica/"+ ano_proyecto,

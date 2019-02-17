@@ -1,4 +1,7 @@
-	<?php if(!empty($monedas_general)): ?>
+<div class="row">			
+		<div class="col-md-6 col-sm-12 col-xs-12">
+
+			<?php if(!empty($monedas_general)): ?>
 					<center><h4>Informaci&oacute;n General</h4></center>
 					<?php foreach ($monedas_general as $moneda_general ): ?>
 						<?php if($moneda_general->estado == '1' OR $this->session->userdata("tipo_usuario") != '2'): ?>
@@ -6,7 +9,8 @@
 						<?php endif; ?>	 
 					<?php endforeach;?>
 				<?php endif; ?>
-
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
 
 				<?php if(!empty($monedas_tecnico)): ?>
 					<center><h4>Datos T&eacute;cnicos</h4></center>
@@ -16,6 +20,12 @@
 						<?php endif; ?>	 
 					<?php endforeach;?>
 				<?php endif; ?>
+
+		</div>				
+
+</div>
+
+
 
 				<?php if(!empty($monedas_anverso)): ?>
 					<center><h4>Anverso</h4></center>

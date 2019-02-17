@@ -1812,8 +1812,7 @@
 								        </thead>
 								          <tbody>	
 											<?php if (!empty($pagos_catalogo)): ?>											
-											
-										        	   <?php foreach($pagos_catalogo as $pago_catalogo):?> 
+											  <?php foreach($pagos_catalogo as $pago_catalogo):?> 
 															
 																	<?php if (!empty($pago_catalogo)): ?>															
 														        	    <?php if($pago_catalogo->id_catalogo == $catalogo_edit->atributoid): ?> 
@@ -1827,7 +1826,7 @@
 														                        <td><center><input style="width: 100%; height: 100%" type="text" name="precio_UNC_edit[]" value="<?php echo $pago_catalogo->UNC?>"></center></td>
 														                    </tr>
 
-																		<?php else: ?>
+																		<?php elseif($pago_catalogo->id_catalogo == $catalogo_edit->atributoid AND empty($pago_catalogo)): ?>
 																			 <tr>
 															                    <td><center><input style="width: 100%; height: 100%" type="text" name="precio_G_edit[]"  value="Sin Precio"></center></td>
 															                    <td><center><input style="width: 100%; height: 100%" type="text" name="precio_VG_edit[]" value="Sin Precio"></center></td>								                       

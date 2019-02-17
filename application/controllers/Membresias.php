@@ -13,6 +13,7 @@ class Membresias extends CI_Controller {
 		//VERIFICAR SI EXISTE LA SESION
 		
 		$this->load->model("Membresias_model");
+	    $this->load->model("Usuarios_model");
 	}
 
 	public function list()

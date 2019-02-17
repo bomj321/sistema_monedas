@@ -20,6 +20,8 @@
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url();?>public/build/css/custom.min.css" rel="stylesheet">
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
   </head>
 
   <body class="login">
@@ -38,23 +40,111 @@
                 </div>
     <?php endif; ?>
 
+     <?php if($this->session->flashdata("captcha-error")):?>
+                <div class="alert alert-success">
+                  <p><?php echo $this->session->flashdata("captcha-error")?>a</p>
+                </div>
+    <?php endif; ?>
+
 
      <div>
                 <?php 
-                $usuario_registro = array(
-                    'class'        => form_error("usuario_registro") != false ? "parsley-error form-control":"form-control ",
-                    'placeholder'  => 'Nombre Completo',
+                $nombres_registro = array(
+                    'class'        => form_error("nombres_registro") != false ? "parsley-error form-control":"form-control ",
+                    'placeholder'  => 'Nombres',
                    // 'required'     =>  true,
-                    'name'         => 'usuario_registro',
-                    'value'        =>  set_value("usuario_registro"),
+                    'name'         => 'nombres_registro',
+                    'value'        =>  set_value("nombres_registro"),
                     'autocomplete' => true
                 );
 
-                echo form_input($usuario_registro);
-                echo form_error("usuario_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
+                echo form_input($nombres_registro);
+                echo form_error("nombres_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
 
               ?>
     </div>
+
+
+     <div>
+                <?php 
+                $apellidop_registro = array(
+                    'class'        => form_error("apellidop_registro") != false ? "parsley-error form-control":"form-control ",
+                    'placeholder'  => 'Apellido Paterno',
+                   // 'required'     =>  true,
+                    'name'         => 'apellidop_registro',
+                    'value'        =>  set_value("apellidop_registro"),
+                    'autocomplete' => true
+                );
+
+                echo form_input($apellidop_registro);
+                echo form_error("apellidop_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
+
+              ?>
+    </div>
+
+
+     <div>
+                <?php 
+                $apellidom_registro = array(
+                    'class'        => form_error("apellidom_registro") != false ? "parsley-error form-control":"form-control ",
+                    'placeholder'  => 'Apellido Materno',
+                   // 'required'     =>  true,
+                    'name'         => 'apellidom_registro',
+                    'value'        =>  set_value("apellidom_registro"),
+                    'autocomplete' => true
+                );
+
+                echo form_input($apellidom_registro);
+                echo form_error("apellidom_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
+
+              ?>
+    </div>
+
+      <div>
+         <label for="fecha_nacimiento_registro" class="pull-left"> Ingrese año de Nacimiento</label> 
+                <?php 
+                $fecha_nacimiento_registro = array(
+                    'class'        => form_error("fecha_nacimiento_registro") != false ? "parsley-error form-control":"form-control ",
+                   // 'required'     =>  true,
+                    'name'         => 'fecha_nacimiento_registro',
+                    'value'        =>  set_value("fecha_nacimiento_registro"),
+                    'type'         => 'date'
+                );
+
+                echo form_input($fecha_nacimiento_registro);
+                echo form_error("fecha_nacimiento_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
+
+              ?>
+    </div>
+
+
+
+     <div>
+        <select name="nacimiento_estado" class=" <?php echo form_error("nacimiento_estado") != false ? "parsley-error form-control":"form-control " ?> ">
+          <option selected>Estado de Nacimiento</option>
+                <?php require('options_select.php') ?>
+        </select>
+
+        <?php 
+          echo form_error("nacimiento_estado","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>") 
+         ?>
+
+    </div>
+
+      <div>
+        <select name="residencia_estado" class=" <?php echo form_error("residencia_estado") != false ? "parsley-error form-control":"form-control " ?> ">
+                <option selected>Estado de Residencia</option>
+                <?php require('options_select.php') ?>
+
+        </select>
+
+        <?php 
+          echo form_error("residencia_estado","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>") 
+         ?>
+
+    </div>
+
+
 
     <div>
                 <?php 
@@ -108,21 +198,24 @@
 
               ?>
     </div>
+
+     <div style='margin-top: 20px;' class="g-recaptcha" data-sitekey="6LfICpIUAAAAAAdW5MJZIggTPAW-OlIzNZnO28qy"></div>
+
    
 
      <div style="margin-top: 40px;">
                  <?php 
                 $boton = array(
                     'type'     => 'submit',       
-                    'class'    => 'btn btn-default',
-                    'content'  => 'Registrar'             
+                    'class'    => 'btn btn-default boton_registro',
+                    'content'  => 'Registrar',
                 );
 
               echo form_button($boton);
 
               ?>
       </div>
-
+     
        <div class="clearfix"></div>
 
               <div class="separator">

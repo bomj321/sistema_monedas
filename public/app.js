@@ -115,6 +115,66 @@ function popover_contenido($id,$id_usuario){
 
 }
 
+function popover_contenido_venta($id,$id_usuario){
+  var id = $id; /*id autoincrementable*/
+  var id_element = 'popover_toggle_moneda_venta_'+id;
+  var select_a = document.getElementById(id_element); 
+  var id_usuario = $id_usuario; /*id del usuario*/
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "monedas/view_popover/" + id_usuario,
+            type:"POST",
+            beforeSend: function() {
+                      $(".popover_all").popover('hide');
+                      //$("#"+id_element).popover('hide');                     
+                      $("#"+id_element).attr('data-content','Espere...');
+                      $("#"+id_element).popover('show');
+                  },                  
+            success:function(resp){   
+                    //$("#"+id_element).popover('hide');
+                     //$(".popover_all").popover('destroy');            
+                     $("#"+id_element).attr('data-content',resp);
+                     $("#"+id_element).popover('show');
+            },
+                error:function(){
+                    $("#"+id_element).attr('data-content','ERROR DEL SERVIDOR');
+                    $("#"+id_element).popover('show');
+                }
+
+        });
+
+}
+
+function popover_contenido_busco($id,$id_usuario){
+  var id = $id; /*id autoincrementable*/
+  var id_element = 'popover_toggle_moneda_busco_'+id;
+  var select_a = document.getElementById(id_element); 
+  var id_usuario = $id_usuario; /*id del usuario*/
+  var base_url= 'http://localhost/sistema_monedas/';
+        $.ajax({
+            url: base_url + "monedas/view_popover/" + id_usuario,
+            type:"POST",
+            beforeSend: function() {
+                      $(".popover_all").popover('hide');
+                      //$("#"+id_element).popover('hide');                     
+                      $("#"+id_element).attr('data-content','Espere...');
+                      $("#"+id_element).popover('show');
+                  },                  
+            success:function(resp){   
+                    //$("#"+id_element).popover('hide');
+                     //$(".popover_all").popover('destroy');            
+                     $("#"+id_element).attr('data-content',resp);
+                     $("#"+id_element).popover('show');
+            },
+                error:function(){
+                    $("#"+id_element).attr('data-content','ERROR DEL SERVIDOR');
+                    $("#"+id_element).popover('show');
+                }
+
+        });
+
+}
+
 function popover_destroy(){
      $(".popover_all").popover('hide');
 }

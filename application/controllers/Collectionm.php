@@ -39,7 +39,9 @@ class Collectionm extends CI_Controller {
 	{
 		$id_usuario_session = $this->session->userdata("id");
 		$data = [
-		    'monedas' => $this->Collectionm_model->list($id_usuario_session)
+		    'monedas_personal' => $this->Collectionm_model->list_personal($id_usuario_session),
+		    'monedas_busco'   => $this->Collectionm_model->list_busco($id_usuario_session),
+		    'monedas_mercado' => $this->Collectionm_model->list_mercado($id_usuario_session)
 		];
 
 		$this->layout->view("list",$data);

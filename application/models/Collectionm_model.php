@@ -12,11 +12,33 @@ class Collectionm_model extends CI_Model {
 	{
 		return $this->db->insert("coleccion_personal_monedas",$data);
 	}
-	public function list($id_usuario_session)
+	public function list_personal($id_usuario_session)
 	{
 		$this->db->where('tipo_moneda_registro','principal');
 		$this->db->where_not_in('estado', '2');
 		$this->db->where('id_usuario', $id_usuario_session);
+		$this->db->where('mercado', '0');
+		$resultados = $this->db->get("coleccion_personal_monedas");
+		return $resultados->result();
+	}
+
+	public function list_busco($id_usuario_session)
+	{
+		$this->db->where('tipo_moneda_registro','principal');
+		$this->db->where_not_in('estado', '2');
+		$this->db->where('id_usuario', $id_usuario_session);
+		$this->db->where('mercado', '2');
+		$resultados = $this->db->get("coleccion_personal_monedas");
+		return $resultados->result();
+	}
+
+
+	public function list_mercado($id_usuario_session)
+	{
+		$this->db->where('tipo_moneda_registro','principal');
+		$this->db->where_not_in('estado', '2');
+		$this->db->where('id_usuario', $id_usuario_session);
+		$this->db->where('mercado', '1');
 		$resultados = $this->db->get("coleccion_personal_monedas");
 		return $resultados->result();
 	}
