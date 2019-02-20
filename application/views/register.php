@@ -49,17 +49,17 @@
 
      <div>
                 <?php 
-                $nombres_registro = array(
-                    'class'        => form_error("nombres_registro") != false ? "parsley-error form-control":"form-control ",
+                $nombre_registro = array(
+                    'class'        => form_error("nombre_registro") != false ? "parsley-error form-control":"form-control ",
                     'placeholder'  => 'Nombres',
                    // 'required'     =>  true,
-                    'name'         => 'nombres_registro',
-                    'value'        =>  set_value("nombres_registro"),
+                    'name'         => 'nombre_registro',
+                    'value'        =>  set_value("nombre_registro"),
                     'autocomplete' => true
                 );
 
-                echo form_input($nombres_registro);
-                echo form_error("nombres_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
+                echo form_input($nombre_registro);
+                echo form_error("nombre_registro","<span style='margin-bottom: 10px;' class='pull-left label label-danger'>","</span>")        
 
               ?>
     </div>
@@ -190,6 +190,7 @@
                    // 'required'     =>  true,
                     'name'         => 'email_usuario',
                     'value'        =>  set_value("email_usuario"),
+                    'type'         => 'email',
                     'autocomplete' => true
                 );
 
@@ -199,7 +200,7 @@
               ?>
     </div>
 
-     <div style='margin-top: 20px;' class="g-recaptcha" data-sitekey="6LfICpIUAAAAAAdW5MJZIggTPAW-OlIzNZnO28qy"></div>
+     <div style='margin-top: 20px;' class="g-recaptcha" data-sitekey="6Lc5pJIUAAAAAEc8_WxI0CWCsOoXoh0sFTf-K3aI"></div>
 
    
 

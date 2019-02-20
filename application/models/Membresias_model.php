@@ -26,7 +26,13 @@ class Membresias_model extends CI_Model {
 	} 	
 
 
-
+	public function list_admin()
+	{
+		$this->db->where("tipo_usuario",'1');
+		$this->db->where("activo",'1');
+		$resultados = $this->db->get("usuarios");
+		return $resultados->result();
+	}
 	
 	
 }

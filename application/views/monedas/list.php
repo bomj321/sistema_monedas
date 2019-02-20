@@ -48,7 +48,7 @@
                                                         <option style='font-weight: 900;' disabled>Sección <?php echo $nombreatributo ?></option>
                                                 <!--SUB CONSULTA-->
                                                     <?php 
-                                                         $sql ="SELECT * FROM atributos_m WHERE categoria_atributom = '$atributo->categoria_atributom' AND tipo_atributom != 'Fotos' GROUP BY id_atributo_m";
+                                                         $sql ="SELECT * FROM atributos_m WHERE categoria_atributom = '$atributo->categoria_atributom' AND tipo_atributom != 'Fotos' GROUP BY id_atributo_m ORDER BY orden DESC";
                                                          $query = $this->db->query($sql);
                                                      ?>
 

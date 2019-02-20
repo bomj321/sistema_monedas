@@ -52,9 +52,29 @@ public function inf()
 
 	}
 
-	
-	
+/*******************SECCION DE ADMINISTRADORES******************/
 
+/*LISTADO DE ADMINISTRADORES*/	
+	public function list_users_admins()
+	{
+		$data = [
+		    'administradores' => $this->Membresias_model->list_admin()
+		];
+
+		$this->layout->view("admins",$data);
+	}
+/*LISTADO DE ADMINISTRADORES*/
+
+
+/*AGREGAR ADMINISTRADORES*/	
+	public function add_admin()
+	{
+		
+		$this->layout->view("add_admin");
+	}
+/*AGREGAR ADMINISTRADORES*/
+
+/*******************SECCION DE ADMINISTRADORES******************/
 
 }
 

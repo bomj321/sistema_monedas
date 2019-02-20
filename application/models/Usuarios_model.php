@@ -22,5 +22,11 @@ class Usuarios_model extends CI_Model {
 	   return $this->db->insert("usuarios",$data);
 	}
 
+/*SECCION VERIFICAR CORREO*/
+public function update_verificacion($data,$id_verificacion){
+	    $this->db->where('verificacion_correo', $id_verificacion);
+		return $this->db->update('usuarios', $data);
+}
+/*SECCION VERIFICAR CORREO*/
 	
 }
