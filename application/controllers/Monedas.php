@@ -876,7 +876,7 @@ public function form_atributo_moneda($id_atributo)
 							$filtros   = $this->input->post("filtros");
 							$id_filtro = $this->input->post("id_filtro");
 							$data = array(
-							'usuarios'          => $this->Monedas_model->listusuarios_filtro_free($filtros), 
+							'usuarios'          => $this->Monedas_model->listusuarios_filtro($filtros), 
 							'filtros'           => $this->input->post("filtros"),
 							'id_filtro'         => $this->input->post("id_filtro"),
 							'atributos'         => $this->Monedas_model->listatributos(),

@@ -54,9 +54,11 @@
                                                 </td>
                                             <td>Sin L&iacute;mite</td>       
                                             <td>
-                                               <a title="Eliminar Administrador" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>monedas/delete/2/<?php echo $administrador->id_usuario;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a>
+                                               <a title="Eliminar Administrador" onclick="return confirm('Estas Seguro?')" href="<?php echo base_url();?>membresias/delete/<?php echo $administrador->id_usuario;?>" class="btn btn-danger"><span class="fa fa-trash-o"></span></a>
 
-                                               <a title="Ver Información" href="<?php echo base_url();?>monedas/edit/<?php echo $administrador->id_usuario;?>" class="btn btn-primary "><span class="fa fa-eye"></span></a> 
+                                               <button title="Informaci&oacute;n del Administrador" type="button" class="btn btn-primary boton_informacion" value="<?php echo $administrador->id_usuario; ?>" data-toggle="modal" data-target="#modal_informacion">
+                                                        <span class="fa fa-eye"></span>
+                                        </button>       
                                             </td>                                   
 
                                         </tr>
@@ -65,7 +67,7 @@
                             </tbody>
                         </table>                  	
                 </div><!--CONTENIDO-->
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal_informacion">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

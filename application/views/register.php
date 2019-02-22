@@ -121,7 +121,7 @@
 
      <div>
         <select name="nacimiento_estado" class=" <?php echo form_error("nacimiento_estado") != false ? "parsley-error form-control":"form-control " ?> ">
-          <option selected>Estado de Nacimiento</option>
+          <option selected value="">Estado de Nacimiento</option>
                 <?php require('options_select.php') ?>
         </select>
 
@@ -133,7 +133,7 @@
 
       <div>
         <select name="residencia_estado" class=" <?php echo form_error("residencia_estado") != false ? "parsley-error form-control":"form-control " ?> ">
-                <option selected>Estado de Residencia</option>
+                <option selected value="">Estado de Residencia</option>
                 <?php require('options_select.php') ?>
 
         </select>
@@ -228,8 +228,8 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                  <h1><i class="fa fa-btc"></i> Moneda Mexicana</h1>
+                  <p>©2019 Todos los Derechos Reservados. lamonedamexicana.com.mx</p>
                 </div>
         </div>
 

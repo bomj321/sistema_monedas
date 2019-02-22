@@ -45,6 +45,9 @@
     <link href="https://fonts.googleapis.com/css?family=Gugi|Mogra" rel="stylesheet">
     <!--FUENTES DE LETRAS-->
 
+    <!--TOASTR-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!--TOASTR-->
     <link href="<?php echo base_url();?>public/app.css" rel="stylesheet">
 
 
@@ -142,7 +145,13 @@
                          <li><a href="<?php echo base_url();?>membresias/list_users_admins">Ver Administradores</a></li>
                        
                       </ul>
-                    </li>                 
+                    </li>   
+
+                   <li><a><i class="fa fa-cogs"></i> Configuraci&oacute;n <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="<?php echo base_url();?>tienda/configuracion">Configurar Front-end</a></li>
+                      </ul>
+                  </li>              
                   <?php endif; ?> 
                 </ul>
               </div>            
@@ -264,7 +273,8 @@
 
     <!--Scripts Personalizados-->
     <script src="<?php echo base_url();?>public/zoomy.js"></script>
-     <script src="<?php echo base_url();?>public/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="<?php echo base_url();?>public/app.js"></script>
 <!-------------------------------------JS PARA EL MAPA--> 
   <script type="text/javascript">        
         function cargarEstado(id_estado){

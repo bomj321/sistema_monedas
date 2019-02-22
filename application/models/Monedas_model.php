@@ -820,7 +820,7 @@ public function listusuarios_filtro($filtros)
 
 public function listusuarios_free()
 {		
-		$this->db->where('estado','1');
+		$this->db->where_not_in('estado', '2');
 		$resultados = $this->db->get("catalogo_monedas");
 		return $resultados->result();
 }

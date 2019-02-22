@@ -32,9 +32,15 @@
                              </div>
                        		 <?php endif;?>
 
+                       		 <?php if($this->session->flashdata("register_ok")):?>
+					                <div class="alert alert-success">
+					                  <p><?php echo $this->session->flashdata("register_ok")?></p>
+					                </div>
+             				 <?php endif; ?>
+
 							<?php 
 							 $formulario = array('class' => 'form-horizontal');
-							 echo form_open_multipart('collectionm/create',$formulario); 
+							 echo form_open('membresias/add_admin_nuevo',$formulario); 
 							 ?>							
   
 							 <div class="form-group">
@@ -88,7 +94,7 @@
 									<label for="nacimiento_estado" class="col-sm-2 col-xs-12 col-md-2 control-label">Estado de Nacimiento</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select class="form-control" id="nacimiento_estado" name="nacimiento_estado" >
-									 			<option selected>Estado de Nacimiento</option>
+									 			<option selected value="">Estado de Nacimiento</option>
                 								<?php require('options_select.php') ?>									 		
 										 	</select>
 										 	<?php 									 	
@@ -103,7 +109,7 @@
 									<label for="residencia_estado" class="col-sm-2 col-xs-12 col-md-2 control-label">Estado de Residencia</label>								
 									 <div class="col-md-10 col-sm-12 col-xs-12">
 										 	<select class="form-control" id="residencia_estado" name="residencia_estado">
-									 				 <option selected>Estado de Residencia</option>
+									 				 <option selected value="">Estado de Residencia</option>
                 								     <?php require('options_select.php') ?>								 												 		
 										 	</select>
 										 	<?php 									 	

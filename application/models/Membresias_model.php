@@ -33,6 +33,19 @@ class Membresias_model extends CI_Model {
 		$resultados = $this->db->get("usuarios");
 		return $resultados->result();
 	}
+
+	public function update_admin_activo($id_admin,$data)
+	{
+		$this->db->where("id_usuario",$id_admin);
+		return $this->db->update("usuarios",$data);
+	} 
+
+	public function informacion_administrador($id_usuario)
+	{
+		$this->db->where("id_usuario",$id_usuario);
+		$resultado = $this->db->get("usuarios");
+		return $resultado->row();	
+	} 	
 	
 	
 }

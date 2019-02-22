@@ -840,4 +840,27 @@ function datoscoleccion($id_usuario){
 /*****FORMULARIO DE DE COLECCION******/
 
 
+/*PARTE DE LOS ADMINISTRADORES*/
+$(".boton_informacion").click(function(){
+    var id_usuario    =   $(this).val();
+     var base_url= 'http://localhost/sistema_monedas/';
+   $.ajax({
+            url: base_url + "membresias/vista_informacion_administrador/" + id_usuario,
+            type:"GET",
+            beforeSend: function() {
+                     toastr.warning('Espere Cargando Información...');
+                     toastr.clear()
+              },
+               success:function(resp){        
+               $("#modal_informacion .modal-title").html('Información del Administrador');                       
+                $("#modal_informacion .modal-body").html(resp);
 
+            },
+            error:function(){
+             toastr.error('Ha ocurrido un error, intente más tarde.', 'Disculpenos!') 
+            }
+
+      });
+
+  });
+/*PARTE DE LOS ADMINISTRADORES*/
